@@ -20,18 +20,21 @@ export default function BookingWizardModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 overflow-y-auto bg-black/90 backdrop-blur-xl flex flex-col">
+      <div
+        className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-black/90 backdrop-blur-xl"
+        data-lenis-prevent="true"
+      >
         {/* TOP BAR WITH CLOSE BUTTON */}
-        <div className="sticky top-0 z-50 bg-black/80 border-b border-border-gold/20 px-6 py-4 flex items-center justify-between backdrop-blur-md">
+        <div className="border-border-gold/20 sticky top-0 z-50 flex items-center justify-between border-b bg-black/80 px-6 py-4 backdrop-blur-md">
           <div className="flex items-center gap-2">
-            <span className="h-2.5 w-2.5 rounded-full bg-gold-primary animate-pulse" />
-            <span className="text-xs font-bold font-cinzel text-gold-primary uppercase tracking-widest">
+            <span className="bg-gold-primary h-2.5 w-2.5 animate-pulse rounded-full" />
+            <span className="font-cinzel text-gold-primary text-xs font-bold tracking-widest uppercase">
               Pitraya Concierge Sanctuary
             </span>
           </div>
           <button
             onClick={onClose}
-            className="flex items-center gap-1.5 py-1.5 px-4 rounded-full bg-surface border border-border-gold/30 text-xs font-bold text-text-muted hover:text-white hover:border-gold-primary transition-all cursor-pointer font-cinzel"
+            className="bg-surface border-border-gold/30 text-text-muted hover:border-gold-primary font-cinzel flex cursor-pointer items-center gap-1.5 rounded-full border px-4 py-1.5 text-xs font-bold transition-all hover:text-white"
           >
             <span>Close Wizard</span>
             <X className="h-4 w-4" />

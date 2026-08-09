@@ -62,7 +62,11 @@ export async function middleware(req: NextRequest) {
     pathname.startsWith("/dashboard") ||
     pathname.startsWith("/portal") ||
     pathname.startsWith("/pay") ||
-    pathname.startsWith("/sandbox");
+    pathname.startsWith("/sandbox") ||
+    pathname.startsWith("/about") ||
+    pathname.startsWith("/privacy-policy") ||
+    pathname.startsWith("/terms") ||
+    pathname.startsWith("/pind-daan-from");
 
   if (skipIntl) {
     const res = NextResponse.next({ request: { headers: requestHeaders } });

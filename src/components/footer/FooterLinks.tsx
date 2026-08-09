@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { cn } from "@/lib/utils";
 
 export interface FooterLinksColumn {
   title: string;
@@ -35,24 +36,34 @@ const defaultColumns: FooterLinksColumn[] = [
     links: [
       { label: "Lineage Record Search", href: "/lineage-portal" },
       { label: "AI Itinerary Planner", href: "/planner" },
-      { label: "Frequently Asked Questions", href: "/#faq" },
+      { label: "Frequently Asked Questions", href: "/faq" },
       { label: "Contact Concierge", href: "/contact" },
     ],
   },
 ];
 
-export default function FooterLinks({ columns = defaultColumns, className, ...props }: FooterLinksProps) {
+export default function FooterLinks({
+  columns = defaultColumns,
+  className,
+  ...props
+}: FooterLinksProps) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 w-full" {...props}>
+    <div
+      className={cn("grid w-full grid-cols-1 gap-8 sm:grid-cols-3", className)}
+      {...props}
+    >
       {columns.map((column, idx) => (
         <div key={idx} className="space-y-4">
-          <h4 className="text-sm font-semibold text-gold-primary uppercase tracking-wider font-cinzel">
+          <h4 className="text-gold-primary font-cinzel text-sm font-semibold tracking-wider uppercase">
             {column.title}
           </h4>
-          <ul className="space-y-2.5 text-sm text-text-secondary">
+          <ul className="text-text-secondary space-y-2.5 text-sm">
             {column.links.map((link, linkIdx) => (
               <li key={linkIdx}>
-                <Link href={link.href} className="hover:text-gold-primary transition-colors duration-200">
+                <Link
+                  href={link.href}
+                  className="hover:text-gold-primary transition-colors duration-200"
+                >
                   {link.label}
                 </Link>
               </li>

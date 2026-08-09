@@ -66,6 +66,9 @@ export default async function proxy(req: NextRequest) {
     pathname.startsWith("/about") ||
     pathname.startsWith("/privacy-policy") ||
     pathname.startsWith("/terms") ||
+    pathname.startsWith("/refund-policy") ||
+    pathname.startsWith("/cancellation-policy") ||
+    pathname.startsWith("/faq") ||
     pathname.startsWith("/pind-daan-from");
 
   if (skipIntl) {

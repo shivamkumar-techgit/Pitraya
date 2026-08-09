@@ -1,4 +1,5 @@
 import React from "react";
+export const dynamic = "force-dynamic";
 import { BookingStatus } from "@prisma/client";
 import prisma from "@/lib/prisma";
 import GlobalCommandSearch from "@/components/admin/GlobalCommandSearch";
@@ -42,17 +43,24 @@ export default async function AdminBookingsPage() {
   }));
 
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-100 p-6 md:p-10">
-      <div className="max-w-7xl mx-auto space-y-6">
-        <header className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <main className="min-h-screen bg-slate-950 p-6 text-slate-100 md:p-10">
+      <div className="mx-auto max-w-7xl space-y-6">
+        <header className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-2xl md:text-4xl font-extrabold text-amber-400">Booking Management</h1>
-            <p className="text-slate-400 text-sm mt-1">Operational view of active pilgrimage reservations.</p>
+            <h1 className="text-2xl font-extrabold text-amber-400 md:text-4xl">
+              Booking Management
+            </h1>
+            <p className="mt-1 text-sm text-slate-400">
+              Operational view of active pilgrimage reservations.
+            </p>
           </div>
           <GlobalCommandSearch />
         </header>
 
-        <AdminDataTable data={formattedBookings} onBulkStatusUpdate={handleBulkStatusUpdate} />
+        <AdminDataTable
+          data={formattedBookings}
+          onBulkStatusUpdate={handleBulkStatusUpdate}
+        />
       </div>
     </main>
   );

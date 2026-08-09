@@ -1,5 +1,5 @@
-import { AdminRole } from "@prisma/client";
-export { AdminRole };
+export type AdminRole =
+  "SUPER_ADMIN" | "ADMIN" | "ACCOUNTANT" | "COORDINATOR" | "OPERATOR";
 
 export enum Permission {
   DASHBOARD_READ = "DASHBOARD_READ",
@@ -47,10 +47,7 @@ export const ROLE_PERMISSIONS: Record<AdminRole, Permission[]> = {
     Permission.PAYMENT_UPDATE,
     Permission.ANALYTICS_READ,
   ],
-  COORDINATOR: [
-    Permission.DASHBOARD_READ,
-    Permission.BOOKING_READ,
-  ],
+  COORDINATOR: [Permission.DASHBOARD_READ, Permission.BOOKING_READ],
   OPERATOR: [
     Permission.DASHBOARD_READ,
     Permission.BOOKING_READ,
@@ -71,7 +68,10 @@ export interface AuthContext {
  * Single, central permission check function (Browser & Server Safe).
  * SUPER_ADMIN role automatically bypasses all permission checks (returns true).
  */
-export function hasPermission(role: AdminRole | string | undefined, permission: PermissionType): boolean {
+export function hasPermission(
+  role: AdminRole | string | undefined,
+  permission: PermissionType
+): boolean {
   if (!role) return false;
   const userRole = role as AdminRole;
 
@@ -81,7 +81,8 @@ export function hasPermission(role: AdminRole | string | undefined, permission: 
   }
 
   // Resolve legacy alias strings if passed
-  const targetPermission = (Permission[permission as keyof typeof Permission] || permission) as Permission;
+  const targetPermission = (Permission[permission as keyof typeof Permission] ||
+    permission) as Permission;
 
   const allowedPermissions = ROLE_PERMISSIONS[userRole] || [];
   return allowedPermissions.includes(targetPermission);
@@ -105,7 +106,10 @@ export function hasResourceAccess(
     return user.coordinatorId === resource.coordinatorId;
   }
   if (user.name && resource.coordinatorName) {
-    return user.name.toLowerCase().trim() === resource.coordinatorName.toLowerCase().trim();
+    return (
+      user.name.toLowerCase().trim() ===
+      resource.coordinatorName.toLowerCase().trim()
+    );
   }
 
   return false;

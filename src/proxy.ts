@@ -7,7 +7,7 @@ import { routing } from "./i18n/routing";
 // next-intl locale middleware — handles /hi/* routing and locale detection
 const intlMiddleware = createMiddleware(routing);
 
-export async function proxy(req: NextRequest) {
+export default async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // ── 1. Attach X-Request-ID to every request ───────────────────────────────

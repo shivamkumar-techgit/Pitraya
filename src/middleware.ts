@@ -7,7 +7,7 @@ import { routing } from "./i18n/routing";
 // next-intl locale middleware — handles /hi/* routing and locale detection
 const intlMiddleware = createMiddleware(routing);
 
-export async function proxy(req: NextRequest) {
+export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
 
   // ── 1. Attach X-Request-ID to every request ───────────────────────────────
@@ -20,12 +20,13 @@ export async function proxy(req: NextRequest) {
 
   // ── 2. Protect /admin and /api/admin routes (auth gate) ───────────────────
   const isAdminPage = pathname.startsWith("/admin");
-  const isAdminApi  = pathname.startsWith("/api/admin");
+  const isAdminApi = pathname.startsWith("/api/admin");
 
   if (isAdminPage || isAdminApi) {
     const token = await getToken({
       req,
-      secret: process.env.NEXTAUTH_SECRET || "rituals_sacred_secret_key_2026_jwt",
+      secret:
+        process.env.NEXTAUTH_SECRET || "rituals_sacred_secret_key_2026_jwt",
     });
 
     if (!token) {
@@ -79,7 +80,10 @@ export async function proxy(req: NextRequest) {
   intlResponse.headers.set("X-Request-ID", requestId);
   intlResponse.headers.set("X-Content-Type-Options", "nosniff");
   intlResponse.headers.set("X-Frame-Options", "DENY");
-  intlResponse.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  intlResponse.headers.set(
+    "Referrer-Policy",
+    "strict-origin-when-cross-origin"
+  );
 
   return intlResponse;
 }
@@ -87,5 +91,6 @@ export async function proxy(req: NextRequest) {
 export const config = {
   // Match all routes EXCEPT Next.js internals, static files, and API/trpc
   matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)"],
+    "/((?!_next/static|_next/image|favicon.ico|robots.txt|sitemap.xml|.*\\..*).*)",
+  ],
 };

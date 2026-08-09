@@ -1,0 +1,135 @@
+{
+  "nav": {
+    "home": "Home",
+    "experiences": "Experiences",
+    "packages": "Packages",
+    "wisdomLibrary": "Wisdom Library",
+    "lineagePortal": "Lineage Portal",
+    "aiPlanner": "AI Planner",
+    "sanctuaries": "Sanctuaries",
+    "contact": "Contact",
+    "bookNow": "Book Sanctuary"
+  },
+  "hero": {
+    "badge": "Certified Gayawal Pandits Since 1947",
+    "title": "Gaya Pind Daan &",
+    "titleGradient": "Sacred Pilgrimage",
+    "subtitle": "Complete ancestral rites at Vishnupad Temple, Phalgu River & Akshayavat — performed by hereditary Gayawal Pandits with full pilgrimage coordination.",
+    "primaryCta": "Explore Packages & Rites",
+    "secondaryCta": "AI Sacred Travel Planner",
+    "trustBadge1": "15,000+ Families Served",
+    "trustBadge2": "Verified Pandits Only",
+    "trustBadge3": "4.9★ Rated"
+  },
+  "packages": {
+    "sectionBadge": "Sacred Pilgrimage Packages",
+    "sectionTitle": "Choose Your",
+    "sectionTitleGradient": "Pilgrimage Path",
+    "sectionSubtitle": "Every package includes verified Pandits, hotel accommodation, transport, and complete Pind Daan ceremony.",
+    "startingFrom": "Starting from",
+    "duration": "Duration",
+    "bookNow": "Book This Package",
+    "viewDetails": "View Details",
+    "included": "What's Included",
+    "mostPopular": "Most Popular",
+    "premium": "Premium",
+    "viewAll": "View All Packages"
+  },
+  "contact": {
+    "sectionBadge": "Speak With Us",
+    "sectionTitle": "Contact",
+    "sectionTitleGradient": "Pitraya Rituals",
+    "formName": "Your Full Name",
+    "formPhone": "WhatsApp / Phone Number",
+    "formEmail": "Email Address",
+    "formCity": "Your City",
+    "formMessage": "Tell us about your pilgrimage requirements...",
+    "formSubmit": "Send Message",
+    "formSubmitting": "Sending...",
+    "formSuccess": "Message sent! We'll respond within 4 hours.",
+    "whatsappCta": "Chat on WhatsApp",
+    "callCta": "Call Us Now",
+    "emailCta": "Email Us",
+    "officeName": "Gaya Office",
+    "officeHours": "Open 5 AM – 9 PM IST, 7 days"
+  },
+  "booking": {
+    "title": "Book Your Pilgrimage",
+    "step1": "Personal Details",
+    "step2": "Travel Details",
+    "step3": "Choose Package",
+    "step4": "Confirmation",
+    "namePlaceholder": "Full Name",
+    "phonePlaceholder": "Phone / WhatsApp",
+    "emailPlaceholder": "Email Address",
+    "cityPlaceholder": "Your City",
+    "adultsLabel": "Adults",
+    "eldersLabel": "Senior Citizens (60+)",
+    "childrenLabel": "Children (under 12)",
+    "arrivalDateLabel": "Expected Arrival Date",
+    "travelModeLabel": "Travel Mode",
+    "flightLabel": "By Flight",
+    "trainLabel": "By Train",
+    "roadLabel": "By Road",
+    "packageLabel": "Select Package",
+    "specialNeedsLabel": "Special Requirements",
+    "wheelchairLabel": "Wheelchair assistance needed",
+    "airportPickupLabel": "Airport / Station pickup needed",
+    "submitButton": "Confirm Booking",
+    "submitting": "Confirming...",
+    "successTitle": "Booking Confirmed!",
+    "successMessage": "Your coordinator will contact you within 4 hours.",
+    "backButton": "Back",
+    "nextButton": "Next Step"
+  },
+  "faq": {
+    "sectionBadge": "Common Questions",
+    "sectionTitle": "Frequently Asked",
+    "sectionTitleGradient": "Questions",
+    "items": [
+      {
+        "q": "What is Pind Daan and why is Gaya the most sacred place for it?",
+        "a": "Pind Daan is the Vedic ritual of offering rice balls (pindas) to departed ancestors, performed to grant them moksha (liberation). Gaya is the only place in Hindu scripture (Vishnu Purana, Vayu Purana) specifically designated for Pind Daan — Lord Vishnu himself ordained Gaya as the Pitru Tirth (ancestral pilgrimage). Performing Pind Daan here is believed to liberate 7 generations of ancestors."
+      },
+      {
+        "q": "How do I book a Pind Daan ceremony?",
+        "a": "Send your ancestor's name, gotra, preferred dates, and number of family members via WhatsApp to +91 84344 57228 or fill our contact form. A coordinator confirms within 4 hours."
+      },
+      {
+        "q": "Can NRIs from abroad perform Pind Daan?",
+        "a": "Yes. Pitraya Rituals serves NRI families from the USA, UK, Canada, UAE, Singapore, and Australia. We offer full ceremony coordination, proxy Pind Daan, and live video streaming for families who cannot travel."
+      },
+      {
+        "q": "Can daughters perform Pind Daan for their parents?",
+        "a": "Yes. According to Dharmashastra and the Skanda Purana, daughters (putri) can perform Pind Daan and Shradh when there is no son. This is widely practised and fully accepted in Gaya. Our Pandits are well-versed in this tradition."
+      },
+      {
+        "q": "What is the best time to perform Pind Daan in Gaya?",
+        "a": "Pind Daan can be performed any day of the year at Gaya. However, Pitru Paksha (the 16-day Hindu lunar period in September/October) is the most auspicious time. Amavasya (new moon) days are also highly auspicious throughout the year."
+      },
+      {
+        "q": "What does a complete Pitraya package include?",
+        "a": "All packages include: verified Gayawal Pandit, full ritual Samagri (ceremony materials), hotel accommodation, local transport, Vishnupad Temple darshan coordination, Phalgu River ceremony, Akshayavat visit, and a digital ceremony record."
+      }
+    ]
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "Something went wrong. Please try again.",
+    "back": "Back",
+    "next": "Next",
+    "close": "Close",
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "bookNow": "Book Now",
+    "whatsapp": "WhatsApp",
+    "call": "Call",
+    "perPerson": "per person",
+    "onwards": "onwards"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "en": "English",
+    "hi": "हिन्दी"
+  }
+}

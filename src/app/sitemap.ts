@@ -2,37 +2,43 @@ import { MetadataRoute } from "next";
 import prisma from "@/lib/prisma";
 import { getSiteUrl } from "@/lib/config/site";
 import { getAllArticles } from "@/lib/blog/repository";
+import { CITIES } from "@/data/cities";
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = getSiteUrl();
 
   // Static routes
   const staticRoutes: MetadataRoute.Sitemap = [
-    {
-      url: `${baseUrl}`,
-      lastModified: new Date(),
-      changeFrequency: "daily",
-      priority: 1.0,
-    },
-    {
-      url: `${baseUrl}/portal`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/about`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/faq`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.8,
-    },
-  ];
+    "",
+    "/portal",
+    "/about",
+    "/faq",
+    "/contact",
+    "/hotels",
+    "/destinations",
+    "/terms",
+    "/privacy-policy",
+    "/refund-policy",
+    "/cancellation-policy",
+    "/gallery",
+    "/planner",
+    "/packages",
+    "/blog",
+    "/glossary",
+  ].map((route) => ({
+    url: `${baseUrl}${route}`,
+    lastModified: new Date(),
+    changeFrequency: route === "" ? "daily" : "weekly",
+    priority: route === "" ? 1.0 : 0.8,
+  }));
+
+  // City location routes
+  const locationRoutes: MetadataRoute.Sitemap = CITIES.map((city) => ({
+    url: `${baseUrl}/pind-daan-from/${city.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.9,
+  }));
 
   // Service routes
   const serviceRoutes: MetadataRoute.Sitemap = [
@@ -58,7 +64,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Dynamic Database Package routes
   let packageRoutes: MetadataRoute.Sitemap = [];
   try {
-    const packages = await prisma.package.findMany({ select: { id: true, createdAt: true } });
+    const packages = await prisma.package.findMany({
+      select: { id: true, createdAt: true },
+    });
     packageRoutes = packages.map((pkg) => ({
       url: `${baseUrl}/packages/${pkg.id}`,
       lastModified: pkg.createdAt || new Date(),
@@ -66,8 +74,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.9,
     }));
   } catch (err) {
-    console.warn("⚠️ Sitemap warning: Could not fetch packages from database:", err);
+    console.warn(
+      "⚠️ Sitemap warning: Could not fetch packages from database:",
+      err
+    );
   }
 
-  return [...staticRoutes, ...serviceRoutes, ...blogRoutes, ...packageRoutes];
+  return [
+    ...staticRoutes,
+    ...locationRoutes,
+    ...serviceRoutes,
+    ...blogRoutes,
+    ...packageRoutes,
+  ];
 }

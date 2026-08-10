@@ -7,6 +7,7 @@ import {
   JsonLd,
   generateServiceSchema,
   generateFaqSchema,
+  generateBreadcrumbSchema,
 } from "@/components/seo/JsonLd";
 import { getSiteUrl } from "@/lib/config/site";
 
@@ -111,6 +112,11 @@ export async function generateMetadata({
       url: `${baseUrl}/packages/${slug}`,
       type: "website",
     },
+    twitter: {
+      card: "summary_large_image",
+      title: pkg.metaTitle,
+      description: pkg.metaDescription,
+    },
   };
 }
 
@@ -123,8 +129,14 @@ export default async function PackageDetailPage({
   const pkg = PACKAGES_CATALOG[slug];
   if (!pkg) notFound();
 
+  const breadcrumbs = [
+    { name: "Packages", item: "/packages" },
+    { name: pkg.title, item: `/packages/${slug}` },
+  ];
+
   return (
     <main className="min-h-screen bg-slate-950 px-4 py-8 pt-32 text-slate-100 md:px-8 lg:px-16">
+      <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
       <JsonLd
         data={generateServiceSchema(
           pkg.title,
@@ -135,12 +147,7 @@ export default async function PackageDetailPage({
       <JsonLd data={generateFaqSchema(pkg.faqs)} />
 
       <div className="mx-auto max-w-5xl">
-        <Breadcrumbs
-          items={[
-            { name: "Packages", item: "/packages" },
-            { name: pkg.title, item: `/packages/${slug}` },
-          ]}
-        />
+        <Breadcrumbs items={breadcrumbs} />
 
         <header className="mb-12 text-center md:text-left">
           <h1 className="mb-4 text-3xl font-extrabold text-amber-400 md:text-5xl">

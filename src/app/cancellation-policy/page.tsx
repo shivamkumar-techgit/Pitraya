@@ -2,21 +2,41 @@ import React from "react";
 import { Metadata } from "next";
 import Breadcrumbs from "@/components/common/Breadcrumbs";
 
+import { JsonLd, generateBreadcrumbSchema } from "@/components/seo/JsonLd";
+import { getSiteUrl } from "@/lib/config/site";
+
+const baseUrl = getSiteUrl();
+
 export const metadata: Metadata = {
   title: "Cancellation Policy | Pitraya Rituals",
   description:
     "Cancellation policy for Pitraya Rituals Pind Daan and pilgrimage services.",
+  alternates: { canonical: `${baseUrl}/cancellation-policy` },
+  openGraph: {
+    title: "Cancellation Policy | Pitraya Rituals",
+    description:
+      "Cancellation policy for Pitraya Rituals Pind Daan and pilgrimage services.",
+    url: `${baseUrl}/cancellation-policy`,
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cancellation Policy | Pitraya Rituals",
+    description:
+      "Cancellation policy for Pitraya Rituals Pind Daan and pilgrimage services.",
+  },
 };
 
 export default function CancellationPolicyPage() {
+  const breadcrumbs = [
+    { name: "Cancellation Policy", item: "/cancellation-policy" },
+  ];
+
   return (
     <main className="bg-background text-text-primary min-h-screen px-4 py-8 pt-32 md:px-8 lg:px-16">
+      <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
       <div className="mx-auto max-w-4xl">
-        <Breadcrumbs
-          items={[
-            { name: "Cancellation Policy", item: "/cancellation-policy" },
-          ]}
-        />
+        <Breadcrumbs items={breadcrumbs} />
         <h1 className="font-cinzel text-gold-primary mt-4 mb-8 text-3xl font-bold md:text-5xl">
           Cancellation Policy
         </h1>

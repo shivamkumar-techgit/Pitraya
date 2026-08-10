@@ -21,20 +21,21 @@ export function generateOrganizationSchema() {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": `${baseUrl}/#organization`,
-    "name": "Pitraya Rituals",
-    "url": baseUrl,
-    "logo": `${baseUrl}/logo.png`,
-    "description": "Authentic Gaya Pind Daan and Vedic Pilgrimage Services Provider.",
-    "email": "shkshvm@gmail.com",
-    "telephone": "+91-84344-57228",
-    "address": {
+    name: "Pitraya Rituals",
+    url: baseUrl,
+    logo: `${baseUrl}/logo.png`,
+    description:
+      "Authentic Gaya Pind Daan and Vedic Pilgrimage Services Provider.",
+    email: "shkshvm@gmail.com",
+    telephone: "+91-84344-57228",
+    address: {
       "@type": "PostalAddress",
-      "addressLocality": "Gaya",
-      "addressRegion": "Bihar",
-      "addressCountry": "IN",
-      "postalCode": "823001",
+      addressLocality: "Gaya",
+      addressRegion: "Bihar",
+      addressCountry: "IN",
+      postalCode: "823001",
     },
-    "sameAs": [
+    sameAs: [
       "https://facebook.com/pitrayarituals",
       "https://instagram.com/pitrayarituals",
     ],
@@ -47,102 +48,168 @@ export function generateLocalBusinessSchema() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "@id": `${baseUrl}/#localbusiness`,
-    "name": "Pitraya Rituals - Gaya Vishnupad Office",
-    "image": `${baseUrl}/gaya-office.jpg`,
-    "telephone": "+91-84344-57228",
-    "priceRange": "₹₹",
-    "address": {
+    name: "Pitraya Rituals - Gaya Vishnupad Office",
+    image: `${baseUrl}/gaya-office.jpg`,
+    telephone: "+91-84344-57228",
+    priceRange: "₹₹",
+    address: {
       "@type": "PostalAddress",
-      "streetAddress": "Vishnupad Temple Dhaam Road",
-      "addressLocality": "Gaya",
-      "addressRegion": "Bihar",
-      "postalCode": "823001",
-      "addressCountry": "IN",
+      streetAddress: "Vishnupad Temple Dhaam Road",
+      addressLocality: "Gaya",
+      addressRegion: "Bihar",
+      postalCode: "823001",
+      addressCountry: "IN",
     },
-    "geo": {
+    geo: {
       "@type": "GeoCoordinates",
-      "latitude": 24.7955,
-      "longitude": 85.0002,
+      latitude: 24.7955,
+      longitude: 85.0002,
     },
-    "openingHoursSpecification": {
+    openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-      "opens": "05:00",
-      "closes": "21:00",
+      dayOfWeek: [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday",
+      ],
+      opens: "05:00",
+      closes: "21:00",
     },
-    "aggregateRating": {
+    aggregateRating: {
       "@type": "AggregateRating",
-      "ratingValue": "4.9",
-      "reviewCount": "128",
+      ratingValue: "4.9",
+      reviewCount: "128",
     },
   };
 }
 
-export function generateServiceSchema(name: string, description: string, serviceType: string) {
+export interface ReviewItem {
+  author: string;
+  reviewBody: string;
+  ratingValue: number;
+  datePublished?: string;
+}
+
+export function generateAggregateRatingSchema(
+  ratingValue: number = 4.9,
+  reviewCount: number = 148
+) {
+  return {
+    "@type": "AggregateRating",
+    ratingValue: ratingValue.toString(),
+    reviewCount: reviewCount.toString(),
+    bestRating: "5",
+    worstRating: "1",
+  };
+}
+
+export function generateReviewSchema(reviews: ReviewItem[]) {
+  return reviews.map((rev) => ({
+    "@type": "Review",
+    author: {
+      "@type": "Person",
+      name: rev.author,
+    },
+    datePublished: rev.datePublished || new Date().toISOString().split("T")[0],
+    reviewBody: rev.reviewBody,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue: rev.ratingValue.toString(),
+      bestRating: "5",
+      worstRating: "1",
+    },
+  }));
+}
+
+export function generateServiceSchema(
+  name: string,
+  description: string,
+  serviceType: string,
+  reviews?: ReviewItem[],
+  ratingValue: number = 4.9,
+  reviewCount: number = 148
+) {
   const baseUrl = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "Service",
-    "name": name,
-    "description": description,
-    "serviceType": serviceType,
-    "provider": {
+    name: name,
+    description: description,
+    serviceType: serviceType,
+    provider: {
       "@id": `${baseUrl}/#organization`,
     },
-    "areaServed": {
+    areaServed: {
       "@type": "City",
-      "name": "Gaya",
+      name: "Gaya",
     },
+    aggregateRating: generateAggregateRatingSchema(ratingValue, reviewCount),
+    ...(reviews && reviews.length > 0
+      ? { review: generateReviewSchema(reviews) }
+      : {}),
   };
 }
 
-export function generateFaqSchema(questions: { question: string; answer: string }[]) {
+export function generateFaqSchema(
+  questions: { question: string; answer: string }[]
+) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    "mainEntity": questions.map((q) => ({
+    mainEntity: questions.map((q) => ({
       "@type": "Question",
-      "name": q.question,
-      "acceptedAnswer": {
+      name: q.question,
+      acceptedAnswer: {
         "@type": "Answer",
-        "text": q.answer,
+        text: q.answer,
       },
     })),
   };
 }
 
-export function generateBreadcrumbSchema(items: { name: string; item: string }[]) {
+export function generateBreadcrumbSchema(
+  items: { name: string; item: string }[]
+) {
   const baseUrl = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    "itemListElement": items.map((it, idx) => ({
+    itemListElement: items.map((it, idx) => ({
       "@type": "ListItem",
-      "position": idx + 1,
-      "name": it.name,
-      "item": it.item.startsWith("http") ? it.item : `${baseUrl}${it.item}`,
+      position: idx + 1,
+      name: it.name,
+      item: it.item.startsWith("http") ? it.item : `${baseUrl}${it.item}`,
     })),
   };
 }
 
-export function generateArticleSchema(title: string, description: string, url: string, datePublished: string) {
+export function generateArticleSchema(
+  title: string,
+  description: string,
+  url: string,
+  datePublished: string
+) {
   const baseUrl = getSiteUrl();
   return {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
-    "headline": title,
-    "description": description,
-    "mainEntityOfPage": {
+    headline: title,
+    description: description,
+    mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
     },
-    "author": {
+    author: {
       "@type": "Organization",
-      "name": "Pitraya Rituals Acharyas",
+      name: "Pitraya Rituals Acharyas",
     },
-    "publisher": {
+    publisher: {
       "@id": `${baseUrl}/#organization`,
     },
-    "datePublished": datePublished,
+    datePublished: datePublished,
   };
 }

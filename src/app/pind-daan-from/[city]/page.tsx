@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import CityPindDaanClient from "@/components/city-pilgrimage/CityPindDaanClient";
 import { getSiteUrl } from "@/lib/config/site";
 import { getCityBySlug, CITIES } from "@/data/cities";
+import {
+  JsonLd,
+  generateBreadcrumbSchema,
+  generateServiceSchema,
+} from "@/components/seo/JsonLd";
 
 const baseUrl = getSiteUrl();
 
@@ -41,6 +46,11 @@ export async function generateMetadata(
       type: "website",
       url: `${baseUrl}/pind-daan-from/${citySlug}`,
     },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+    },
   };
 }
 
@@ -54,5 +64,25 @@ export default async function CityPindDaanPage({
 
   if (!city) notFound();
 
-  return <CityPindDaanClient city={city} />;
+  const breadcrumbs = [
+    { name: "Home", item: "/" },
+    {
+      name: `Pind Daan from ${city.name}`,
+      item: `/pind-daan-from/${citySlug}`,
+    },
+  ];
+
+  return (
+    <>
+      <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
+      <JsonLd
+        data={generateServiceSchema(
+          `Gaya Pind Daan Service from ${city.name}`,
+          `Sacred Pind Daan rituals and travel package arranged from ${city.name}, ${city.state} to Vishnupad Dhaam, Gaya.`,
+          "Pilgrimage Travel & Ancestral Ritual Service"
+        )}
+      />
+      <CityPindDaanClient city={city} />
+    </>
+  );
 }

@@ -25,7 +25,13 @@ export interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
  * Authentic Sacred Pitraya Logo Emblem (SVG)
  * Combines Sacred Lotus (Padma), Divine Diya Flame (Jyoti), and Ancestral Sun Rays (Moksha Yantra).
  */
-export function PitrayaLogoEmblem({ size = 32, className }: { size?: number; className?: string }) {
+export function PitrayaLogoEmblem({
+  size = 32,
+  className,
+}: {
+  size?: number;
+  className?: string;
+}) {
   return (
     <svg
       width={size}
@@ -38,14 +44,26 @@ export function PitrayaLogoEmblem({ size = 32, className }: { size?: number; cla
     >
       <defs>
         {/* Metallic Gold Gradients */}
-        <linearGradient id="pitrayaGoldPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+        <linearGradient
+          id="pitrayaGoldPrimary"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor="#FFF2B2" />
           <stop offset="30%" stopColor="#F5D061" />
           <stop offset="70%" stopColor="#E6B325" />
           <stop offset="100%" stopColor="#997008" />
         </linearGradient>
 
-        <linearGradient id="pitrayaFlameGlow" x1="50%" y1="0%" x2="50%" y2="100%">
+        <linearGradient
+          id="pitrayaFlameGlow"
+          x1="50%"
+          y1="0%"
+          x2="50%"
+          y2="100%"
+        >
           <stop offset="0%" stopColor="#FFFFFF" />
           <stop offset="40%" stopColor="#FFE066" />
           <stop offset="80%" stopColor="#D4AF37" />
@@ -63,8 +81,23 @@ export function PitrayaLogoEmblem({ size = 32, className }: { size?: number; cla
       <circle cx="50" cy="50" r="46" fill="url(#pitrayaHalo)" />
 
       {/* Outer Yantra Ring & Rays (8 Sacred Directions / Ashta-Dikpala) */}
-      <circle cx="50" cy="50" r="44" stroke="url(#pitrayaGoldPrimary)" strokeWidth="1" strokeDasharray="1 3" opacity="0.6" />
-      <circle cx="50" cy="50" r="40" stroke="url(#pitrayaGoldPrimary)" strokeWidth="1.2" opacity="0.8" />
+      <circle
+        cx="50"
+        cy="50"
+        r="44"
+        stroke="url(#pitrayaGoldPrimary)"
+        strokeWidth="1"
+        strokeDasharray="1 3"
+        opacity="0.6"
+      />
+      <circle
+        cx="50"
+        cy="50"
+        r="40"
+        stroke="url(#pitrayaGoldPrimary)"
+        strokeWidth="1.2"
+        opacity="0.8"
+      />
 
       {/* 8 Radial Rays */}
       {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
@@ -128,6 +161,23 @@ export function PitrayaLogoEmblem({ size = 32, className }: { size?: number; cla
   );
 }
 
+export interface LogoProps extends React.HTMLAttributes<HTMLDivElement> {
+  /** Size variant */
+  size?: "sm" | "md" | "lg" | "xl";
+  /** Variant: 'full' (emblem + text + tagline), 'compact' (emblem + text), 'mark' (emblem only), 'stacked' (centered stacked) */
+  variant?: "full" | "compact" | "mark" | "stacked";
+  /** Custom logo text */
+  text?: string;
+  /** Subtitle/Tagline */
+  tagline?: string;
+  /** Whether logo links to home */
+  href?: string;
+  /** Animated hover effect */
+  interactive?: boolean;
+  /** Use the generated brand logo photo (/logo.png) */
+  useImage?: boolean;
+}
+
 export default function Logo({
   size = "md",
   variant = "full",
@@ -135,21 +185,73 @@ export default function Logo({
   tagline = "ANCESTRAL RITES • GAYA",
   href = "/",
   interactive = true,
+  useImage = false,
   className,
   ...props
 }: LogoProps) {
   const sizeConfig = {
-    sm: { emblem: 28, text: "text-base", tagline: "text-[8px]" },
-    md: { emblem: 36, text: "text-lg md:text-xl", tagline: "text-[9px]" },
-    lg: { emblem: 48, text: "text-2xl md:text-3xl", tagline: "text-[10px]" },
-    xl: { emblem: 64, text: "text-3xl md:text-4xl", tagline: "text-[11px]" },
+    sm: {
+      emblem: 28,
+      text: "text-base",
+      tagline: "text-[8px]",
+      imgHeight: "h-8",
+    },
+    md: {
+      emblem: 36,
+      text: "text-lg md:text-xl",
+      tagline: "text-[9px]",
+      imgHeight: "h-10",
+    },
+    lg: {
+      emblem: 48,
+      text: "text-2xl md:text-3xl",
+      tagline: "text-[10px]",
+      imgHeight: "h-14",
+    },
+    xl: {
+      emblem: 64,
+      text: "text-3xl md:text-4xl",
+      tagline: "text-[11px]",
+      imgHeight: "h-20",
+    },
   }[size];
+
+  if (useImage) {
+    const imageContent = (
+      <div
+        className={cn(
+          "inline-flex cursor-pointer items-center select-none",
+          className
+        )}
+        {...props}
+      >
+        <motion.img
+          src="/logo.png"
+          alt="Pitraya Rituals - Sacred Lotus & Brand Logo"
+          whileHover={interactive ? { scale: 1.04 } : undefined}
+          transition={{ duration: 0.3 }}
+          className={cn(
+            "w-auto rounded-lg object-contain drop-shadow-md",
+            sizeConfig.imgHeight
+          )}
+        />
+      </div>
+    );
+
+    return href ? (
+      <Link href={href} aria-label="Pitraya Rituals - Home">
+        {imageContent}
+      </Link>
+    ) : (
+      imageContent
+    );
+  }
 
   const content = (
     <div
       className={cn(
-        "group inline-flex items-center gap-3 select-none cursor-pointer",
-        variant === "stacked" && "flex-col text-center gap-2",
+        "group inline-flex cursor-pointer items-center gap-3 select-none",
+        variant === "stacked" && "flex-col gap-2 text-center",
         className
       )}
       {...props}
@@ -158,20 +260,28 @@ export default function Logo({
       <motion.div
         whileHover={interactive ? { scale: 1.06, rotate: 5 } : undefined}
         transition={{ duration: 0.3, ease: "easeOut" }}
-        className="relative flex items-center justify-center shrink-0"
+        className="relative flex shrink-0 items-center justify-center"
       >
-        <PitrayaLogoEmblem size={sizeConfig.emblem} className="drop-shadow-[0_0_12px_rgba(230,179,37,0.3)]" />
+        <PitrayaLogoEmblem
+          size={sizeConfig.emblem}
+          className="drop-shadow-[0_0_12px_rgba(230,179,37,0.3)]"
+        />
       </motion.div>
 
       {/* Text Block */}
       {variant !== "mark" && (
-        <div className={cn("flex flex-col", variant === "stacked" && "items-center")}>
+        <div
+          className={cn(
+            "flex flex-col",
+            variant === "stacked" && "items-center"
+          )}
+        >
           <GradientText
             variant="gold"
             size="inherit"
             font="cinzel"
             className={cn(
-              "font-bold tracking-[0.2em] leading-none uppercase drop-shadow-sm transition-all duration-300 group-hover:brightness-110",
+              "leading-none font-bold tracking-[0.2em] uppercase drop-shadow-sm transition-all duration-300 group-hover:brightness-110",
               sizeConfig.text
             )}
           >
@@ -181,7 +291,7 @@ export default function Logo({
           {variant === "full" && tagline && (
             <span
               className={cn(
-                "font-cinzel text-gold-primary/80 tracking-[0.22em] uppercase mt-1 font-semibold whitespace-nowrap inline-block transition-colors group-hover:text-gold-primary",
+                "font-cinzel text-gold-primary/80 group-hover:text-gold-primary mt-1 inline-block font-semibold tracking-[0.22em] whitespace-nowrap uppercase transition-colors",
                 sizeConfig.tagline
               )}
             >

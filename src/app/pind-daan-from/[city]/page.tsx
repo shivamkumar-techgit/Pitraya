@@ -8,6 +8,7 @@ import {
   generateBreadcrumbSchema,
   generateServiceSchema,
 } from "@/components/seo/JsonLd";
+import InternalLinkHub from "@/components/seo/InternalLinkHub";
 
 const baseUrl = getSiteUrl();
 
@@ -83,6 +84,9 @@ export default async function CityPindDaanPage({
         )}
       />
       <CityPindDaanClient city={city} />
+      <div className="mx-auto max-w-7xl px-4">
+        <InternalLinkHub currentCity={city.name} />
+      </div>
     </>
   );
 }

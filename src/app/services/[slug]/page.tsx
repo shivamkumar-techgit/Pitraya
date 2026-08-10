@@ -8,6 +8,7 @@ import {
   generateFaqSchema,
   generateBreadcrumbSchema,
 } from "@/components/seo/JsonLd";
+import InternalLinkHub from "@/components/seo/InternalLinkHub";
 import { getSiteUrl } from "@/lib/config/site";
 
 interface ServiceData {
@@ -80,6 +81,24 @@ const SERVICES_CATALOG: Record<string, ServiceData> = {
         question: "Are the Pandits verified by local temple authorities?",
         answer:
           "Yes, all our Pandits are hereditary Gayawal Purohits verified by Vishnupad Temple Dhaam authorities.",
+      },
+    ],
+  },
+  "asthi-visarjan": {
+    slug: "asthi-visarjan",
+    title: "Sacred Asthi Visarjan Services in Gaya",
+    metaTitle: "Authentic Asthi Visarjan in Gaya & Phalgu River | Pitraya",
+    metaDescription:
+      "Book sacred Asthi Visarjan rites at Phalgu River and Vishnupad Dhaam, Gaya. Complete Vedic rituals guided by Gayawal Purohits.",
+    heroHeadline: "Sacred Asthi Visarjan Rites at Phalgu River, Gaya",
+    heroSubtitle:
+      "Immerse holy mortal remains in the sacred waters of Phalgu River with authentic Vedic Vedic mantras.",
+    serviceType: "Ancestral Asthi Visarjan Service",
+    faqs: [
+      {
+        question: "Why is Asthi Visarjan in Phalgu River sacred?",
+        answer:
+          "Phalgu River is sanctified by Lord Vishnu's footprint and Sita Kund, granting eternal salvation to the departed soul.",
       },
     ],
   },
@@ -187,6 +206,8 @@ export default async function ServiceDetailPage({
             ))}
           </div>
         </section>
+
+        <InternalLinkHub />
       </div>
     </main>
   );

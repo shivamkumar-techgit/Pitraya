@@ -9,6 +9,7 @@ import {
   generateFaqSchema,
   generateBreadcrumbSchema,
 } from "@/components/seo/JsonLd";
+import InternalLinkHub from "@/components/seo/InternalLinkHub";
 import { getSiteUrl } from "@/lib/config/site";
 
 interface PackageData {
@@ -88,6 +89,10 @@ const PACKAGES_CATALOG: Record<string, PackageData> = {
     ],
   },
 };
+
+PACKAGES_CATALOG["budget"] = PACKAGES_CATALOG["gaya-pind-daan"];
+PACKAGES_CATALOG["premium"] = PACKAGES_CATALOG["heritage-pilgrimage"];
+PACKAGES_CATALOG["vip"] = PACKAGES_CATALOG["supreme-moksha"];
 
 export async function generateMetadata({
   params,
@@ -200,6 +205,8 @@ export default async function PackageDetailPage({
             ))}
           </div>
         </section>
+
+        <InternalLinkHub />
       </div>
     </main>
   );

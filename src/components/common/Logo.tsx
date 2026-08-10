@@ -220,18 +220,18 @@ export default function Logo({
     const imageContent = (
       <div
         className={cn(
-          "inline-flex cursor-pointer items-center select-none",
+          "inline-flex cursor-pointer items-center bg-transparent select-none",
           className
         )}
         {...props}
       >
         <motion.img
-          src="/logo.png"
+          src={variant === "stacked" ? "/logo-stacked.svg" : "/logo.svg"}
           alt="Pitraya Rituals - Sacred Lotus & Brand Logo"
           whileHover={interactive ? { scale: 1.04 } : undefined}
           transition={{ duration: 0.3 }}
           className={cn(
-            "w-auto rounded-lg object-contain drop-shadow-md",
+            "w-auto bg-transparent object-contain drop-shadow-[0_0_12px_rgba(245,208,97,0.25)]",
             sizeConfig.imgHeight
           )}
         />

@@ -1,0 +1,76 @@
+<svg width="400" height="120" viewBox="0 0 400 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Metallic Gold Gradients -->
+    <linearGradient id="pitrayaGoldPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2B2" />
+      <stop offset="30%" stop-color="#F5D061" />
+      <stop offset="70%" stop-color="#E6B325" />
+      <stop offset="100%" stop-color="#997008" />
+    </linearGradient>
+
+    <linearGradient id="pitrayaFlameGlow" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#FFE066" />
+      <stop offset="80%" stop-color="#D4AF37" />
+      <stop offset="100%" stop-color="#996500" />
+    </linearGradient>
+
+    <radialGradient id="pitrayaHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F5D061" stop-opacity="0.3" />
+      <stop offset="70%" stop-color="#E6B325" stop-opacity="0.08" />
+      <stop offset="100%" stop-color="#000000" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <!-- Group: Lotus Emblem (Centered at X: 50, Y: 60) -->
+  <g transform="translate(10, 10)">
+    <!-- Ambient Halo Glow -->
+    <circle cx="50" cy="50" r="46" fill="url(#pitrayaHalo)" />
+
+    <!-- Outer Yantra Ring & Rays -->
+    <circle cx="50" cy="50" r="44" stroke="url(#pitrayaGoldPrimary)" stroke-width="1" stroke-dasharray="1 3" opacity="0.6" />
+    <circle cx="50" cy="50" r="40" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.2" opacity="0.8" />
+
+    <!-- 8 Radial Rays -->
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" />
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(45 50 50)" />
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(90 50 50)" />
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(135 50 50)" />
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(180 50 50)" />
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(225 50 50)" />
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(270 50 50)" />
+    <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(315 50 50)" />
+
+    <!-- Outer Lotus Petals (8 Symmetrical Petals) -->
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" />
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(45 50 50)" />
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(90 50 50)" />
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(135 50 50)" />
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(180 50 50)" />
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(225 50 50)" />
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(270 50 50)" />
+    <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(315 50 50)" />
+
+    <!-- Inner Lotus Flower (4 Main Petals) -->
+    <path d="M 50 20 C 35 34, 35 56, 50 64 C 65 56, 65 34, 50 20 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.65" />
+    <path d="M 20 50 C 34 35, 56 35, 64 50 C 56 65, 34 65, 20 50 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.65" />
+
+    <!-- Central Sacred Diya / Kalash Base -->
+    <path d="M 36 62 Q 50 74 64 62 Q 56 78 44 78 Q 36 78 36 62 Z" fill="url(#pitrayaGoldPrimary)" />
+
+    <!-- Central Flame of Eternal Peace (Jyoti) -->
+    <path d="M 50 32 C 44 44, 42 54, 50 60 C 58 54, 56 44, 50 32 Z" fill="url(#pitrayaFlameGlow)" />
+    <path d="M 50 40 C 47 47, 46 52, 50 56 C 54 52, 53 47, 50 40 Z" fill="#FFFFFF" opacity="0.95" />
+
+    <!-- Base Accent Ring -->
+    <circle cx="50" cy="50" r="4.5" fill="url(#pitrayaGoldPrimary)" />
+  </g>
+
+  <!-- Group: PITRAYA Typography in Metallic Gold -->
+  <text x="125" y="62" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="38" font-weight="bold" letter-spacing="6" fill="url(#pitrayaGoldPrimary)">
+    PITRAYA
+  </text>
+  <text x="127" y="84" font-family="'Cinzel', 'Trajan Pro', 'Georgia', serif" font-size="12" font-weight="600" letter-spacing="4" fill="#F5D061" opacity="0.85">
+    ANCESTRAL RITES • GAYA
+  </text>
+</svg>

@@ -75,48 +75,59 @@
 }
 
 :root {
-  /* Premium Light Theme */
-  --background: #F8F9FA;
-  --surface: #FFFFFF;
-  --surface-hover: #F1F3F5;
+  /* Premium Soft Faded Dark Theme (Warm Obsidian & Slate Charcoal) */
+  --background: #0f0f13;
+  --surface: #17171d;
+  --surface-hover: #22222b;
 
   /* Gold Palette */
-  --gold-primary: #D4AF37;
-  --gold-primary-hover: #C5A059;
-  --gold-secondary: #E5C158;
-  --gold-accent: #B8860B;
+  --gold-primary: #d4af37;
+  --gold-primary-hover: #e5c158;
+  --gold-secondary: #c5a059;
+  --gold-accent: #f3e5ab;
 
   /* Borders & Divider */
-  --border: #E9ECEF;
-  --border-subtle: #DEE2E6;
-  --border-gold: rgba(212, 175, 55, 0.3);
+  --border: #24242e;
+  --border-subtle: #1c1c24;
+  --border-gold: rgba(212, 175, 55, 0.25);
 
   /* Typography */
-  --text-primary: #1A1A1E;
-  --text-secondary: #6C757D;
-  --text-muted: #A0AAB2;
+  --text-primary: #f4f4f6;
+  --text-secondary: #a0a0aa;
+  --text-muted: #62626c;
 
   /* Semantic Feedback */
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
 
   /* Shadows & Glow */
-  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
-  --shadow-lg: 0 12px 24px rgba(0, 0, 0, 0.12);
-  --shadow-gold-glow: 0 0 20px rgba(212, 175, 55, 0.25);
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 16px 32px rgba(0, 0, 0, 0.8);
+  --shadow-gold-glow: 0 0 25px rgba(212, 175, 55, 0.3);
 
   /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-bg: rgba(23, 23, 29, 0.85);
   --glass-border: rgba(212, 175, 55, 0.25);
-  --glass-blur: blur(12px);
+  --glass-blur: blur(14px);
 
   /* Gradients */
-  --gradient-gold: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-  --gradient-dark: linear-gradient(180deg, #1F1F24 0%, #121215 100%);
-  --gradient-surface: linear-gradient(180deg, #FFFFFF 0%, #F8F9FA 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.4) 100%);
+  --gradient-gold: linear-gradient(
+    135deg,
+    #bf953f 0%,
+    #fcf6ba 25%,
+    #b38728 50%,
+    #fbf5b7 75%,
+    #aa771c 100%
+  );
+  --gradient-dark: linear-gradient(180deg, #1f1f24 0%, #121215 100%);
+  --gradient-surface: linear-gradient(180deg, #17171d 0%, #0f0f13 100%);
+  --gradient-glass: linear-gradient(
+    135deg,
+    rgba(23, 23, 29, 0.9) 0%,
+    rgba(15, 15, 19, 0.7) 100%
+  );
 
   /* Shadcn standard tokens bridge */
   --card: var(--surface);
@@ -124,13 +135,13 @@
   --popover: var(--surface);
   --popover-foreground: var(--text-primary);
   --primary: var(--gold-primary);
-  --primary-foreground: #0A0A0C;
+  --primary-foreground: #0a0a0c;
   --secondary: var(--gold-secondary);
-  --secondary-foreground: #0A0A0C;
-  --muted: #F1F3F5;
+  --secondary-foreground: #0a0a0c;
+  --muted: #22222b;
   --muted-foreground: var(--text-secondary);
   --accent: var(--gold-secondary);
-  --accent-foreground: #0A0A0C;
+  --accent-foreground: #0a0a0c;
   --destructive: var(--error);
   --input: var(--border);
   --ring: var(--gold-primary);
@@ -139,7 +150,7 @@
   --sidebar: var(--surface);
   --sidebar-foreground: var(--text-primary);
   --sidebar-primary: var(--gold-primary);
-  --sidebar-primary-foreground: #0A0A0C;
+  --sidebar-primary-foreground: #0a0a0c;
   --sidebar-accent: var(--surface-hover);
   --sidebar-accent-foreground: var(--text-primary);
   --sidebar-border: var(--border);
@@ -148,30 +159,30 @@
 
 .dark {
   /* Premium Soft Faded Dark Theme (Warm Obsidian & Slate Charcoal) */
-  --background: #0F0F13;
-  --surface: #17171D;
-  --surface-hover: #22222B;
+  --background: #0f0f13;
+  --surface: #17171d;
+  --surface-hover: #22222b;
 
   /* Gold Palette */
-  --gold-primary: #D4AF37;
-  --gold-primary-hover: #E5C158;
-  --gold-secondary: #C5A059;
-  --gold-accent: #F3E5AB;
+  --gold-primary: #d4af37;
+  --gold-primary-hover: #e5c158;
+  --gold-secondary: #c5a059;
+  --gold-accent: #f3e5ab;
 
   /* Borders & Divider */
-  --border: #24242E;
-  --border-subtle: #1C1C24;
+  --border: #24242e;
+  --border-subtle: #1c1c24;
   --border-gold: rgba(212, 175, 55, 0.25);
 
   /* Typography */
-  --text-primary: #F4F4F6;
-  --text-secondary: #A0A0AA;
-  --text-muted: #62626C;
+  --text-primary: #f4f4f6;
+  --text-secondary: #a0a0aa;
+  --text-muted: #62626c;
 
   /* Semantic Feedback */
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --error: #ef4444;
 
   /* Shadows & Glow */
   --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.4);
@@ -185,10 +196,21 @@
   --glass-blur: blur(16px);
 
   /* Gradients */
-  --gradient-gold: linear-gradient(135deg, #BF953F 0%, #FCF6BA 25%, #B38728 50%, #FBF5B7 75%, #AA771C 100%);
-  --gradient-dark: linear-gradient(180deg, #17171D 0%, #0F0F13 100%);
-  --gradient-surface: linear-gradient(180deg, #1E1E24 0%, #141418 100%);
-  --gradient-glass: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+  --gradient-gold: linear-gradient(
+    135deg,
+    #bf953f 0%,
+    #fcf6ba 25%,
+    #b38728 50%,
+    #fbf5b7 75%,
+    #aa771c 100%
+  );
+  --gradient-dark: linear-gradient(180deg, #17171d 0%, #0f0f13 100%);
+  --gradient-surface: linear-gradient(180deg, #1e1e24 0%, #141418 100%);
+  --gradient-glass: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
 
   /* Shadcn standard tokens bridge */
   --card: var(--surface);
@@ -196,13 +218,13 @@
   --popover: var(--surface);
   --popover-foreground: var(--text-primary);
   --primary: var(--gold-primary);
-  --primary-foreground: #0A0A0C;
+  --primary-foreground: #0a0a0c;
   --secondary: var(--gold-secondary);
-  --secondary-foreground: #0A0A0C;
-  --muted: #1E1E24;
+  --secondary-foreground: #0a0a0c;
+  --muted: #1e1e24;
   --muted-foreground: var(--text-secondary);
   --accent: var(--gold-secondary);
-  --accent-foreground: #0A0A0C;
+  --accent-foreground: #0a0a0c;
   --destructive: var(--error);
   --input: var(--border);
   --ring: var(--gold-primary);
@@ -210,7 +232,7 @@
   --sidebar: var(--surface);
   --sidebar-foreground: var(--text-primary);
   --sidebar-primary: var(--gold-primary);
-  --sidebar-primary-foreground: #0A0A0C;
+  --sidebar-primary-foreground: #0a0a0c;
   --sidebar-accent: var(--surface-hover);
   --sidebar-accent-foreground: var(--text-primary);
   --sidebar-border: var(--border);
@@ -233,10 +255,12 @@
   /* Gold text selection highlight */
   ::selection {
     background-color: rgba(212, 175, 55, 0.25);
-    color: #D4AF37;
+    color: #d4af37;
   }
   /* Pointer cursor for all interactive elements */
-  button, [role="button"], a {
+  button,
+  [role="button"],
+  a {
     cursor: pointer;
   }
 }
@@ -273,9 +297,18 @@
 
 /* Morning Fog Keyframe Animations */
 @keyframes fog-move {
-  0% { transform: translateX(0%) scaleY(1); opacity: 0.3; }
-  50% { transform: translateX(-20%) scaleY(1.15); opacity: 0.55; }
-  100% { transform: translateX(0%) scaleY(1); opacity: 0.3; }
+  0% {
+    transform: translateX(0%) scaleY(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translateX(-20%) scaleY(1.15);
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateX(0%) scaleY(1);
+    opacity: 0.3;
+  }
 }
 
 .animate-fog-slow {
@@ -292,8 +325,12 @@
 
 /* SacredChakraBg — CSS-only GPU rotation (compositor thread) */
 @keyframes chakra-spin {
-  from { transform: rotate(0deg); }
-  to   { transform: rotate(360deg); }
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 /* PrimaryButton ripple effect */
@@ -309,7 +346,7 @@
 }
 
 .btn-ripple-effect::after {
-  content: '';
+  content: "";
   position: absolute;
   inset: 0;
   border-radius: inherit;
@@ -319,7 +356,8 @@
 }
 
 /* Lenis smooth-scroll — ensure html/body don't double-handle scroll */
-html.lenis, html.lenis body {
+html.lenis,
+html.lenis body {
   height: auto;
 }
 
@@ -329,4 +367,4 @@ html.lenis, html.lenis body {
 
 .lenis.lenis-smooth [data-lenis-prevent] {
   overscroll-behavior: contain;
-}
+}

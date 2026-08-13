@@ -1,66 +1,66 @@
 <svg width="512" height="512" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
   <defs>
-    <!-- Metallic Gold Gradients -->
-    <linearGradient id="pitrayaGoldPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stopColor="#FFF2B2" />
-      <stop offset="30%" stopColor="#F5D061" />
-      <stop offset="70%" stopColor="#E6B325" />
-      <stop offset="100%" stopColor="#997008" />
+    <!-- Metallic Gold Gradients for Favicon -->
+    <linearGradient id="pitrayaFaviconGold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFF2B2" />
+      <stop offset="30%" stop-color="#F5D061" />
+      <stop offset="70%" stop-color="#E6B325" />
+      <stop offset="100%" stop-color="#B8860B" />
     </linearGradient>
 
-    <linearGradient id="pitrayaFlameGlow" x1="50%" y1="0%" x2="50%" y2="100%">
-      <stop offset="0%" stopColor="#FFFFFF" />
-      <stop offset="40%" stopColor="#FFE066" />
-      <stop offset="80%" stopColor="#D4AF37" />
-      <stop offset="100%" stopColor="#996500" />
+    <linearGradient id="pitrayaFaviconFlame" x1="50%" y1="0%" x2="50%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="40%" stop-color="#FFE066" />
+      <stop offset="80%" stop-color="#E6B325" />
+      <stop offset="100%" stop-color="#B8860B" />
     </linearGradient>
 
-    <radialGradient id="pitrayaHalo" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stopColor="#F5D061" stopOpacity="0.3" />
-      <stop offset="70%" stopColor="#E6B325" stopOpacity="0.08" />
-      <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+    <radialGradient id="pitrayaFaviconHalo" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#F5D061" stop-opacity="0.35" />
+      <stop offset="70%" stop-color="#E6B325" stop-opacity="0.1" />
+      <stop offset="100%" stop-color="#E6B325" stop-opacity="0" />
     </radialGradient>
   </defs>
 
-  <!-- Background Ambient Glow (Transparent Radial) -->
-  <circle cx="50" cy="50" r="46" fill="url(#pitrayaHalo)" />
+  <!-- Background Ambient Halo Glow (Transparent Outer Ring) -->
+  <circle cx="50" cy="50" r="46" fill="url(#pitrayaFaviconHalo)" />
 
   <!-- Outer Yantra Ring & Rays -->
-  <circle cx="50" cy="50" r="44" stroke="url(#pitrayaGoldPrimary)" stroke-width="1" stroke-dasharray="1 3" opacity="0.6" />
-  <circle cx="50" cy="50" r="40" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.2" opacity="0.8" />
+  <circle cx="50" cy="50" r="44" stroke="url(#pitrayaFaviconGold)" stroke-width="1.2" stroke-dasharray="1.5 2.5" opacity="0.8" />
+  <circle cx="50" cy="50" r="40" stroke="url(#pitrayaFaviconGold)" stroke-width="1.8" />
 
   <!-- 8 Radial Rays -->
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" />
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(45 50 50)" />
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(90 50 50)" />
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(135 50 50)" />
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(180 50 50)" />
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(225 50 50)" />
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(270 50 50)" />
-  <line x1="50" y1="6" x2="50" y2="10" stroke="url(#pitrayaGoldPrimary)" stroke-width="1.5" stroke-linecap="round" transform="rotate(315 50 50)" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" transform="rotate(45 50 50)" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" transform="rotate(90 50 50)" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" transform="rotate(135 50 50)" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" transform="rotate(180 50 50)" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" transform="rotate(225 50 50)" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" transform="rotate(270 50 50)" />
+  <line x1="50" y1="5" x2="50" y2="10" stroke="url(#pitrayaFaviconGold)" stroke-width="2" stroke-linecap="round" transform="rotate(315 50 50)" />
 
   <!-- Outer Lotus Petals (8 Symmetrical Petals) -->
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" />
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(45 50 50)" />
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(90 50 50)" />
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(135 50 50)" />
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(180 50 50)" />
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(225 50 50)" />
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(270 50 50)" />
-  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.35" transform="rotate(315 50 50)" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" transform="rotate(45 50 50)" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" transform="rotate(90 50 50)" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" transform="rotate(135 50 50)" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" transform="rotate(180 50 50)" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" transform="rotate(225 50 50)" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" transform="rotate(270 50 50)" />
+  <path d="M 50 14 C 44 26, 44 36, 50 42 C 56 36, 56 26, 50 14 Z" fill="url(#pitrayaFaviconGold)" opacity="0.45" transform="rotate(315 50 50)" />
 
   <!-- Inner Lotus Flower (4 Main Petals) -->
-  <path d="M 50 20 C 35 34, 35 56, 50 64 C 65 56, 65 34, 50 20 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.65" />
-  <path d="M 20 50 C 34 35, 56 35, 64 50 C 56 65, 34 65, 20 50 Z" fill="url(#pitrayaGoldPrimary)" opacity="0.65" />
+  <path d="M 50 20 C 35 34, 35 56, 50 64 C 65 56, 65 34, 50 20 Z" fill="url(#pitrayaFaviconGold)" opacity="0.8" />
+  <path d="M 20 50 C 34 35, 56 35, 64 50 C 56 65, 34 65, 20 50 Z" fill="url(#pitrayaFaviconGold)" opacity="0.8" />
 
   <!-- Central Sacred Diya / Kalash Base -->
-  <path d="M 36 62 Q 50 74 64 62 Q 56 78 44 78 Q 36 78 36 62 Z" fill="url(#pitrayaGoldPrimary)" />
+  <path d="M 36 62 Q 50 74 64 62 Q 56 78 44 78 Q 36 78 36 62 Z" fill="url(#pitrayaFaviconGold)" />
 
   <!-- Central Flame of Eternal Peace (Jyoti) -->
-  <path d="M 50 32 C 44 44, 42 54, 50 60 C 58 54, 56 44, 50 32 Z" fill="url(#pitrayaFlameGlow)" />
+  <path d="M 50 30 C 44 43, 42 53, 50 60 C 58 53, 56 43, 50 30 Z" fill="url(#pitrayaFaviconFlame)" />
   <!-- Inner Flame Core -->
-  <path d="M 50 40 C 47 47, 46 52, 50 56 C 54 52, 53 47, 50 40 Z" fill="#FFFFFF" opacity="0.95" />
+  <path d="M 50 38 C 47 46, 46 51, 50 55 C 54 51, 53 46, 50 38 Z" fill="#FFFFFF" opacity="0.95" />
 
-  <!-- Base Accent Ring -->
-  <circle cx="50" cy="50" r="4.5" fill="url(#pitrayaGoldPrimary)" />
+  <!-- Base Accent Dot -->
+  <circle cx="50" cy="50" r="5" fill="url(#pitrayaFaviconGold)" />
 </svg>

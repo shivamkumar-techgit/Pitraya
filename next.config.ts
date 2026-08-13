@@ -30,17 +30,29 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  // ─── HTTP Security Headers ────────────────────────────────────────────────
+  // ─── HTTP Security & Performance Headers ──────────────────────────────────
   async headers() {
     return [
+      {
+        source: "/images/:path*",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
       // Security headers on all routes
       {
         source: "/:path*",
         headers: [
-          { key: "X-Frame-Options",           value: "DENY" },
-          { key: "X-Content-Type-Options",     value: "nosniff" },
-          { key: "Referrer-Policy",            value: "strict-origin-when-cross-origin" },
-          { key: "Permissions-Policy",         value: "camera=(), microphone=(), geolocation=()" },
+          { key: "X-Frame-Options", value: "DENY" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          {
+            key: "Permissions-Policy",
+            value: "camera=(), microphone=(), geolocation=()",
+          },
         ],
       },
     ];

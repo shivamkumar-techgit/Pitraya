@@ -37,7 +37,7 @@ const scriptureStories: ScriptureStory[] = [
     narrative:
       "During their exile, Lord Rama and Sita Devi journeyed to Gaya to perform ancestral rites for King Dasharatha. When Rama went to fetch pooja items, Dasharatha's spirit manifested before Sita. She offered sand-pindas on the Phalgu River banks, witnessed by the river, the Akshay Vat tree, and the Brahmin cow.",
     image: "/images/gaya_scripture_ramayana.png",
-    icon: <Flame className="h-4 w-4 text-gold-primary" />,
+    icon: <Flame className="text-gold-primary h-4 w-4" />,
   },
   {
     scripture: "The Mahabharata Legacy",
@@ -45,7 +45,7 @@ const scriptureStories: ScriptureStory[] = [
     narrative:
       "Following the Kurukshetra war, King Yudhishthira travelled to Gaya to perform Pind Daan and Shraddha rites for all fallen warriors. The epic records that only through Gaya's sacred soil could the souls of both Pandavas and Kauravas achieve supreme ancestral peace.",
     image: "/images/gaya_scripture_mahabharata.png",
-    icon: <Heart className="h-4 w-4 text-gold-primary" />,
+    icon: <Heart className="text-gold-primary h-4 w-4" />,
   },
   {
     scripture: "The Gayasura Legend",
@@ -53,40 +53,48 @@ const scriptureStories: ScriptureStory[] = [
     narrative:
       "Gayasura performed such intense penance that his body became holy. Lord Vishnu placed His sacred right foot upon Gayasura's chest, blessing him that anyone offering Pind Daan on this land would grant their ancestors direct entry to Vaikuntha. The Vishnupad Temple marks this divine footprint.",
     image: "/images/gaya_scripture_gayasura.png",
-    icon: <Sun className="h-4 w-4 text-gold-primary" />,
+    icon: <Sun className="text-gold-primary h-4 w-4" />,
   },
 ];
 
-export default function WhyGayaSection({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
+export default function WhyGayaSection({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
   const containerRef = useRef<HTMLDivElement>(null);
-  
+
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"],
   });
 
-  const parallaxY1 = useTransform(scrollYProgress, [0, 1], [-30, 30]);
-
   return (
     <Section
       ref={containerRef}
       spacing="lg"
-      className={cn("relative py-16 sm:py-20 overflow-hidden bg-black text-text-primary border-b border-border-gold/20", className)}
+      className={cn(
+        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-black py-16 sm:py-20",
+        className
+      )}
       {...props}
     >
       {/* Background Glows & Sacred Circular Chakra */}
-      <SacredChakraBg size="min(650px, 85vw)" opacity={0.04} rotateSpeed={140} position="top-right" />
-      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-gold-primary/10 rounded-full blur-[160px] pointer-events-none" />
-      
+      <SacredChakraBg
+        size="min(650px, 85vw)"
+        opacity={0.04}
+        rotateSpeed={140}
+        position="top-right"
+      />
+      <div className="bg-gold-primary/10 pointer-events-none absolute top-10 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full blur-[160px]" />
+
       <Container size="xl" className="relative z-10 space-y-14 sm:space-y-16">
-        
         {/* 1. HEADER */}
-        <div className="mx-auto max-w-3xl text-center space-y-4">
+        <div className="mx-auto max-w-3xl space-y-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 rounded-full bg-gold-primary/10 px-4 py-1.5 text-xs font-semibold text-gold-primary border border-gold-primary/30"
+            className="bg-gold-primary/10 text-gold-primary border-gold-primary/30 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold"
           >
             <BookOpen className="h-3.5 w-3.5" />
             <span>CHAPTER 04 • SACRED HISTORY & SCRIPTURE</span>
@@ -99,20 +107,32 @@ export default function WhyGayaSection({ className, ...props }: React.HTMLAttrib
             </GradientText>
           </Heading>
 
-          <Paragraph size="md" align="center" variant="muted" className="max-w-2xl mx-auto leading-relaxed font-serif italic text-text-secondary">
-            Why is Gaya the only land on Earth decreed in Vishnu Purana, Garuda Purana, Ramayana, and Mahabharata for ancestral liberation?
+          <Paragraph
+            size="md"
+            align="center"
+            variant="muted"
+            className="text-text-secondary mx-auto max-w-2xl font-serif leading-relaxed italic"
+          >
+            Why is Gaya the only land on Earth decreed in Vishnu Purana, Garuda
+            Purana, Ramayana, and Mahabharata for ancestral liberation?
           </Paragraph>
         </div>
 
         {/* 2. SCRIPTURE STORIES — Compact 2x2 Grid Layout */}
         <div className="space-y-6">
-          <div className="text-center space-y-2">
-            <SubHeading size="sm" variant="gold" uppercase align="center" font="cinzel">
+          <div className="space-y-2 text-center">
+            <SubHeading
+              size="sm"
+              variant="gold"
+              uppercase
+              align="center"
+              font="cinzel"
+            >
               Scriptural Authority & Ancient Epics
             </SubHeading>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {scriptureStories.map((story, index) => (
               <motion.div
                 key={index}
@@ -121,32 +141,41 @@ export default function WhyGayaSection({ className, ...props }: React.HTMLAttrib
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="group relative rounded-2xl border border-gold-primary/25 bg-surface/40 backdrop-blur-md overflow-hidden hover:border-gold-primary/60 transition-all duration-300 shadow-xl flex flex-col justify-between"
+                className="group border-gold-primary/25 bg-surface/40 hover:border-gold-primary/60 relative flex flex-col justify-between overflow-hidden rounded-2xl border shadow-xl backdrop-blur-md transition-all duration-300"
               >
                 {/* Header Image with Gradient & Badge */}
-                <div className="relative h-44 sm:h-48 w-full overflow-hidden">
+                <div className="relative h-44 w-full overflow-hidden bg-gradient-to-br from-amber-950/60 via-slate-950 to-black sm:h-48">
                   <Image
                     src={story.image}
                     alt={story.title}
                     fill
+                    unoptimized
                     sizes="(max-width: 768px) 100vw, 50vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  
-                  <div className="absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/75 backdrop-blur-md px-3 py-1 text-[11px] font-semibold text-gold-primary border border-gold-primary/30 shadow-md">
+
+                  <div className="text-gold-primary border-gold-primary/30 absolute top-3 left-3 inline-flex items-center gap-1.5 rounded-full border bg-black/75 px-3 py-1 text-[11px] font-semibold shadow-md backdrop-blur-md">
                     {story.icon}
                     <span>{story.scripture}</span>
                   </div>
                 </div>
 
                 {/* Card Content */}
-                <div className="p-5 sm:p-6 space-y-2.5 flex-1 flex flex-col justify-between">
+                <div className="flex flex-1 flex-col justify-between space-y-2.5 p-5 sm:p-6">
                   <div className="space-y-2">
-                    <Heading size="sm" font="cinzel" className="text-text-primary group-hover:text-gold-primary transition-colors">
+                    <Heading
+                      size="sm"
+                      font="cinzel"
+                      className="text-text-primary group-hover:text-gold-primary transition-colors"
+                    >
                       {story.title}
                     </Heading>
-                    <Paragraph size="xs" variant="muted" className="leading-relaxed text-text-secondary">
+                    <Paragraph
+                      size="xs"
+                      variant="muted"
+                      className="text-text-secondary leading-relaxed"
+                    >
                       {story.narrative}
                     </Paragraph>
                   </div>
@@ -158,14 +187,19 @@ export default function WhyGayaSection({ className, ...props }: React.HTMLAttrib
 
         {/* 3. INTERACTIVE MAP */}
         <div className="space-y-6">
-          <div className="text-center space-y-2">
-            <SubHeading size="sm" variant="gold" uppercase align="center" font="cinzel">
+          <div className="space-y-2 text-center">
+            <SubHeading
+              size="sm"
+              variant="gold"
+              uppercase
+              align="center"
+              font="cinzel"
+            >
               Interactive Sacred Geography Map
             </SubHeading>
           </div>
           <GayaAnimatedMap />
         </div>
-
       </Container>
     </Section>
   );

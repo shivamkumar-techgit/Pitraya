@@ -8,10 +8,7 @@ import {
   Check,
   ChevronRight,
   ChevronLeft,
-  Users,
-  Hotel,
   Clock,
-  Phone,
   MessageCircle,
   Download,
   CheckCircle2,
@@ -87,7 +84,7 @@ export default function BookingWizard({
     }
   };
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [_isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFinalConfirm = async () => {
     setIsSubmitting(true);
@@ -417,11 +414,12 @@ export default function BookingWizard({
                               )}
                             >
                               {/* Option Card Photo Header */}
-                              <div className="border-border-gold/20 relative h-28 w-full border-b">
+                              <div className="border-border-gold/20 relative h-28 w-full overflow-hidden border-b bg-gradient-to-br from-amber-950/60 via-slate-900 to-black">
                                 <Image
                                   src={pkg.image}
                                   alt={pkg.title}
                                   fill
+                                  unoptimized
                                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                   className="object-cover brightness-90 transition-transform duration-500 group-hover:scale-105"
                                 />
@@ -769,9 +767,10 @@ export default function BookingWizard({
                           return (
                             <div
                               key={mode.id}
-                              // eslint-disable-next-line @typescript-eslint/no-explicit-any
                               onClick={() =>
-                                updateTravel({ mode: mode.id as any })
+                                updateTravel({
+                                  mode: mode.id as "flight" | "train" | "road",
+                                })
                               }
                               className={cn(
                                 "group flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border text-center transition-all",
@@ -780,16 +779,17 @@ export default function BookingWizard({
                                   : "border-border hover:border-gold-primary/40 bg-black/30"
                               )}
                             >
-                              <div className="relative h-24 w-full">
+                              <div className="relative flex h-24 w-full items-center justify-center overflow-hidden bg-gradient-to-br from-amber-950/60 via-slate-900 to-black">
                                 <Image
                                   src={mode.image}
                                   alt={mode.label}
                                   fill
+                                  unoptimized
                                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                   className="object-cover brightness-90 transition-transform duration-500 group-hover:scale-105"
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-                                <div className="absolute bottom-2 left-2 text-2xl">
+                                <div className="absolute bottom-2 left-2 z-10 text-2xl">
                                   {mode.icon}
                                 </div>
                               </div>
@@ -932,8 +932,10 @@ export default function BookingWizard({
                               key={hotel.id}
                               onClick={() =>
                                 updateHotel({
-                                  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-                                  tierId: hotel.id as any,
+                                  tierId: hotel.id as
+                                    | "heritage-3star"
+                                    | "heritage-4star"
+                                    | "royal-palace",
                                   title: hotel.title,
                                   subtitle: hotel.subtitle,
                                   upgradePricePerPerson: hotel.extraPrice,
@@ -946,11 +948,12 @@ export default function BookingWizard({
                                   : "border-border hover:border-gold-primary/40 bg-black/30"
                               )}
                             >
-                              <div className="border-border-gold/20 relative h-28 shrink-0 border-b sm:h-auto sm:w-40 sm:border-r sm:border-b-0">
+                              <div className="border-border-gold/20 relative h-28 shrink-0 overflow-hidden border-b bg-gradient-to-br from-amber-950/60 via-slate-900 to-black sm:h-auto sm:w-40 sm:border-r sm:border-b-0">
                                 <Image
                                   src={hotel.image}
                                   alt={hotel.title}
                                   fill
+                                  unoptimized
                                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                   className="object-cover brightness-90 transition-transform duration-500 group-hover:scale-105"
                                 />

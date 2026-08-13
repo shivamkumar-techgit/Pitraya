@@ -69,6 +69,12 @@ export default async function proxy(req: NextRequest) {
     pathname.startsWith("/refund-policy") ||
     pathname.startsWith("/cancellation-policy") ||
     pathname.startsWith("/faq") ||
+    pathname.startsWith("/glossary") ||
+    pathname.startsWith("/why-pitraya") ||
+    pathname.startsWith("/our-process") ||
+    pathname.startsWith("/packages") ||
+    pathname.startsWith("/services") ||
+    pathname.startsWith("/book-now") ||
     pathname.startsWith("/pandits") ||
     pathname.startsWith("/hotels") ||
     pathname.startsWith("/travel") ||

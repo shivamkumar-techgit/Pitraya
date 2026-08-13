@@ -65,6 +65,13 @@ export default function BookingWizard({
     string | null
   >(null);
 
+  React.useEffect(() => {
+    if (initialPackageId) {
+      selectPackage(initialPackageId);
+      setStepIndex(1); // Auto-skip redundant package selection step
+    }
+  }, [initialPackageId]);
+
   const currentStepIndex = session.currentStepIndex;
   const progressPercent = Math.round(
     ((currentStepIndex + 1) / STEPS.length) * 100
@@ -495,8 +502,31 @@ export default function BookingWizard({
                       </div>
 
                       <div>
+                        <div className="border-gold-primary/30 bg-gold-primary/10 mb-4 flex items-center justify-between rounded-2xl border p-3.5 text-xs">
+                          <div className="flex items-center gap-2">
+                            <CheckCircle2 className="text-gold-primary h-4 w-4" />
+                            <span className="text-text-muted">
+                              Selected Package:
+                            </span>
+                            <span className="font-cinzel font-bold text-white">
+                              {session.package.title} (₹
+                              {session.package.startingPrice.toLocaleString(
+                                "en-IN"
+                              )}
+                              )
+                            </span>
+                          </div>
+                          <button
+                            type="button"
+                            onClick={() => setStepIndex(0)}
+                            className="text-gold-primary cursor-pointer text-[11px] font-bold underline transition-colors hover:text-white"
+                          >
+                            Change Package
+                          </button>
+                        </div>
+
                         <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
-                          Step 2 of 5
+                          ★ STEP 2 • FAMILY COMPOSITION
                         </span>
                         <h2 className="font-cinzel text-xl font-bold text-white sm:text-2xl">
                           How many people are travelling?

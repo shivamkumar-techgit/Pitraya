@@ -250,7 +250,7 @@ export function useBookingSession(
         grandTotal: selectedPkg.startingPrice,
       },
       status: "draft",
-      currentStepIndex: 0,
+      currentStepIndex: initialPackageId ? 1 : 0,
       lastUpdated: new Date().toISOString(),
     };
   });

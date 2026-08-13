@@ -25,7 +25,7 @@ export default function WhatsAppFloatingButton({
   };
 
   return (
-    <div className="pointer-events-auto fixed bottom-4 left-4 z-40 flex flex-col items-start gap-2 sm:bottom-6 sm:left-6">
+    <div className="pointer-events-auto fixed bottom-16 left-4 z-40 flex flex-col items-start gap-2 sm:bottom-6 sm:left-6">
       <AnimatePresence>
         {showTooltip && (
           <motion.div

@@ -40,24 +40,32 @@ export default function CTASection({
   ...props
 }: CTASectionProps) {
   return (
-    <Section spacing="xl" className={cn("relative overflow-hidden py-28", className)} {...props}>
+    <Section
+      spacing="xl"
+      className={cn("relative overflow-hidden py-28", className)}
+      {...props}
+    >
       <Container size="xl">
-        <div className="relative text-center overflow-hidden rounded-[2.5rem] border border-gold-primary/40 hover:border-gold-primary/60 hover:shadow-gold-glow transition-all duration-500 bg-surface/10 backdrop-blur-sm min-h-[460px] flex items-center justify-center p-8 sm:p-12">
-          
+        <div className="border-gold-primary/40 hover:border-gold-primary/60 hover:shadow-gold-glow bg-surface/10 relative flex min-h-[460px] items-center justify-center overflow-hidden rounded-[2.5rem] border p-8 text-center backdrop-blur-sm transition-all duration-500 sm:p-12">
           {/* Temple Background Image with Dark Vignette */}
           {image && (
-            <div className="absolute inset-0 w-full h-full z-0 select-none">
+            <div className="absolute inset-0 z-0 h-full w-full select-none">
               <Image
                 src={image}
                 alt="Sacred Gaya Temple"
                 fill
+                unoptimized
                 sizes="(max-width: 1200px) 100vw, 90vw"
-                className="object-cover scale-102 filter brightness-[0.35] contrast-[1.15]"
+                className="scale-102 object-cover brightness-[0.35] contrast-[1.15] filter"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-black/30" />
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-gold-primary/15 via-transparent to-black/80" />
+              <div className="from-gold-primary/15 absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] via-transparent to-black/80" />
               {/* Sacred Circular Chakra Watermark */}
-              <SacredChakraBg size="min(600px, 85vw)" opacity={0.065} rotateSpeed={120} />
+              <SacredChakraBg
+                size="min(600px, 85vw)"
+                opacity={0.065}
+                rotateSpeed={120}
+              />
             </div>
           )}
 
@@ -67,7 +75,7 @@ export default function CTASection({
               initial={{ opacity: 0, y: 15 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="inline-flex items-center gap-2 rounded-full bg-gold-primary/20 px-4 py-1.5 text-xs font-semibold text-gold-primary border border-gold-primary/40 backdrop-blur-md"
+              className="bg-gold-primary/20 text-gold-primary border-gold-primary/40 inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold backdrop-blur-md"
             >
               <Sparkles className="h-3.5 w-3.5" />
               <span>{badge}</span>
@@ -79,7 +87,12 @@ export default function CTASection({
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
             >
-              <Heading size="2xl" align="center" font="cinzel" className="text-white drop-shadow-md">
+              <Heading
+                size="2xl"
+                align="center"
+                font="cinzel"
+                className="text-white drop-shadow-md"
+              >
                 {title}
               </Heading>
             </motion.div>
@@ -90,7 +103,12 @@ export default function CTASection({
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <Paragraph size="lg" align="center" variant="muted" className="max-w-xl mx-auto text-gray-200">
+              <Paragraph
+                size="lg"
+                align="center"
+                variant="muted"
+                className="mx-auto max-w-xl text-gray-200"
+              >
                 {description}
               </Paragraph>
             </motion.div>
@@ -100,7 +118,7 @@ export default function CTASection({
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
+              className="flex flex-col items-center justify-center gap-4 pt-4 sm:flex-row"
             >
               <MagneticButton
                 size="lg"
@@ -123,7 +141,6 @@ export default function CTASection({
               </SecondaryButton>
             </motion.div>
           </div>
-
         </div>
       </Container>
     </Section>

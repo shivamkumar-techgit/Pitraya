@@ -35,8 +35,10 @@ const pitrayaBlogs: BlogPost[] = [
     id: "blog-1",
     slug: "what-is-pind-daan",
     image: "/images/pinda_daan_ceremony.png",
-    title: "Understanding Pinda Daan: The Complete Vedic Guide to Ancestral Liberation",
-    excerpt: "Explore the ancient oblation ritual, the energy of sesame and rice pindas, and why Gaya remains the supreme realm of salvation according to the Garuda Purana.",
+    title:
+      "Understanding Pinda Daan: The Complete Vedic Guide to Ancestral Liberation",
+    excerpt:
+      "Explore the ancient oblation ritual, the energy of sesame and rice pindas, and why Gaya remains the supreme realm of salvation according to the Garuda Purana.",
     category: "Vedic Wisdom",
     date: "July 20, 2026",
     readTime: "6 min read",
@@ -51,7 +53,8 @@ const pitrayaBlogs: BlogPost[] = [
     slug: "why-vishnupad-temple-important",
     image: "/images/gaya_vishnupad_temple.png",
     title: "The Geometry of Vishnupad Footprint & Vayu Purana Chronicles",
-    excerpt: "An in-depth look at the historic Vayu Purana chronicles describing Lord Vishnu's 40cm footprint stamped in solid basalt at Gaya.",
+    excerpt:
+      "An in-depth look at the historic Vayu Purana chronicles describing Lord Vishnu's 40cm footprint stamped in solid basalt at Gaya.",
     category: "Sacred Sites",
     date: "July 15, 2026",
     readTime: "7 min read",
@@ -65,8 +68,10 @@ const pitrayaBlogs: BlogPost[] = [
     id: "blog-3",
     slug: "can-daughters-perform-pind-daan",
     image: "/images/family_pind_daan.png",
-    title: "Can Daughters Perform Pind Daan? Scriptural Laws & Vedic Exceptions Clarified",
-    excerpt: "Vedic texts permit daughters and wives to perform oblation if no male descendant exists. Discover the exact scriptural passages from Garuda Purana.",
+    title:
+      "Can Daughters Perform Pind Daan? Scriptural Laws & Vedic Exceptions Clarified",
+    excerpt:
+      "Vedic texts permit daughters and wives to perform oblation if no male descendant exists. Discover the exact scriptural passages from Garuda Purana.",
     category: "Vedic Law",
     date: "July 10, 2026",
     readTime: "4 min read",
@@ -78,25 +83,39 @@ const pitrayaBlogs: BlogPost[] = [
   },
 ];
 
-export default function BlogsSection({ className, ...props }: React.HTMLAttributes<HTMLElement>) {
+export default function BlogsSection({
+  className,
+  ...props
+}: React.HTMLAttributes<HTMLElement>) {
   const heroPost = pitrayaBlogs[0];
   const sidePosts = pitrayaBlogs.slice(1);
 
   return (
-    <Section spacing="xl" className={cn("relative py-28 overflow-hidden bg-[#0A0805] text-text-primary border-b border-border-gold/20", className)} {...props}>
+    <Section
+      spacing="xl"
+      className={cn(
+        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-[#0A0805] py-28",
+        className
+      )}
+      {...props}
+    >
       {/* Background Ambience Glow & Sacred Circular Chakra */}
-      <SacredChakraBg size="min(600px, 85vw)" opacity={0.04} rotateSpeed={150} position="top-right" />
-      <div className="absolute top-1/3 right-1/4 w-[600px] h-[500px] bg-gold-primary/5 rounded-full blur-[180px] pointer-events-none" />
+      <SacredChakraBg
+        size="min(600px, 85vw)"
+        opacity={0.04}
+        rotateSpeed={150}
+        position="top-right"
+      />
+      <div className="bg-gold-primary/5 pointer-events-none absolute top-1/3 right-1/4 h-[500px] w-[600px] rounded-full blur-[180px]" />
 
       <Container size="xl" className="relative z-10 space-y-14">
-        
         {/* Section Header */}
-        <div className="mx-auto max-w-3xl text-center space-y-4">
+        <div className="mx-auto max-w-3xl space-y-4 text-center">
           <motion.div
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="inline-flex items-center gap-2 rounded-full bg-gold-primary/10 px-4 py-1.5 text-xs font-semibold text-gold-primary border border-gold-primary/30 uppercase tracking-widest font-cinzel"
+            className="bg-gold-primary/10 text-gold-primary border-gold-primary/30 font-cinzel inline-flex items-center gap-2 rounded-full border px-4 py-1.5 text-xs font-semibold tracking-widest uppercase"
           >
             <BookOpen className="h-3.5 w-3.5" />
             <span>CHAPTER 06 • SACRED KNOWLEDGE</span>
@@ -109,31 +128,37 @@ export default function BlogsSection({ className, ...props }: React.HTMLAttribut
             </GradientText>
           </Heading>
 
-          <Paragraph size="lg" align="center" variant="muted" className="max-w-2xl mx-auto font-serif italic">
-            Authentic guides written in collaboration with Gayawal Pandits to help families understand rituals, traditions, travel, history and spiritual significance.
+          <Paragraph
+            size="lg"
+            align="center"
+            variant="muted"
+            className="mx-auto max-w-2xl font-serif italic"
+          >
+            Authentic guides written in collaboration with Gayawal Pandits to
+            help families understand rituals, traditions, travel, history and
+            spiritual significance.
           </Paragraph>
         </div>
 
         {/* MAGAZINE LAYOUT — 1 Hero Card Left (7 cols) + 2 Compact Vertical Cards Right (5 cols) */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
-          
+        <div className="grid grid-cols-1 items-stretch gap-8 lg:grid-cols-12">
           {/* LEFT 7 COLS: Hero Article Card */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="lg:col-span-7 flex"
+            className="flex lg:col-span-7"
           >
-            <Link href={`/blog/${heroPost.slug}`} className="w-full flex group">
+            <Link href={`/blog/${heroPost.slug}`} className="group flex w-full">
               <GlassCard
                 borderGold
                 glow
                 padding="none"
-                className="w-full flex flex-col justify-between overflow-hidden bg-gradient-to-br from-surface via-background to-surface rounded-3xl cursor-pointer"
+                className="from-surface via-background to-surface flex w-full cursor-pointer flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br"
               >
                 {/* Featured Image */}
-                <div className="relative h-[260px] sm:h-[320px] w-full overflow-hidden">
+                <div className="relative h-[260px] w-full overflow-hidden sm:h-[320px]">
                   <Image
                     src={heroPost.image}
                     alt={heroPost.title}
@@ -142,10 +167,10 @@ export default function BlogsSection({ className, ...props }: React.HTMLAttribut
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
-                  <span className="absolute top-4 left-4 rounded-full bg-gold-primary text-black font-bold px-3.5 py-1 text-[11px] uppercase tracking-widest shadow-md">
+                  <span className="bg-gold-primary absolute top-4 left-4 rounded-full px-3.5 py-1 text-[11px] font-bold tracking-widest text-black uppercase shadow-md">
                     {heroPost.category}
                   </span>
-                  <div className="absolute bottom-4 left-6 right-6 flex items-center gap-4 text-xs text-gold-accent font-medium">
+                  <div className="text-gold-accent absolute right-6 bottom-4 left-6 flex items-center gap-4 text-xs font-medium">
                     <span>{heroPost.date}</span>
                     <span>•</span>
                     <span>{heroPost.readTime}</span>
@@ -153,28 +178,46 @@ export default function BlogsSection({ className, ...props }: React.HTMLAttribut
                 </div>
 
                 {/* Card Body */}
-                <div className="p-6 sm:p-8 space-y-4 flex-1 flex flex-col justify-between">
+                <div className="flex flex-1 flex-col justify-between space-y-4 p-6 sm:p-8">
                   <div className="space-y-2">
-                    <Heading size="md" font="cinzel" className="text-text-primary group-hover:text-gold-primary transition-colors">
+                    <Heading
+                      size="md"
+                      font="cinzel"
+                      className="text-text-primary group-hover:text-gold-primary transition-colors"
+                    >
                       {heroPost.title}
                     </Heading>
-                    <Paragraph size="sm" variant="muted" className="leading-relaxed">
+                    <Paragraph
+                      size="sm"
+                      variant="muted"
+                      className="leading-relaxed"
+                    >
                       {heroPost.excerpt}
                     </Paragraph>
                   </div>
 
-                  <div className="pt-4 border-t border-border-gold/20 flex items-center justify-between">
+                  <div className="border-border-gold/20 flex items-center justify-between border-t pt-4">
                     <div className="flex items-center gap-3">
-                      <div className="relative h-9 w-9 rounded-full overflow-hidden border border-gold-primary/30">
-                        <Image src={heroPost.author.avatar} alt={heroPost.author.name} fill sizes="36px" className="object-cover" />
+                      <div className="border-gold-primary/30 relative h-9 w-9 overflow-hidden rounded-full border">
+                        <Image
+                          src={heroPost.author.avatar}
+                          alt={heroPost.author.name}
+                          fill
+                          sizes="36px"
+                          className="object-cover"
+                        />
                       </div>
                       <div>
-                        <h4 className="text-xs font-bold font-cinzel text-text-primary">{heroPost.author.name}</h4>
-                        <p className="text-[10px] text-text-muted">{heroPost.author.role}</p>
+                        <h4 className="font-cinzel text-text-primary text-xs font-bold">
+                          {heroPost.author.name}
+                        </h4>
+                        <p className="text-text-muted text-[10px]">
+                          {heroPost.author.role}
+                        </p>
                       </div>
                     </div>
 
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-gold-primary uppercase tracking-wider group-hover:translate-x-1 transition-transform">
+                    <span className="text-gold-primary inline-flex items-center gap-1 text-xs font-bold tracking-wider uppercase transition-transform group-hover:translate-x-1">
                       <span>Read Article</span>
                       <ArrowRight className="h-3.5 w-3.5" />
                     </span>
@@ -185,7 +228,7 @@ export default function BlogsSection({ className, ...props }: React.HTMLAttribut
           </motion.div>
 
           {/* RIGHT 5 COLS: 2 Vertical Compact Article Cards */}
-          <div className="lg:col-span-5 flex flex-col gap-6">
+          <div className="flex flex-col gap-6 lg:col-span-5">
             {sidePosts.map((post, idx) => (
               <motion.div
                 key={post.id}
@@ -193,39 +236,48 @@ export default function BlogsSection({ className, ...props }: React.HTMLAttribut
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.7, delay: idx * 0.15 }}
-                className="flex-1 flex"
+                className="flex flex-1"
               >
-                <Link href={`/blog/${post.slug}`} className="w-full flex group">
+                <Link href={`/blog/${post.slug}`} className="group flex w-full">
                   <GlassCard
                     borderGold
                     padding="none"
-                    className="w-full h-full flex flex-col sm:flex-row overflow-hidden bg-surface/40 hover:bg-surface/70 transition-colors duration-300 rounded-3xl cursor-pointer"
+                    className="bg-surface/40 hover:bg-surface/70 flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl transition-colors duration-300 sm:flex-row"
                   >
-                    <div className="relative h-[160px] sm:h-full sm:w-[40%] shrink-0 overflow-hidden">
+                    <div className="relative h-[160px] shrink-0 overflow-hidden sm:h-full sm:w-[40%]">
                       <Image
                         src={post.image}
                         alt={post.title}
                         fill
+                        unoptimized
                         sizes="(max-width: 1024px) 100vw, 25vw"
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
                       />
-                      <div className="absolute inset-0 bg-gradient-to-t sm:bg-gradient-to-r from-black/80 via-transparent to-transparent" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent sm:bg-gradient-to-r" />
                     </div>
 
-                    <div className="p-5 space-y-3 flex-1 flex flex-col justify-between">
+                    <div className="flex flex-1 flex-col justify-between space-y-3 p-5">
                       <div className="space-y-1.5">
-                        <div className="flex items-center justify-between text-[10px] font-bold text-gold-primary uppercase tracking-widest">
+                        <div className="text-gold-primary flex items-center justify-between text-[10px] font-bold tracking-widest uppercase">
                           <span>{post.category}</span>
-                          <span className="text-text-muted">{post.readTime}</span>
+                          <span className="text-text-muted">
+                            {post.readTime}
+                          </span>
                         </div>
-                        <Heading size="sm" font="cinzel" className="text-text-primary group-hover:text-gold-primary transition-colors">
+                        <Heading
+                          size="sm"
+                          font="cinzel"
+                          className="text-text-primary group-hover:text-gold-primary transition-colors"
+                        >
                           {post.title}
                         </Heading>
                       </div>
 
-                      <div className="pt-2 border-t border-border-gold/20 flex items-center justify-between">
-                        <span className="text-[11px] text-text-muted font-medium">{post.author.name}</span>
-                        <span className="inline-flex items-center gap-1 text-[11px] font-bold text-gold-primary uppercase tracking-wider group-hover:translate-x-1 transition-transform">
+                      <div className="border-border-gold/20 flex items-center justify-between border-t pt-2">
+                        <span className="text-text-muted text-[11px] font-medium">
+                          {post.author.name}
+                        </span>
+                        <span className="text-gold-primary inline-flex items-center gap-1 text-[11px] font-bold tracking-wider uppercase transition-transform group-hover:translate-x-1">
                           <span>Read</span>
                           <ArrowRight className="h-3.5 w-3.5" />
                         </span>
@@ -236,20 +288,18 @@ export default function BlogsSection({ className, ...props }: React.HTMLAttribut
               </motion.div>
             ))}
           </div>
-
         </div>
 
         {/* Bottom CTA to explore all blogs in Wisdom Library */}
-        <div className="text-center pt-4">
+        <div className="pt-4 text-center">
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 rounded-full bg-gold-primary text-black font-cinzel font-bold px-8 py-3.5 text-sm hover:bg-gold-secondary hover:shadow-gold-glow transition-all duration-300 transform hover:-translate-y-0.5"
+            className="bg-gold-primary font-cinzel hover:bg-gold-secondary hover:shadow-gold-glow inline-flex transform items-center gap-2 rounded-full px-8 py-3.5 text-sm font-bold text-black transition-all duration-300 hover:-translate-y-0.5"
           >
             <span>Explore All Wisdom Guides</span>
             <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
-
       </Container>
     </Section>
   );

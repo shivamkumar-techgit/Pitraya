@@ -24,6 +24,29 @@ interface PackageData {
 }
 
 const PACKAGES_CATALOG: Record<string, PackageData> = {
+  "online-pind-daan": {
+    slug: "online-pind-daan",
+    title: "Online Pind Daan Package (Live Video Call & NRI Special)",
+    metaTitle: "Online Pind Daan Booking for NRIs & Remote Families | Pitraya",
+    metaDescription:
+      "Book authentic Online Pind Daan at Gaya with live video call streaming, verified Gayawal Pandits, HD photography, digital certificate, and courier Prasad delivery.",
+    heroHeadline: "Online Pind Daan for Remote Families & NRIs",
+    heroSubtitle:
+      "Perform sacred ancestral oblations remotely with live interactive video call, verified Gayawal Purohit Sankalp, and home Prasad delivery.",
+    price: "₹3,100",
+    faqs: [
+      {
+        question: "How does Online Pind Daan work?",
+        answer:
+          "Our Senior Gayawal Purohit connects with your family via HD Live Video Call (WhatsApp / Zoom / Google Meet). He takes your family Sankalpa with name and Gotra, and performs the Pind Daan rites on the Phalgu River and Vishnupad Sanctum.",
+      },
+      {
+        question: "Will I receive Prasad and Certificate?",
+        answer:
+          "Yes! We send an official family lineage certificate, digital video recording, and courier sacred Prasad & Raksha Sutra directly to your doorstep globally.",
+      },
+    ],
+  },
   "gaya-pind-daan": {
     slug: "gaya-pind-daan",
     title: "Essential Gaya Pind Daan Package",

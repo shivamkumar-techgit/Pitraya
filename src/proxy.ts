@@ -73,6 +73,7 @@ export default async function proxy(req: NextRequest) {
     pathname.startsWith("/why-pitraya") ||
     pathname.startsWith("/our-process") ||
     pathname.startsWith("/packages") ||
+    pathname.startsWith("/online-pind-daan") ||
     pathname.startsWith("/services") ||
     pathname.startsWith("/book-now") ||
     pathname.startsWith("/pandits") ||

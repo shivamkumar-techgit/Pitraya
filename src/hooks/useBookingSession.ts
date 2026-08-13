@@ -16,8 +16,13 @@ export const DEFAULT_PERSONAL_TOUCHES: PersonalTouchItem[] = [
   {
     id: "photography",
     title: "Professional Photography",
-    description: "Capture your sacred rituals beautifully with high-resolution photography.",
-    inclusions: ["200 Edited High-Res Photos", "Family Portrait Session", "Full Ceremony Coverage"],
+    description:
+      "Capture your sacred rituals beautifully with high-resolution photography.",
+    inclusions: [
+      "200 Edited High-Res Photos",
+      "Family Portrait Session",
+      "Full Ceremony Coverage",
+    ],
     price: 3500,
     image: "/images/package_heritage_real.png",
     selected: false,
@@ -25,8 +30,13 @@ export const DEFAULT_PERSONAL_TOUCHES: PersonalTouchItem[] = [
   {
     id: "drone-video",
     title: "Drone Cinematic Video",
-    description: "4K cinematic aerial film documenting your sacred oblations along the Falgu river.",
-    inclusions: ["4K Cinematic Film Reel", "Aerial Drone Footage", "Edited Highlight Video"],
+    description:
+      "4K cinematic aerial film documenting your sacred oblations along the Falgu river.",
+    inclusions: [
+      "4K Cinematic Film Reel",
+      "Aerial Drone Footage",
+      "Edited Highlight Video",
+    ],
     price: 12000,
     image: "/images/sacred_fire_havan.png",
     selected: false,
@@ -34,8 +44,13 @@ export const DEFAULT_PERSONAL_TOUCHES: PersonalTouchItem[] = [
   {
     id: "grand-havan",
     title: "Grand Havan Ceremony",
-    description: "Specialized Vedic Fire Havan at Vishnupad to invoke deep ancestral peace.",
-    inclusions: ["Senior Priests Chanting", "Complete Havan Samagri", "Special Ancestral Sankalpa"],
+    description:
+      "Specialized Vedic Fire Havan at Vishnupad to invoke deep ancestral peace.",
+    inclusions: [
+      "Senior Priests Chanting",
+      "Complete Havan Samagri",
+      "Special Ancestral Sankalpa",
+    ],
     price: 10000,
     image: "/images/sacred_fire_havan.png",
     selected: false,
@@ -43,8 +58,13 @@ export const DEFAULT_PERSONAL_TOUCHES: PersonalTouchItem[] = [
   {
     id: "pretshila-visit",
     title: "Pretshila Hill Visit",
-    description: "Guided sacred excursion to Pretshila Hill for elevated ancestral liberation rites.",
-    inclusions: ["Private Escort & Guide", "Special Hill Oblation Rites", "Comfortable Transport"],
+    description:
+      "Guided sacred excursion to Pretshila Hill for elevated ancestral liberation rites.",
+    inclusions: [
+      "Private Escort & Guide",
+      "Special Hill Oblation Rites",
+      "Comfortable Transport",
+    ],
     price: 7500,
     image: "/images/gaya_vishnupad_temple.png",
     selected: false,
@@ -53,23 +73,51 @@ export const DEFAULT_PERSONAL_TOUCHES: PersonalTouchItem[] = [
 
 export const PACKAGE_TIERS_DATA = [
   {
+    id: "online-pind-daan",
+    tierName: "Online Experience",
+    title: "Online Pind Daan",
+    subtitle:
+      "Authentic remote ritual with Live Video Call & Prasad delivery for NRIs & distant devotees",
+    startingPrice: 3100,
+    baseMembers: 1,
+    extraFeePerPerson: 500,
+    duration: "Live Video Call (2–3 Hours)",
+    badge: "Most Popular for NRIs",
+    isNRI: true,
+    image: "/images/hero_incense_sanctuary.png",
+    includedSummary: [
+      "Verified Gayawal Pandit",
+      "Live Interactive Video Call",
+      "Personalized Ancestral Sankalpa",
+      "HD Photos & HD Video Reel",
+      "Courier Prasad & Certificate",
+    ],
+  },
+  {
     id: "ritual-only",
     tierName: "Sacred Experience",
     title: "Sacred Ritual Service",
-    subtitle: "Authentic Vedic rites on Falgu River ghats for self-arranged travelers",
+    subtitle:
+      "Authentic Vedic rites on Falgu River ghats for self-arranged travelers",
     startingPrice: 5100,
     baseMembers: 4,
     extraFeePerPerson: 1100,
     duration: "3–4 Hours (Single Day)",
     badge: "Essential",
     image: "/images/pinda_daan_ceremony.png",
-    includedSummary: ["Hereditary Gayawal Pandit", "Standard Pind & Ritual Kit", "Phalgu River Tarpan", "Ancestral Certificate"],
+    includedSummary: [
+      "Hereditary Gayawal Pandit",
+      "Standard Pind & Ritual Kit",
+      "Phalgu River Tarpan",
+      "Ancestral Certificate",
+    ],
   },
   {
     id: "heritage-pilgrimage",
     tierName: "Heritage Experience",
     title: "Heritage Pilgrimage",
-    subtitle: "Comfortable guided 2-day pilgrimage with 3-star hotel stay and private transfers",
+    subtitle:
+      "Comfortable guided 2-day pilgrimage with 3-star hotel stay and private transfers",
     startingPrice: 24999,
     baseMembers: 4,
     extraFeePerPerson: 3500,
@@ -77,55 +125,83 @@ export const PACKAGE_TIERS_DATA = [
     badge: "Most Popular",
     isPopular: true,
     image: "/images/booking_package_real.png",
-    includedSummary: ["3-Star Heritage Hotel Stay", "AC Sedan Private Car", "Senior Gayawal Pandit", "Sattvik Breakfast & Dinner"],
+    includedSummary: [
+      "3-Star Heritage Hotel Stay",
+      "AC Sedan Private Car",
+      "Senior Gayawal Pandit",
+      "Sattvik Breakfast & Dinner",
+    ],
   },
   {
     id: "moksha-journey",
     tierName: "Moksha Experience",
     title: "Moksha Journey",
-    subtitle: "Complete 3-vedi liberation journey with 4-star resort stay & Innova Crysta MPV",
+    subtitle:
+      "Complete 3-vedi liberation journey with 4-star resort stay & Innova Crysta MPV",
     startingPrice: 49999,
     baseMembers: 6,
     extraFeePerPerson: 4500,
     duration: "3 Days / 2 Nights",
     badge: "Complete Journey",
     image: "/images/gaya_family_moment_prayer.png",
-    includedSummary: ["4-Star Heritage Resort", "Innova Crysta MPV Transfer", "VIP Sanctum Access", "All Sattvik Meals Included"],
+    includedSummary: [
+      "4-Star Heritage Resort",
+      "Innova Crysta MPV Transfer",
+      "VIP Sanctum Access",
+      "All Sattvik Meals Included",
+    ],
   },
   {
     id: "royal-concierge",
     tierName: "Royal Experience",
     title: "Royal Concierge",
-    subtitle: "Butler-managed private palace retreat with executive SUV fleet and drone film",
+    subtitle:
+      "Butler-managed private palace retreat with executive SUV fleet and drone film",
     startingPrice: 89999,
     baseMembers: 6,
     extraFeePerPerson: 6500,
     duration: "3 Days / 2 Nights",
     badge: "Ultra Luxury",
     image: "/images/hotel_luxury_suite.png",
-    includedSummary: ["5-Star Palace Suite", "Premium SUV (Fortuner)", "Dedicated Butler & Escort", "Gourmet Sattvik Feast"],
+    includedSummary: [
+      "5-Star Palace Suite",
+      "Premium SUV (Fortuner)",
+      "Dedicated Butler & Escort",
+      "Gourmet Sattvik Feast",
+    ],
   },
   {
     id: "eternal-legacy",
     tierName: "Legacy Experience",
     title: "Eternal Legacy Concierge",
-    subtitle: "Invitation-only multi-day legacy compilation and historical archives search",
+    subtitle:
+      "Invitation-only multi-day legacy compilation and historical archives search",
     startingPrice: 150000,
     baseMembers: 6,
     extraFeePerPerson: 8500,
     duration: "4–5 Days Bespoke",
     badge: "Invitation Only",
     image: "/images/gaya_akshayavat_banyan.png",
-    includedSummary: ["Private Palace Wing Reservation", "BMW/Mercedes Fleet", "Multi-day Panji Tracing", "Genealogy Book & Film"],
+    includedSummary: [
+      "Private Palace Wing Reservation",
+      "BMW/Mercedes Fleet",
+      "Multi-day Panji Tracing",
+      "Genealogy Book & Film",
+    ],
   },
 ];
 
-const INITIAL_DRAFT_ID = () => `DRAFT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
+const INITIAL_DRAFT_ID = () =>
+  `DRAFT-${Math.random().toString(36).substring(2, 8).toUpperCase()}`;
 
-export function useBookingSession(initialPackageId: string = "heritage-pilgrimage") {
+export function useBookingSession(
+  initialPackageId: string = "heritage-pilgrimage"
+) {
   const [session, setSession] = useState<BookingSessionState>(() => {
-    const selectedPkg = PACKAGE_TIERS_DATA.find((p) => p.id === initialPackageId) || PACKAGE_TIERS_DATA[1];
-    
+    const selectedPkg =
+      PACKAGE_TIERS_DATA.find((p) => p.id === initialPackageId) ||
+      PACKAGE_TIERS_DATA[1];
+
     return {
       sessionId: INITIAL_DRAFT_ID(),
       package: {
@@ -143,7 +219,9 @@ export function useBookingSession(initialPackageId: string = "heritage-pilgrimag
       },
       travel: {
         mode: "flight",
-        arrivalDate: new Date(Date.now() + 86400000 * 7).toISOString().split("T")[0],
+        arrivalDate: new Date(Date.now() + 86400000 * 7)
+          .toISOString()
+          .split("T")[0],
         arrivalTime: "10:30 AM",
         flightOrTrainNumber: "",
       },
@@ -197,21 +275,26 @@ export function useBookingSession(initialPackageId: string = "heritage-pilgrimag
 
   // Compute pricing breakdown dynamically
   const calculatedPricing = useMemo((): PricingBreakdown => {
-    const pkgData = PACKAGE_TIERS_DATA.find((p) => p.id === session.package.id) || PACKAGE_TIERS_DATA[1];
+    const pkgData =
+      PACKAGE_TIERS_DATA.find((p) => p.id === session.package.id) ||
+      PACKAGE_TIERS_DATA[1];
     const basePrice = pkgData.startingPrice;
-    
-    const totalMembers = session.family.adults + session.family.elders + session.family.children;
+
+    const totalMembers =
+      session.family.adults + session.family.elders + session.family.children;
     const baseMembers = pkgData.baseMembers;
     const extraCount = Math.max(0, totalMembers - baseMembers);
     const extraMemberFee = extraCount * pkgData.extraFeePerPerson;
 
-    const hotelUpgradeTotal = session.hotel.upgradePricePerPerson * Math.max(1, totalMembers);
+    const hotelUpgradeTotal =
+      session.hotel.upgradePricePerPerson * Math.max(1, totalMembers);
 
     const enhancementsTotal = session.enhancements
       .filter((e) => e.selected)
       .reduce((sum, item) => sum + item.price, 0);
 
-    const grandTotal = basePrice + extraMemberFee + hotelUpgradeTotal + enhancementsTotal;
+    const grandTotal =
+      basePrice + extraMemberFee + hotelUpgradeTotal + enhancementsTotal;
 
     return {
       basePrice,

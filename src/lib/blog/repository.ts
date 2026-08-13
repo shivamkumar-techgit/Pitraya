@@ -11,7 +11,8 @@ export interface BlogSection {
   body: string;
 }
 
-export type CtaType = "booking" | "early-booking" | "hotel-package" | "consult-pandit";
+export type CtaType =
+  "booking" | "early-booking" | "hotel-package" | "consult-pandit";
 
 export interface BlogPost {
   slug: string;
@@ -70,7 +71,8 @@ function getCache(): BlogPost[] {
 /** Returns all articles sorted by publishDate descending */
 export function getAllArticles(): BlogPost[] {
   return [...getCache()].sort(
-    (a, b) => new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
+    (a, b) =>
+      new Date(b.publishDate).getTime() - new Date(a.publishDate).getTime()
   );
 }
 
@@ -88,9 +90,46 @@ export function getPaginatedArticles(
   };
 }
 
-/** Returns a single article by slug */
+const SLUG_ALIASES: Record<string, string> = {
+  "vayu-purana": "vayu-purana-gaya-pind-daan",
+  "vayu-purana-gaya-pind-daan": "vayu-purana-gaya-pind-daan",
+  "geometry-of-vishnupad-footprint": "geometry-of-vishnupad-footprint",
+  "complete-guide-gaya-pind-daan": "gaya-pind-daan-guide",
+  "pitru-paksha-2024-complete-guide": "pitru-paksha-2026-calendar",
+  "vishnupad-footprint": "geometry-of-vishnupad-footprint",
+  "garuda-purana": "vedic-texts-pind-daan-garuda-purana",
+};
+
+/** Returns a single article by slug with smart alias & fallback resolution (Zero 404 errors) */
 export function getArticleBySlug(slug: string): BlogPost | undefined {
-  return getCache().find((p) => p.slug === slug);
+  const posts = getCache();
+
+  // 1. Direct slug match
+  let found = posts.find((p) => p.slug === slug);
+  if (found) return found;
+
+  // 2. Alias mapping lookup
+  const targetSlug = SLUG_ALIASES[slug.toLowerCase()];
+  if (targetSlug) {
+    found = posts.find((p) => p.slug === targetSlug);
+    if (found) return found;
+  }
+
+  // 3. Keyword fuzzy match fallback
+  const cleanSlug = slug.toLowerCase();
+  found = posts.find((p) => {
+    return (
+      p.slug.includes(cleanSlug) ||
+      cleanSlug
+        .split("-")
+        .some((part) => part.length > 3 && p.slug.includes(part))
+    );
+  });
+
+  // 4. Default pillar article fallback
+  return (
+    found || posts.find((p) => p.slug === "gaya-pind-daan-guide") || posts[0]
+  );
 }
 
 /** Returns all articles in a given category */

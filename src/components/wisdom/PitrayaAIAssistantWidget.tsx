@@ -31,7 +31,7 @@ export default function PitrayaAIAssistantWidget({ articleTopic = "Pind Daan Rit
   };
 
   return (
-    <GlassCard borderGold glow padding="md" className="sticky top-24 bg-gradient-to-br from-surface/95 via-background to-surface/95 p-5 space-y-4 border-2 border-gold-primary/60 shadow-gold-glow">
+    <GlassCard borderGold glow padding="md" className="sticky top-24 bg-gradient-to-br from-surface/95 via-background to-surface/95 p-4 space-y-4 border-2 border-gold-primary/60 shadow-gold-glow">
       <div className="flex items-center gap-2 border-b border-gold-primary/30 pb-3">
         <div className="p-2 rounded-xl bg-gold-primary text-black font-bold shadow-gold-glow">
           <Sparkles className="h-4 w-4 fill-black" />
@@ -72,7 +72,7 @@ export default function PitrayaAIAssistantWidget({ articleTopic = "Pind Daan Rit
 
       {/* AI ANSWER DISPLAY */}
       {answer && (
-        <div className="p-3.5 rounded-xl bg-surface/90 border border-gold-primary/30 space-y-2 text-xs">
+        <div className="p-4.5 rounded-xl bg-surface/90 border border-gold-primary/30 space-y-2 text-xs">
           <div className="flex items-center gap-1.5 text-gold-primary font-bold font-cinzel text-[11px]">
             <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400" />
             <span>Pitraya AI Verified Answer:</span>

@@ -16,9 +16,9 @@ export interface BodyProps extends React.HTMLAttributes<HTMLParagraphElement> {
 }
 
 const sizeClasses: Record<BodySize, string> = {
-  sm: "text-xs md:text-sm",
-  md: "text-sm md:text-base",
-  lg: "text-base md:text-lg",
+  sm: "text-sm",
+  md: "text-base",
+  lg: "text-lg",
 };
 
 const variantClasses: Record<BodyVariant, string> = {

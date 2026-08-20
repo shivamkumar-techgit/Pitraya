@@ -109,7 +109,7 @@ export default function LineageHowItWorksSection({ className, ...props }: Lineag
               >
                 <div className="space-y-4 relative z-10">
                   <div className="flex items-center justify-between">
-                    <div className="p-3 rounded-2xl bg-gold-primary/10 border border-gold-primary/30 text-gold-primary group-hover:scale-110 transition-transform duration-300">
+                    <div className="p-4 rounded-2xl bg-gold-primary/10 border border-gold-primary/30 text-gold-primary group-hover:scale-110 transition-transform duration-300">
                       {step.icon}
                     </div>
                     <span className="text-2xl font-bold font-cinzel text-gold-primary/40 group-hover:text-gold-primary transition-colors">

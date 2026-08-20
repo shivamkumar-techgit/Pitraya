@@ -16,11 +16,11 @@ export interface ParagraphProps extends React.HTMLAttributes<HTMLParagraphElemen
 }
 
 const sizeClasses: Record<ParagraphSize, string> = {
-  xs: "text-xs",
-  sm: "text-xs md:text-sm",
-  md: "text-sm md:text-base",
-  lg: "text-base md:text-lg",
-  xl: "text-lg md:text-xl",
+  xs: "text-xs tracking-wide",
+  sm: "text-sm",
+  md: "text-base",
+  lg: "text-lg",
+  xl: "text-xl",
 };
 
 const variantClasses: Record<ParagraphVariant, string> = {

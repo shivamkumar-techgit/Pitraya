@@ -35,7 +35,7 @@ export default function DesktopMenu({
   return (
     <nav
       aria-label="Main Navigation"
-      className={cn("flex items-center gap-3 lg:gap-4 xl:gap-5 2xl:gap-6 flex-nowrap", className)}
+      className={cn("flex items-center gap-3 lg:gap-4 xl:gap-4 2xl:gap-6 flex-nowrap", className)}
       onMouseLeave={onHoverLeaveNav}
       {...props}
     >

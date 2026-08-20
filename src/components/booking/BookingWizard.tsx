@@ -159,7 +159,7 @@ export default function BookingWizard({
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="bg-surface/90 border-gold-primary/40 w-full max-w-2xl space-y-8 rounded-3xl border p-8 text-center shadow-2xl backdrop-blur-xl sm:p-12"
+          className="bg-surface/90 border-gold-primary/40 w-full max-w-2xl space-y-8 rounded-2xl border p-8 text-center shadow-xl backdrop-blur-xl sm:p-12"
         >
           {/* Hero Temple Image Header */}
           <div className="border-gold-primary/40 relative h-44 w-full overflow-hidden rounded-2xl border shadow-xl">
@@ -352,7 +352,7 @@ export default function BookingWizard({
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
           {/* LEFT SIDE STEP FORM (7 COLUMNS) */}
           <div className="space-y-6 lg:col-span-7">
-            <div className="bg-surface/60 border-gold-primary/30 relative flex min-h-[560px] flex-col justify-between overflow-hidden rounded-3xl border p-6 shadow-2xl backdrop-blur-xl sm:p-8">
+            <div className="bg-surface/60 border-gold-primary/30 relative flex min-h-[560px] flex-col justify-between overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl sm:p-8">
               {/* SLIDING ANIMATED CONTENT */}
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
@@ -502,7 +502,7 @@ export default function BookingWizard({
                       </div>
 
                       <div>
-                        <div className="border-gold-primary/30 bg-gold-primary/10 mb-4 flex items-center justify-between rounded-2xl border p-3.5 text-xs">
+                        <div className="border-gold-primary/30 bg-gold-primary/10 mb-4 flex items-center justify-between rounded-2xl border p-4.5 text-xs">
                           <div className="flex items-center gap-2">
                             <CheckCircle2 className="text-gold-primary h-4 w-4" />
                             <span className="text-text-muted">
@@ -678,7 +678,7 @@ export default function BookingWizard({
                               })
                             }
                             className={cn(
-                              "flex cursor-pointer items-center justify-between rounded-xl border p-3.5 transition-all",
+                              "flex cursor-pointer items-center justify-between rounded-xl border p-4.5 transition-all",
                               session.family.wheelchairNeeded
                                 ? "bg-gold-primary/10 border-gold-primary"
                                 : "border-border bg-black/30"
@@ -707,7 +707,7 @@ export default function BookingWizard({
                               })
                             }
                             className={cn(
-                              "flex cursor-pointer items-center justify-between rounded-xl border p-3.5 transition-all",
+                              "flex cursor-pointer items-center justify-between rounded-xl border p-4.5 transition-all",
                               session.family.airportPickupNeeded
                                 ? "bg-gold-primary/10 border-gold-primary"
                                 : "border-border bg-black/30"
@@ -824,7 +824,7 @@ export default function BookingWizard({
                                 </div>
                               </div>
 
-                              <div className="p-3 text-center">
+                              <div className="p-4 text-center">
                                 <span className="font-cinzel text-xs font-bold text-white">
                                   {mode.label}
                                 </span>
@@ -846,7 +846,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateTravel({ arrivalDate: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
 
@@ -861,7 +861,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateTravel({ arrivalTime: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
 
@@ -881,7 +881,7 @@ export default function BookingWizard({
                                 flightOrTrainNumber: e.target.value,
                               })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
                       </div>
@@ -1111,7 +1111,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ name: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
 
@@ -1126,7 +1126,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ phone: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
 
@@ -1141,7 +1141,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ email: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
 
@@ -1156,7 +1156,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ city: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
 
@@ -1170,7 +1170,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ country: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-3 text-xs text-white focus:outline-none"
+                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
                           />
                         </div>
                       </div>
@@ -1254,7 +1254,7 @@ export default function BookingWizard({
             <GlassCard
               glow
               borderGold
-              className="bg-surface/80 space-y-6 overflow-hidden rounded-3xl p-6 backdrop-blur-xl"
+              className="bg-surface/80 space-y-6 overflow-hidden rounded-2xl p-6 backdrop-blur-xl"
             >
               {/* SUMMARY HERO PHOTO BANNER */}
               <div className="border-gold-primary/30 relative h-28 w-full overflow-hidden rounded-2xl border shadow-md">

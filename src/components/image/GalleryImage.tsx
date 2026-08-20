@@ -46,10 +46,10 @@ export default function GalleryImage({
         />
 
         {/* Dark gold overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-5" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4" />
 
         {/* Text descriptions overlay */}
-        <div className="absolute inset-0 p-5 flex flex-col justify-end text-left z-10">
+        <div className="absolute inset-0 p-4 flex flex-col justify-end text-left z-10">
           <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 ease-out">
             {category && (
               <span className="text-[10px] font-bold text-gold-primary tracking-widest uppercase mb-1 block">
@@ -103,7 +103,7 @@ export default function GalleryImage({
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="relative max-w-4xl w-full max-h-[85vh] flex flex-col md:flex-row rounded-3xl overflow-hidden border border-border-gold/30 bg-surface/50 backdrop-blur-xl"
+              className="relative max-w-4xl w-full max-h-[85vh] flex flex-col md:flex-row rounded-2xl overflow-hidden border border-border-gold/30 bg-surface/50 backdrop-blur-xl"
               onClick={(e) => e.stopPropagation()} // stops close triggers on modal body
             >
               {/* Media Section */}

@@ -70,7 +70,7 @@ export default function GayaAnimatedMap({ className }: { className?: string }) {
   const [selectedNode, setSelectedNode] = useState<MapNode>(gayaMapNodes[0]);
 
   return (
-    <div className={cn("relative w-full overflow-hidden rounded-3xl glass-panel border-gold-primary/30 p-6 md:p-8 bg-black/80", className)}>
+    <div className={cn("relative w-full overflow-hidden rounded-2xl glass-panel border-gold-primary/30 p-6 md:p-8 bg-black/80", className)}>
       <div className="flex flex-col lg:flex-row items-center gap-8">
         {/* SVG Animated Map Canvas */}
         <div className="relative w-full lg:w-3/5 h-[360px] sm:h-[420px] bg-gradient-to-br from-surface/80 via-black to-surface/40 rounded-2xl border border-border-gold/30 overflow-hidden select-none">

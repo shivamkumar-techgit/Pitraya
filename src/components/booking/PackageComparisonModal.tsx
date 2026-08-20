@@ -104,7 +104,7 @@ export default function PackageComparisonModal({
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-6xl rounded-3xl bg-surface border border-gold-primary/30 p-6 sm:p-8 shadow-2xl overflow-hidden max-h-[90vh] flex flex-col"
+          className="relative w-full max-w-6xl rounded-2xl bg-surface border border-gold-primary/30 p-6 sm:p-8 shadow-xl overflow-hidden max-h-[90vh] flex flex-col"
         >
           {/* Header */}
           <div className="flex items-center justify-between border-b border-border-gold/20 pb-4 mb-6">

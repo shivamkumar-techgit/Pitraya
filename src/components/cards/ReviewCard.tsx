@@ -48,7 +48,7 @@ export default function ReviewCard({
       padding={videoSrc ? "none" : "md"}
       hoverEffect="glow"
       className={cn(
-        "group relative flex flex-col justify-between overflow-hidden min-h-[360px] rounded-3xl border border-border-gold/30 bg-surface/30",
+        "group relative flex flex-col justify-between overflow-hidden min-h-[360px] rounded-2xl border border-border-gold/30 bg-surface/30",
         className
       )}
       {...props}

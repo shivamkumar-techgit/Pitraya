@@ -67,7 +67,7 @@ export default function ServiceCard({
         transition: tilt.x === 0 && tilt.y === 0 ? "transform 0.5s ease, box-shadow 0.3s ease, border-color 0.3s ease" : "box-shadow 0.3s ease, border-color 0.3s ease",
       }}
       className={cn(
-        "group flex flex-col justify-between overflow-hidden rounded-3xl bg-surface/40 backdrop-blur-md border border-border-gold/30 hover:border-gold-primary/70 hover:shadow-gold-glow hover:bg-surface/60 transition-all duration-300",
+        "group flex flex-col justify-between overflow-hidden rounded-2xl bg-surface/40 backdrop-blur-md border border-border-gold/30 hover:border-gold-primary/70 hover:shadow-gold-glow hover:bg-surface/60 transition-all duration-300",
         className
       )}
       {...props}

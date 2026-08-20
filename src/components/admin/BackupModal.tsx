@@ -152,7 +152,7 @@ export default function BackupModal({ isOpen, onClose, isAdmin = true }: BackupM
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          className="w-full max-w-3xl rounded-2xl bg-neutral-900 border border-neutral-800 text-neutral-100 shadow-2xl overflow-hidden flex flex-col max-h-[90vh]"
+          className="w-full max-w-3xl rounded-2xl bg-neutral-900 border border-neutral-800 text-neutral-100 shadow-xl overflow-hidden flex flex-col max-h-[90vh]"
         >
           {/* Header */}
           <div className="px-6 py-4 border-b border-neutral-800 flex items-center justify-between bg-neutral-950/50">
@@ -291,7 +291,7 @@ export default function BackupModal({ isOpen, onClose, isAdmin = true }: BackupM
               ) : (
                 <div className="border border-neutral-800 rounded-xl overflow-hidden divide-y divide-neutral-800/60">
                   {backups.map((b) => (
-                    <div key={b.filename} className="p-3.5 flex items-center justify-between text-xs hover:bg-neutral-800/40 transition">
+                    <div key={b.filename} className="p-4.5 flex items-center justify-between text-xs hover:bg-neutral-800/40 transition">
                       <div className="flex items-center gap-3">
                         <FileArchive className="w-5 h-5 text-amber-400 shrink-0" />
                         <div>

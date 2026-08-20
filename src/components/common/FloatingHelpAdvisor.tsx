@@ -40,7 +40,7 @@ export default function FloatingHelpAdvisor({
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 20, scale: 0.95 }}
             transition={{ duration: 0.2 }}
-            className="border-gold-primary/40 mb-3 w-72 space-y-4 rounded-3xl border bg-black/95 p-5 text-white shadow-2xl backdrop-blur-xl sm:w-80"
+            className="border-gold-primary/40 mb-3 w-72 space-y-4 rounded-2xl border bg-black/95 p-4 text-white shadow-xl backdrop-blur-xl sm:w-80"
           >
             <div className="border-border-gold/20 flex items-start justify-between border-b pb-3">
               <div className="space-y-0.5">
@@ -67,7 +67,7 @@ export default function FloatingHelpAdvisor({
               {/* WhatsApp Button */}
               <button
                 onClick={handleWhatsAppClick}
-                className="group flex w-full cursor-pointer items-center justify-between rounded-2xl border border-[#25D366]/40 bg-[#25D366]/15 p-3 text-left transition-all hover:bg-[#25D366]/25"
+                className="group flex w-full cursor-pointer items-center justify-between rounded-2xl border border-[#25D366]/40 bg-[#25D366]/15 p-4 text-left transition-all hover:bg-[#25D366]/25"
               >
                 <div className="flex items-center gap-3">
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#25D366] text-white shadow-md">
@@ -90,7 +90,7 @@ export default function FloatingHelpAdvisor({
               {/* Call Now Button */}
               <button
                 onClick={handleCallClick}
-                className="bg-gold-primary/15 border-gold-primary/40 hover:bg-gold-primary/25 group flex w-full cursor-pointer items-center justify-between rounded-2xl border p-3 text-left transition-all"
+                className="bg-gold-primary/15 border-gold-primary/40 hover:bg-gold-primary/25 group flex w-full cursor-pointer items-center justify-between rounded-2xl border p-4 text-left transition-all"
               >
                 <div className="flex items-center gap-3">
                   <div className="bg-gold-gradient flex h-9 w-9 shrink-0 items-center justify-center rounded-xl text-black shadow-md">
@@ -125,7 +125,7 @@ export default function FloatingHelpAdvisor({
         onClick={() => setIsOpen(!isOpen)}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
-        className="from-gold-primary via-gold-secondary to-gold-primary border-gold-primary/60 hover:shadow-gold-glow flex cursor-pointer items-center gap-2 rounded-full border bg-gradient-to-r px-3.5 py-3 text-xs font-bold text-black shadow-2xl transition-all sm:gap-3 sm:px-5 sm:py-3.5"
+        className="from-gold-primary via-gold-secondary to-gold-primary border-gold-primary/60 hover:shadow-gold-glow flex cursor-pointer items-center gap-2 rounded-full border bg-gradient-to-r px-3.5 py-3 text-xs font-bold text-black shadow-xl transition-all sm:gap-3 sm:px-5 sm:py-3.5"
         aria-label="Need Help? Talk to Ritual Advisor"
       >
         <span className="relative flex h-3 w-3">

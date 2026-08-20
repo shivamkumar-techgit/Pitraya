@@ -83,7 +83,7 @@ export default function InternalLinkHub({
 
   return (
     <section
-      className={`my-12 rounded-3xl border border-amber-500/20 bg-slate-900/90 p-6 md:p-8 ${className}`}
+      className={`my-12 rounded-2xl border border-amber-500/20 bg-slate-900/90 p-6 md:p-8 ${className}`}
     >
       <div className="mb-6 flex flex-wrap items-center justify-between border-b border-amber-500/20 pb-4">
         <div>

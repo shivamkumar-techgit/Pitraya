@@ -15,7 +15,7 @@ export default function PasswordStrengthMeter({ password }: PasswordStrengthMete
   if (!password) return null;
 
   return (
-    <div className="space-y-2.5 p-3 rounded-xl bg-neutral-950/60 border border-neutral-800 text-xs">
+    <div className="space-y-2.5 p-4 rounded-xl bg-neutral-950/60 border border-neutral-800 text-xs">
       {/* Strength Bar */}
       <div className="space-y-1">
         <div className="flex items-center justify-between font-medium">

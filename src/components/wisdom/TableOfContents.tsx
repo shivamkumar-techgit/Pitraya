@@ -48,7 +48,7 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
   };
 
   return (
-    <GlassCard borderGold padding="md" className="sticky top-24 bg-surface/90 backdrop-blur-xl p-5 space-y-4">
+    <GlassCard borderGold padding="md" className="sticky top-24 bg-surface/90 backdrop-blur-xl p-4 space-y-4">
       <div className="flex items-center gap-2 text-xs font-bold text-gold-primary uppercase tracking-widest font-cinzel border-b border-gold-primary/30 pb-2">
         <List className="h-4 w-4" />
         <span>Contents</span>

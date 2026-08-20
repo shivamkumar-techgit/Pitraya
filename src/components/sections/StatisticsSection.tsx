@@ -104,7 +104,7 @@ export default function StatisticsSection({
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="rounded-3xl border border-gold-primary/30 bg-surface/30 backdrop-blur-xl p-8 sm:p-10 shadow-2xl"
+          className="rounded-2xl border border-gold-primary/30 bg-surface/30 backdrop-blur-xl p-8 sm:p-10 shadow-xl"
         >
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 divide-y sm:divide-y-0 sm:divide-x divide-border-gold/20">
             {pitrayaMetrics.map((metric, idx) => (

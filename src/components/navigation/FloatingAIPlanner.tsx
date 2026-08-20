@@ -40,7 +40,7 @@ export default function FloatingAIPlanner({
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold-primary via-amber-400 to-gold-primary text-black text-xs sm:text-sm font-bold shadow-2xl shadow-gold-glow border-2 border-white/40 cursor-pointer select-none font-cinzel tracking-wider uppercase group"
+              className="relative inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-gradient-to-r from-gold-primary via-amber-400 to-gold-primary text-black text-xs sm:text-sm font-bold shadow-xl shadow-gold-glow border-2 border-white/40 cursor-pointer select-none font-cinzel tracking-wider uppercase group"
             >
               {/* Pulsing Glow Ring */}
               <span className="absolute -inset-0.5 rounded-full bg-gold-primary/50 blur-md animate-pulse group-hover:bg-gold-primary/80 transition-all pointer-events-none" />

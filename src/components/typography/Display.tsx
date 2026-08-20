@@ -15,10 +15,10 @@ export interface DisplayProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const sizeClasses: Record<DisplaySize, string> = {
-  sm: "text-4xl md:text-5xl font-extrabold tracking-tight leading-none",
+  sm: "text-4xl md:text-6xl font-black tracking-tighter leading-none",
   md: "text-5xl md:text-7xl font-black tracking-tighter leading-none",
   lg: "text-6xl md:text-8xl font-black tracking-tighter leading-none",
-  xl: "text-7xl md:text-9xl font-black tracking-tighter leading-none",
+  xl: "text-[clamp(4rem,10vw,9rem)] font-black tracking-tighter leading-none",
 };
 
 const variantClasses: Record<DisplayVariant, string> = {

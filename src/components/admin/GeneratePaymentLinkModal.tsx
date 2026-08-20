@@ -119,7 +119,7 @@ export default function GeneratePaymentLinkModal({
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-lg bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 text-white shadow-2xl overflow-hidden font-sans"
+          className="relative w-full max-w-lg bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 text-white shadow-xl overflow-hidden font-sans"
         >
           {/* Top Decorative Glow */}
           <div className="absolute -top-24 -left-24 w-56 h-56 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
@@ -145,7 +145,7 @@ export default function GeneratePaymentLinkModal({
           </div>
 
           {/* Summary Card */}
-          <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-3.5 mb-5 grid grid-cols-3 gap-2 text-xs">
+          <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-4.5 mb-5 grid grid-cols-3 gap-2 text-xs">
             <div>
               <span className="text-neutral-400 block text-[10px] uppercase font-bold tracking-wider">Booking</span>
               <span className="text-amber-300 font-mono font-bold">{booking.reservationId}</span>
@@ -164,7 +164,7 @@ export default function GeneratePaymentLinkModal({
             /* Form View */
             <form onSubmit={handleGenerate} className="space-y-4">
               {errorMsg && (
-                <div className="p-3 bg-red-950/50 border border-red-500/30 text-red-300 text-xs rounded-xl">
+                <div className="p-4 bg-red-950/50 border border-red-500/30 text-red-300 text-xs rounded-xl">
                   {errorMsg}
                 </div>
               )}

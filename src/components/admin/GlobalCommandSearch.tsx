@@ -63,7 +63,7 @@ export default function GlobalCommandSearch() {
 
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center pt-20 bg-slate-950/80 backdrop-blur-sm p-4">
-      <div className="w-full max-w-2xl rounded-xl bg-slate-900 border border-slate-800 shadow-2xl overflow-hidden">
+      <div className="w-full max-w-2xl rounded-xl bg-slate-900 border border-slate-800 shadow-xl overflow-hidden">
         <div className="flex items-center px-4 border-b border-slate-800">
           <Search className="h-4 w-4 text-slate-400 mr-2" />
           <input

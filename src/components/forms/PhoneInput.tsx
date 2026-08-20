@@ -55,7 +55,7 @@ export default function PhoneInput({
 
           {/* Flag Options Dropdown */}
           {isOpen && (
-            <div className="absolute left-0 mt-2 w-[120px] bg-black border border-border-gold/35 rounded-xl py-1.5 z-50 shadow-2xl backdrop-blur-xl">
+            <div className="absolute left-0 mt-2 w-[120px] bg-black border border-border-gold/35 rounded-xl py-1.5 z-50 shadow-xl backdrop-blur-xl">
               {countryCodes.map((cc) => (
                 <button
                   key={cc.code}

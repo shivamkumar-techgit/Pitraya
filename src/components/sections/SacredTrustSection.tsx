@@ -335,7 +335,7 @@ export default function SacredTrustSection({
                 hoverEffect="lift"
                 borderGold={isGold}
                 className={cn(
-                  "group relative flex flex-col justify-between p-6 sm:p-7 md:p-8 rounded-2xl border transition-all duration-300",
+                  "group relative flex flex-col justify-between p-6 sm:p-6 md:p-8 rounded-2xl border transition-all duration-300",
                   "bg-surface/80 hover:bg-surface-hover/90 backdrop-blur-md",
                   isGold && "border-gold-primary/40 shadow-lg shadow-gold-primary/5 hover:border-gold-primary hover:shadow-gold-glow",
                   isAccent && "border-border-gold/30 hover:border-gold-primary/60",
@@ -417,7 +417,7 @@ export default function SacredTrustSection({
             role="region"
             aria-label="What's Included in Every Booking"
           >
-            <div className="relative overflow-hidden rounded-2xl border border-gold-primary/30 bg-gradient-to-r from-gold-primary/10 via-surface/90 to-gold-primary/10 p-6 sm:p-8 backdrop-blur-md shadow-2xl shadow-black/50">
+            <div className="relative overflow-hidden rounded-2xl border border-gold-primary/30 bg-gradient-to-r from-gold-primary/10 via-surface/90 to-gold-primary/10 p-6 sm:p-8 backdrop-blur-md shadow-xl shadow-black/50">
               {/* Background ambient glow */}
               <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-gold-primary/10 blur-2xl pointer-events-none" />
 

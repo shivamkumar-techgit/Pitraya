@@ -15,12 +15,12 @@ export interface HeadingProps extends React.HTMLAttributes<HTMLHeadingElement> {
 }
 
 const sizeClasses: Record<HeadingSize, string> = {
-  sm: "text-lg md:text-xl font-semibold tracking-tight",
-  md: "text-xl md:text-2xl font-bold tracking-tight",
-  lg: "text-2xl md:text-3xl font-bold tracking-tight",
-  xl: "text-3xl md:text-5xl font-extrabold tracking-tight",
-  "2xl": "text-4xl md:text-6xl font-black tracking-tight",
-  display: "text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter leading-none",
+  sm: "text-base md:text-xl font-semibold tracking-tight",
+  md: "text-xl md:text-3xl font-bold tracking-tight",
+  lg: "text-3xl md:text-4xl font-bold tracking-tight",
+  xl: "text-4xl md:text-6xl font-extrabold tracking-tight",
+  "2xl": "text-5xl md:text-7xl font-black tracking-tight",
+  display: "text-[clamp(3rem,8vw,7rem)] font-black tracking-tighter leading-none",
 };
 
 const variantClasses: Record<NonNullable<HeadingProps["variant"]>, string> = {
@@ -51,7 +51,7 @@ export default function Heading({
   level,
   as,
   variant = "default",
-  font = "sans",
+  font = "cinzel",
   align = "left",
   className,
   children,

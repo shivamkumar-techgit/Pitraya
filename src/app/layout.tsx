@@ -12,6 +12,7 @@ import AuthProvider from "@/components/providers/AuthProvider";
 import SmoothScrollProvider from "@/components/providers/SmoothScrollProvider";
 import AnalyticsHeader from "@/components/seo/AnalyticsHeader";
 import { getSiteUrl } from "@/lib/config/site";
+import { ThemeProvider } from "@/design/ThemeProvider";
 import "./globals.css";
 
 // ─── Fonts (next/font → zero render-blocking, self-hosted) ───────────────────
@@ -108,7 +109,11 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0f172a",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#F8F4EC" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f0f13" },
+    { color: "#F8F4EC" },
+  ],
   width: "device-width",
   initialScale: 1,
 };
@@ -129,7 +134,7 @@ export default function RootLayout({
       lang="en"
       suppressHydrationWarning
       className={cn(
-        "dark notranslate h-full antialiased",
+        "notranslate h-full antialiased",
         inter.variable,
         outfit.variable,
         cinzel.variable,
@@ -138,6 +143,25 @@ export default function RootLayout({
       )}
     >
       <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var savedTheme = localStorage.getItem('theme');
+                  var theme = savedTheme || 'sacred-ivory';
+                  if (theme === 'midnight-sanctuary') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.classList.remove('light');
+                  } else {
+                    document.documentElement.classList.add('light');
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
         <meta name="google" content="notranslate" />
         <AnalyticsHeader />
         <JsonLd data={generateOrganizationSchema()} />
@@ -147,12 +171,14 @@ export default function RootLayout({
         className="flex min-h-full flex-col font-sans"
         suppressHydrationWarning
       >
-        <AuthProvider>
-          <SmoothScrollProvider>
-            {children}
-            <WhatsAppFloatingButton />
-          </SmoothScrollProvider>
-        </AuthProvider>
+        <ThemeProvider>
+          <AuthProvider>
+            <SmoothScrollProvider>
+              {children}
+              <WhatsAppFloatingButton />
+            </SmoothScrollProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

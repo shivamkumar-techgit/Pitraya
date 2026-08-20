@@ -78,7 +78,7 @@ export default function DatePicker({
       {isOpen && (
         <GlassCard
           borderGold
-          className="absolute left-0 mt-2 p-4 w-[280px] z-50 bg-black/90 shadow-2xl backdrop-blur-xl"
+          className="absolute left-0 mt-2 p-4 w-[280px] z-50 bg-black/90 shadow-xl backdrop-blur-xl"
         >
           {/* Calendar Header */}
           <div className="flex items-center justify-between mb-4">

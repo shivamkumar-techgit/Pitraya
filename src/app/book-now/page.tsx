@@ -24,7 +24,7 @@ export default function BookNowPage() {
   return (
     <Suspense
       fallback={
-        <div className="min-h-screen flex items-center justify-center bg-black text-gold-primary font-cinzel">
+        <div className="min-h-screen flex items-center justify-center bg-background text-gold-primary font-cinzel">
           Loading Sacred Booking Wizard...
         </div>
       }

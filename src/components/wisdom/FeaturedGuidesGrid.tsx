@@ -60,7 +60,7 @@ export default function FeaturedGuidesGrid({
     <Section
       spacing="xl"
       className={cn(
-        "relative py-16 overflow-hidden bg-[#07080E] text-text-primary border-b border-border-gold/20",
+        "relative py-16 overflow-hidden bg-muted text-text-primary border-b border-border-gold/20",
         className
       )}
       {...props}
@@ -120,7 +120,7 @@ export default function FeaturedGuidesGrid({
 
         {/* Quick Index */}
         {!searchQuery && selectedCategory === "All" && (
-          <div className="rounded-2xl bg-surface/50 border border-border-gold/20 p-5">
+          <div className="rounded-2xl bg-surface/50 border border-border-gold/20 p-4">
             <p className="text-xs font-bold text-gold-primary uppercase tracking-widest font-cinzel mb-3">
               📋 All {articles.length} Articles — Quick Index
             </p>
@@ -220,7 +220,7 @@ export default function FeaturedGuidesGrid({
             ))}
           </div>
         ) : (
-          <div className="p-12 text-center rounded-3xl bg-surface/50 border border-border space-y-3">
+          <div className="p-12 text-center rounded-2xl bg-surface/50 border border-border space-y-3">
             <BookOpen className="h-10 w-10 text-gold-primary mx-auto opacity-50" />
             <h4 className="text-lg font-bold font-cinzel text-text-primary">No Articles Match Your Search</h4>
             <p className="text-xs text-text-muted">

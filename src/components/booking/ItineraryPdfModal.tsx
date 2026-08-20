@@ -139,7 +139,7 @@ export default function ItineraryPdfModal({
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          className="relative w-full max-w-4xl rounded-3xl bg-[#0b0a08] border border-gold-primary/40 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col text-white"
+          className="relative w-full max-w-4xl rounded-2xl bg-[#0b0a08] border border-gold-primary/40 shadow-xl overflow-hidden max-h-[92vh] flex flex-col text-white"
         >
           {/* MODAL HEADER ACTIONS */}
           <div className="sticky top-0 z-20 bg-black/90 border-b border-border-gold/20 px-6 py-4 flex items-center justify-between backdrop-blur-md">

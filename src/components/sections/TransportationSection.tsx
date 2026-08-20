@@ -58,7 +58,7 @@ export default function TransportationSection({
   ...props
 }: TransportationSectionProps) {
   return (
-    <Section spacing="xl" className={cn("relative overflow-hidden bg-black text-text-primary border-b border-border-gold/20 py-28", className)} {...props}>
+    <Section spacing="xl" className={cn("relative overflow-hidden bg-background text-text-primary border-b border-border-gold/20 py-28", className)} {...props}>
       {/* Background Sacred Circular Chakra */}
       <SacredChakraBg size="min(550px, 80vw)" opacity={0.04} rotateSpeed={140} position="bottom-right" />
       <Container size="xl">

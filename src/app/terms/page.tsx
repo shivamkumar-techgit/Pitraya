@@ -28,12 +28,12 @@ export default function TermsPage() {
   const breadcrumbs = [{ name: "Terms of Service", item: "/terms" }];
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center bg-zinc-50 p-8 dark:bg-black">
+    <main className="flex flex-1 flex-col items-center justify-center bg-background p-8">
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
-      <h1 className="font-sans text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+      <h1 className="font-sans text-3xl font-bold tracking-tight text-text-primary">
         Terms of Service
       </h1>
-      <p className="mt-2 text-zinc-600 dark:text-zinc-400">
+      <p className="mt-2 text-text-secondary">
         Review our terms and conditions of service.
       </p>
     </main>

@@ -30,7 +30,7 @@ export default function Caption({
   return (
     <Tag
       className={cn(
-        "text-[10px] md:text-xs tracking-widest font-sans font-medium",
+        "text-xs tracking-wide font-sans",
         variantClasses[variant],
         uppercase && "uppercase",
         align === "center" && "text-center block",

@@ -32,7 +32,7 @@ export default function WhatsAppFloatingButton({
             initial={{ opacity: 0, y: 10, scale: 0.9 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
-            className="border-gold-primary/30 text-text-primary relative hidden max-w-xs items-center gap-2 rounded-2xl border bg-black/90 p-3 pr-3.5 shadow-2xl backdrop-blur-md sm:flex"
+            className="border-gold-primary/30 text-text-primary relative hidden max-w-xs items-center gap-2 rounded-2xl border bg-black/90 p-4 pr-3.5 shadow-xl backdrop-blur-md sm:flex"
           >
             <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#25D366] text-white">
               <MessageCircle className="h-4 w-4" />
@@ -61,7 +61,7 @@ export default function WhatsAppFloatingButton({
         onClick={handleOpenWhatsApp}
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.92 }}
-        className="group relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#25D366] text-white shadow-2xl transition-all duration-300 hover:bg-[#20ba5a] focus:outline-none sm:h-14 sm:w-14"
+        className="group relative flex h-12 w-12 cursor-pointer items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl transition-all duration-300 hover:bg-[#20ba5a] focus:outline-none sm:h-14 sm:w-14"
         aria-label="Chat with Pitraya Concierge on WhatsApp"
       >
         {/* Pulsing ring behind button */}

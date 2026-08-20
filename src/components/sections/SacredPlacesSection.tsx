@@ -114,7 +114,7 @@ export default function SacredPlacesSection({ className, ...props }: React.HTMLA
     <Section
       spacing="xl"
       className={cn(
-        "relative py-28 overflow-hidden bg-black text-text-primary border-b border-border-gold/20",
+        "relative py-28 overflow-hidden bg-background text-text-primary border-b border-border-gold/20",
         className
       )}
       {...props}

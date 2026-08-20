@@ -69,7 +69,7 @@ export default function ContactSection({
   };
 
   return (
-    <Section spacing="xl" className={cn("relative overflow-hidden bg-black", className)} {...props}>
+    <Section spacing="xl" className={cn("relative overflow-hidden bg-muted border-b border-border-gold/20", className)} {...props}>
       {/* Background glow radial vectors & Sacred Circular Chakra */}
       <SacredChakraBg size="min(650px, 90vw)" opacity={0.045} rotateSpeed={140} position="center" />
       <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-gold-primary/5 rounded-full blur-[120px] pointer-events-none" />
@@ -83,7 +83,7 @@ export default function ContactSection({
               <SubHeading size="sm" variant="gold" uppercase font="cinzel">
                 CHAPTER 09 • BEGIN YOUR PILGRIMAGE
               </SubHeading>
-              <Heading size="xl" font="cinzel" className="text-white leading-tight">
+              <Heading size="xl" font="cinzel" className="text-text-primary leading-tight">
                 {title}
               </Heading>
               <Paragraph size="md" variant="muted">
@@ -141,7 +141,7 @@ export default function ContactSection({
 
           {/* Form Card Column */}
           <div className="lg:col-span-7">
-            <GlassCard borderGold glow padding="lg" className="w-full bg-surface/30">
+            <GlassCard borderGold glow padding="lg" className="w-full bg-surface shadow-md">
               {submitted ? (
                 <motion.div
                   initial={{ scale: 0.95, opacity: 0 }}

@@ -83,7 +83,7 @@ export default function SandboxPage() {
   const [selectVal, setSelectVal] = useState("");
 
   return (
-    <Section spacing="xl" className="bg-black text-text-primary min-h-screen py-16">
+    <Section spacing="xl" className="bg-background text-text-primary min-h-screen py-16">
       <Container size="md" className="space-y-12">
         <div className="space-y-2 border-b border-border-gold/30 pb-6">
           <Heading size="lg" font="cinzel" className="text-gold-primary">

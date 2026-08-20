@@ -96,12 +96,12 @@ export default function AdminLoginForm({ onSuccess, className, ...props }: Admin
         </div>
 
         {/* Card Form */}
-        <div className="p-6 md:p-8 rounded-2xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl shadow-2xl space-y-6">
+        <div className="p-6 md:p-8 rounded-2xl border border-neutral-800 bg-neutral-900/80 backdrop-blur-xl shadow-xl space-y-6">
           {error && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
-              className="p-3.5 rounded-xl bg-red-950/50 border border-red-800/50 text-red-200 text-sm flex items-start gap-3"
+              className="p-4.5 rounded-xl bg-red-950/50 border border-red-800/50 text-red-200 text-sm flex items-start gap-3"
             >
               <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
               <span>{error}</span>

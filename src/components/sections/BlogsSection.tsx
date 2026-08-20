@@ -94,7 +94,7 @@ export default function BlogsSection({
     <Section
       spacing="xl"
       className={cn(
-        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-[#0A0805] py-28",
+        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-background py-28",
         className
       )}
       {...props}
@@ -155,7 +155,7 @@ export default function BlogsSection({
                 borderGold
                 glow
                 padding="none"
-                className="from-surface via-background to-surface flex w-full cursor-pointer flex-col justify-between overflow-hidden rounded-3xl bg-gradient-to-br"
+                className="from-surface via-background to-surface flex w-full cursor-pointer flex-col justify-between overflow-hidden rounded-2xl bg-gradient-to-br"
               >
                 {/* Featured Image */}
                 <div className="relative h-[260px] w-full overflow-hidden sm:h-[320px]">
@@ -242,7 +242,7 @@ export default function BlogsSection({
                   <GlassCard
                     borderGold
                     padding="none"
-                    className="bg-surface/40 hover:bg-surface/70 flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-3xl transition-colors duration-300 sm:flex-row"
+                    className="bg-surface hover:bg-surface-hover flex h-full w-full cursor-pointer flex-col overflow-hidden rounded-2xl border border-border shadow-md transition-colors duration-300 sm:flex-row"
                   >
                     <div className="relative h-[160px] shrink-0 overflow-hidden sm:h-full sm:w-[40%]">
                       <Image
@@ -256,7 +256,7 @@ export default function BlogsSection({
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent sm:bg-gradient-to-r" />
                     </div>
 
-                    <div className="flex flex-1 flex-col justify-between space-y-3 p-5">
+                    <div className="flex flex-1 flex-col justify-between space-y-3 p-4">
                       <div className="space-y-1.5">
                         <div className="text-gold-primary flex items-center justify-between text-[10px] font-bold tracking-widest uppercase">
                           <span>{post.category}</span>

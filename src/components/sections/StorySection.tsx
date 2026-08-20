@@ -35,7 +35,7 @@ export default function StorySection({
       spacing="xl"
       className={cn(
         "relative min-h-[85vh] py-24 flex items-center overflow-hidden text-text-primary border-y border-border-gold/20",
-        "bg-[#0B0906]",
+        "bg-background",
         className
       )}
       {...props}
@@ -157,7 +157,7 @@ export default function StorySection({
               className="relative"
             >
               {/* Primary Large Image Frame */}
-              <div className="relative h-[380px] sm:h-[440px] w-[88%] rounded-3xl overflow-hidden border border-gold-primary/40 shadow-2xl group">
+              <div className="relative h-[380px] sm:h-[440px] w-[88%] rounded-2xl overflow-hidden border border-gold-primary/40 shadow-xl group">
                 <Image
                   src={image}
                   alt="Pinda Daan Ceremony Gaya"
@@ -172,7 +172,7 @@ export default function StorySection({
               </div>
 
               {/* Offset Overlapping Secondary Image Frame */}
-              <div className="absolute -bottom-10 right-0 w-[55%] h-[220px] sm:h-[260px] rounded-2xl overflow-hidden border-2 border-gold-primary/60 shadow-2xl group bg-black">
+              <div className="absolute -bottom-10 right-0 w-[55%] h-[220px] sm:h-[260px] rounded-2xl overflow-hidden border-2 border-gold-primary/60 shadow-xl group bg-black">
                 <Image
                   src="/images/gayawal_pandit_authentic.png"
                   alt="Authentic Gayawal Pandit"

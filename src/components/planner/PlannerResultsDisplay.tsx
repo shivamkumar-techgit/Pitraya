@@ -141,7 +141,7 @@ export default function PlannerResultsDisplay({ planData, results, onReset }: Pl
             <p className="text-xs text-text-muted italic">{results.bestPackage.tagline}</p>
           </div>
 
-          <div className="p-3 rounded-xl bg-background/90 border border-gold-primary/30 space-y-1">
+          <div className="p-4 rounded-xl bg-background/90 border border-gold-primary/30 space-y-1">
             <span className="text-[10px] font-bold text-gold-primary font-cinzel uppercase block">Est Package Investment</span>
             <p className="text-lg font-bold text-emerald-400 font-mono">{results.bestPackage.pricePerFamily}</p>
           </div>
@@ -174,7 +174,7 @@ export default function PlannerResultsDisplay({ planData, results, onReset }: Pl
             </h4>
           </div>
 
-          <p className="text-xs text-text-secondary leading-relaxed bg-background/80 p-3 rounded-xl border border-border">
+          <p className="text-xs text-text-secondary leading-relaxed bg-background/80 p-4 rounded-xl border border-border">
             💡 <strong>Attire Guidance:</strong> {results.weather.advice}
           </p>
         </GlassCard>
@@ -198,7 +198,7 @@ export default function PlannerResultsDisplay({ planData, results, onReset }: Pl
             <p className="text-xs text-gold-primary font-medium">📍 {results.hotel.location}</p>
           </div>
 
-          <p className="text-xs text-text-secondary bg-background/80 p-3 rounded-xl border border-border">
+          <p className="text-xs text-text-secondary bg-background/80 p-4 rounded-xl border border-border">
             🏨 <strong>Category:</strong> {results.hotel.type} • Family suite pre-booked with sattvik meals.
           </p>
         </GlassCard>
@@ -284,7 +284,7 @@ export default function PlannerResultsDisplay({ planData, results, onReset }: Pl
             <p className="text-xs text-gold-primary font-medium">📍 {results.bestRitualTime.location}</p>
           </div>
 
-          <p className="text-xs text-text-secondary bg-background/80 p-3 rounded-xl border border-border">
+          <p className="text-xs text-text-secondary bg-background/80 p-4 rounded-xl border border-border">
             ✨ {results.bestRitualTime.reason}
           </p>
         </GlassCard>
@@ -315,7 +315,7 @@ export default function PlannerResultsDisplay({ planData, results, onReset }: Pl
                   key={c.id}
                   onClick={() => toggleCheck(c.id)}
                   className={cn(
-                    "flex items-center gap-3 p-3 rounded-xl border transition-colors cursor-pointer select-none",
+                    "flex items-center gap-3 p-4 rounded-xl border transition-colors cursor-pointer select-none",
                     isChecked
                       ? "bg-emerald-950/20 border-emerald-500/40 text-text-primary"
                       : "bg-background/80 border-border text-text-muted"
@@ -354,7 +354,7 @@ export default function PlannerResultsDisplay({ planData, results, onReset }: Pl
 
             <div className="space-y-3">
               {results.budgetBreakdown.map((item, idx) => (
-                <div key={idx} className="flex items-center justify-between p-3 rounded-xl bg-background/80 border border-border text-xs sm:text-sm">
+                <div key={idx} className="flex items-center justify-between p-4 rounded-xl bg-background/80 border border-border text-xs sm:text-sm">
                   <span className="text-text-secondary">{item.category}</span>
                   <span className="font-bold font-mono text-gold-primary">{item.amount}</span>
                 </div>

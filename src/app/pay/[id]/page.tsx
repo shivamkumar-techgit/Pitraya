@@ -154,7 +154,7 @@ export default function PaymentCheckoutPage() {
 
   if (loading) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-[#070605] text-white">
+      <div className="flex min-h-screen items-center justify-center bg-background text-text-primary">
         <div className="flex flex-col items-center gap-3">
           <RefreshCw className="h-8 w-8 animate-spin text-amber-400" />
           <p className="font-cinzel text-xs text-neutral-400">
@@ -166,9 +166,9 @@ export default function PaymentCheckoutPage() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col justify-between bg-[#070605] font-sans text-white selection:bg-amber-500 selection:text-black">
+    <div className="flex min-h-screen flex-col justify-between bg-background font-sans text-text-primary selection:bg-gold-primary selection:text-black">
       {/* Header */}
-      <header className="border-b border-amber-500/20 bg-black/80 px-6 py-4 backdrop-blur-md">
+      <header className="border-b border-border bg-surface px-6 py-4 backdrop-blur-md">
         <div className="mx-auto flex max-w-4xl items-center justify-between">
           <div className="flex items-center gap-3">
             <PitrayaLogoEmblem size={32} />

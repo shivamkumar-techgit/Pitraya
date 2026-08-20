@@ -73,7 +73,7 @@ export default function WhyGayaSection({
       ref={containerRef}
       spacing="lg"
       className={cn(
-        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-black py-16 sm:py-20",
+        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-muted py-16 sm:py-20",
         className
       )}
       {...props}
@@ -141,7 +141,7 @@ export default function WhyGayaSection({
                 viewport={{ once: true, margin: "-40px" }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 whileHover={{ y: -4 }}
-                className="group border-gold-primary/25 bg-surface/40 hover:border-gold-primary/60 relative flex flex-col justify-between overflow-hidden rounded-2xl border shadow-xl backdrop-blur-md transition-all duration-300"
+                className="group border-gold-primary/25 bg-surface hover:border-gold-primary/60 relative flex flex-col justify-between overflow-hidden rounded-2xl border shadow-md transition-all duration-300"
               >
                 {/* Header Image with Gradient & Badge */}
                 <div className="relative h-44 w-full overflow-hidden bg-gradient-to-br from-amber-950/60 via-slate-950 to-black sm:h-48">
@@ -162,7 +162,7 @@ export default function WhyGayaSection({
                 </div>
 
                 {/* Card Content */}
-                <div className="flex flex-1 flex-col justify-between space-y-2.5 p-5 sm:p-6">
+                <div className="flex flex-1 flex-col justify-between space-y-2.5 p-4 sm:p-6">
                   <div className="space-y-2">
                     <Heading
                       size="sm"

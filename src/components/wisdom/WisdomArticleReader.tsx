@@ -54,7 +54,7 @@ export default function WisdomArticleReader({ guide }: WisdomArticleReaderProps)
   const relatedArticles = featuredGuides.filter((g) => g.slug !== guide.slug).slice(0, 3);
 
   return (
-    <div className="relative bg-[#07080D] text-text-primary min-h-screen pt-20">
+    <div className="relative bg-background text-text-primary min-h-screen pt-20">
       {/* Sticky Top Reading Progress Bar */}
       <ReadingProgressBar articleTitle={guide.title} />
 
@@ -93,7 +93,7 @@ export default function WisdomArticleReader({ guide }: WisdomArticleReaderProps)
             </div>
 
             {/* MAIN HERO IMAGE */}
-            <div className="relative h-[320px] sm:h-[450px] w-full rounded-3xl overflow-hidden border-2 border-gold-primary/40 shadow-2xl shadow-gold-glow">
+            <div className="relative h-[320px] sm:h-[450px] w-full rounded-2xl overflow-hidden border-2 border-gold-primary/40 shadow-xl shadow-gold-glow">
               <Image src={guide.image} alt={guide.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover" priority />
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
             </div>
@@ -150,11 +150,11 @@ export default function WisdomArticleReader({ guide }: WisdomArticleReaderProps)
                   Performing oblation brings profound peace to both the departed souls and the living family:
                 </p>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                  <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
+                  <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
                     <span className="font-bold text-emerald-400 block font-cinzel">✓ Ancestral Freedom</span>
                     <p className="text-text-muted">Frees departed souls from lower subtle realms into heavenly peace.</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
+                  <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
                     <span className="font-bold text-emerald-400 block font-cinzel">✓ Lineage Protection</span>
                     <p className="text-text-muted">Protects seven future generations from obstacles and family disharmony.</p>
                   </div>
@@ -193,15 +193,15 @@ export default function WisdomArticleReader({ guide }: WisdomArticleReaderProps)
                   6. Complete Step-by-Step Procedure Timeline
                 </h2>
                 <div className="space-y-3 text-xs">
-                  <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/30 space-y-1">
+                  <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/30 space-y-1">
                     <span className="font-bold text-gold-primary uppercase font-cinzel block">Step 1: Sankalpa &amp; Phalgu River Tarpan</span>
                     <p className="text-text-muted">Purification bath, water &amp; sesame seed oblations offered at Phalgu Nadi.</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/30 space-y-1">
+                  <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/30 space-y-1">
                     <span className="font-bold text-gold-primary uppercase font-cinzel block">Step 2: Vishnupad Basalt Footprint Oblation</span>
                     <p className="text-text-muted">Pindas (rice flour &amp; sesame balls) placed upon Lord Vishnu&apos;s footprint.</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/30 space-y-1">
+                  <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/30 space-y-1">
                     <span className="font-bold text-gold-primary uppercase font-cinzel block">Step 3: Immortal Banyan Tree (Akshay Vat) Leaf Seal</span>
                     <p className="text-text-muted">Final Pinda offered under Akshay Vat to permanently conclude the obligation.</p>
                   </div>
@@ -250,11 +250,11 @@ export default function WisdomArticleReader({ guide }: WisdomArticleReaderProps)
                   <span>10. Frequently Asked Questions</span>
                 </h2>
                 <div className="space-y-3 text-xs">
-                  <div className="p-3.5 rounded-xl bg-surface/80 border border-border space-y-1">
+                  <div className="p-4.5 rounded-xl bg-surface/80 border border-border space-y-1">
                     <span className="font-bold text-text-primary block font-cinzel">Q: How many days are required in Gaya?</span>
                     <p className="text-text-muted">A: 1-Day or 2-Day itineraries are sufficient to complete the 3-Vedi Pind Daan rites comfortably.</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-surface/80 border border-border space-y-1">
+                  <div className="p-4.5 rounded-xl bg-surface/80 border border-border space-y-1">
                     <span className="font-bold text-text-primary block font-cinzel">Q: Are hotel stays included in package bookings?</span>
                     <p className="text-text-muted">A: Yes, all Pitraya pilgrimage packages include pre-checked hotel stays with AC private vehicle transfers.</p>
                   </div>
@@ -269,7 +269,7 @@ export default function WisdomArticleReader({ guide }: WisdomArticleReaderProps)
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                   {relatedArticles.map((rel) => (
                     <Link key={rel.slug} href={`/blog/${rel.slug}`}>
-                      <GlassCard borderGold hoverEffect="lift" className="p-3 space-y-2 h-full bg-surface/80 text-left">
+                      <GlassCard borderGold hoverEffect="lift" className="p-4 space-y-2 h-full bg-surface/80 text-left">
                         <div className="relative h-24 w-full rounded-lg overflow-hidden">
                           <Image src={rel.image} alt={rel.title} fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" className="object-cover" />
                         </div>

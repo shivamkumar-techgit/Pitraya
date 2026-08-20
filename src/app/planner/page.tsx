@@ -11,7 +11,7 @@ export const metadata = {
 
 export default function PlannerPage() {
   return (
-    <main className="min-h-screen bg-black text-text-primary selection:bg-gold-primary selection:text-black">
+    <main className="min-h-screen bg-background text-text-primary selection:bg-gold-primary selection:text-black">
       <Navbar />
       <SacredTravelPlanner />
       <CTASection

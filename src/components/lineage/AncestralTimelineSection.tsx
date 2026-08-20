@@ -76,7 +76,7 @@ export default function AncestralTimelineSection({ className, ...props }: Ancest
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-28 overflow-hidden bg-[#07080D] text-text-primary border-b border-border-gold/20", className)}
+      className={cn("relative py-28 overflow-hidden bg-background text-text-primary border-b border-border-gold/20", className)}
       {...props}
     >
       {/* Sacred Rotating Circular Chakra */}

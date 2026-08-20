@@ -12,6 +12,7 @@ import MobileMenu from "./MobileMenu";
 import MegaMenu from "./MegaMenu";
 import WisdomLibraryMegaMenu from "./WisdomLibraryMegaMenu";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "@/components/common/ThemeToggle";
 import Logo from "@/components/common/Logo";
 import { useActiveSection } from "@/hooks/useActiveSection";
 import { cn } from "@/lib/utils";
@@ -92,9 +93,8 @@ export default function Navbar({
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 will-change-transform",
-          isScrolled
-            ? "bg-surface/90 backdrop-blur-2xl border-b border-border-gold/25 shadow-xl py-2.5"
-            : "bg-gradient-to-b from-background/90 via-background/50 to-transparent py-4"
+          "bg-surface/95 backdrop-blur-2xl border-b border-border shadow-sm",
+          isScrolled ? "py-2.5" : "py-3.5"
         )}
       >
         <Container size="xl" className="flex items-center justify-between gap-3 md:gap-6 px-4 md:px-6 lg:px-8">
@@ -102,7 +102,7 @@ export default function Navbar({
           <Logo size="md" variant="full" text={logoText} tagline="ANCESTRAL RITES • GAYA" className="shrink-0" />
 
           {/* Desktop Navigation (visible on lg screens and up) */}
-          <div className="flex-1 hidden lg:flex items-center justify-end gap-5">
+          <div className="flex-1 hidden lg:flex items-center justify-end gap-4">
             <DesktopMenu
               items={items}
               activeHref={activeHref}
@@ -114,8 +114,9 @@ export default function Navbar({
               onHoverLeaveNav={scheduleMegaClose}
             />
 
-            {/* Desktop CTA & Language Switcher */}
+            {/* Desktop CTA, Theme & Language Switcher */}
             <div className="flex items-center gap-3 shrink-0 ml-2">
+              <ThemeToggle />
               <LanguageSwitcher variant="compact" />
               <PrimaryButton 
                 size="sm" 
@@ -131,7 +132,8 @@ export default function Navbar({
           </div>
 
           {/* Mobile / Tablet Menu Button Toggle (hidden on lg desktop) */}
-          <div className="lg:hidden flex items-center">
+          <div className="lg:hidden flex items-center gap-2">
+            <ThemeToggle className="h-9 w-9" />
             <IconButton
               ariaLabel={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
               variant="ghost"

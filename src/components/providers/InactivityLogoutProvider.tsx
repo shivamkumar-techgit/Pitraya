@@ -87,7 +87,7 @@ export function InactivityLogoutProvider({ children }: { children: React.ReactNo
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 50 }}
-            className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-amber-950/90 border border-amber-500/50 text-amber-100 shadow-2xl backdrop-blur-xl max-w-sm font-sans"
+            className="fixed bottom-6 right-6 z-50 p-4 rounded-2xl bg-amber-950/90 border border-amber-500/50 text-amber-100 shadow-xl backdrop-blur-xl max-w-sm font-sans"
           >
             <div className="flex items-start gap-3">
               <div className="p-2 rounded-xl bg-amber-500/20 text-amber-300 shrink-0">

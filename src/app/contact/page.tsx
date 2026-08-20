@@ -54,7 +54,7 @@ const contactFaqs = [
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-[#07080E] text-text-primary selection:bg-gold-primary selection:text-black">
+    <main className="min-h-screen bg-background text-text-primary selection:bg-gold-primary selection:text-black">
       {/* SEO JSON-LD Schemas */}
       <JsonLd data={generateOrganizationSchema()} />
       <JsonLd data={generateLocalBusinessSchema()} />

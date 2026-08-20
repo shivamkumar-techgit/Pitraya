@@ -92,7 +92,7 @@ export default function VideoCard({
       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-black/10 transition-opacity duration-300 opacity-60 group-hover:opacity-80 z-10" />
 
       {/* Video Content & Text details */}
-      <div className="absolute inset-0 z-20 p-5 flex flex-col justify-between text-left pointer-events-none">
+      <div className="absolute inset-0 z-20 p-4 flex flex-col justify-between text-left pointer-events-none">
         
         {/* Top Control - Mute Trigger */}
         <div className="self-end pointer-events-auto">

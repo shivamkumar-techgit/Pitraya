@@ -70,7 +70,7 @@ export default function DigitalFamilyTreeSection({ className, ...props }: Digita
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-28 overflow-hidden bg-[#07080E] text-text-primary border-b border-border-gold/20", className)}
+      className={cn("relative py-28 overflow-hidden bg-muted text-text-primary border-b border-border-gold/20", className)}
       {...props}
     >
       {/* Sacred Rotating Circular Chakra */}

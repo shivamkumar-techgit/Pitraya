@@ -17,7 +17,7 @@ export const metadata = {
 
 export default function LineagePortalPage() {
   return (
-    <main className="min-h-screen bg-black text-text-primary selection:bg-gold-primary selection:text-black">
+    <main className="min-h-screen bg-background text-text-primary selection:bg-gold-primary selection:text-black">
       <Navbar />
       <LineageHeroSection />
       <LineageHowItWorksSection />

@@ -84,7 +84,7 @@ export default function LanguageSwitcher({
         <div
           role="listbox"
           className={cn(
-            "absolute right-0 mt-2 w-36 rounded-xl border border-border-gold/30 bg-black/95 p-1.5 shadow-2xl backdrop-blur-2xl z-50 animate-in fade-in-50 zoom-in-95 duration-150"
+            "absolute right-0 mt-2 w-36 rounded-xl border border-border-gold/30 bg-surface p-1.5 shadow-lg z-50 animate-in fade-in-50 zoom-in-95 duration-150"
           )}
         >
           {LANGUAGES.map((lang) => {

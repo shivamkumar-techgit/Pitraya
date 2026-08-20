@@ -28,7 +28,7 @@ const regionIcons: Record<(typeof regions)[number], React.ReactNode> = {
 
 export default function CityHubClient() {
   return (
-    <main className="min-h-screen bg-[#07080E] text-text-primary selection:bg-gold-primary selection:text-black">
+    <main className="min-h-screen bg-background text-text-primary selection:bg-gold-primary selection:text-black">
       <JsonLd
         data={generateBreadcrumbSchema([
           { name: "Services", item: "/packages" },
@@ -144,7 +144,7 @@ export default function CityHubClient() {
                   >
                     <Link
                       href={`/pind-daan-from/${city.slug}`}
-                      className="group block h-full bg-surface/40 hover:bg-surface/70 border border-gold-primary/15 hover:border-gold-primary/40 rounded-xl p-5 transition-all duration-300 hover:-translate-y-1"
+                      className="group block h-full bg-surface/40 hover:bg-surface/70 border border-gold-primary/15 hover:border-gold-primary/40 rounded-xl p-4 transition-all duration-300 hover:-translate-y-1"
                     >
                       <div className="flex items-start justify-between mb-3">
                         <div>
@@ -253,7 +253,7 @@ export default function CityHubClient() {
       </section>
 
       <section className="px-4 py-20">
-        <div className="max-w-3xl mx-auto bg-gradient-to-br from-gold-primary/10 to-surface/60 border border-gold-primary/20 rounded-3xl p-10 text-center">
+        <div className="max-w-3xl mx-auto bg-gradient-to-br from-gold-primary/10 to-surface/60 border border-gold-primary/20 rounded-2xl p-10 text-center">
           <h2 className="text-3xl font-bold font-cinzel text-text-primary mb-4">
             Start Your Gaya Pilgrimage Today
           </h2>

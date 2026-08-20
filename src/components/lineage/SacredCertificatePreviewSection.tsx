@@ -59,8 +59,8 @@ export default function SacredCertificatePreviewSection({ className, ...props }:
           transition={{ duration: 0.7 }}
           className="max-w-3xl mx-auto"
         >
-          <div className="relative p-2 sm:p-4 rounded-3xl bg-gradient-to-br from-gold-primary via-gold-secondary to-gold-primary shadow-2xl shadow-gold-glow">
-            <div className="rounded-[1.75rem] bg-[#0E0C08] p-6 sm:p-12 border-2 border-gold-primary/60 space-y-8 relative overflow-hidden text-center">
+          <div className="relative p-2 sm:p-4 rounded-2xl bg-gradient-to-br from-gold-primary via-gold-secondary to-gold-primary shadow-xl shadow-gold-glow">
+            <div className="rounded-[1.75rem] bg-surface p-6 sm:p-12 border-2 border-gold-primary/60 space-y-8 relative overflow-hidden text-center shadow-md">
               
               {/* Inner Watermark Chakra */}
               <SacredChakraBg size="400px" opacity={0.07} rotateSpeed={180} position="center" />
@@ -83,22 +83,22 @@ export default function SacredCertificatePreviewSection({ className, ...props }:
 
               {/* CERTIFICATE DATA FIELDS */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-left relative z-10 py-4 border-y border-gold-primary/30">
-                <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
+                <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
                   <span className="text-[10px] font-bold text-gold-accent uppercase tracking-widest font-cinzel block">Verified Family</span>
                   <p className="text-sm font-bold text-text-primary font-cinzel">Sharma Family (Gotra Kashyap)</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
+                <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
                   <span className="text-[10px] font-bold text-gold-accent uppercase tracking-widest font-cinzel block">Native Place</span>
                   <p className="text-sm font-bold text-text-primary font-cinzel">Madhubani, Bihar</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
+                <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
                   <span className="text-[10px] font-bold text-gold-accent uppercase tracking-widest font-cinzel block">Panji Archive Ref</span>
                   <p className="text-sm font-mono font-bold text-gold-primary">PANJI-GA-1936-8821</p>
                 </div>
 
-                <div className="p-3.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
+                <div className="p-4.5 rounded-xl bg-surface/80 border border-gold-primary/20 space-y-1">
                   <span className="text-[10px] font-bold text-gold-accent uppercase tracking-widest font-cinzel block">Officiating Priest</span>
                   <p className="text-sm font-bold text-text-primary font-cinzel">Pt. Mishra Ji (Gayawal Purohit)</p>
                 </div>
@@ -122,7 +122,7 @@ export default function SacredCertificatePreviewSection({ className, ...props }:
                 </div>
 
                 {/* QR Code Verification */}
-                <div className="flex items-center gap-3 p-3 rounded-2xl bg-surface/90 border border-gold-primary/40">
+                <div className="flex items-center gap-3 p-4 rounded-2xl bg-surface/90 border border-gold-primary/40">
                   <QrCode className="h-10 w-10 text-gold-primary shrink-0" />
                   <div className="text-left space-y-0.5">
                     <span className="block text-[11px] font-bold text-emerald-400 font-cinzel uppercase tracking-wider">

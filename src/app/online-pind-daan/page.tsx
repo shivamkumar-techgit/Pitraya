@@ -45,7 +45,7 @@ export default function OnlinePindDaanPage() {
       />
 
       {/* ─── 1. HERO SECTION ───────────────────────────────────────── */}
-      <Section className="text-text-primary relative overflow-hidden bg-black pt-28 pb-20">
+      <Section className="text-text-primary relative overflow-hidden bg-background pt-28 pb-20">
         <GoldenParticles particleCount={25} />
         <div className="bg-gold-primary/10 pointer-events-none absolute top-0 left-1/2 h-[500px] w-[800px] -translate-x-1/2 rounded-full blur-[180px]" />
 
@@ -182,7 +182,7 @@ export default function OnlinePindDaanPage() {
                 key={idx}
                 className="border-gold-primary/30 space-y-3 p-6"
               >
-                <div className="border-gold-primary/30 w-fit rounded-xl border bg-black/60 p-3">
+                <div className="border-gold-primary/30 w-fit rounded-xl border bg-surface p-3">
                   {item.icon}
                 </div>
                 <h3 className="font-cinzel text-base font-bold text-white">
@@ -198,7 +198,7 @@ export default function OnlinePindDaanPage() {
       </Section>
 
       {/* ─── 3. HOW IT WORKS ─────────────────────────────────────── */}
-      <Section className="border-border-gold/20 border-t bg-black py-16">
+      <Section className="border-border-gold/20 border-t bg-muted py-16">
         <Container size="xl" className="space-y-12">
           <div className="space-y-3 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">

@@ -43,7 +43,7 @@ export default function WisdomLibraryHero({ onSearchChange, className, ...props 
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-28 overflow-hidden bg-[#07080E] text-text-primary border-b border-border-gold/20", className)}
+      className={cn("relative py-28 overflow-hidden bg-background text-text-primary border-b border-border-gold/20", className)}
       {...props}
     >
       {/* Background Ambience & Sacred Rotating Circular Chakra */}

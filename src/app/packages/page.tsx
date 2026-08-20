@@ -405,7 +405,7 @@ export default function PackagesPage() {
       />
 
       {/* ─── SECTION 1: HERO (UNTOUCHED PRESERVED DESIGN) ────────────────────── */}
-      <Section className="text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-black pt-28 pb-20">
+      <Section className="text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-background pt-28 pb-20">
         <SacredChakraBg
           size="min(750px, 90vw)"
           opacity={0.05}
@@ -449,7 +449,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 2: CHOOSE YOUR EXPERIENCE (5 CARDS GRID / MOBILE SWIPE) ──── */}
-      <Section className="border-border-gold/20 border-b bg-black py-16">
+      <Section className="border-border-gold/20 border-b bg-muted py-16">
         <Container size="xl" className="space-y-10">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
@@ -569,7 +569,7 @@ export default function PackagesPage() {
             </p>
           </div>
 
-          <div className="border-gold-primary/30 overflow-x-auto rounded-2xl border bg-black/80 shadow-2xl backdrop-blur-xl">
+          <div className="border-gold-primary/30 overflow-x-auto rounded-2xl border bg-surface shadow-md">
             <table className="w-full border-collapse text-left text-xs">
               <thead>
                 <tr className="border-gold-primary/30 bg-gold-primary/10 font-cinzel border-b tracking-wider text-white uppercase">
@@ -681,7 +681,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 4: SELECTED PACKAGE DETAILS (DYNAMIC MASTER PANEL) ───────── */}
-      <Section className="border-border-gold/20 border-b bg-black py-16">
+      <Section className="border-border-gold/20 border-b bg-muted py-16">
         <Container size="xl" className="space-y-10">
           <div className="border-border-gold/20 flex flex-col justify-between gap-4 border-b pb-6 md:flex-row md:items-center">
             <div>
@@ -721,7 +721,7 @@ export default function PackagesPage() {
                   {selectedPkg.timeline.map((item, index) => (
                     <div
                       key={index}
-                      className="border-border-gold/20 space-y-2 rounded-2xl border bg-black/60 p-4"
+                      className="border-border-gold/20 space-y-2 rounded-2xl border bg-surface p-4"
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-gold-primary font-cinzel bg-gold-primary/10 border-gold-primary/30 rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase">
@@ -758,7 +758,7 @@ export default function PackagesPage() {
                   {selectedPkg.summaryInclusions.map((inc, idx) => (
                     <div
                       key={idx}
-                      className="border-border-gold/15 flex items-center gap-2.5 rounded-xl border bg-black/40 p-2.5 text-xs text-white"
+                      className="border-border-gold/15 flex items-center gap-2.5 rounded-xl border bg-muted p-2.5 text-xs text-text-primary"
                     >
                       <CheckCircle2 className="text-gold-primary h-4 w-4 shrink-0" />
                       <span>{inc}</span>
@@ -898,7 +898,7 @@ export default function PackagesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 <div className="absolute bottom-2 left-3">
-                  <span className="font-cinzel border-gold-primary/30 rounded-full border bg-black/70 px-2 py-0.5 text-[11px] font-bold text-white">
+                  <span className="font-cinzel border-gold-primary/30 rounded-full border bg-surface px-2 py-0.5 text-[11px] font-bold text-text-primary">
                     {media.title}
                   </span>
                 </div>
@@ -909,7 +909,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 6: WHAT'S INCLUDED IN EVERY OFFERING ─────────────────────── */}
-      <Section className="border-border-gold/20 border-b bg-black py-16">
+      <Section className="border-border-gold/20 border-b bg-muted py-16">
         <Container size="xl" className="space-y-10">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
@@ -967,7 +967,7 @@ export default function PackagesPage() {
                 key={idx}
                 className="bg-surface/40 border-gold-primary/20 space-y-2 rounded-2xl border p-4"
               >
-                <div className="border-gold-primary/30 w-fit rounded-xl border bg-black/60 p-2">
+                <div className="border-gold-primary/30 w-fit rounded-xl border bg-surface p-2">
                   {item.icon}
                 </div>
                 <h4 className="font-cinzel text-xs font-bold text-white">
@@ -1007,7 +1007,7 @@ export default function PackagesPage() {
             ].map((addon, i) => (
               <div
                 key={i}
-                className="border-gold-primary/25 flex items-center justify-between rounded-2xl border bg-black/60 p-3.5"
+                className="border-gold-primary/25 flex items-center justify-between rounded-2xl border bg-surface p-3.5"
               >
                 <span className="font-cinzel text-xs font-bold text-white">
                   {addon.title}
@@ -1022,7 +1022,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 8: TRUST & METRICS ──────────────────────────────────────── */}
-      <Section className="border-border-gold/20 border-b bg-black py-16">
+      <Section className="border-border-gold/20 border-b bg-muted py-16">
         <Container size="xl" className="space-y-8 text-center">
           <div className="space-y-2">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
@@ -1113,7 +1113,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 10: FINAL CALL TO ACTION & STICKY BOTTOM BAR ───────────── */}
-      <Section className="relative overflow-hidden bg-black py-20 text-center">
+      <Section className="relative overflow-hidden bg-background py-20 text-center">
         <div className="bg-gold-primary/10 pointer-events-none absolute top-1/2 left-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[180px]" />
 
         <Container size="md" className="relative z-10 space-y-6">
@@ -1155,7 +1155,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* MOBILE BOTTOM STICKY NAVIGATION BAR (WhatsApp + Book Package) */}
-      <div className="border-gold-primary/30 fixed right-0 bottom-0 left-0 z-50 flex items-center gap-3 border-t bg-black/95 p-3 backdrop-blur-xl sm:hidden">
+      <div className="border-gold-primary/30 fixed right-0 bottom-0 left-0 z-50 flex items-center gap-3 border-t bg-surface p-3 shadow-lg sm:hidden">
         <button
           onClick={() => {
             const text = encodeURIComponent(

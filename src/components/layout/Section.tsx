@@ -28,8 +28,8 @@ const bgClasses: Record<SectionBackground, string> = {
   transparent: "bg-transparent",
   default: "bg-background",
   surface: "bg-surface",
-  gradient: "bg-gradient-dark",
-  dark: "bg-black",
+  gradient: "bg-muted",
+  dark: "bg-background",
 };
 
 const borderClasses: Record<SectionBorder, string> = {

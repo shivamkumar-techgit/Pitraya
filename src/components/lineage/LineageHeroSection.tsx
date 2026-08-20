@@ -41,7 +41,7 @@ export default function LineageHeroSection({ className, ...props }: LineageHeroS
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-28 overflow-hidden bg-[#07080D] text-text-primary border-b border-border-gold/20", className)}
+      className={cn("relative py-28 overflow-hidden bg-background text-text-primary border-b border-border-gold/20", className)}
       {...props}
     >
       {/* Background Ambience & Sacred Rotating Circular Chakra */}
@@ -211,23 +211,23 @@ export default function LineageHeroSection({ className, ...props }: LineageHeroS
 
                 {/* RECORD FOUND DETAILS GRID */}
                 <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
-                  <div className="p-3.5 rounded-xl bg-background/90 border border-border space-y-1">
+                  <div className="p-4.5 rounded-xl bg-background/90 border border-border space-y-1">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-gold-primary font-cinzel block">Family</span>
                     <p className="text-sm font-semibold text-text-primary">{familyName || "Sharma"}</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-background/90 border border-border space-y-1">
+                  <div className="p-4.5 rounded-xl bg-background/90 border border-border space-y-1">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-gold-primary font-cinzel block">Village</span>
                     <p className="text-sm font-semibold text-text-primary">{village || "Madhubani"}</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-background/90 border border-border space-y-1">
+                  <div className="p-4.5 rounded-xl bg-background/90 border border-border space-y-1">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-gold-primary font-cinzel block">Last Recorded</span>
                     <p className="text-sm font-semibold text-emerald-400 font-mono">1936</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-background/90 border border-border space-y-1">
+                  <div className="p-4.5 rounded-xl bg-background/90 border border-border space-y-1">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-gold-primary font-cinzel block">Ancestor</span>
                     <p className="text-sm font-semibold text-text-primary">Late Ram Prasad Sharma</p>
                   </div>
-                  <div className="p-3.5 rounded-xl bg-background/90 border border-border space-y-1">
+                  <div className="p-4.5 rounded-xl bg-background/90 border border-border space-y-1">
                     <span className="text-[11px] font-bold uppercase tracking-wider text-gold-primary font-cinzel block">Gayawal Family</span>
                     <p className="text-sm font-semibold text-gold-accent">Mishra Ji</p>
                   </div>

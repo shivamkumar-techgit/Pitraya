@@ -199,7 +199,7 @@ export default function ContactPageClient() {
     );
 
   return (
-    <div className="min-h-screen bg-[#07080E] text-text-primary selection:bg-gold-primary selection:text-black overflow-hidden">
+    <div className="min-h-screen bg-background text-text-primary selection:bg-gold-primary selection:text-black overflow-hidden">
 
       {/* ── HERO ── */}
       <section ref={heroRef} className="relative pt-32 pb-20 px-4 overflow-hidden">
@@ -338,7 +338,7 @@ export default function ContactPageClient() {
             transition={{ duration: 0.6 }}
             className="lg:col-span-3"
           >
-            <div className="rounded-3xl bg-surface/50 border border-gold-primary/20 backdrop-blur-sm overflow-hidden">
+            <div className="rounded-2xl bg-surface/50 border border-gold-primary/20 backdrop-blur-sm overflow-hidden">
               {/* Form header */}
               <div className="px-8 pt-8 pb-6 border-b border-border-gold/20">
                 <span className="text-[10px] font-bold font-cinzel uppercase tracking-widest text-gold-primary">
@@ -565,7 +565,7 @@ export default function ContactPageClient() {
             className="lg:col-span-2 flex flex-col gap-6"
           >
             {/* Map */}
-            <div className="rounded-3xl overflow-hidden border border-gold-primary/20 bg-surface/50">
+            <div className="rounded-2xl overflow-hidden border border-gold-primary/20 bg-surface/50">
               <div className="px-5 pt-5 pb-3">
                 <p className="text-[10px] font-bold font-cinzel uppercase tracking-widest text-gold-primary">Our Location</p>
                 <h3 className="text-base font-bold font-cinzel text-text-primary mt-0.5 flex items-center gap-2">
@@ -599,7 +599,7 @@ export default function ContactPageClient() {
             </div>
 
             {/* Office Hours */}
-            <div className="rounded-2xl border border-border-gold/20 bg-surface/40 p-5 space-y-3">
+            <div className="rounded-2xl border border-border-gold/20 bg-surface/40 p-4 space-y-3">
               <p className="text-[10px] font-bold font-cinzel uppercase tracking-widest text-gold-primary flex items-center gap-2">
                 <Clock className="h-3.5 w-3.5" /> Office Hours
               </p>
@@ -621,7 +621,7 @@ export default function ContactPageClient() {
               href={`https://wa.me/${WA_NUMBER}?text=${WA_MSG}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-4 rounded-2xl bg-gradient-to-r from-emerald-950/80 to-emerald-900/40 border border-emerald-500/30 hover:border-emerald-400/50 p-5 transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]"
+              className="group flex items-center gap-4 rounded-2xl bg-gradient-to-r from-emerald-950/80 to-emerald-900/40 border border-emerald-500/30 hover:border-emerald-400/50 p-4 transition-all duration-300 hover:shadow-[0_0_20px_rgba(16,185,129,0.15)]"
             >
               <div className="h-12 w-12 rounded-2xl bg-emerald-500/20 flex items-center justify-center shrink-0">
                 <MessageSquare className="h-6 w-6 text-emerald-400" />
@@ -634,7 +634,7 @@ export default function ContactPageClient() {
             </a>
 
             {/* Social Links */}
-            <div className="rounded-2xl border border-border-gold/20 bg-surface/40 p-5">
+            <div className="rounded-2xl border border-border-gold/20 bg-surface/40 p-4">
               <p className="text-[10px] font-bold font-cinzel uppercase tracking-widest text-gold-primary mb-4">Follow Pitraya</p>
               <div className="grid grid-cols-2 gap-3">
                 {[
@@ -677,7 +677,7 @@ export default function ContactPageClient() {
               Trusted by 5,000+ Families
             </h2>
           </motion.div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {TESTIMONIALS.map((t, i) => (
               <motion.div
                 key={t.name}
@@ -715,7 +715,7 @@ export default function ContactPageClient() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-3xl bg-gradient-to-br from-gold-primary/8 to-surface/60 border border-gold-primary/20 p-8"
+            className="rounded-2xl bg-gradient-to-br from-gold-primary/8 to-surface/60 border border-gold-primary/20 p-8"
           >
             <p className="text-[10px] font-bold font-cinzel uppercase tracking-widest text-gold-primary mb-2">Quick Answers</p>
             <h2 className="text-xl font-bold font-cinzel text-text-primary mb-6">Common Contact Questions</h2>

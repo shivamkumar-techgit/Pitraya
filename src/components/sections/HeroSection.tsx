@@ -7,21 +7,18 @@ import {
   Sparkles,
   Volume2,
   VolumeX,
-  Phone,
   MessageCircle,
+  ShieldCheck,
+  MapPin,
+  Users,
 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Container from "@/components/layout/Container";
-import Heading from "@/components/typography/Heading";
-import Paragraph from "@/components/typography/Paragraph";
 import GradientText from "@/components/typography/GradientText";
 import MagneticButton from "@/components/buttons/MagneticButton";
-import SecondaryButton from "@/components/buttons/SecondaryButton";
-import GoldenParticles from "@/components/animations/GoldenParticles";
 import SacredChakraBg from "@/components/animations/SacredChakraBg";
 import { cn } from "@/lib/utils";
 
-// Web Audio API Synthesizer for Authentic 432Hz Sacred Temple Bell Chime
 function playTempleBellChime() {
   try {
     const AudioContextClass =
@@ -104,15 +101,19 @@ const mediaSources: Record<
   },
 };
 
+const trustItems = [
+  { icon: ShieldCheck, label: "Verified Gayawal Pandits" },
+  { icon: MapPin, label: "Vishnupad & Phalgu" },
+  { icon: Users, label: "End-to-end family care" },
+];
+
 export default function HeroSection({
   badge,
   title,
   gradientTitleWord,
   description,
   primaryCtaText,
-  secondaryCtaText,
   onPrimaryClick,
-  onSecondaryClick,
   className,
   ...props
 }: HeroSectionProps) {
@@ -123,7 +124,6 @@ export default function HeroSection({
   const displayGradientTitle = gradientTitleWord ?? t("titleGradient");
   const displayDescription = description ?? t("subtitle");
   const displayPrimaryCta = primaryCtaText ?? t("primaryCta");
-  const displaySecondaryCta = secondaryCtaText ?? t("secondaryCta");
 
   const [currentMedia] = useState<MediaBackgroundType>("video1");
   const [isPlayingBell, setIsPlayingBell] = useState(false);
@@ -140,154 +140,165 @@ export default function HeroSection({
   return (
     <section
       className={cn(
-        "text-text-primary relative flex min-h-[85vh] w-full items-center justify-center overflow-hidden bg-black pt-24 pb-16 sm:min-h-[720px] sm:pt-28 sm:pb-24",
+        "relative w-full overflow-hidden bg-background pt-24 pb-12 sm:pt-28 sm:pb-20",
         className
       )}
       {...props}
     >
-      {/* 1. MEDIA BACKGROUND */}
-      <motion.div
-        initial={{ scale: 1.08, opacity: 0 }}
-        animate={{ scale: 1.0, opacity: 1 }}
-        transition={{ duration: 1.6, ease: "easeOut" }}
-        className="absolute inset-0 z-0 h-full w-full overflow-hidden select-none"
-      >
-        {activeMedia.type === "video" ? (
-          <video
-            ref={videoRef}
-            key={activeMedia.src}
-            autoPlay
-            loop
-            muted
-            playsInline
-            poster="/images/hero_temple_sunrise.png"
-            className="h-full w-full object-cover brightness-[0.7] contrast-110 filter"
-          >
-            <source src={activeMedia.src} />
-          </video>
-        ) : (
-          <div
-            className="h-full w-full bg-cover bg-center brightness-[0.7] filter"
-            style={{ backgroundImage: `url(${activeMedia.src})` }}
-          />
-        )}
-      </motion.div>
-
-      {/* 2. OVERLAYS & AMBIENT LIGHTING */}
-      <div className="pointer-events-none absolute inset-0 z-1 bg-gradient-to-t from-black via-black/50 to-black/30" />
-      <div className="from-gold-primary/15 pointer-events-none absolute inset-0 z-1 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] via-transparent to-black/90" />
-
-      {/* SANSKRIT CHAKRA BACKGROUND */}
       <SacredChakraBg
-        size="min(600px, 92vw)"
-        opacity={0.05}
+        size="min(640px, 90vw)"
+        opacity={0.04}
         rotateSpeed={180}
+        position="top-right"
       />
+      <div className="pointer-events-none absolute top-20 left-0 h-[420px] w-[420px] rounded-full bg-gold-primary/10 blur-[140px]" />
 
-      {/* FLOATING PARTICLES */}
-      <GoldenParticles particleCount={25} className="z-10" />
+      <Container size="xl" className="relative z-10 px-4 md:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="flex flex-col items-start text-left lg:col-span-6">
+            {displayBadge && (
+              <motion.span
+                initial={{ opacity: 0, y: 12 }}
+                animate={{ opacity: 1, y: 0 }}
+                className="font-cinzel text-gold-primary mb-5 inline-flex items-center gap-2 rounded-full border border-border-gold bg-surface px-3.5 py-1.5 text-[11px] font-bold tracking-wider uppercase shadow-sm sm:text-xs"
+              >
+                <Sparkles className="h-3.5 w-3.5 shrink-0" />
+                <span>{displayBadge}</span>
+              </motion.span>
+            )}
 
-      {/* 3. HERO CONTENT CONTAINER */}
-      <Container size="xl" className="relative z-20 px-4 text-center sm:px-6">
-        <div className="mx-auto flex max-w-4xl flex-col items-center gap-5 sm:gap-6">
-          {/* Badge */}
-          {displayBadge && (
-            <motion.span
-              initial={{ opacity: 0, y: 15 }}
+            <motion.h1
+              initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              className="font-cinzel text-gold-primary border-gold-primary/40 shadow-gold-glow inline-flex items-center gap-2 rounded-full border bg-black/80 px-3.5 py-1.5 text-[11px] font-bold tracking-wider uppercase backdrop-blur-xl sm:text-xs"
+              transition={{ delay: 0.08, duration: 0.7 }}
+              className="font-cinzel text-text-primary max-w-xl text-3xl leading-[1.15] font-bold tracking-tight sm:text-5xl lg:text-6xl"
             >
-              <Sparkles className="text-gold-primary h-3.5 w-3.5 shrink-0 animate-pulse" />
-              <span>{displayBadge}</span>
-            </motion.span>
-          )}
-
-          {/* Heading */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.15, duration: 0.8 }}
-          >
-            <h1 className="font-cinzel text-3xl leading-[1.15] font-bold tracking-tight text-white drop-shadow-2xl text-shadow-lg sm:text-5xl md:text-6xl lg:text-7xl">
-              <span className="block font-semibold">{displayTitle}</span>
-              <span className="mt-1 block sm:mt-3">
+              <span className="block">{displayTitle}</span>
+              <span className="mt-2 block">
                 <GradientText
                   variant="gold"
                   size="inherit"
                   font="cinzel"
-                  className="drop-shadow-gold font-bold tracking-widest uppercase"
+                  className="font-bold tracking-wide uppercase"
                 >
                   {displayGradientTitle}
                 </GradientText>
               </span>
-            </h1>
-          </motion.div>
+            </motion.h1>
 
-          {/* Subtitle */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-text-secondary/90 max-w-2xl px-2 font-serif text-sm leading-relaxed italic sm:text-lg md:text-xl"
-          >
-            &quot;{displayDescription}&quot;
-          </motion.p>
-
-          {/* Mobile-Optimized CTA Buttons */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.8 }}
-            className="flex w-full flex-col items-center justify-center gap-3.5 pt-2 sm:w-auto sm:flex-row"
-          >
-            <MagneticButton
-              size="lg"
-              variant="primary"
-              rightIcon={<ArrowRight className="h-4 w-4" />}
-              onClick={() => {
-                if (onPrimaryClick) onPrimaryClick();
-                else window.location.href = "/packages";
-              }}
-              className="font-cinzel shadow-gold-glow w-full px-8 py-3.5 text-xs font-bold sm:w-auto"
+            <motion.p
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.18, duration: 0.7 }}
+              className="text-text-secondary mt-5 max-w-lg font-serif text-sm leading-relaxed sm:text-lg"
             >
-              {displayPrimaryCta}
-            </MagneticButton>
+              {displayDescription}
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.28, duration: 0.7 }}
+              className="mt-7 flex w-full flex-col gap-3 sm:w-auto sm:flex-row sm:items-center"
+            >
+              <MagneticButton
+                size="lg"
+                variant="primary"
+                rightIcon={<ArrowRight className="h-4 w-4" />}
+                onClick={() => {
+                  if (onPrimaryClick) onPrimaryClick();
+                  else window.location.href = "/packages";
+                }}
+                className="font-cinzel shadow-gold-glow w-full px-8 py-3.5 text-xs font-bold sm:w-auto"
+              >
+                {displayPrimaryCta}
+              </MagneticButton>
+
+              <button
+                type="button"
+                onClick={() => {
+                  const text = encodeURIComponent(
+                    "Namaste! I would like to inquire about Gaya Pind Daan pilgrimage packages."
+                  );
+                  window.open(
+                    `https://wa.me/918434457228?text=${text}`,
+                    "_blank"
+                  );
+                }}
+                className="font-cinzel text-text-primary focus-visible:ring-gold-primary flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#25D366]/40 bg-surface px-6 py-3.5 text-xs font-bold shadow-sm transition-all hover:border-[#25D366] hover:bg-[#25D366]/10 focus-visible:ring-2 focus-visible:outline-none sm:w-auto"
+              >
+                <MessageCircle className="h-4 w-4 text-[#25D366]" />
+                <span>WhatsApp Concierge</span>
+              </button>
+            </motion.div>
+
+            <div className="mt-8 flex flex-wrap gap-2">
+              {trustItems.map((item) => (
+                <span
+                  key={item.label}
+                  className="text-text-secondary inline-flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-[11px] font-medium"
+                >
+                  <item.icon className="text-gold-primary h-3.5 w-3.5" />
+                  {item.label}
+                </span>
+              ))}
+            </div>
 
             <button
-              onClick={() => {
-                const text = encodeURIComponent(
-                  "Namaste! I would like to inquire about Gaya Pind Daan pilgrimage packages."
-                );
-                window.open(
-                  `https://wa.me/918434457228?text=${text}`,
-                  "_blank"
-                );
-              }}
-              className="font-cinzel flex w-full cursor-pointer items-center justify-center gap-2 rounded-xl border border-[#25D366]/50 bg-[#25D366]/20 px-6 py-3.5 text-xs font-bold text-white shadow-lg transition-all hover:bg-[#25D366]/30 sm:w-auto"
-            >
-              <MessageCircle className="h-4 w-4 text-[#25D366]" />
-              <span>WhatsApp Concierge</span>
-            </button>
-          </motion.div>
-
-          {/* Temple Bell Audio Button */}
-          <div className="pt-2">
-            <button
+              type="button"
               onClick={handleRingBell}
-              className="text-gold-primary/80 hover:text-gold-primary font-cinzel border-gold-primary/20 inline-flex cursor-pointer items-center gap-1.5 rounded-full border bg-black/60 px-3 py-1 text-[11px] transition-colors"
+              className="text-gold-primary hover:bg-surface-hover font-cinzel mt-6 inline-flex cursor-pointer items-center gap-1.5 rounded-full border border-border-gold/40 bg-surface px-3 py-1.5 text-[11px] transition-colors focus-visible:ring-2 focus-visible:ring-gold-primary focus-visible:outline-none"
             >
               {isPlayingBell ? (
-                <Volume2 className="text-gold-primary h-3.5 w-3.5 animate-bounce" />
+                <Volume2 className="h-3.5 w-3.5 animate-bounce" />
               ) : (
                 <VolumeX className="h-3.5 w-3.5" />
               )}
               <span>
                 {isPlayingBell
                   ? "Sacred Chime Sounding..."
-                  : "🔔 Chime 432Hz Temple Bell"}
+                  : "Chime 432Hz Temple Bell"}
               </span>
             </button>
           </div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.15, duration: 0.8 }}
+            className="relative lg:col-span-6"
+          >
+            <div className="border-border-gold relative aspect-[4/5] overflow-hidden rounded-3xl border shadow-lg sm:aspect-[5/4] lg:aspect-[4/5] xl:aspect-[5/4]">
+              {activeMedia.type === "video" ? (
+                <video
+                  ref={videoRef}
+                  key={activeMedia.src}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  poster="/images/hero_temple_sunrise.png"
+                  className="h-full w-full object-cover"
+                >
+                  <source src={activeMedia.src} />
+                </video>
+              ) : (
+                <div
+                  className="h-full w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${activeMedia.src})` }}
+                />
+              )}
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-black/10" />
+              <div className="absolute right-4 bottom-4 left-4 flex items-end justify-between gap-3">
+                <p className="font-cinzel text-xs font-semibold text-white sm:text-sm">
+                  Sunrise rites at Gaya
+                </p>
+                <span className="rounded-full border border-white/30 bg-black/50 px-2.5 py-1 text-[10px] font-bold tracking-widest text-white uppercase backdrop-blur-md">
+                  Live sanctuary
+                </span>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </Container>
     </section>

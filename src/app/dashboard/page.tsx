@@ -169,8 +169,8 @@ export default function CustomerDashboardPage() {
 
   return (
     <HomePage>
-      <Section className="relative py-28 overflow-hidden bg-black text-text-primary pt-36 min-h-screen">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-primary/5 via-transparent to-black pointer-events-none" />
+      <Section className="relative py-28 overflow-hidden bg-background text-text-primary pt-36 min-h-screen">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-primary/5 via-transparent to-background pointer-events-none" />
         
         <Container size="xl" className="relative z-10">
           
@@ -209,7 +209,7 @@ export default function CustomerDashboardPage() {
                           value={bookingId}
                           onChange={(e) => setBookingId(e.target.value)}
                           placeholder="e.g. PITR-84920"
-                          className="w-full pl-10 pr-4 py-3 rounded-lg bg-black/40 border border-border-gold/15 text-white focus:outline-none focus:border-gold-primary font-sans"
+                          className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface border border-border-gold/15 text-white focus:outline-none focus:border-gold-primary font-sans"
                         />
                       </div>
                     </div>
@@ -224,7 +224,7 @@ export default function CustomerDashboardPage() {
                           value={phoneNumber}
                           onChange={(e) => setPhoneNumber(e.target.value)}
                           placeholder="e.g. +91 98765 43210"
-                          className="w-full pl-10 pr-4 py-3 rounded-lg bg-black/40 border border-border-gold/15 text-white focus:outline-none focus:border-gold-primary font-sans"
+                          className="w-full pl-10 pr-4 py-3 rounded-lg bg-surface border border-border-gold/15 text-white focus:outline-none focus:border-gold-primary font-sans"
                         />
                       </div>
                     </div>
@@ -341,17 +341,17 @@ export default function CustomerDashboardPage() {
                         className="space-y-8"
                       >
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                          <GlassCard padding="md" className="border-border-gold/15 bg-black/40 space-y-1">
+                          <GlassCard padding="md" className="border-border-gold/15 bg-surface space-y-1">
                             <span className="text-[9px] text-text-muted uppercase tracking-wider block">Assigned Chauffeur</span>
                             <strong className="text-sm text-white block">Ramesh Kumar</strong>
                             <span className="text-[10px] text-gold-primary block">BR-02-P-8899 (Innova MPV)</span>
                           </GlassCard>
-                          <GlassCard padding="md" className="border-border-gold/15 bg-black/40 space-y-1">
+                          <GlassCard padding="md" className="border-border-gold/15 bg-surface space-y-1">
                             <span className="text-[9px] text-text-muted uppercase tracking-wider block">Assigned Priest</span>
                             <strong className="text-sm text-white block">Acharya S. Dwivedi</strong>
                             <span className="text-[10px] text-gold-primary block">Vishnupad VIP Mandap Rites</span>
                           </GlassCard>
-                          <GlassCard padding="md" className="border-border-gold/15 bg-black/40 space-y-1">
+                          <GlassCard padding="md" className="border-border-gold/15 bg-surface space-y-1">
                             <span className="text-[9px] text-text-muted uppercase tracking-wider block">Assigned stay</span>
                             <strong className="text-sm text-white block">Bodhgaya Regency</strong>
                             <span className="text-[10px] text-gold-primary block">Room 204 & 205 (Executive)</span>
@@ -413,7 +413,7 @@ export default function CustomerDashboardPage() {
                           <GlassCard padding="lg" className="border-border-gold/15 space-y-4">
                             <h4 className="font-cinzel text-xs font-bold text-white uppercase tracking-wider">Quick Document Vault Access</h4>
                             <div className="space-y-2">
-                              <div className="flex items-center justify-between p-3 rounded-lg bg-black/40 border border-border-gold/10">
+                              <div className="flex items-center justify-between p-3 rounded-lg bg-surface border border-border-gold/10">
                                 <div className="flex items-center gap-2">
                                   <FileText className="h-4 w-4 text-gold-primary" />
                                   <span>Shraddha Rites Booking Invoice</span>
@@ -422,7 +422,7 @@ export default function CustomerDashboardPage() {
                                   <Download className="h-4 w-4" />
                                 </button>
                               </div>
-                              <div className="flex items-center justify-between p-3 rounded-lg bg-black/40 border border-border-gold/10">
+                              <div className="flex items-center justify-between p-3 rounded-lg bg-surface border border-border-gold/10">
                                 <div className="flex items-center gap-2">
                                   <FileText className="h-4 w-4 text-gold-primary" />
                                   <span>Ancestral Lineage Verification Certificate</span>
@@ -465,7 +465,7 @@ export default function CustomerDashboardPage() {
                                       className={cn(
                                         "p-4 rounded-xl border flex items-start gap-4 transition-all select-none",
                                         step.status === "completed" ? "bg-gold-primary/5 border-gold-primary/30 text-white" :
-                                        step.status === "active" ? "bg-black/60 border-gold-primary text-white scale-[1.01] cursor-pointer" :
+                                        step.status === "active" ? "bg-muted border-gold-primary text-white scale-[1.01] cursor-pointer" :
                                         "bg-surface/10 border-border-gold/5 text-text-muted cursor-not-allowed opacity-60"
                                       )}
                                     >
@@ -672,15 +672,15 @@ export default function CustomerDashboardPage() {
                           <h3 className="font-cinzel text-lg font-bold text-white uppercase tracking-wider">Payments & Invoice summary</h3>
                           
                           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                            <div className="p-4 rounded-xl bg-black/40 border border-border-gold/10">
+                            <div className="p-4 rounded-xl bg-surface border border-border-gold/10">
                               <span className="text-text-muted block text-[10px] uppercase">Total Investment</span>
                               <strong className="text-xl font-cinzel text-white block mt-1">₹49,999</strong>
                             </div>
-                            <div className="p-4 rounded-xl bg-black/40 border border-border-gold/10">
+                            <div className="p-4 rounded-xl bg-surface border border-border-gold/10">
                               <span className="text-text-muted block text-[10px] uppercase">Deposit Paid</span>
                               <strong className="text-xl font-cinzel text-green-400 block mt-1">₹24,999</strong>
                             </div>
-                            <div className="p-4 rounded-xl bg-black/40 border border-border-gold/10">
+                            <div className="p-4 rounded-xl bg-surface border border-border-gold/10">
                               <span className="text-text-muted block text-[10px] uppercase">Pending Balance</span>
                               <strong className="text-xl font-cinzel text-red-400 block mt-1">₹25,000</strong>
                             </div>
@@ -716,7 +716,7 @@ export default function CustomerDashboardPage() {
                           <h3 className="font-cinzel text-lg font-bold text-white uppercase tracking-wider">Documents Vault</h3>
                           
                           {/* File upload selector */}
-                          <div className="p-6 rounded-2xl border-2 border-dashed border-border-gold/20 bg-black/40 text-center space-y-3">
+                          <div className="p-6 rounded-2xl border-2 border-dashed border-border-gold/20 bg-surface text-center space-y-3">
                             <Upload className="h-8 w-8 text-gold-primary mx-auto" />
                             <div className="text-xs space-y-1">
                               <strong className="text-white block">Upload Family Aadhar / ID Scan</strong>
@@ -763,10 +763,10 @@ export default function CustomerDashboardPage() {
                         exit={{ opacity: 0, x: -10 }}
                         className="max-w-xl mx-auto"
                       >
-                        <GlassCard padding="none" className="border-border-gold/15 overflow-hidden flex flex-col h-[520px] bg-black/40">
+                        <GlassCard padding="none" className="border-border-gold/15 overflow-hidden flex flex-col h-[520px] bg-surface">
                           
                           {/* Chat Header */}
-                          <div className="p-4 border-b border-border-gold/10 flex items-center justify-between bg-black/60 shrink-0">
+                          <div className="p-4 border-b border-border-gold/10 flex items-center justify-between bg-muted shrink-0">
                             <div className="flex items-center gap-3">
                               <div className="h-8 w-8 rounded-full bg-gold-primary/20 border border-gold-primary flex items-center justify-center text-gold-primary font-bold">R</div>
                               <div>
@@ -802,7 +802,7 @@ export default function CustomerDashboardPage() {
                           </div>
 
                           {/* Chat footer input form */}
-                          <form onSubmit={handleSendMessage} className="p-3 border-t border-border-gold/10 bg-black/60 flex items-center gap-2 shrink-0">
+                          <form onSubmit={handleSendMessage} className="p-3 border-t border-border-gold/10 bg-muted flex items-center gap-2 shrink-0">
                             <input
                               type="text"
                               value={newMsg}

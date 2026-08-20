@@ -52,8 +52,8 @@ export default function BackToTop({ threshold = 300, className, ...props }: Back
           className={cn(
             "fixed bottom-6 right-6 md:right-10 z-40",
             "flex h-11 w-11 items-center justify-center rounded-full",
-            "bg-black/70 backdrop-blur-md text-gold-primary",
-            "border border-gold-primary/30 hover:border-gold-primary",
+            "bg-surface text-gold-primary",
+            "border border-border-gold hover:border-gold-primary",
             "hover:scale-105 active:scale-95",
             "transition-all duration-200 shadow-lg hover:shadow-gold-glow/30",
             "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary",

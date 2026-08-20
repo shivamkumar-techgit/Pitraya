@@ -48,7 +48,7 @@ export default function CityPindDaanClient({ city }: CityPindDaanClientProps) {
   ];
 
   return (
-    <main className="min-h-screen bg-[#07080E] text-text-primary selection:bg-gold-primary selection:text-black">
+    <main className="min-h-screen bg-background text-text-primary selection:bg-gold-primary selection:text-black">
       <JsonLd data={generateBreadcrumbSchema(breadcrumbItems)} />
       <JsonLd data={generateFaqSchema(faqs)} />
 
@@ -188,7 +188,7 @@ export default function CityPindDaanClient({ city }: CityPindDaanClientProps) {
       </section>
 
       <section className="px-4 py-20 border-t border-border-gold/10">
-        <div className="max-w-3xl mx-auto bg-gradient-to-br from-gold-primary/10 to-surface/60 border border-gold-primary/20 rounded-3xl p-10 text-center">
+        <div className="max-w-3xl mx-auto bg-gradient-to-br from-gold-primary/10 to-surface/60 border border-gold-primary/20 rounded-2xl p-10 text-center">
           <h2 className="text-3xl font-bold font-cinzel text-text-primary mb-4">
             Ready to Honor Your Ancestors?
           </h2>

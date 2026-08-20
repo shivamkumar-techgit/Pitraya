@@ -66,7 +66,7 @@ export default function EmotionGallerySection({
     <Section
       spacing="xl"
       className={cn(
-        "border-border-gold/15 relative overflow-hidden border-b bg-[#0A0805] py-24",
+        "border-border-gold/15 relative overflow-hidden border-b bg-muted py-24",
         className
       )}
       {...props}
@@ -113,11 +113,10 @@ export default function EmotionGallerySection({
               initial={{ opacity: 0, scale: 0.96, y: 20 }}
               whileInView={{ opacity: 1, scale: 1, y: 0 }}
               viewport={{ once: true, margin: "-60px" }}
-              // eslint-disable-next-line @typescript-eslint/no-explicit-any
               transition={{
                 duration: 0.6,
                 delay: i * 0.08,
-                ease: [0.22, 1, 0.36, 1] as any,
+                ease: [0.22, 1, 0.36, 1],
               }}
               // eslint-disable-next-line @typescript-eslint/no-explicit-any
               {...({ whileHover: { scale: 1.02 } } as any)}

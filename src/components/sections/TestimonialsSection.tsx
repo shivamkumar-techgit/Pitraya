@@ -79,7 +79,7 @@ export default function TestimonialsSection({ className, ...props }: Testimonial
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-24 overflow-hidden text-text-primary border-b border-border-gold/20 bg-[#08090F]", className)}
+      className={cn("relative py-24 overflow-hidden text-text-primary border-b border-border-gold/20 bg-background", className)}
       {...props}
     >
       {/* Background Sacred Circular Chakra */}
@@ -119,7 +119,7 @@ export default function TestimonialsSection({ className, ...props }: Testimonial
             borderGold
             glow
             padding="none"
-            className="relative bg-gradient-to-br from-surface via-background to-surface rounded-3xl overflow-hidden shadow-2xl border border-gold-primary/30"
+            className="relative bg-gradient-to-br from-surface via-background to-surface rounded-2xl overflow-hidden shadow-xl border border-gold-primary/30"
           >
             <AnimatePresence mode="wait">
               <motion.div

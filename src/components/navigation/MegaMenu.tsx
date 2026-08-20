@@ -24,8 +24,8 @@ export default function MegaMenu({ isOpen, className, ...props }: MegaMenuProps)
           transition={{ duration: 0.2, ease: "easeOut" }}
           className={cn(
             "absolute left-0 right-0 top-full z-40 w-full",
-            "bg-black/97 backdrop-blur-2xl",
-            "border-b border-border-gold/30 shadow-2xl",
+            "glass-panel",
+            "border-b border-border-gold/30 shadow-lg",
             "py-8 px-6",
             className
           )}

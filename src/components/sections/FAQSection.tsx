@@ -92,7 +92,7 @@ export default function FAQSection({ className, ...props }: FAQSectionProps) {
   const activeFaq = defaultHomepageFaqs.find((f) => f.id === activeId) || defaultHomepageFaqs[0];
 
   return (
-    <Section spacing="xl" className={cn("relative py-28 overflow-hidden bg-black text-text-primary border-b border-border-gold/20", className)} {...props}>
+    <Section spacing="xl" className={cn("relative py-28 overflow-hidden bg-muted text-text-primary border-b border-border-gold/20", className)} {...props}>
       {/* Background Sacred Circular Chakra */}
       <SacredChakraBg size="min(700px, 90vw)" opacity={0.04} rotateSpeed={180} position="center" />
       {/* Ambient Glow */}
@@ -143,7 +143,7 @@ export default function FAQSection({ className, ...props }: FAQSectionProps) {
                       "flex items-center gap-3.5 p-4 transition-all duration-300 border cursor-pointer rounded-2xl",
                       isActive
                         ? "border-gold-primary/70 bg-surface-hover/90 shadow-gold-glow scale-[1.01]"
-                        : "border-border-gold/20 bg-surface/30 hover:border-gold-primary/45"
+                        : "border-border-gold/20 bg-surface hover:border-gold-primary/45 shadow-sm"
                     )}
                   >
                     <div
@@ -195,7 +195,7 @@ export default function FAQSection({ className, ...props }: FAQSectionProps) {
                   borderGold
                   glow
                   padding="lg"
-                  className="bg-gradient-to-br from-surface/80 via-background to-surface space-y-6 rounded-3xl p-8"
+                  className="bg-gradient-to-br from-surface/80 via-background to-surface space-y-6 rounded-2xl p-8"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center gap-2 text-xs font-bold text-gold-primary uppercase tracking-widest">

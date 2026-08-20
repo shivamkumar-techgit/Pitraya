@@ -107,7 +107,7 @@ export default function DestinationsSection({
   return (
     <Section
       spacing="xl"
-      className={cn("relative overflow-hidden bg-black border-b border-border-gold/20 py-24", className)}
+      className={cn("relative overflow-hidden bg-background border-b border-border-gold/20 py-24", className)}
       {...props}
     >
       {/* Background Sacred Circular Chakra */}
@@ -132,7 +132,7 @@ export default function DestinationsSection({
 
         {/* Tab Switcher */}
         <FadeIn delay={0.15} className="flex justify-center mb-12">
-          <div className="inline-flex gap-2 p-1.5 rounded-2xl bg-surface/10 border border-border-gold/20 backdrop-blur-sm">
+          <div className="inline-flex gap-2 p-1.5 rounded-2xl bg-surface border border-border shadow-sm">
             {tabs.map((tab) => (
               <button
                 key={tab.id}

@@ -58,7 +58,7 @@ export default function HotelsSection({
   ...props
 }: HotelsSectionProps) {
   return (
-    <Section spacing="xl" className={cn("relative overflow-hidden bg-black text-text-primary border-b border-border-gold/20 py-28", className)} {...props}>
+    <Section spacing="xl" className={cn("relative overflow-hidden bg-muted text-text-primary border-b border-border-gold/20 py-28", className)} {...props}>
       {/* Background Sacred Circular Chakra */}
       <SacredChakraBg size="min(550px, 80vw)" opacity={0.04} rotateSpeed={130} position="top-left" />
       <Container size="xl">

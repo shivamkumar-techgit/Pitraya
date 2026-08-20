@@ -560,7 +560,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-24 overflow-hidden text-text-primary border-b border-border-gold/20 bg-[#08090F]", className)}
+      className={cn("relative py-24 overflow-hidden text-text-primary border-b border-border-gold/20 bg-background", className)}
       {...props}
     >
       {/* Background Golden Particles & Sacred Circular Chakra */}
@@ -779,7 +779,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                   </motion.div>
 
                   {/* Real Operational Time Schedule Box */}
-                  <div className="rounded-2xl border border-gold-primary/30 bg-surface/95 p-4 sm:p-5 space-y-3.5 shadow-xl backdrop-blur-md">
+                  <div className="rounded-2xl border border-gold-primary/30 bg-surface/95 p-4 sm:p-4 space-y-3.5 shadow-xl backdrop-blur-md">
                     <div className="flex items-center justify-between border-b border-gold-primary/20 pb-3">
                       <div className="flex items-center gap-2 text-xs sm:text-sm font-bold text-gold-primary uppercase tracking-wider font-cinzel">
                         <Clock className="h-4 w-4 text-gold-primary shrink-0" />
@@ -862,7 +862,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                         <div
                           key={idx}
                           className={cn(
-                            "rounded-xl border p-3 sm:px-4 sm:py-3 backdrop-blur-md transition-all duration-300 shadow-sm flex flex-wrap items-center justify-between gap-2.5 text-xs",
+                            "rounded-xl border p-4 sm:px-4 sm:py-3 backdrop-blur-md transition-all duration-300 shadow-sm flex flex-wrap items-center justify-between gap-2.5 text-xs",
                             indicator.colorVariant === "green" && "border-emerald-500/40 bg-emerald-950/25 text-emerald-300",
                             indicator.colorVariant === "yellow" && "border-amber-500/40 bg-amber-950/25 text-amber-300",
                             indicator.colorVariant === "orange" && "border-orange-500/40 bg-orange-950/25 text-orange-300"
@@ -901,7 +901,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                   )}
 
                   {/* Emotional Spiritual Moment Banner */}
-                  <motion.div variants={textSlideItemVariants} className="rounded-2xl bg-gradient-to-r from-gold-primary/15 via-gold-primary/5 to-transparent border-l-4 border-gold-primary p-4 sm:p-5 space-y-1.5 shadow-md">
+                  <motion.div variants={textSlideItemVariants} className="rounded-2xl bg-gradient-to-r from-gold-primary/15 via-gold-primary/5 to-transparent border-l-4 border-gold-primary p-4 sm:p-4 space-y-1.5 shadow-md">
                     <div className="flex items-center gap-2 text-xs font-bold text-gold-primary uppercase tracking-widest font-cinzel">
                       <Sparkle className="h-3.5 w-3.5 fill-gold-primary shrink-0" />
                       <span>Spiritual Reflection</span>
@@ -930,7 +930,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
 
               {/* YOUR JOURNEY SNAPSHOT GRID CARD */}
               <motion.div variants={textSlideItemVariants} className="pt-6 border-t border-gold-primary/30">
-                <div className="rounded-2xl bg-surface/95 border border-gold-primary/40 p-6 space-y-5 shadow-2xl backdrop-blur-md">
+                <div className="rounded-2xl bg-surface/95 border border-gold-primary/40 p-6 space-y-5 shadow-xl backdrop-blur-md">
                   <div className="flex items-center justify-between flex-wrap gap-3 border-b border-gold-primary/20 pb-4">
                     <div className="flex items-center gap-2.5">
                       <div className="p-2 rounded-xl bg-gold-primary/15 border border-gold-primary/30 text-gold-primary">
@@ -952,7 +952,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                   {/* 6 SNAPSHOT PARAMETER TILES */}
                   <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
                     {/* 1. Duration */}
-                    <div className="p-3.5 rounded-xl bg-background/80 border border-border space-y-1">
+                    <div className="p-4.5 rounded-xl bg-background/80 border border-border space-y-1">
                       <div className="flex items-center gap-1.5 text-gold-primary text-[11px] font-bold uppercase tracking-wider font-cinzel">
                         <Clock className="h-3.5 w-3.5" />
                         <span>Duration</span>
@@ -961,7 +961,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                     </div>
 
                     {/* 2. Location */}
-                    <div className="p-3.5 rounded-xl bg-background/80 border border-border space-y-1">
+                    <div className="p-4.5 rounded-xl bg-background/80 border border-border space-y-1">
                       <div className="flex items-center gap-1.5 text-gold-primary text-[11px] font-bold uppercase tracking-wider font-cinzel">
                         <MapPin className="h-3.5 w-3.5" />
                         <span>Location</span>
@@ -970,7 +970,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                     </div>
 
                     {/* 3. Included In */}
-                    <div className="p-3.5 rounded-xl bg-background/80 border border-border space-y-1">
+                    <div className="p-4.5 rounded-xl bg-background/80 border border-border space-y-1">
                       <div className="flex items-center gap-1.5 text-gold-primary text-[11px] font-bold uppercase tracking-wider font-cinzel">
                         <Gift className="h-3.5 w-3.5" />
                         <span>Included In</span>
@@ -985,7 +985,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                     </div>
 
                     {/* 4. Need To Carry */}
-                    <div className="p-3.5 rounded-xl bg-background/80 border border-border space-y-1">
+                    <div className="p-4.5 rounded-xl bg-background/80 border border-border space-y-1">
                       <div className="flex items-center gap-1.5 text-gold-primary text-[11px] font-bold uppercase tracking-wider font-cinzel">
                         <Luggage className="h-3.5 w-3.5" />
                         <span>Need To Carry</span>
@@ -994,7 +994,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                     </div>
 
                     {/* 5. Meals */}
-                    <div className="p-3.5 rounded-xl bg-background/80 border border-border space-y-1">
+                    <div className="p-4.5 rounded-xl bg-background/80 border border-border space-y-1">
                       <div className="flex items-center gap-1.5 text-gold-primary text-[11px] font-bold uppercase tracking-wider font-cinzel">
                         <Utensils className="h-3.5 w-3.5" />
                         <span>Meals</span>
@@ -1003,7 +1003,7 @@ export default function JourneySection({ className, ...props }: React.HTMLAttrib
                     </div>
 
                     {/* 6. Vehicle */}
-                    <div className="p-3.5 rounded-xl bg-background/80 border border-border space-y-1">
+                    <div className="p-4.5 rounded-xl bg-background/80 border border-border space-y-1">
                       <div className="flex items-center gap-1.5 text-gold-primary text-[11px] font-bold uppercase tracking-wider font-cinzel">
                         <Car className="h-3.5 w-3.5" />
                         <span>Vehicle</span>

@@ -7,6 +7,7 @@ import { X, ArrowUpRight, Phone, MessageSquare, Sparkles, ChevronRight } from "l
 import { usePathname } from "next/navigation";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "@/components/common/ThemeToggle";
 import { MenuItem } from "./DesktopMenu";
 import Logo from "@/components/common/Logo";
 import { cn } from "@/lib/utils";
@@ -51,7 +52,7 @@ export default function MobileMenu({
             transition={{ duration: 0.25 }}
             onClick={onClose}
             aria-hidden="true"
-            className="fixed inset-0 z-50 bg-black/80 backdrop-blur-md lg:hidden"
+            className="fixed inset-0 z-50 bg-text-primary/40 backdrop-blur-md lg:hidden"
           />
 
           {/* Slide-out Drawer */}
@@ -64,7 +65,7 @@ export default function MobileMenu({
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 350, damping: 32 }}
             className={cn(
-              "fixed right-0 top-0 bottom-0 z-50 w-full max-w-sm bg-background/98 backdrop-blur-2xl border-l border-border-gold/30 p-6 flex flex-col justify-between shadow-2xl overflow-y-auto lg:hidden",
+              "fixed right-0 top-0 bottom-0 z-50 w-full max-w-sm bg-background/98 backdrop-blur-2xl border-l border-border-gold/30 p-6 flex flex-col justify-between shadow-xl overflow-y-auto lg:hidden",
               className
             )}
             {...props as React.ComponentProps<typeof motion.aside>}
@@ -149,6 +150,12 @@ export default function MobileMenu({
             {/* Bottom Actions Area */}
             <div className="space-y-4 border-t border-border-gold/15 pt-6 mt-6">
               {/* Language Switcher */}
+              <div className="flex items-center justify-between gap-2 px-1">
+                <span className="text-xs text-text-muted uppercase tracking-wider font-semibold">
+                  Appearance
+                </span>
+                <ThemeToggle />
+              </div>
               <div className="flex items-center justify-between gap-2 px-1">
                 <span className="text-xs text-text-muted uppercase tracking-wider font-semibold">
                   Language / भाषा

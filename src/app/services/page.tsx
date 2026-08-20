@@ -20,14 +20,14 @@ import { motion } from "framer-motion";
 
 export default function ServicesPage() {
   return (
-    <main className="min-h-screen bg-black text-text-primary selection:bg-gold-primary selection:text-black">
+    <main className="min-h-screen bg-background text-text-primary selection:bg-gold-primary selection:text-black">
       <Navbar />
 
       {/* HERO SECTION FOR EXPERIENCES */}
-      <Section className="relative py-28 overflow-hidden bg-[#07080E] text-text-primary border-b border-border-gold/20 pt-36">
+      <Section className="relative py-28 overflow-hidden bg-background text-text-primary border-b border-border-gold/20 pt-36">
         <GoldenParticles particleCount={35} className="opacity-30 pointer-events-none" />
         <SacredChakraBg size="min(750px, 95vw)" opacity={0.05} rotateSpeed={160} position="center" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-primary/10 via-transparent to-black/90 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-primary/10 via-transparent to-background pointer-events-none" />
 
         <Container size="xl" className="relative z-10 text-center space-y-8">
           <motion.div

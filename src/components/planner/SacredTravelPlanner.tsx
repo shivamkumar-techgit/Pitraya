@@ -127,7 +127,7 @@ export default function SacredTravelPlanner({ className, ...props }: SacredTrave
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-28 overflow-hidden bg-[#07080D] text-text-primary border-b border-border-gold/20", className)}
+      className={cn("relative py-28 overflow-hidden bg-background text-text-primary border-b border-border-gold/20", className)}
       {...props}
     >
       {/* Background Ambience & Sacred Rotating Circular Chakra */}

@@ -120,7 +120,7 @@ export default function TrustCenterSection({ className, ...props }: TrustCenterS
   return (
     <Section
       spacing="xl"
-      className={cn("relative py-28 overflow-hidden bg-[#07080D] text-text-primary border-b border-border-gold/20", className)}
+      className={cn("relative py-28 overflow-hidden bg-muted text-text-primary border-b border-border-gold/20", className)}
       {...props}
     >
       {/* Background Ambience & Sacred Rotating Circular Chakra */}
@@ -158,7 +158,7 @@ export default function TrustCenterSection({ className, ...props }: TrustCenterS
           {/* Govt Reg */}
           <GlassCard borderGold className="p-6 space-y-4 bg-surface/90">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-gold-primary/15 border border-gold-primary/30 text-gold-primary">
+              <div className="p-4 rounded-2xl bg-gold-primary/15 border border-gold-primary/30 text-gold-primary">
                 <Building2 className="h-6 w-6" />
               </div>
               <div>
@@ -182,7 +182,7 @@ export default function TrustCenterSection({ className, ...props }: TrustCenterS
           {/* GST Verification */}
           <GlassCard borderGold className="p-6 space-y-4 bg-surface/90">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-gold-primary/15 border border-gold-primary/30 text-gold-primary">
+              <div className="p-4 rounded-2xl bg-gold-primary/15 border border-gold-primary/30 text-gold-primary">
                 <FileCheck2 className="h-6 w-6" />
               </div>
               <div>
@@ -206,7 +206,7 @@ export default function TrustCenterSection({ className, ...props }: TrustCenterS
           {/* Fixed Price Guarantee */}
           <GlassCard borderGold className="p-6 space-y-4 bg-surface/90">
             <div className="flex items-center gap-3">
-              <div className="p-3 rounded-2xl bg-gold-primary/15 border border-gold-primary/30 text-gold-primary">
+              <div className="p-4 rounded-2xl bg-gold-primary/15 border border-gold-primary/30 text-gold-primary">
                 <Award className="h-6 w-6" />
               </div>
               <div>
@@ -343,7 +343,7 @@ export default function TrustCenterSection({ className, ...props }: TrustCenterS
 
             {/* Right Column: 24x7 Emergency Contact Line */}
             <div className="lg:col-span-5 p-6 rounded-2xl bg-gradient-to-br from-gold-primary/20 via-surface to-background border-2 border-gold-primary space-y-4 text-center">
-              <div className="inline-flex p-3 rounded-full bg-gold-primary text-black font-bold shadow-gold-glow">
+              <div className="inline-flex p-4 rounded-full bg-gold-primary text-black font-bold shadow-gold-glow">
                 <Phone className="h-6 w-6" />
               </div>
 
@@ -446,7 +446,7 @@ export default function TrustCenterSection({ className, ...props }: TrustCenterS
                 initial={{ scale: 0.9, y: 20 }}
                 animate={{ scale: 1, y: 0 }}
                 exit={{ scale: 0.9, y: 20 }}
-                className="relative w-full max-w-3xl rounded-3xl bg-surface border-2 border-gold-primary p-6 space-y-4 shadow-2xl"
+                className="relative w-full max-w-3xl rounded-2xl bg-surface border-2 border-gold-primary p-6 space-y-4 shadow-xl"
                 onClick={(e) => e.stopPropagation()}
               >
                 <div className="flex items-center justify-between border-b border-gold-primary/30 pb-3">

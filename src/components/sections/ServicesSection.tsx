@@ -138,7 +138,7 @@ export default function ServicesSection({
     <Section
       spacing="xl"
       className={cn(
-        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-black py-16 sm:py-24",
+        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-muted py-16 sm:py-24",
         className
       )}
       {...props}
@@ -168,7 +168,7 @@ export default function ServicesSection({
           <Heading
             size="2xl"
             font="cinzel"
-            className="text-2xl leading-tight text-white sm:text-4xl md:text-5xl"
+            className="text-2xl leading-tight text-text-primary sm:text-4xl md:text-5xl"
           >
             Transparent Sacred Offerings for{" "}
             <GradientText variant="gold" font="cinzel">
@@ -192,10 +192,10 @@ export default function ServicesSection({
             <GlassCard
               key={pkg.id}
               className={cn(
-                "group flex min-w-[270px] flex-col justify-between rounded-2xl border p-5 transition-all duration-300 sm:min-w-0",
+                "group flex min-w-[270px] flex-col justify-between rounded-2xl border p-4 transition-all duration-300 sm:min-w-0",
                 pkg.isFeatured
                   ? "bg-gold-primary/15 border-gold-primary shadow-gold-glow scale-[1.02]"
-                  : "bg-surface/40 border-border-gold/20 hover:border-gold-primary/50"
+                  : "bg-surface border-border-gold/20 hover:border-gold-primary/50 shadow-md"
               )}
             >
               {/* Photo Header */}

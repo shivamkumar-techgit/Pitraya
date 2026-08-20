@@ -32,7 +32,7 @@ export default function SectionWrapper({
   return (
     <Section
       className={cn(
-        "relative overflow-hidden bg-black text-text-primary border-b border-border-gold/20",
+        "relative overflow-hidden bg-background text-text-primary border-b border-border-gold/20",
         goldBorder && "border-t border-border-gold/30",
         className
       )}

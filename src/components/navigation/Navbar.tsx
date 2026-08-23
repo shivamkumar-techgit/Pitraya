@@ -93,8 +93,9 @@ export default function Navbar({
       <header
         className={cn(
           "fixed top-0 left-0 right-0 z-50 transition-all duration-300 will-change-transform",
-          "bg-surface/95 backdrop-blur-2xl border-b border-border shadow-sm",
-          isScrolled ? "py-2.5" : "py-3.5"
+          isScrolled
+            ? "bg-surface/98 backdrop-blur-2xl border-b border-border shadow-[0_2px_20px_rgba(62,40,15,0.08)] py-2"
+            : "bg-surface/90 backdrop-blur-xl border-b border-border/40 py-3.5"
         )}
       >
         <Container size="xl" className="flex items-center justify-between gap-3 md:gap-6 px-4 md:px-6 lg:px-8">
@@ -120,7 +121,7 @@ export default function Navbar({
               <LanguageSwitcher variant="compact" />
               <PrimaryButton 
                 size="sm" 
-                className="shrink-0 whitespace-nowrap"
+                className="shrink-0 whitespace-nowrap text-[11px] lg:px-3 lg:py-1.5 xl:px-4 xl:py-2"
                 onClick={() => {
                   if (onCtaClick) onCtaClick();
                   else router.push("/packages");

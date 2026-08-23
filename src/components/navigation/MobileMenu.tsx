@@ -97,9 +97,9 @@ export default function MobileMenu({
                   href="https://wa.me/918434457228?text=Namaste!%20I%20want%20to%20inquire%20about%20Gaya%20Pind%20Daan%20services."
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-lg py-2 px-3 text-xs font-semibold text-emerald-400 hover:text-emerald-300 hover:bg-surface-hover/80 transition-colors border border-transparent hover:border-emerald-500/30"
+                  className="flex items-center justify-center gap-2 rounded-lg py-2 px-3 text-xs font-semibold text-emerald-600 hover:text-emerald-700 hover:bg-surface-hover/80 transition-colors border border-transparent hover:border-emerald-600/30"
                 >
-                  <MessageSquare className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
+                  <MessageSquare className="h-3.5 w-3.5 text-emerald-600 shrink-0" />
                   <span>WhatsApp</span>
                 </a>
               </div>

@@ -185,7 +185,7 @@ export default function TestimonialsSection({ className, ...props }: Testimonial
                   {/* Author Info & Controls */}
                   <div className="pt-4 border-t border-border-gold/20 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                     <div>
-                      <h4 className="text-base font-bold font-cinzel text-gold-primary">{activeItem.author}</h4>
+                      <h4 className="text-base font-bold font-cinzel text-text-primary">{activeItem.author}</h4>
                       <p className="text-xs text-text-muted">{activeItem.relation} • {activeItem.location}</p>
                     </div>
 

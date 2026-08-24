@@ -22,6 +22,7 @@ import {
   X,
   Eye,
   CreditCard,
+  ExternalLink,
   Flame,
   CheckCircle2,
   Inbox,
@@ -1921,14 +1922,27 @@ export default function AdminDashboardPage() {
                       <div className="flex gap-3 pt-1">
                         <button
                           onClick={() => {
-                            const payMsg = encodeURIComponent(`Pranam ${activeBooking.customerName} Ji 🙏\n\nYour Pitraya Pilgrimage reservation (${activeBooking.reservationId}) has been prepared.\n\n💰 Total Investment: ₹${activeBooking.grandTotal.toLocaleString("en-IN")}\n📍 Experience: ${activeBooking.packageTitle}\n\nPlease click here to complete your deposit/payment: https://pitraya.com/pay/${activeBooking.reservationId}`);
-                            window.open(`https://wa.me/${activeBooking.phone.replace(/[^0-9]/g, "")}?text=${payMsg}`, "_blank");
+                            const payuUrl =
+                              process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK ||
+                              "https://u.payu.in/MIvnJ8tUOvLJ";
+                            const payMsg = encodeURIComponent(
+                              `Pranam ${activeBooking.customerName} Ji 🙏\n\n` +
+                              `Your Pitraya Pilgrimage reservation (${activeBooking.reservationId}) has been prepared.\n\n` +
+                              `💰 Total Investment: ₹${activeBooking.grandTotal.toLocaleString("en-IN")}\n` +
+                              `📍 Experience: ${activeBooking.packageTitle}\n\n` +
+                              `Please complete your payment securely via PayU:\n${payuUrl}\n\n` +
+                              `Thank you,\nPitraya Concierge Team`
+                            );
+                            window.open(
+                              `https://wa.me/${activeBooking.phone.replace(/[^0-9]/g, "")}?text=${payMsg}`,
+                              "_blank"
+                            );
                             handleUpdateStatus(activeBooking.id, "payment_pending");
                           }}
                           className="flex-1 py-3 px-4 rounded-xl bg-purple-600 text-white font-extrabold text-xs uppercase font-cinzel tracking-wider flex items-center justify-center gap-2 hover:bg-purple-500 cursor-pointer shadow-lg"
                         >
                           <Send className="h-4 w-4" />
-                          <span>Send Payment Link</span>
+                          <span>Send PayU Payment Link</span>
                         </button>
 
                         <button
@@ -2089,6 +2103,18 @@ export default function AdminDashboardPage() {
                       <div className="flex justify-between items-center text-xs">
                         <span className="text-neutral-400">Payment Status:</span>
                         <span className="font-bold text-purple-300 uppercase font-mono">{activeBooking.paymentStatus || "NOT REQUESTED"}</span>
+                      </div>
+                      <div className="pt-2 border-t border-neutral-800 flex items-center justify-between">
+                        <span className="text-[11px] text-neutral-400">PayU Live Gateway Link:</span>
+                        <a
+                          href={process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK || "https://u.payu.in/MIvnJ8tUOvLJ"}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-amber-300 hover:text-amber-200 underline font-mono flex items-center gap-1"
+                        >
+                          <span>https://u.payu.in/MIvnJ8tUOvLJ</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
                       </div>
                     </div>
                   </div>

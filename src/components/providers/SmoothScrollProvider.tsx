@@ -13,6 +13,7 @@
  */
 
 import React, { createContext, useContext, useMemo } from "react";
+import { usePathname } from "next/navigation";
 import { ReactLenis, useLenis } from "lenis/react";
 import type Lenis from "lenis";
 
@@ -74,10 +75,17 @@ interface SmoothScrollProviderProps {
 }
 
 export default function SmoothScrollProvider({ children }: SmoothScrollProviderProps) {
+  const pathname = usePathname();
+  const isAdmin = pathname?.startsWith("/admin") || pathname?.startsWith("/portal");
+
   // Detect reduced-motion — disable smoothing if user prefers it
   const prefersReducedMotion =
     typeof window !== "undefined" &&
     window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  if (isAdmin) {
+    return <>{children}</>;
+  }
 
   return (
     <ReactLenis

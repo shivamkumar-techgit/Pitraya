@@ -163,7 +163,8 @@ export default async function PackageDetailPage({
   ];
 
   return (
-    <main className="min-h-screen bg-slate-950 px-4 py-8 pt-32 text-slate-100 md:px-8 lg:px-16">
+    <main className="min-h-screen bg-background text-text-primary">
+      {/* JSON-LD structured data */}
       <JsonLd data={generateBreadcrumbSchema(breadcrumbs)} />
       <JsonLd
         data={generateServiceSchema(
@@ -174,61 +175,120 @@ export default async function PackageDetailPage({
       />
       <JsonLd data={generateFaqSchema(pkg.faqs)} />
 
-      <div className="mx-auto max-w-5xl">
-        <Breadcrumbs items={breadcrumbs} />
+      {/* ── HERO ─────────────────────────────────────────────────────── */}
+      <section className="relative overflow-hidden border-b border-border-gold/20 bg-background pb-16 pt-28">
+        {/* Warm ambient glow */}
+        <div className="pointer-events-none absolute top-0 left-0 h-[400px] w-[400px] rounded-full bg-gold-primary/[0.07] blur-[140px]" aria-hidden="true" />
 
-        <header className="mb-12 text-center md:text-left">
-          <h1 className="mb-4 text-3xl font-extrabold text-amber-400 md:text-5xl">
-            {pkg.heroHeadline}
-          </h1>
-          <p className="mb-6 max-w-3xl text-lg text-slate-300 md:text-xl">
-            {pkg.heroSubtitle}
-          </p>
-          <div className="mb-8 text-2xl font-bold text-white">
-            Starting at {pkg.price}
+        <div className="relative z-10 mx-auto max-w-5xl px-4 md:px-8">
+          <Breadcrumbs items={breadcrumbs} />
+
+          <div className="mt-8 space-y-5 text-left">
+            {/* Eyebrow badge */}
+            <span className="font-cinzel inline-flex items-center gap-2 rounded-full border border-border-gold bg-surface px-4 py-1.5 text-[11px] font-bold tracking-[0.16em] text-gold-primary uppercase shadow-sm">
+              Pitraya Sacred Pilgrimage Package
+            </span>
+
+            {/* H1 */}
+            <h1 className="font-cinzel max-w-3xl text-3xl font-bold leading-tight text-text-primary md:text-5xl">
+              {pkg.heroHeadline}
+            </h1>
+
+            {/* Subtitle */}
+            <p className="max-w-2xl font-serif text-base leading-relaxed text-text-secondary md:text-lg">
+              {pkg.heroSubtitle}
+            </p>
+
+            {/* Price + CTA row */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <span className="font-cinzel rounded-full border border-border-gold bg-gold-primary/10 px-5 py-2 text-xl font-black text-gold-primary">
+                Starting at {pkg.price}
+              </span>
+              <Link
+                href={`/book-now?experience=${slug}`}
+                className="font-cinzel inline-flex items-center gap-2 rounded-xl bg-gold-primary px-8 py-3.5 text-sm font-bold text-black shadow-gold-glow transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary"
+              >
+                Book This Package →
+              </Link>
+            </div>
           </div>
-          <Link
-            href={`/book-now?experience=${slug}`}
-            className="inline-block rounded-xl bg-amber-500 px-8 py-3.5 text-lg font-bold text-slate-950 transition-colors hover:bg-amber-400"
-          >
-            Book This Package
-          </Link>
-        </header>
+        </div>
+      </section>
 
-        <section className="mb-12 rounded-xl border border-slate-800 bg-slate-900 p-6 md:p-8">
-          <h2 className="mb-4 text-2xl font-bold text-slate-100">
-            Package Details & inclusions
-          </h2>
-          <p className="mb-6 leading-relaxed text-slate-300">
-            Our {pkg.title} is designed to provide you and your family with
-            complete peace of mind. Pitraya handles all logistics, including
-            verifying the Gayawal Tirth Purohit, assembling the exact Vedic
-            samagri required, and coordinating your timetable at Vishnupad
-            Dhaam.
-          </p>
-        </section>
+      {/* ── PACKAGE DETAILS ──────────────────────────────────────────── */}
+      <section className="border-b border-border-gold/20 bg-muted py-16">
+        <div className="mx-auto max-w-5xl px-4 md:px-8">
+          <div className="space-y-4 rounded-3xl border border-border-gold/40 bg-surface p-6 shadow-sm md:p-8">
+            <h2 className="font-cinzel text-2xl font-bold text-text-primary">
+              Package Details &amp; Inclusions
+            </h2>
+            <div className="h-px bg-border-gold/30" />
+            <p className="font-serif leading-relaxed text-text-secondary">
+              Our <strong className="text-text-primary font-semibold">{pkg.title}</strong> is
+              designed to provide you and your family with complete peace of
+              mind. Pitraya handles all logistics — verifying the Gayawal
+              Tirth Purohit, assembling the exact Vedic samagri, and
+              coordinating your timetable at Vishnupad Dhaam.
+            </p>
+            <p className="font-serif text-sm leading-relaxed text-text-muted">
+              Every Pitraya package includes a verified Gayawal Purohit,
+              complete ritual samagri, Dakshina, ancestral lineage certificate,
+              HD documentation, and a dedicated family coordinator — with zero
+              hidden charges.
+            </p>
+          </div>
+        </div>
+      </section>
 
-        <section className="mb-12">
-          <h2 className="mb-6 text-2xl font-bold text-amber-400">
-            Frequently Asked Questions
+      {/* ── FREQUENTLY ASKED QUESTIONS ───────────────────────────────── */}
+      <section className="border-b border-border-gold/20 bg-background py-16">
+        <div className="mx-auto max-w-5xl space-y-8 px-4 md:px-8">
+          <h2 className="font-cinzel text-2xl font-bold text-text-primary">
+            Frequently Asked{" "}
+            <span className="text-gold-primary">Questions</span>
           </h2>
           <div className="space-y-4">
             {pkg.faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="rounded-lg border border-slate-800 bg-slate-900 p-5"
+                className="space-y-2 rounded-2xl border border-border-gold/30 bg-surface p-5 shadow-sm"
               >
-                <h3 className="mb-2 text-lg font-semibold text-slate-100">
+                <h3 className="font-cinzel text-base font-bold text-text-primary">
                   {faq.question}
                 </h3>
-                <p className="text-sm leading-relaxed text-slate-300 md:text-base">
+                <p className="text-sm leading-relaxed text-text-secondary">
                   {faq.answer}
                 </p>
               </div>
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
+      {/* ── FINAL CTA ────────────────────────────────────────────────── */}
+      <section className="bg-muted py-16 text-center">
+        <div className="mx-auto max-w-2xl space-y-5 px-4">
+          <span className="font-cinzel inline-block text-[11px] font-bold tracking-[0.16em] text-gold-primary uppercase">
+            Begin Your Sacred Journey
+          </span>
+          <h2 className="font-cinzel text-2xl font-bold leading-snug text-text-primary">
+            Ready to Honour Your Ancestors at Gaya?
+          </h2>
+          <p className="font-serif text-base leading-relaxed text-text-secondary">
+            Our pilgrimage advisors will guide your family through every sacred
+            step — from arrival to the final rites.
+          </p>
+          <Link
+            href={`/book-now?experience=${slug}`}
+            className="font-cinzel inline-flex items-center gap-2 rounded-xl bg-gold-primary px-8 py-4 text-sm font-bold text-black shadow-gold-glow transition-all hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary"
+          >
+            Book {pkg.title} →
+          </Link>
+        </div>
+      </section>
+
+      {/* ── INTERNAL LINK HUB ────────────────────────────────────────── */}
+      <div className="mx-auto max-w-5xl px-4 py-12 md:px-8">
         <InternalLinkHub />
       </div>
     </main>

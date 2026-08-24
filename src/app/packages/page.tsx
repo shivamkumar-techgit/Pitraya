@@ -428,7 +428,7 @@ export default function PackagesPage() {
           <Heading
             size="2xl"
             font="cinzel"
-            className="mx-auto max-w-4xl leading-tight text-white sm:text-4xl md:text-5xl"
+            className="mx-auto max-w-4xl leading-tight text-text-primary sm:text-4xl md:text-5xl"
           >
             Transparent Sacred Packages for Every{" "}
             <GradientText variant="gold" font="cinzel">
@@ -455,7 +455,7 @@ export default function PackagesPage() {
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
               Step 1 • Select Your Offering
             </span>
-            <Heading size="2xl" font="cinzel" className="text-white">
+            <Heading size="2xl" font="cinzel" className="text-text-primary">
               Choose Your Sacred Experience
             </Heading>
             <p className="text-text-muted text-xs">
@@ -476,7 +476,7 @@ export default function PackagesPage() {
                     "group relative flex min-w-[260px] cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border transition-all duration-300 sm:min-w-0",
                     isSelected
                       ? "bg-gold-primary/15 border-gold-primary shadow-gold-glow scale-[1.02]"
-                      : "bg-surface/40 border-border-gold/20 hover:border-gold-primary/50"
+                      : "bg-surface border-border hover:border-gold-primary/50"
                   )}
                 >
                   {/* Photo Header */}
@@ -541,7 +541,7 @@ export default function PackagesPage() {
                       </button>
 
                       {isSelected && (
-                        <span className="block text-center text-[10px] font-bold tracking-widest text-emerald-400 uppercase">
+                        <span className="block text-center text-[10px] font-bold tracking-widest text-emerald-600 uppercase">
                           ✓ Currently Viewing Below
                         </span>
                       )}
@@ -555,13 +555,13 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 3: QUICK COMPARISON (COMPACT 8-ROW MATRIX) ───────────────── */}
-      <Section className="bg-surface/30 border-border-gold/20 border-b py-16">
+      <Section className="bg-background border-border-gold/20 border-b py-16">
         <Container size="xl" className="space-y-8">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
               Step 2 • At-A-Glance Comparison
             </span>
-            <Heading size="2xl" font="cinzel" className="text-white">
+            <Heading size="2xl" font="cinzel" className="text-text-primary">
               Quick Feature Comparison
             </Heading>
             <p className="text-text-muted text-xs">
@@ -572,7 +572,7 @@ export default function PackagesPage() {
           <div className="border-gold-primary/30 overflow-x-auto rounded-2xl border bg-surface shadow-md">
             <table className="w-full border-collapse text-left text-xs">
               <thead>
-                <tr className="border-gold-primary/30 bg-gold-primary/10 font-cinzel border-b tracking-wider text-white uppercase">
+                <tr className="border-gold-primary/30 bg-gold-primary/10 font-cinzel border-b tracking-wider text-text-primary uppercase">
                   <th className="p-4 font-bold">Key Feature</th>
                   <th
                     className={cn(
@@ -623,15 +623,15 @@ export default function PackagesPage() {
               </thead>
               <tbody className="divide-border-gold/15 text-text-muted divide-y">
                 {MATRIX_8_ROWS.map((row, idx) => (
-                  <tr key={idx} className="transition-colors hover:bg-white/5">
-                    <td className="font-cinzel p-4 font-semibold text-white">
+                  <tr key={idx} className="transition-colors hover:bg-gold-primary/5">
+                    <td className="font-cinzel p-4 font-semibold text-text-primary">
                       {row.feature}
                     </td>
                     <td
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "online-pind-daan" &&
-                          "bg-gold-primary/10 font-bold text-white"
+                          "bg-gold-primary/10 font-bold text-text-primary"
                       )}
                     >
                       {row.online}
@@ -640,7 +640,7 @@ export default function PackagesPage() {
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "ritual-only" &&
-                          "bg-gold-primary/10 font-bold text-white"
+                          "bg-gold-primary/10 font-bold text-text-primary"
                       )}
                     >
                       {row.ritual}
@@ -649,7 +649,7 @@ export default function PackagesPage() {
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "heritage-pilgrimage" &&
-                          "bg-gold-primary/10 font-bold text-white"
+                          "bg-gold-primary/10 font-bold text-text-primary"
                       )}
                     >
                       {row.heritage}
@@ -667,7 +667,7 @@ export default function PackagesPage() {
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "royal-concierge" &&
-                          "bg-gold-primary/10 font-bold text-white"
+                          "bg-gold-primary/10 font-bold text-text-primary"
                       )}
                     >
                       {row.royal}
@@ -688,7 +688,7 @@ export default function PackagesPage() {
               <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
                 Selected Experience Details
               </span>
-              <h2 className="font-cinzel flex items-center gap-3 text-2xl font-bold text-white sm:text-3xl">
+              <h2 className="font-cinzel flex items-center gap-3 text-2xl font-bold text-text-primary sm:text-3xl">
                 <span>{selectedPkg.title}</span>
                 <span className="text-gold-primary bg-gold-primary/10 border-gold-primary/30 rounded-full border px-3 py-1 text-base font-extrabold">
                   {selectedPkg.price}
@@ -709,7 +709,7 @@ export default function PackagesPage() {
           <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
             {/* Left Col: Timeline & Inclusions */}
             <div className="space-y-6 lg:col-span-7">
-              <div className="bg-surface/60 border-gold-primary/30 space-y-6 rounded-3xl border p-6 shadow-2xl backdrop-blur-xl">
+              <div className="bg-surface border-gold-primary/30 space-y-6 rounded-3xl border p-6 shadow-sm">
                 <div className="text-gold-primary font-cinzel border-border-gold/20 flex items-center gap-2 border-b pb-3 text-sm font-bold">
                   <Clock className="h-4 w-4" />
                   <span>
@@ -727,7 +727,7 @@ export default function PackagesPage() {
                         <span className="text-gold-primary font-cinzel bg-gold-primary/10 border-gold-primary/30 rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase">
                           {item.day}
                         </span>
-                        <span className="font-cinzel text-xs font-bold text-white">
+                        <span className="font-cinzel text-xs font-bold text-text-primary">
                           {item.title}
                         </span>
                       </div>
@@ -748,7 +748,7 @@ export default function PackagesPage() {
               </div>
 
               {/* What's Included Summary List */}
-              <div className="bg-surface/60 border-gold-primary/30 space-y-4 rounded-3xl border p-6 shadow-2xl backdrop-blur-xl">
+              <div className="bg-surface border-gold-primary/30 space-y-4 rounded-3xl border p-6 shadow-sm">
                 <div className="text-gold-primary font-cinzel border-border-gold/20 flex items-center gap-2 border-b pb-3 text-sm font-bold">
                   <CheckSquare className="h-4 w-4" />
                   <span>Included Key Deliverables</span>
@@ -770,12 +770,12 @@ export default function PackagesPage() {
 
             {/* Right Col: Logistics Summary & Quick Booking Card */}
             <div className="space-y-6 lg:col-span-5">
-              <div className="bg-surface/60 border-gold-primary/30 space-y-5 rounded-3xl border p-6 shadow-2xl backdrop-blur-xl">
+              <div className="bg-surface border-gold-primary/30 space-y-5 rounded-3xl border p-6 shadow-sm">
                 <div className="space-y-1">
                   <span className="text-gold-primary font-cinzel block text-[10px] font-bold tracking-widest uppercase">
                     Logistics & Comfort Specs
                   </span>
-                  <h4 className="font-cinzel text-lg font-bold text-white">
+                  <h4 className="font-cinzel text-lg font-bold text-text-primary">
                     Service Specifications
                   </h4>
                 </div>
@@ -785,7 +785,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Hotel className="text-gold-primary h-4 w-4" /> Stay
                     </span>
-                    <span className="font-bold text-white">
+                    <span className="font-bold text-text-primary">
                       {selectedPkg.hotel}
                     </span>
                   </div>
@@ -793,7 +793,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Car className="text-gold-primary h-4 w-4" /> Transport
                     </span>
-                    <span className="font-bold text-white">
+                    <span className="font-bold text-text-primary">
                       {selectedPkg.transport}
                     </span>
                   </div>
@@ -801,7 +801,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <User className="text-gold-primary h-4 w-4" /> Purohit
                     </span>
-                    <span className="font-bold text-white">
+                    <span className="font-bold text-text-primary">
                       {selectedPkg.pandit}
                     </span>
                   </div>
@@ -809,7 +809,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Flame className="text-gold-primary h-4 w-4" /> Meals
                     </span>
-                    <span className="font-bold text-white">
+                    <span className="font-bold text-text-primary">
                       {selectedPkg.meals}
                     </span>
                   </div>
@@ -817,7 +817,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Camera className="text-gold-primary h-4 w-4" /> Media
                     </span>
-                    <span className="font-bold text-white">
+                    <span className="font-bold text-text-primary">
                       {selectedPkg.videoPhoto}
                     </span>
                   </div>
@@ -843,13 +843,13 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 5: REAL PHOTO & VIDEO GALLERY ───────────────────────────── */}
-      <Section className="bg-surface/20 border-border-gold/20 border-b py-16">
+      <Section className="bg-background border-border-gold/20 border-b py-16">
         <Container size="xl" className="space-y-8">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
               Authentic Media
             </span>
-            <Heading size="2xl" font="cinzel" className="text-white">
+            <Heading size="2xl" font="cinzel" className="text-text-primary">
               Gaya Pilgrimage Photo & Video Gallery
             </Heading>
             <p className="text-text-muted text-xs">
@@ -915,7 +915,7 @@ export default function PackagesPage() {
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
               Guaranteed Standard
             </span>
-            <Heading size="2xl" font="cinzel" className="text-white">
+            <Heading size="2xl" font="cinzel" className="text-text-primary">
               Included in Every Pitraya Offering
             </Heading>
           </div>
@@ -965,12 +965,12 @@ export default function PackagesPage() {
             ].map((item, idx) => (
               <div
                 key={idx}
-                className="bg-surface/40 border-gold-primary/20 space-y-2 rounded-2xl border p-4"
+                className="bg-surface border-gold-primary/20 space-y-2 rounded-2xl border p-4"
               >
                 <div className="border-gold-primary/30 w-fit rounded-xl border bg-surface p-2">
                   {item.icon}
                 </div>
-                <h4 className="font-cinzel text-xs font-bold text-white">
+                <h4 className="font-cinzel text-xs font-bold text-text-primary">
                   {item.title}
                 </h4>
                 <p className="text-text-muted text-[11px] leading-relaxed">
@@ -983,13 +983,13 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 7: OPTIONAL ADD-ONS (COMPACT PILLS) ────────────────────── */}
-      <Section className="bg-surface/30 border-border-gold/20 border-b py-16">
+      <Section className="bg-background border-border-gold/20 border-b py-16">
         <Container size="xl" className="space-y-8">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
               Custom Enhancements
             </span>
-            <Heading size="2xl" font="cinzel" className="text-white">
+            <Heading size="2xl" font="cinzel" className="text-text-primary">
               Optional Add-on Enhancements
             </Heading>
           </div>
@@ -1009,7 +1009,7 @@ export default function PackagesPage() {
                 key={i}
                 className="border-gold-primary/25 flex items-center justify-between rounded-2xl border bg-surface p-3.5"
               >
-                <span className="font-cinzel text-xs font-bold text-white">
+                <span className="font-cinzel text-xs font-bold text-text-primary">
                   {addon.title}
                 </span>
                 <span className="text-gold-primary text-xs font-bold">
@@ -1028,7 +1028,7 @@ export default function PackagesPage() {
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
               Devotee Trust
             </span>
-            <Heading size="2xl" font="cinzel" className="text-white">
+            <Heading size="2xl" font="cinzel" className="text-text-primary">
               Why 5,000+ Families Rely on Pitraya
             </Heading>
           </div>
@@ -1043,7 +1043,7 @@ export default function PackagesPage() {
             ].map((stat, i) => (
               <div
                 key={i}
-                className="bg-surface/50 border-gold-primary/30 space-y-1 rounded-2xl border p-6"
+                className="bg-surface border-gold-primary/30 space-y-1 rounded-2xl border p-6"
               >
                 <p className="font-cinzel text-gold-primary text-xl font-black sm:text-2xl">
                   {stat.title}
@@ -1056,13 +1056,13 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 9: REVIEWS ──────────────────────────────────────────────── */}
-      <Section className="bg-surface/20 border-border-gold/20 border-b py-16">
+      <Section className="bg-background border-border-gold/20 border-b py-16">
         <Container size="xl" className="space-y-8">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
               Devotee Testimonials
             </span>
-            <Heading size="2xl" font="cinzel" className="text-white">
+            <Heading size="2xl" font="cinzel" className="text-text-primary">
               What Families Say About Pitraya
             </Heading>
           </div>
@@ -1099,7 +1099,7 @@ export default function PackagesPage() {
                   &quot;{rev.text}&quot;
                 </p>
                 <div className="border-border-gold/15 border-t pt-2">
-                  <p className="font-cinzel text-xs font-bold text-white">
+                  <p className="font-cinzel text-xs font-bold text-text-primary">
                     {rev.name}
                   </p>
                   <p className="text-text-muted text-[10px]">
@@ -1117,7 +1117,7 @@ export default function PackagesPage() {
         <div className="bg-gold-primary/10 pointer-events-none absolute top-1/2 left-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[180px]" />
 
         <Container size="md" className="relative z-10 space-y-6">
-          <Heading size="2xl" font="cinzel" className="text-white">
+          <Heading size="2xl" font="cinzel" className="text-text-primary">
             Still Not Sure Which Package Fits Your Family?
           </Heading>
           <Paragraph size="sm" variant="muted" className="mx-auto max-w-xl">
@@ -1145,7 +1145,7 @@ export default function PackagesPage() {
                   "_blank"
                 );
               }}
-              className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#25D366]/50 bg-[#25D366]/20 px-6 py-4 text-xs font-bold text-white transition-all hover:bg-[#25D366]/30"
+              className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#25D366]/50 bg-surface px-6 py-4 text-xs font-bold text-text-primary transition-all hover:bg-[#25D366]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
             >
               <MessageCircle className="h-4 w-4 text-[#25D366]" />
               <span>Talk to Ritual Advisor (WhatsApp)</span>

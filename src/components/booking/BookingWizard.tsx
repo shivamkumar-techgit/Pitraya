@@ -91,7 +91,7 @@ export default function BookingWizard({
     }
   };
 
-  const [_isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleFinalConfirm = async () => {
     setIsSubmitting(true);
@@ -186,7 +186,7 @@ export default function BookingWizard({
           </div>
 
           <div className="space-y-2">
-            <h2 className="font-cinzel text-2xl font-bold text-white sm:text-3xl">
+            <h2 className="font-cinzel text-2xl font-bold text-text-primary sm:text-3xl">
               Ancestral Oblations Confirmed
             </h2>
             <p className="text-text-muted text-xs sm:text-sm">
@@ -196,14 +196,14 @@ export default function BookingWizard({
           </div>
 
           {/* Reservation ID Card */}
-          <div className="border-gold-primary/30 space-y-2 rounded-2xl border bg-black/60 p-6 shadow-inner">
+          <div className="border-gold-primary/30 space-y-2 rounded-2xl border bg-surface p-6">
             <p className="text-text-muted font-cinzel text-xs font-bold tracking-wider uppercase">
               Official Reservation Identifier
             </p>
             <p className="font-cinzel text-gold-primary text-2xl font-black tracking-widest sm:text-3xl">
               {resId}
             </p>
-            <div className="flex items-center justify-center gap-2 pt-2 text-xs font-medium text-emerald-400">
+            <div className="flex items-center justify-center gap-2 pt-2 text-xs font-medium text-emerald-600">
               <Clock className="h-4 w-4" />
               <span>
                 Our Pilgrimage Coordinator will contact you within 15 minutes.
@@ -225,7 +225,7 @@ export default function BookingWizard({
                   packageTitle: session.package.title,
                 });
               }}
-              className="col-span-1 flex transform cursor-pointer items-center justify-center gap-2 rounded-xl bg-amber-500 px-6 py-3.5 text-sm font-black text-slate-950 shadow-lg transition-all hover:-translate-y-0.5 hover:bg-amber-400 sm:col-span-2"
+              className="col-span-1 flex transform cursor-pointer items-center justify-center gap-2 rounded-xl bg-gold-primary px-6 py-3.5 text-sm font-black text-black shadow-gold-glow transition-all hover:-translate-y-0.5 hover:opacity-90 sm:col-span-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary"
             >
               <CreditCard className="h-5 w-5" />
               <span>
@@ -294,7 +294,7 @@ export default function BookingWizard({
             <Sparkles className="h-3.5 w-3.5" />
             Sacred Pilgrimage Concierge
           </div>
-          <h1 className="font-cinzel text-3xl font-bold tracking-wide text-white sm:text-4xl md:text-5xl">
+          <h1 className="font-cinzel text-3xl font-bold tracking-wide text-text-primary sm:text-4xl md:text-5xl">
             Let&apos;s Plan Your Family&apos;s Sacred Journey
           </h1>
           <p className="text-text-muted mx-auto max-w-2xl font-serif text-xs italic sm:text-sm">
@@ -307,7 +307,7 @@ export default function BookingWizard({
         <div className="space-y-4">
           <div className="font-cinzel text-text-muted flex items-center justify-between text-xs font-bold tracking-wider uppercase">
             <span className="text-gold-primary">Journey Planning</span>
-            <span className="text-white">{progressPercent}% Completed</span>
+            <span className="text-text-primary">{progressPercent}% Complete</span>
           </div>
           <div className="bg-surface border-border-gold/20 h-1.5 w-full overflow-hidden rounded-full border">
             <motion.div
@@ -318,31 +318,69 @@ export default function BookingWizard({
             />
           </div>
 
-          {/* STEP TABS (NO STEP NUMBERS) */}
-          <div className="grid grid-cols-3 gap-2 pt-2 sm:grid-cols-5">
+          {/* ── STEP TABS: Numbered circles + connectors (desktop) / pill (mobile) ── */}
+
+          {/* Mobile: compact step indicator */}
+          <div className="flex items-center justify-between pt-1 sm:hidden">
+            <span className="font-cinzel text-xs font-bold text-text-secondary">
+              Step {currentStepIndex + 1} of {STEPS.length}
+            </span>
+            <span className="font-cinzel rounded-full border border-border-gold/40 bg-surface px-3 py-1 text-xs font-bold tracking-wider text-text-primary uppercase">
+              {STEPS[currentStepIndex].label}
+            </span>
+          </div>
+
+          {/* Desktop: numbered dot trail */}
+          <div className="hidden items-center sm:flex">
             {STEPS.map((step, idx) => {
               const isActive = idx === currentStepIndex;
               const isPassed = idx < currentStepIndex;
-
+              const stepNum = String(idx + 1).padStart(2, "0");
               return (
-                <button
-                  key={step.id}
-                  onClick={() => {
-                    setDirection(idx > currentStepIndex ? 1 : -1);
-                    setStepIndex(idx);
-                  }}
-                  className={cn(
-                    "font-cinzel flex cursor-pointer flex-col items-center justify-center gap-1 rounded-xl border px-3 py-2.5 text-center text-[11px] font-bold tracking-wider uppercase transition-all",
-                    isActive
-                      ? "bg-gold-primary/15 text-gold-primary border-gold-primary shadow-gold-glow"
-                      : isPassed
-                        ? "bg-surface/60 border-border-gold/30 hover:border-gold-primary/50 text-white"
-                        : "bg-surface/20 text-text-muted border-transparent hover:text-white"
+                <React.Fragment key={step.id}>
+                  {idx > 0 && (
+                    <div
+                      className={cn(
+                        "h-px flex-1 transition-colors duration-300",
+                        isPassed ? "bg-gold-primary" : "bg-border"
+                      )}
+                    />
                   )}
-                >
-                  <span className="truncate">{step.label}</span>
-                  {isPassed && <Check className="text-gold-primary h-3 w-3" />}
-                </button>
+                  <button
+                    onClick={() => {
+                      setDirection(idx > currentStepIndex ? 1 : -1);
+                      setStepIndex(idx);
+                    }}
+                    aria-label={`Go to step ${idx + 1}: ${step.label}`}
+                    aria-current={isActive ? "step" : undefined}
+                    className="group flex cursor-pointer flex-col items-center gap-1.5 focus-visible:outline-none"
+                  >
+                    <span
+                      className={cn(
+                        "flex h-9 w-9 items-center justify-center rounded-full border-2 font-cinzel text-xs font-black transition-all",
+                        isActive
+                          ? "border-gold-primary bg-gold-primary text-black shadow-gold-glow"
+                          : isPassed
+                            ? "border-gold-primary bg-surface text-gold-primary"
+                            : "border-border bg-surface text-text-muted group-hover:border-gold-primary/50"
+                      )}
+                    >
+                      {isPassed ? <Check className="h-4 w-4" /> : stepNum}
+                    </span>
+                    <span
+                      className={cn(
+                        "font-cinzel text-[9px] font-bold tracking-widest uppercase transition-colors",
+                        isActive
+                          ? "text-gold-primary"
+                          : isPassed
+                            ? "text-text-secondary"
+                            : "text-text-muted"
+                      )}
+                    >
+                      {step.label}
+                    </span>
+                  </button>
+                </React.Fragment>
               );
             })}
           </div>
@@ -352,7 +390,7 @@ export default function BookingWizard({
         <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-12">
           {/* LEFT SIDE STEP FORM (7 COLUMNS) */}
           <div className="space-y-6 lg:col-span-7">
-            <div className="bg-surface/60 border-gold-primary/30 relative flex min-h-[560px] flex-col justify-between overflow-hidden rounded-2xl border p-6 shadow-xl backdrop-blur-xl sm:p-8">
+            <div className="bg-surface border-border relative flex min-h-[560px] flex-col justify-between overflow-hidden rounded-2xl border p-6 shadow-sm sm:p-8">
               {/* SLIDING ANIMATED CONTENT */}
               <AnimatePresence mode="wait" custom={direction}>
                 <motion.div
@@ -393,7 +431,7 @@ export default function BookingWizard({
                           <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
                             Step 1 of 5
                           </span>
-                          <h2 className="font-cinzel text-xl font-bold text-white sm:text-2xl">
+                          <h2 className="font-cinzel text-xl font-bold text-text-primary sm:text-2xl">
                             Choose Your Sacred Tier
                           </h2>
                         </div>
@@ -417,7 +455,7 @@ export default function BookingWizard({
                                 "group flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border transition-all",
                                 isSelected
                                   ? "bg-gold-primary/10 border-gold-primary shadow-gold-glow"
-                                  : "border-border hover:border-gold-primary/40 bg-black/30"
+                                  : "border-border hover:border-gold-primary/40 bg-surface"
                               )}
                             >
                               {/* Option Card Photo Header */}
@@ -445,7 +483,7 @@ export default function BookingWizard({
 
                               <div className="flex flex-1 flex-col justify-between space-y-3 p-4">
                                 <div className="space-y-1">
-                                  <h3 className="font-cinzel group-hover:text-gold-primary text-sm font-bold text-white transition-colors">
+                                  <h3 className="font-cinzel group-hover:text-gold-primary text-sm font-bold text-text-primary transition-colors">
                                     {pkg.title}
                                   </h3>
                                   <p className="text-text-muted line-clamp-2 text-[11px] leading-relaxed">
@@ -508,7 +546,7 @@ export default function BookingWizard({
                             <span className="text-text-muted">
                               Selected Package:
                             </span>
-                            <span className="font-cinzel font-bold text-white">
+                            <span className="font-cinzel font-bold text-text-primary">
                               {session.package.title} (₹
                               {session.package.startingPrice.toLocaleString(
                                 "en-IN"
@@ -528,7 +566,7 @@ export default function BookingWizard({
                         <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
                           ★ STEP 2 • FAMILY COMPOSITION
                         </span>
-                        <h2 className="font-cinzel text-xl font-bold text-white sm:text-2xl">
+                        <h2 className="font-cinzel text-xl font-bold text-text-primary sm:text-2xl">
                           How many people are travelling?
                         </h2>
                         <p className="text-text-muted text-xs">
@@ -540,10 +578,10 @@ export default function BookingWizard({
                       {/* Member Cards */}
                       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
                         {/* ADULTS */}
-                        <div className="border-border-gold/20 flex flex-col items-center justify-between space-y-3 rounded-2xl border bg-black/40 p-4">
+                        <div className="border-border flex flex-col items-center justify-between space-y-3 rounded-2xl border bg-background p-4">
                           <div className="text-center">
                             <span className="text-3xl">👨</span>
-                            <p className="font-cinzel mt-1 text-xs font-bold text-white">
+                            <p className="font-cinzel mt-1 text-xs font-bold text-text-primary">
                               Adults
                             </p>
                             <p className="text-text-muted text-[10px]">
@@ -560,7 +598,7 @@ export default function BookingWizard({
                                   ),
                                 })
                               }
-                              className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                              className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
                             >
                               <Minus className="h-4 w-4" />
                             </button>
@@ -573,7 +611,7 @@ export default function BookingWizard({
                                   adults: session.family.adults + 1,
                                 })
                               }
-                              className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                              className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
                             >
                               <Plus className="h-4 w-4" />
                             </button>
@@ -581,10 +619,10 @@ export default function BookingWizard({
                         </div>
 
                         {/* ELDERS */}
-                        <div className="border-border-gold/20 flex flex-col items-center justify-between space-y-3 rounded-2xl border bg-black/40 p-4">
+                        <div className="border-border flex flex-col items-center justify-between space-y-3 rounded-2xl border bg-background p-4">
                           <div className="text-center">
                             <span className="text-3xl">👵</span>
-                            <p className="font-cinzel mt-1 text-xs font-bold text-white">
+                            <p className="font-cinzel mt-1 text-xs font-bold text-text-primary">
                               Elders
                             </p>
                             <p className="text-text-muted text-[10px]">
@@ -601,7 +639,7 @@ export default function BookingWizard({
                                   ),
                                 })
                               }
-                              className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                              className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
                             >
                               <Minus className="h-4 w-4" />
                             </button>
@@ -614,7 +652,7 @@ export default function BookingWizard({
                                   elders: session.family.elders + 1,
                                 })
                               }
-                              className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                              className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
                             >
                               <Plus className="h-4 w-4" />
                             </button>
@@ -622,10 +660,10 @@ export default function BookingWizard({
                         </div>
 
                         {/* CHILDREN */}
-                        <div className="border-border-gold/20 flex flex-col items-center justify-between space-y-3 rounded-2xl border bg-black/40 p-4">
+                        <div className="border-border flex flex-col items-center justify-between space-y-3 rounded-2xl border bg-background p-4">
                           <div className="text-center">
                             <span className="text-3xl">👧</span>
-                            <p className="font-cinzel mt-1 text-xs font-bold text-white">
+                            <p className="font-cinzel mt-1 text-xs font-bold text-text-primary">
                               Children
                             </p>
                             <p className="text-text-muted text-[10px]">
@@ -642,7 +680,7 @@ export default function BookingWizard({
                                   ),
                                 })
                               }
-                              className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                              className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
                             >
                               <Minus className="h-4 w-4" />
                             </button>
@@ -655,7 +693,7 @@ export default function BookingWizard({
                                   children: session.family.children + 1,
                                 })
                               }
-                              className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                              className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
                             >
                               <Plus className="h-4 w-4" />
                             </button>
@@ -678,13 +716,13 @@ export default function BookingWizard({
                               })
                             }
                             className={cn(
-                              "flex cursor-pointer items-center justify-between rounded-xl border p-4.5 transition-all",
+                              "flex cursor-pointer items-center justify-between rounded-xl border p-4 transition-all",
                               session.family.wheelchairNeeded
                                 ? "bg-gold-primary/10 border-gold-primary"
-                                : "border-border bg-black/30"
+                                : "border-border bg-background hover:border-gold-primary/50"
                             )}
                           >
-                            <span className="text-xs font-semibold text-white">
+                            <span className="text-xs font-semibold text-text-primary">
                               Need Wheelchair?
                             </span>
                             <span
@@ -707,13 +745,13 @@ export default function BookingWizard({
                               })
                             }
                             className={cn(
-                              "flex cursor-pointer items-center justify-between rounded-xl border p-4.5 transition-all",
+                              "flex cursor-pointer items-center justify-between rounded-xl border p-4 transition-all",
                               session.family.airportPickupNeeded
                                 ? "bg-gold-primary/10 border-gold-primary"
-                                : "border-border bg-black/30"
+                                : "border-border bg-background hover:border-gold-primary/50"
                             )}
                           >
-                            <span className="text-xs font-semibold text-white">
+                            <span className="text-xs font-semibold text-text-primary">
                               Need Airport Pickup?
                             </span>
                             <span
@@ -762,7 +800,7 @@ export default function BookingWizard({
                         <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
                           Step 3 of 5
                         </span>
-                        <h2 className="font-cinzel text-xl font-bold text-white sm:text-2xl">
+                        <h2 className="font-cinzel text-xl font-bold text-text-primary sm:text-2xl">
                           How will you arrive?
                         </h2>
                         <p className="text-text-muted text-xs">
@@ -806,7 +844,7 @@ export default function BookingWizard({
                                 "group flex cursor-pointer flex-col justify-between overflow-hidden rounded-2xl border text-center transition-all",
                                 isSelected
                                   ? "bg-gold-primary/10 border-gold-primary shadow-gold-glow"
-                                  : "border-border hover:border-gold-primary/40 bg-black/30"
+                                  : "border-border hover:border-gold-primary/40 bg-surface"
                               )}
                             >
                               <div className="relative flex h-24 w-full items-center justify-center overflow-hidden bg-gradient-to-br from-amber-950/60 via-slate-900 to-black">
@@ -825,7 +863,7 @@ export default function BookingWizard({
                               </div>
 
                               <div className="p-4 text-center">
-                                <span className="font-cinzel text-xs font-bold text-white">
+                                <span className="font-cinzel text-xs font-bold text-text-primary">
                                   {mode.label}
                                 </span>
                               </div>
@@ -846,7 +884,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateTravel({ arrivalDate: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary focus:ring-1 focus:ring-gold-primary/20 w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
 
@@ -861,7 +899,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateTravel({ arrivalTime: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary focus:ring-1 focus:ring-gold-primary/20 w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
 
@@ -881,7 +919,7 @@ export default function BookingWizard({
                                 flightOrTrainNumber: e.target.value,
                               })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary focus:ring-1 focus:ring-gold-primary/20 w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
                       </div>
@@ -916,7 +954,7 @@ export default function BookingWizard({
                         <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
                           Step 4 of 5
                         </span>
-                        <h2 className="font-cinzel text-xl font-bold text-white sm:text-2xl">
+                        <h2 className="font-cinzel text-xl font-bold text-text-primary sm:text-2xl">
                           Select Accommodation Tier
                         </h2>
                         <p className="text-text-muted text-xs">
@@ -975,7 +1013,7 @@ export default function BookingWizard({
                                 "group flex cursor-pointer flex-col items-stretch overflow-hidden rounded-2xl border transition-all sm:flex-row",
                                 isSelected
                                   ? "bg-gold-primary/10 border-gold-primary shadow-gold-glow"
-                                  : "border-border hover:border-gold-primary/40 bg-black/30"
+                                  : "border-border hover:border-gold-primary/40 bg-surface"
                               )}
                             >
                               <div className="border-border-gold/20 relative h-28 shrink-0 overflow-hidden border-b bg-gradient-to-br from-amber-950/60 via-slate-900 to-black sm:h-auto sm:w-40 sm:border-r sm:border-b-0">
@@ -994,7 +1032,7 @@ export default function BookingWizard({
                                   <span className="text-gold-primary font-cinzel block text-[10px] font-bold tracking-widest uppercase">
                                     {hotel.tag}
                                   </span>
-                                  <h3 className="font-cinzel text-sm font-bold text-white">
+                                  <h3 className="font-cinzel text-sm font-bold text-text-primary">
                                     {hotel.title}
                                   </h3>
                                   <p className="text-text-muted text-xs">
@@ -1022,9 +1060,9 @@ export default function BookingWizard({
                       </div>
 
                       {/* Rooms Selector */}
-                      <div className="border-border-gold/20 flex items-center justify-between rounded-2xl border bg-black/40 p-4 pt-2">
+                      <div className="border-border flex items-center justify-between rounded-2xl border bg-background p-4">
                         <div>
-                          <p className="font-cinzel text-xs font-bold text-white">
+                          <p className="font-cinzel text-xs font-bold text-text-primary">
                             Rooms Needed
                           </p>
                           <p className="text-text-muted text-[10px]">
@@ -1041,7 +1079,8 @@ export default function BookingWizard({
                                 ),
                               })
                             }
-                            className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                            className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
+                            aria-label="Decrease room count"
                           >
                             <Minus className="h-4 w-4" />
                           </button>
@@ -1054,7 +1093,8 @@ export default function BookingWizard({
                                 roomsNeeded: session.hotel.roomsNeeded + 1,
                               })
                             }
-                            className="bg-surface border-border hover:border-gold-primary flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-white"
+                            className="bg-surface border-border hover:border-gold-primary hover:bg-gold-primary/5 flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border text-text-primary transition-colors"
+                            aria-label="Increase room count"
                           >
                             <Plus className="h-4 w-4" />
                           </button>
@@ -1090,7 +1130,7 @@ export default function BookingWizard({
                         <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
                           Step 5 of 5
                         </span>
-                        <h2 className="font-cinzel text-xl font-bold text-white sm:text-2xl">
+                        <h2 className="font-cinzel text-xl font-bold text-text-primary sm:text-2xl">
                           Pilgrim Contact Details
                         </h2>
                         <p className="text-text-muted text-xs">
@@ -1111,7 +1151,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ name: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
 
@@ -1126,7 +1166,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ phone: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
 
@@ -1141,7 +1181,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ email: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
 
@@ -1156,7 +1196,7 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ city: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
 
@@ -1170,13 +1210,13 @@ export default function BookingWizard({
                             onChange={(e) =>
                               updateCustomer({ country: e.target.value })
                             }
-                            className="border-border-gold/30 focus:border-gold-primary w-full rounded-xl border bg-black/60 p-4 text-xs text-white focus:outline-none"
+                            className="border-border focus:border-gold-primary w-full rounded-xl border bg-background p-4 text-xs text-text-primary placeholder:text-text-muted focus:outline-none [color-scheme:light]"
                           />
                         </div>
                       </div>
 
                       {/* TRUST BOOSTER SECTION */}
-                      <div className="border-border-gold/20 space-y-3 rounded-2xl border bg-black/40 p-4">
+                      <div className="bg-warm-sand border-border-gold/30 space-y-3 rounded-2xl border p-4">
                         <span className="text-gold-primary font-cinzel block text-[10px] font-bold tracking-widest uppercase">
                           Sacred Trust Commitments
                         </span>
@@ -1221,7 +1261,7 @@ export default function BookingWizard({
                     "font-cinzel flex cursor-pointer items-center gap-1.5 rounded-xl border px-4 py-2.5 text-xs font-bold transition-all",
                     currentStepIndex === 0
                       ? "text-text-muted cursor-not-allowed border-transparent opacity-30"
-                      : "border-border hover:border-gold-primary text-white"
+                      : "border-border hover:border-gold-primary text-text-primary"
                   )}
                 >
                   <ChevronLeft className="h-4 w-4" />
@@ -1239,10 +1279,23 @@ export default function BookingWizard({
                 ) : (
                   <button
                     onClick={handleFinalConfirm}
-                    className="bg-gold-gradient font-cinzel shadow-gold-glow flex cursor-pointer items-center gap-2 rounded-full px-8 py-3 text-xs font-bold tracking-widest text-black uppercase transition-all hover:opacity-90"
+                    disabled={isSubmitting}
+                    className={cn(
+                      "bg-gold-gradient font-cinzel shadow-gold-glow flex cursor-pointer items-center gap-2 rounded-full px-8 py-3 text-xs font-bold tracking-widest text-black uppercase transition-all hover:opacity-90",
+                      isSubmitting && "cursor-not-allowed opacity-70"
+                    )}
                   >
-                    <Heart className="h-4 w-4 fill-black" />
-                    <span>Reserve My Pilgrimage</span>
+                    {isSubmitting ? (
+                      <>
+                        <div className="h-4 w-4 animate-spin rounded-full border-2 border-black border-t-transparent" />
+                        <span>Submitting…</span>
+                      </>
+                    ) : (
+                      <>
+                        <Heart className="h-4 w-4 fill-black" />
+                        <span>Reserve My Pilgrimage</span>
+                      </>
+                    )}
                   </button>
                 )}
               </div>
@@ -1254,7 +1307,7 @@ export default function BookingWizard({
             <GlassCard
               glow
               borderGold
-              className="bg-surface/80 space-y-6 overflow-hidden rounded-2xl p-6 backdrop-blur-xl"
+              className="bg-surface shadow-md space-y-6 overflow-hidden rounded-2xl p-6"
             >
               {/* SUMMARY HERO PHOTO BANNER */}
               <div className="border-gold-primary/30 relative h-28 w-full overflow-hidden rounded-2xl border shadow-md">
@@ -1278,7 +1331,7 @@ export default function BookingWizard({
                   <span className="text-gold-primary font-cinzel block text-[10px] font-bold tracking-widest uppercase">
                     Live Pilgrimage Preview
                   </span>
-                  <h3 className="font-cinzel text-lg font-bold text-white">
+                  <h3 className="font-cinzel text-lg font-bold text-text-primary">
                     YOUR EXPERIENCE
                   </h3>
                 </div>
@@ -1292,7 +1345,7 @@ export default function BookingWizard({
                 {/* Package */}
                 <div className="flex items-start justify-between">
                   <div className="space-y-0.5">
-                    <p className="font-cinzel font-bold text-white">
+                    <p className="font-cinzel font-bold text-text-primary">
                       {session.package.title}
                     </p>
                     <p className="text-text-muted text-[11px]">
@@ -1307,7 +1360,7 @@ export default function BookingWizard({
                 {/* Family */}
                 <div className="border-border-gold/10 flex items-center justify-between border-t pt-2">
                   <span className="text-text-muted">Guests</span>
-                  <span className="font-semibold text-white">
+                  <span className="font-semibold text-text-primary">
                     {session.pricing.familyTotalCount} Members (
                     {session.family.adults}A, {session.family.elders}E,{" "}
                     {session.family.children}C)
@@ -1317,7 +1370,7 @@ export default function BookingWizard({
                 {/* Travel */}
                 <div className="border-border-gold/10 flex items-center justify-between border-t pt-2">
                   <span className="text-text-muted">Travel Mode</span>
-                  <span className="font-semibold text-white uppercase">
+                  <span className="font-semibold text-text-primary uppercase">
                     {session.travel.mode} ({session.travel.arrivalDate})
                   </span>
                 </div>
@@ -1326,7 +1379,7 @@ export default function BookingWizard({
                 <div className="border-border-gold/10 flex items-center justify-between border-t pt-2">
                   <span className="text-text-muted">Accommodation</span>
                   <div className="text-right">
-                    <p className="font-semibold text-white">
+                    <p className="font-semibold text-text-primary">
                       {session.hotel.title}
                     </p>
                     {session.pricing.hotelUpgradeTotal > 0 && (
@@ -1342,7 +1395,7 @@ export default function BookingWizard({
               </div>
 
               {/* DYNAMIC TOTAL PRICE CARD */}
-              <div className="border-gold-primary/40 space-y-1 rounded-2xl border bg-black/60 p-4 text-center shadow-inner">
+              <div className="border-gold-primary/40 space-y-1 rounded-2xl border bg-gold-primary/10 p-4 text-center">
                 <span className="text-text-muted font-cinzel block text-[10px] font-bold tracking-widest uppercase">
                   Estimated Investment
                 </span>

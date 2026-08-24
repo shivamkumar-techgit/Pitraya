@@ -1594,26 +1594,35 @@ export default function AdminDashboardPage() {
         {activeBooking && (
           <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/90 backdrop-blur-xl">
             <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.95 }}
-              className="relative w-full max-w-4xl rounded-3xl bg-[#0b0a08] border border-gold-primary/40 shadow-2xl overflow-hidden max-h-[94vh] flex flex-col text-white"
+              initial={{ opacity: 0, scale: 0.95, y: 15 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 15 }}
+              className="relative w-full max-w-4xl rounded-3xl bg-[#0e0c09] border border-gold-primary/40 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col text-white my-6"
+              data-lenis-prevent="true"
             >
-              
               {/* MODAL HEADER */}
-              <div className="sticky top-0 z-20 bg-black/95 border-b border-border-gold/20 px-6 py-4 flex items-center justify-between backdrop-blur-md">
+              <div className="sticky top-0 z-20 bg-[#0a0907]/98 border-b border-gold-primary/25 px-6 py-4 flex items-center justify-between backdrop-blur-md">
                 <div className="flex items-center gap-3">
-                  <PitrayaLogoEmblem size={28} />
-                  <span className="text-base font-bold font-cinzel text-gold-primary">
-                    BOOKING CONTROL WORKSPACE
-                  </span>
-                  <span className="text-xs text-text-muted font-mono">({activeBooking.reservationId})</span>
+                  <PitrayaLogoEmblem size={32} />
+                  <div>
+                    <div className="flex items-center gap-2">
+                      <span className="text-base font-extrabold font-cinzel text-gold-primary tracking-wide">
+                        BOOKING CONTROL WORKSPACE
+                      </span>
+                      <span className="text-xs font-mono text-amber-300 font-bold bg-amber-500/15 border border-amber-500/30 px-2 py-0.5 rounded-full">
+                        {activeBooking.reservationId}
+                      </span>
+                    </div>
+                    <p className="text-[10px] text-text-muted font-cinzel tracking-wider uppercase">
+                      Pilgrim Concierge Command Center
+                    </p>
+                  </div>
                 </div>
 
                 <div className="flex items-center gap-3">
                   <button
                     onClick={() => handleOpenPdf(activeBooking)}
-                    className="flex items-center gap-1.5 py-1.5 px-4 rounded-full bg-gold-gradient text-black text-xs font-extrabold font-cinzel uppercase tracking-widest hover:opacity-90 transition-all cursor-pointer"
+                    className="flex items-center gap-1.5 py-2 px-4 rounded-xl bg-gold-gradient text-black text-xs font-extrabold font-cinzel uppercase tracking-widest hover:opacity-90 transition-all cursor-pointer shadow-gold-glow"
                   >
                     <Download className="h-3.5 w-3.5" />
                     <span>PDF Voucher</span>
@@ -1621,15 +1630,15 @@ export default function AdminDashboardPage() {
 
                   <button
                     onClick={() => setActiveBooking(null)}
-                    className="p-2 rounded-full text-text-muted hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                    className="p-2 rounded-xl text-neutral-400 hover:text-white hover:bg-neutral-800 transition-colors cursor-pointer"
                   >
                     <X className="h-5 w-5" />
                   </button>
                 </div>
               </div>
 
-              {/* DETAIL TABS BAR */}
-              <div className="bg-surface/80 border-b border-gold-primary/20 px-4 pt-2 flex items-center gap-1 overflow-x-auto scrollbar-none">
+              {/* SLEEK HORIZONTAL TABS PILL BAR */}
+              <div className="bg-[#14110d] border-b border-gold-primary/20 px-6 py-3 flex items-center gap-2 overflow-x-auto scrollbar-thin">
                 {DETAIL_TABS.map((tab) => {
                   const Icon = tab.icon;
                   const isActive = activeDetailTab === tab.id;
@@ -1638,10 +1647,10 @@ export default function AdminDashboardPage() {
                       key={tab.id}
                       onClick={() => setActiveDetailTab(tab.id)}
                       className={cn(
-                        "py-2 px-3 rounded-t-xl text-xs font-bold font-cinzel transition-all uppercase tracking-wider whitespace-nowrap cursor-pointer flex items-center gap-1.5 border-t border-x",
+                        "py-2 px-3.5 rounded-xl text-xs font-bold font-cinzel transition-all uppercase tracking-wider whitespace-nowrap cursor-pointer flex items-center gap-1.5 border",
                         isActive
-                          ? "bg-[#0b0a08] text-gold-primary border-gold-primary/40 border-b-[#0b0a08] shadow-gold-glow -mb-px z-10 font-black"
-                          : "bg-black/30 text-text-muted border-transparent hover:text-white"
+                          ? "bg-gold-primary text-black font-black border-gold-primary shadow-gold-glow"
+                          : "bg-black/50 text-neutral-400 border-white/5 hover:text-white hover:border-gold-primary/30"
                       )}
                     >
                       <Icon className="h-3.5 w-3.5" />
@@ -1652,28 +1661,28 @@ export default function AdminDashboardPage() {
               </div>
 
               {/* MODAL BODY CONTENT */}
-              <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6 text-xs">
+              <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-5 text-xs">
                 
                 {/* 1. OVERVIEW TAB */}
                 {activeDetailTab === "overview" && (
-                  <div className="space-y-6 font-sans">
+                  <div className="space-y-4 font-sans">
                     
                     {/* SECTION 1: RESERVATION */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <FileText className="h-4 w-4 text-gold-primary" />
                           <h3 className="font-extrabold font-cinzel text-sm text-gold-primary uppercase tracking-wider">
-                            Reservation
+                            Reservation Details
                           </h3>
                         </div>
                         <div className="flex items-center gap-2">
-                          <span className="text-[10px] text-text-muted">Status:</span>
+                          <span className="text-[10px] text-neutral-400 uppercase font-semibold">Status:</span>
                           <select
                             value={activeBooking.status}
                             onChange={(e) => handleUpdateStatus(activeBooking.id, e.target.value as BookingStatus)}
                             className={cn(
-                              "py-1 px-3 rounded-lg border text-[11px] font-black font-cinzel uppercase tracking-wider cursor-pointer focus:outline-none",
+                              "py-1.5 px-3 rounded-xl border text-[11px] font-black font-cinzel uppercase tracking-wider cursor-pointer focus:outline-none",
                               getStatusBadgeClass(activeBooking.status)
                             )}
                           >
@@ -1688,16 +1697,14 @@ export default function AdminDashboardPage() {
                         </div>
                       </div>
 
-                      <div className="flex justify-between items-center bg-black/60 p-3 rounded-xl border border-white/10">
-                        <span className="text-text-muted">Reservation Reference ID:</span>
-                        <span className="font-black text-white font-mono text-sm">{activeBooking.reservationId}</span>
+                      <div className="flex justify-between items-center bg-[#0a0907] p-3.5 rounded-xl border border-gold-primary/15">
+                        <span className="text-neutral-400">Reservation Reference ID:</span>
+                        <span className="font-black text-amber-300 font-mono text-sm">{activeBooking.reservationId}</span>
                       </div>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
                     {/* SECTION 2: CUSTOMER */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Users className="h-4 w-4 text-gold-primary" />
@@ -1709,104 +1716,104 @@ export default function AdminDashboardPage() {
                         <div className="flex items-center gap-2">
                           <button
                             onClick={() => {
-                              const waMsg = encodeURIComponent(`Pranam ${activeBooking.customerName} Ji 🙏, regarding your Pitraya Pilgrimage reservation ${activeBooking.reservationId}...`);
+                              const payuUrl = process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK || "https://u.payu.in/MIvnJ8tUOvLJ";
+                              const waMsg = encodeURIComponent(
+                                `Pranam ${activeBooking.customerName} Ji 🙏\n\n` +
+                                `Regarding your Pitraya Pilgrimage reservation (${activeBooking.reservationId}):\n\n` +
+                                `💰 Total: ₹${activeBooking.grandTotal.toLocaleString("en-IN")}\n` +
+                                `📍 Experience: ${activeBooking.packageTitle}\n\n` +
+                                `Secure PayU Link:\n${payuUrl}\n\n` +
+                                `Our Pilgrimage Coordinator is here to assist your family.`
+                              );
                               window.open(`https://wa.me/${activeBooking.phone.replace(/[^0-9]/g, "")}?text=${waMsg}`, "_blank");
                             }}
-                            className="py-1 px-2.5 rounded-lg bg-[#25D366] text-white font-bold text-[10px] uppercase flex items-center gap-1 hover:bg-[#20ba5a] cursor-pointer"
+                            className="py-1.5 px-3 rounded-xl bg-[#25D366] text-white font-bold text-[11px] uppercase flex items-center gap-1.5 hover:bg-[#20ba5a] cursor-pointer shadow"
                           >
-                            <MessageCircle className="h-3 w-3" />
+                            <MessageCircle className="h-3.5 w-3.5" />
                             <span>WhatsApp</span>
                           </button>
                           <button
                             onClick={() => window.open(`tel:${activeBooking.phone}`)}
-                            className="py-1 px-2.5 rounded-lg bg-gold-gradient text-black font-bold text-[10px] uppercase flex items-center gap-1 hover:opacity-90 cursor-pointer"
+                            className="py-1.5 px-3 rounded-xl bg-gold-gradient text-black font-bold text-[11px] uppercase flex items-center gap-1.5 hover:opacity-90 cursor-pointer shadow"
                           >
-                            <Phone className="h-3 w-3" />
+                            <Phone className="h-3.5 w-3.5" />
                             <span>Call</span>
                           </button>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-3 bg-black/60 p-3 rounded-xl border border-white/10 text-center">
+                      <div className="grid grid-cols-3 gap-3 bg-[#0a0907] p-3.5 rounded-xl border border-gold-primary/15 text-center">
                         <div>
-                          <span className="text-[10px] text-text-muted block uppercase">Name</span>
+                          <span className="text-[10px] text-neutral-400 block uppercase font-medium">Name</span>
                           <span className="font-bold text-white font-cinzel text-xs">{activeBooking.customerName}</span>
                         </div>
                         <div>
-                          <span className="text-[10px] text-text-muted block uppercase">Phone</span>
-                          <span className="font-bold text-gold-primary font-mono text-xs">{activeBooking.phone}</span>
+                          <span className="text-[10px] text-neutral-400 block uppercase font-medium">Phone</span>
+                          <span className="font-bold text-amber-300 font-mono text-xs">{activeBooking.phone}</span>
                         </div>
                         <div>
-                          <span className="text-[10px] text-text-muted block uppercase">City</span>
+                          <span className="text-[10px] text-neutral-400 block uppercase font-medium">City</span>
                           <span className="font-bold text-white text-xs">{activeBooking.city}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
                     {/* SECTION 3: EXPERIENCE */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center gap-2">
                         <Sparkles className="h-4 w-4 text-gold-primary" />
                         <h3 className="font-extrabold font-cinzel text-sm text-gold-primary uppercase tracking-wider">
-                          Experience
+                          Experience & Pilgrimage Package
                         </h3>
                       </div>
 
-                      <div className="grid grid-cols-3 gap-3 bg-black/60 p-3 rounded-xl border border-white/10 text-center">
+                      <div className="grid grid-cols-3 gap-3 bg-[#0a0907] p-3.5 rounded-xl border border-gold-primary/15 text-center">
                         <div>
-                          <span className="text-[10px] text-text-muted block uppercase">Package</span>
-                          <span className="font-bold text-gold-primary font-cinzel text-xs">{activeBooking.packageTitle}</span>
+                          <span className="text-[10px] text-neutral-400 block uppercase font-medium">Package</span>
+                          <span className="font-bold text-amber-300 font-cinzel text-xs">{activeBooking.packageTitle}</span>
                         </div>
                         <div>
-                          <span className="text-[10px] text-text-muted block uppercase">Group Size</span>
+                          <span className="text-[10px] text-neutral-400 block uppercase font-medium">Group Size</span>
                           <span className="font-bold text-white text-xs">{activeBooking.totalCount} Members</span>
                         </div>
                         <div>
-                          <span className="text-[10px] text-text-muted block uppercase">Arrival Date</span>
+                          <span className="text-[10px] text-neutral-400 block uppercase font-medium">Arrival Date</span>
                           <span className="font-bold text-white text-xs">{activeBooking.travel.arrivalDate}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
                     {/* SECTION 4: COORDINATOR */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <UserCheck className="h-4 w-4 text-gold-primary" />
                           <h3 className="font-extrabold font-cinzel text-sm text-gold-primary uppercase tracking-wider">
-                            Coordinator
+                            Senior Concierge Coordinator
                           </h3>
                         </div>
 
-                        <span className="text-xs font-bold text-white">
+                        <span className="text-xs font-bold text-amber-200">
                           {activeBooking.assignedCoordinator ? activeBooking.assignedCoordinator.name : "Not Assigned"}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={activeBooking.assignedCoordinator?.id || ""}
-                          onChange={(e) => handleAssignCoordinator(activeBooking.id, e.target.value)}
-                          className="flex-1 py-2 px-3 rounded-xl bg-black/80 border border-gold-primary/40 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
-                        >
-                          <option value="">Assign Coordinator ↓</option>
-                          {COORDINATORS_TABLE.map((c) => (
-                            <option key={c.id} value={c.id}>
-                              {c.name} ({c.role})
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <select
+                        value={activeBooking.assignedCoordinator?.id || ""}
+                        onChange={(e) => handleAssignCoordinator(activeBooking.id, e.target.value)}
+                        className="w-full py-2.5 px-3.5 rounded-xl bg-[#0a0907] border border-gold-primary/30 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
+                      >
+                        <option value="">Assign Coordinator ↓</option>
+                        {COORDINATORS_TABLE.map((c) => (
+                          <option key={c.id} value={c.id}>
+                            {c.name} ({c.role})
+                          </option>
+                        ))}
+                      </select>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
                     {/* SECTION 5: PANDIT */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Flame className="h-4 w-4 text-gold-primary" />
@@ -1815,31 +1822,27 @@ export default function AdminDashboardPage() {
                           </h3>
                         </div>
 
-                        <span className="text-xs font-bold text-white">
+                        <span className="text-xs font-bold text-amber-200">
                           {activeBooking.assignedPandit ? activeBooking.assignedPandit.name : "Not Assigned"}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={activeBooking.assignedPandit?.id || ""}
-                          onChange={(e) => handleAssignPandit(activeBooking.id, e.target.value)}
-                          className="flex-1 py-2 px-3 rounded-xl bg-black/80 border border-gold-primary/40 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
-                        >
-                          <option value="">Assign Gayawal Purohit ↓</option>
-                          {PANDITS_TABLE.map((p) => (
-                            <option key={p.id} value={p.id}>
-                              {p.name} ({p.title})
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <select
+                        value={activeBooking.assignedPandit?.id || ""}
+                        onChange={(e) => handleAssignPandit(activeBooking.id, e.target.value)}
+                        className="w-full py-2.5 px-3.5 rounded-xl bg-[#0a0907] border border-gold-primary/30 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
+                      >
+                        <option value="">Assign Gayawal Purohit ↓</option>
+                        {PANDITS_TABLE.map((p) => (
+                          <option key={p.id} value={p.id}>
+                            {p.name} ({p.title})
+                          </option>
+                        ))}
+                      </select>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
                     {/* SECTION 6: VEHICLE */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Car className="h-4 w-4 text-gold-primary" />
@@ -1848,31 +1851,27 @@ export default function AdminDashboardPage() {
                           </h3>
                         </div>
 
-                        <span className="text-xs font-bold text-white">
+                        <span className="text-xs font-bold text-amber-200">
                           {activeBooking.assignedVehicle ? activeBooking.assignedVehicle.name : "Not Assigned"}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={activeBooking.assignedVehicle?.id || ""}
-                          onChange={(e) => handleAssignVehicle(activeBooking.id, e.target.value)}
-                          className="flex-1 py-2 px-3 rounded-xl bg-black/80 border border-gold-primary/40 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
-                        >
-                          <option value="">Assign Vehicle ↓</option>
-                          {VEHICLES_TABLE.map((v) => (
-                            <option key={v.id} value={v.id}>
-                              {v.name} ({v.driverName})
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <select
+                        value={activeBooking.assignedVehicle?.id || ""}
+                        onChange={(e) => handleAssignVehicle(activeBooking.id, e.target.value)}
+                        className="w-full py-2.5 px-3.5 rounded-xl bg-[#0a0907] border border-gold-primary/30 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
+                      >
+                        <option value="">Assign Vehicle ↓</option>
+                        {VEHICLES_TABLE.map((v) => (
+                          <option key={v.id} value={v.id}>
+                            {v.name} ({v.driverName})
+                          </option>
+                        ))}
+                      </select>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
                     {/* SECTION 7: HOTEL */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Hotel className="h-4 w-4 text-gold-primary" />
@@ -1881,36 +1880,32 @@ export default function AdminDashboardPage() {
                           </h3>
                         </div>
 
-                        <span className="text-xs font-bold text-white">
+                        <span className="text-xs font-bold text-amber-200">
                           {activeBooking.assignedHotel ? activeBooking.assignedHotel.name : activeBooking.hotel.title || "Not Assigned"}
                         </span>
                       </div>
 
-                      <div className="flex items-center gap-2">
-                        <select
-                          value={activeBooking.assignedHotel?.id || ""}
-                          onChange={(e) => handleAssignHotel(activeBooking.id, e.target.value)}
-                          className="flex-1 py-2 px-3 rounded-xl bg-black/80 border border-gold-primary/40 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
-                        >
-                          <option value="">Assign Hotel ↓</option>
-                          {HOTELS_TABLE.map((h) => (
-                            <option key={h.id} value={h.id}>
-                              {h.name}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
+                      <select
+                        value={activeBooking.assignedHotel?.id || ""}
+                        onChange={(e) => handleAssignHotel(activeBooking.id, e.target.value)}
+                        className="w-full py-2.5 px-3.5 rounded-xl bg-[#0a0907] border border-gold-primary/30 text-xs text-white focus:border-gold-primary focus:outline-none cursor-pointer"
+                      >
+                        <option value="">Assign Hotel ↓</option>
+                        {HOTELS_TABLE.map((h) => (
+                          <option key={h.id} value={h.id}>
+                            {h.name}
+                          </option>
+                        ))}
+                      </select>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
-                    {/* SECTION 8: PAYMENT */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    {/* SECTION 8: PAYMENT ACTIONS */}
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <CreditCard className="h-4 w-4 text-gold-primary" />
                           <h3 className="font-extrabold font-cinzel text-sm text-gold-primary uppercase tracking-wider">
-                            Payment
+                            Payment & PayU Gateway
                           </h3>
                         </div>
 
@@ -1919,35 +1914,18 @@ export default function AdminDashboardPage() {
                         </span>
                       </div>
 
-                      <div className="flex gap-3 pt-1">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
                         <button
-                          onClick={() => {
-                            const payuUrl =
-                              process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK ||
-                              "https://u.payu.in/MIvnJ8tUOvLJ";
-                            const payMsg = encodeURIComponent(
-                              `Pranam ${activeBooking.customerName} Ji 🙏\n\n` +
-                              `Your Pitraya Pilgrimage reservation (${activeBooking.reservationId}) has been prepared.\n\n` +
-                              `💰 Total Investment: ₹${activeBooking.grandTotal.toLocaleString("en-IN")}\n` +
-                              `📍 Experience: ${activeBooking.packageTitle}\n\n` +
-                              `Please complete your payment securely via PayU:\n${payuUrl}\n\n` +
-                              `Thank you,\nPitraya Concierge Team`
-                            );
-                            window.open(
-                              `https://wa.me/${activeBooking.phone.replace(/[^0-9]/g, "")}?text=${payMsg}`,
-                              "_blank"
-                            );
-                            handleUpdateStatus(activeBooking.id, "payment_pending");
-                          }}
-                          className="flex-1 py-3 px-4 rounded-xl bg-purple-600 text-white font-extrabold text-xs uppercase font-cinzel tracking-wider flex items-center justify-center gap-2 hover:bg-purple-500 cursor-pointer shadow-lg"
+                          onClick={() => setPayModalBooking(activeBooking)}
+                          className="py-3 px-4 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs uppercase font-cinzel tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
                         >
                           <Send className="h-4 w-4" />
-                          <span>Send PayU Payment Link</span>
+                          <span>Generate & Send PayU Link</span>
                         </button>
 
                         <button
                           onClick={() => handleUpdateStatus(activeBooking.id, "confirmed")}
-                          className="py-3 px-4 rounded-xl bg-emerald-600 text-white font-extrabold text-xs uppercase font-cinzel tracking-wider flex items-center justify-center gap-2 hover:bg-emerald-500 cursor-pointer shadow-lg"
+                          className="py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs uppercase font-cinzel tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-lg transition-all"
                         >
                           <Check className="h-4 w-4 stroke-[3]" />
                           <span>Mark Paid & Confirmed</span>
@@ -1955,10 +1933,8 @@ export default function AdminDashboardPage() {
                       </div>
                     </div>
 
-                    <div className="border-b-2 border-gold-primary/30 my-2" />
-
                     {/* SECTION 9: AUTOMATED PDF DOCUMENTS (5) */}
-                    <div className="p-4 rounded-2xl bg-surface/50 border border-border-gold/30 space-y-3">
+                    <div className="p-5 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3 shadow-md">
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
                           <Folder className="h-4 w-4 text-gold-primary" />
@@ -1971,26 +1947,24 @@ export default function AdminDashboardPage() {
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-1">
                         {(activeBooking.documents || []).map((doc) => (
-                          <div key={doc.id} className="p-3 rounded-xl bg-black/60 border border-gold-primary/20 flex items-center justify-between">
+                          <div key={doc.id} className="p-3.5 rounded-xl bg-[#0a0907] border border-gold-primary/20 flex items-center justify-between">
                             <div className="flex items-center gap-2.5">
                               <FileText className="h-4 w-4 text-gold-primary shrink-0" />
                               <span className="font-bold text-white text-xs">{doc.title}</span>
                             </div>
                             <button
                               onClick={() => handleOpenPdf(activeBooking)}
-                              className="p-1.5 rounded-lg bg-gold-primary/20 text-gold-primary hover:bg-gold-primary/30 cursor-pointer"
+                              className="p-2 rounded-lg bg-gold-primary/20 text-gold-primary hover:bg-gold-primary/30 cursor-pointer"
                               title="Download PDF"
                             >
                               <Download className="h-3.5 w-3.5" />
                             </button>
                           </div>
-                      ))}
+                        ))}
+                      </div>
                     </div>
                   </div>
-                  </div>
                 )}
-
-                    {/* SECTION 10: AUTOMATED POST-JOURNEY REVIEW & REFERRAL (Appears when Completed) */}
                     {activeBooking.status === "completed" && (
                       <>
                         <div className="border-b-2 border-gold-primary/30 my-2" />

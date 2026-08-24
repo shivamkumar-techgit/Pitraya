@@ -21,11 +21,29 @@ export default function GeneratePaymentLinkModal({
   onSuccess,
 }: Props) {
   const totalAmount = booking.grandTotal || 24999;
-  const advanceAmount = Math.round(totalAmount * 0.5);
+  
+  // Calculate dynamic financial ledger from payments
+  const paymentsList = (booking as unknown as { payments?: Array<{ amount?: number; status?: string }> }).payments || [];
+  const paidPayments = paymentsList.filter((p) => p.status === "paid" || p.status === "partially_paid" || p.status === "completed");
+  const alreadyPaidAmount = paidPayments.reduce((sum, p) => sum + (p.amount || 0), 0);
+  
+  const effectivePaidAmount = alreadyPaidAmount > 0 
+    ? alreadyPaidAmount 
+    : ((booking as unknown as { paymentStatus?: string }).paymentStatus === "partially_paid" || booking.status === "payment_pending") 
+      ? Math.round(totalAmount * 0.5) 
+      : 0;
 
-  const [paymentType, setPaymentType] = useState<PaymentType>("advance");
-  const [amount, setAmount] = useState<number>(advanceAmount);
-  const [notes, setNotes] = useState<string>(`Advance for ${booking.packageTitle || "Pilgrimage Package"}`);
+  const remainingBalance = Math.max(0, totalAmount - effectivePaidAmount);
+  const defaultAdvance = Math.round(totalAmount * 0.5);
+
+  const initialType: PaymentType = effectivePaidAmount > 0 && remainingBalance > 0 ? "balance" : "advance";
+  const [paymentType, setPaymentType] = useState<PaymentType>(initialType);
+  const [amount, setAmount] = useState<number>(initialType === "balance" ? remainingBalance : defaultAdvance);
+  const [notes, setNotes] = useState<string>(
+    initialType === "balance"
+      ? `Balance Payment for ${booking.packageTitle || "Pilgrimage Package"}`
+      : `Advance for ${booking.packageTitle || "Pilgrimage Package"}`
+  );
   const [expiryDays, setExpiryDays] = useState<number>(3);
 
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -41,15 +59,15 @@ export default function GeneratePaymentLinkModal({
   const handlePaymentTypeChange = (type: PaymentType) => {
     setPaymentType(type);
     if (type === "advance") {
-      setAmount(advanceAmount);
-      setNotes(`Advance for ${booking.packageTitle || "Pilgrimage Package"}`);
+      setAmount(defaultAdvance);
+      setNotes(`Advance Deposit for ${booking.packageTitle || "Pilgrimage Package"}`);
     } else if (type === "full") {
       setAmount(totalAmount);
       setNotes(`Full Payment for ${booking.packageTitle || "Pilgrimage Package"}`);
     } else if (type === "balance") {
-      const balance = totalAmount - advanceAmount;
+      const balance = remainingBalance > 0 ? remainingBalance : Math.round(totalAmount * 0.5);
       setAmount(balance);
-      setNotes(`Balance Payment for ${booking.packageTitle || "Pilgrimage Package"}`);
+      setNotes(`Remaining Balance Payment for ${booking.packageTitle || "Pilgrimage Package"}`);
     }
   };
 
@@ -61,13 +79,22 @@ export default function GeneratePaymentLinkModal({
     setErrorMsg("");
 
     try {
-      // Set the live PayU payment link directly
       setGeneratedLink(payuLiveLink);
+
+      const typeLabel =
+        paymentType === "advance"
+          ? "Advance Deposit (50%)"
+          : paymentType === "balance"
+          ? "Remaining Balance Due"
+          : "Full Pilgrimage Payment";
 
       const waMsg =
         `Namaste ${booking.customerName},\n\n` +
-        `Your ${booking.packageTitle} pilgrimage reservation (${booking.reservationId}) is ready.\n\n` +
-        `Amount: ₹${amount.toLocaleString("en-IN")} (${paymentType.toUpperCase()})\n\n` +
+        `Your ${booking.packageTitle} reservation (${booking.reservationId}) payment request is ready.\n\n` +
+        `💰 Total Package Cost: ₹${totalAmount.toLocaleString("en-IN")}\n` +
+        (effectivePaidAmount > 0 ? `✅ Already Paid: ₹${effectivePaidAmount.toLocaleString("en-IN")}\n` : "") +
+        `📌 Payment Requested: ${typeLabel}\n` +
+        `👉 Amount Payable Now: ₹${amount.toLocaleString("en-IN")}\n\n` +
         `Please complete your payment securely via PayU:\n` +
         `${payuLiveLink}\n\n` +
         `Thank you,\n` +
@@ -75,18 +102,19 @@ export default function GeneratePaymentLinkModal({
 
       const cleanPhone = booking.phone.replace(/[^0-9]/g, "");
       setWhatsappUrl(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(waMsg)}`);
-      setEmailSubject(`PayU Payment Link: ${booking.packageTitle} (${booking.reservationId})`);
+      setEmailSubject(`PayU Payment Link: ${typeLabel} for ${booking.packageTitle} (${booking.reservationId})`);
       setEmailBody(
         `Namaste ${booking.customerName},\n\n` +
-        `Your payment request for ${booking.packageTitle} (Reservation ID: ${booking.reservationId}) is generated.\n\n` +
-        `Amount: ₹${amount.toLocaleString("en-IN")}\n\n` +
+        `Your payment link for ${booking.packageTitle} (Reservation ID: ${booking.reservationId}) has been generated.\n\n` +
+        `Total Package Cost: ₹${totalAmount.toLocaleString("en-IN")}\n` +
+        (effectivePaidAmount > 0 ? `Already Paid: ₹${effectivePaidAmount.toLocaleString("en-IN")}\n` : "") +
+        `Amount Payable Now: ₹${amount.toLocaleString("en-IN")} (${typeLabel})\n\n` +
         `PayU Secure Link: ${payuLiveLink}\n\n` +
         `Thank you,\nPitraya Concierge Team`
       );
 
       if (onSuccess) onSuccess(payuLiveLink);
 
-      // Also record in background API
       fetch("/api/payments/create-link", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -150,7 +178,7 @@ export default function GeneratePaymentLinkModal({
               </div>
               <div>
                 <h3 className="font-bold text-lg text-amber-200 tracking-wide">PAYU PAYMENT REQUEST</h3>
-                <p className="text-xs text-neutral-400">PayU Live Payment Gateway</p>
+                <p className="text-xs text-neutral-400">Split Billing & Balance Ledger</p>
               </div>
             </div>
             <button
@@ -161,19 +189,23 @@ export default function GeneratePaymentLinkModal({
             </button>
           </div>
 
-          {/* Summary Card */}
-          <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-4.5 mb-5 grid grid-cols-3 gap-2 text-xs">
+          {/* 4-Column Financial Ledger Card */}
+          <div className="bg-neutral-950/80 border border-neutral-800 rounded-xl p-3.5 mb-5 grid grid-cols-4 gap-2 text-xs">
             <div>
-              <span className="text-neutral-400 block text-[10px] uppercase font-bold tracking-wider">Booking</span>
-              <span className="text-amber-300 font-mono font-bold">{booking.reservationId}</span>
+              <span className="text-neutral-400 block text-[9px] uppercase font-bold tracking-wider">Booking</span>
+              <span className="text-amber-300 font-mono font-bold text-[11px] truncate block">{booking.reservationId}</span>
             </div>
             <div>
-              <span className="text-neutral-400 block text-[10px] uppercase font-bold tracking-wider">Customer</span>
-              <span className="text-white font-medium truncate block">{booking.customerName}</span>
+              <span className="text-neutral-400 block text-[9px] uppercase font-bold tracking-wider">Total</span>
+              <span className="text-white font-mono font-bold text-[11px]">₹{totalAmount.toLocaleString("en-IN")}</span>
             </div>
             <div>
-              <span className="text-neutral-400 block text-[10px] uppercase font-bold tracking-wider">Total Package</span>
-              <span className="text-emerald-400 font-bold font-mono">₹{totalAmount.toLocaleString("en-IN")}</span>
+              <span className="text-neutral-400 block text-[9px] uppercase font-bold tracking-wider">Paid So Far</span>
+              <span className="text-emerald-400 font-mono font-bold text-[11px]">₹{effectivePaidAmount.toLocaleString("en-IN")}</span>
+            </div>
+            <div>
+              <span className="text-neutral-400 block text-[9px] uppercase font-bold tracking-wider">Balance Due</span>
+              <span className="text-amber-400 font-mono font-bold text-[11px]">₹{remainingBalance.toLocaleString("en-IN")}</span>
             </div>
           </div>
 

@@ -5,5 +5,9 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return (
+    <div data-lenis-prevent="true" className="w-full min-h-screen">
+      {children}
+    </div>
+  );
 }

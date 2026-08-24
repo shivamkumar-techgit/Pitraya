@@ -53,13 +53,41 @@ export default function GeneratePaymentLinkModal({
     }
   };
 
+  const payuLiveLink = process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK || "https://u.payu.in/MIvnJ8tUOvLJ";
+
   const handleGenerate = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsGenerating(true);
     setErrorMsg("");
 
     try {
-      const res = await fetch("/api/payments/create-link", {
+      // Set the live PayU payment link directly
+      setGeneratedLink(payuLiveLink);
+
+      const waMsg =
+        `Namaste ${booking.customerName},\n\n` +
+        `Your ${booking.packageTitle} pilgrimage reservation (${booking.reservationId}) is ready.\n\n` +
+        `Amount: ₹${amount.toLocaleString("en-IN")} (${paymentType.toUpperCase()})\n\n` +
+        `Please complete your payment securely via PayU:\n` +
+        `${payuLiveLink}\n\n` +
+        `Thank you,\n` +
+        `Pitraya Concierge Team`;
+
+      const cleanPhone = booking.phone.replace(/[^0-9]/g, "");
+      setWhatsappUrl(`https://wa.me/${cleanPhone}?text=${encodeURIComponent(waMsg)}`);
+      setEmailSubject(`PayU Payment Link: ${booking.packageTitle} (${booking.reservationId})`);
+      setEmailBody(
+        `Namaste ${booking.customerName},\n\n` +
+        `Your payment request for ${booking.packageTitle} (Reservation ID: ${booking.reservationId}) is generated.\n\n` +
+        `Amount: ₹${amount.toLocaleString("en-IN")}\n\n` +
+        `PayU Secure Link: ${payuLiveLink}\n\n` +
+        `Thank you,\nPitraya Concierge Team`
+      );
+
+      if (onSuccess) onSuccess(payuLiveLink);
+
+      // Also record in background API
+      fetch("/api/payments/create-link", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -68,21 +96,7 @@ export default function GeneratePaymentLinkModal({
           message: notes,
           expiryDays,
         }),
-      });
-
-      const data = await res.json();
-
-      if (data.success && data.paymentLink) {
-        setGeneratedLink(data.paymentLink);
-        setWhatsappUrl(data.whatsappUrl || "");
-        if (data.email) {
-          setEmailSubject(data.email.subject || "");
-          setEmailBody(data.email.body || "");
-        }
-        if (onSuccess) onSuccess(data.paymentLink);
-      } else {
-        setErrorMsg(data.error || "Failed to generate Razorpay payment link");
-      }
+      }).catch((err) => console.warn("API logging note:", err));
     } catch (err) {
       console.error("Error generating payment link:", err);
       setErrorMsg("Network error generating payment link");
@@ -108,18 +122,21 @@ export default function GeneratePaymentLinkModal({
     emailSubject || `Payment Link for ${booking.packageTitle} (${booking.reservationId})`
   )}&body=${encodeURIComponent(
     emailBody ||
-      `Namaste ${booking.customerName},\n\nYour ${booking.packageTitle} booking payment link is ready:\n${generatedLink}\n\nThank you,\nPitraya Concierge Team`
+      `Namaste ${booking.customerName},\n\nYour ${booking.packageTitle} booking payment link is ready:\n${generatedLink || payuLiveLink}\n\nThank you,\nPitraya Concierge Team`
   )}`;
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/75 backdrop-blur-md">
+      <div
+        className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md overflow-y-auto"
+        data-lenis-prevent="true"
+      >
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 15 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 15 }}
           transition={{ duration: 0.2 }}
-          className="relative w-full max-w-lg bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 text-white shadow-xl overflow-hidden font-sans"
+          className="relative w-full max-w-lg bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 text-white shadow-2xl overflow-hidden font-sans my-8"
         >
           {/* Top Decorative Glow */}
           <div className="absolute -top-24 -left-24 w-56 h-56 bg-amber-500/20 rounded-full blur-3xl pointer-events-none" />
@@ -132,8 +149,8 @@ export default function GeneratePaymentLinkModal({
                 <CreditCard className="w-5 h-5" />
               </div>
               <div>
-                <h3 className="font-bold text-lg text-amber-200 tracking-wide">PAYMENT REQUEST</h3>
-                <p className="text-xs text-neutral-400">Razorpay Link Generator</p>
+                <h3 className="font-bold text-lg text-amber-200 tracking-wide">PAYU PAYMENT REQUEST</h3>
+                <p className="text-xs text-neutral-400">PayU Live Payment Gateway</p>
               </div>
             </div>
             <button
@@ -313,7 +330,7 @@ export default function GeneratePaymentLinkModal({
               {/* Generated Link Input */}
               <div>
                 <label className="block text-xs font-semibold text-neutral-400 mb-1">
-                  Razorpay Link URL
+                  PayU Live Payment URL
                 </label>
                 <input
                   type="text"

@@ -88,12 +88,12 @@ export async function POST(req: Request) {
         razorpayLinkId = rzpLink.id;
       }
     } catch (rzpErr) {
-      console.error("Razorpay API Error:", rzpErr);
-      paymentLink = `${baseUrl}/pay/${booking.reservationId}`;
+      console.error("Payment Link Error:", rzpErr);
+      paymentLink = "https://u.payu.in/MIvnJ8tUOvLJ";
     }
 
     if (!paymentLink) {
-      paymentLink = `${baseUrl}/pay/${booking.reservationId}`;
+      paymentLink = "https://u.payu.in/MIvnJ8tUOvLJ";
     }
 
     // 4. Atomic Prisma Transaction: Save Payment Record + Update Booking Status

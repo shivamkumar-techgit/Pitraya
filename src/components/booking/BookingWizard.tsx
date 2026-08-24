@@ -214,7 +214,10 @@ export default function BookingWizard({
           {/* Action Buttons */}
           <div className="grid grid-cols-1 gap-3 pt-2 sm:grid-cols-2">
             <a
-              href="https://u.payu.in/MIvnJ8tUOvLJ"
+              href={
+                process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK ||
+                "https://u.payu.in/MIvnJ8tUOvLJ"
+              }
               target="_blank"
               rel="noopener noreferrer"
               className="col-span-1 flex transform cursor-pointer items-center justify-center gap-2 rounded-xl bg-gold-primary px-6 py-3.5 text-sm font-black text-black shadow-gold-glow transition-all hover:-translate-y-0.5 hover:opacity-90 sm:col-span-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary"

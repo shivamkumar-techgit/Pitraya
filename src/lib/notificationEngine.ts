@@ -54,7 +54,10 @@ export async function sendCentralNotification(
     customerEmail = "customer@example.com",
     packageTitle,
     grandTotal,
-    paymentLink = "https://u.payu.in/MIvnJ8tUOvLJ",
+    paymentLink = payload.paymentLink ||
+      process.env.PAYU_PAYMENT_LINK ||
+      process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK ||
+      "https://u.payu.in/MIvnJ8tUOvLJ",
     arrivalDate = "12 August",
     coordinatorName,
     coordinatorPhone,

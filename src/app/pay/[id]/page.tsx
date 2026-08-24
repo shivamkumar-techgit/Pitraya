@@ -255,39 +255,28 @@ export default function PaymentCheckoutPage() {
 
           {/* Payment CTA Button */}
           <div className="space-y-3 pt-2">
-            <button
-              onClick={handlePayUPayment}
-              disabled={isProcessing}
-              className="font-cinzel flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 px-6 py-4 text-base font-extrabold tracking-wider text-black uppercase shadow-xl shadow-amber-500/20 transition-all hover:from-amber-600 hover:to-orange-600 disabled:opacity-50"
+            <a
+              href="https://u.payu.in/MIvnJ8tUOvLJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-cinzel flex w-full cursor-pointer items-center justify-center gap-3 rounded-2xl bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 px-6 py-4 text-base font-extrabold tracking-wider text-black uppercase shadow-xl shadow-amber-500/20 transition-all hover:from-amber-600 hover:to-orange-600"
             >
-              {isProcessing ? (
-                <>
-                  <RefreshCw className="h-5 w-5 animate-spin" />
-                  Connecting to PayU...
-                </>
-              ) : (
-                <>
-                  <CreditCard className="h-5 w-5" />
-                  <span>
-                    Pay ₹{booking?.grandTotal.toLocaleString("en-IN")} via PayU
-                  </span>
-                  <ArrowRight className="h-5 w-5" />
-                </>
-              )}
-            </button>
+              <CreditCard className="h-5 w-5" />
+              <span>
+                Pay ₹{booking?.grandTotal.toLocaleString("en-IN")} via PayU
+              </span>
+              <ArrowRight className="h-5 w-5" />
+            </a>
 
-            {booking?.paymentLink &&
-              booking.paymentLink.startsWith("https://rzp.io/") && (
-                <a
-                  href={booking.paymentLink}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex w-full items-center justify-center gap-2 rounded-xl border border-neutral-700 bg-neutral-800 px-4 py-3 text-center text-xs font-medium text-neutral-200 transition-colors hover:bg-neutral-700"
-                >
-                  <ExternalLink className="h-4 w-4 text-amber-400" />
-                  <span>Open Direct Razorpay Page (https://rzp.io/i/...)</span>
-                </a>
-              )}
+            <a
+              href="https://u.payu.in/MIvnJ8tUOvLJ"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex w-full items-center justify-center gap-2 rounded-xl border border-neutral-700 bg-neutral-800 px-4 py-3 text-center text-xs font-medium text-neutral-200 transition-colors hover:bg-neutral-700"
+            >
+              <ExternalLink className="h-4 w-4 text-amber-400" />
+              <span>Direct PayU Payment Page (https://u.payu.in/MIvnJ8tUOvLJ)</span>
+            </a>
           </div>
 
           {/* Security Footer */}

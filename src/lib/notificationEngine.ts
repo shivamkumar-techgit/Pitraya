@@ -54,7 +54,7 @@ export async function sendCentralNotification(
     customerEmail = "customer@example.com",
     packageTitle,
     grandTotal,
-    paymentLink = `${baseUrl}/pay/${reservationId}`,
+    paymentLink = "https://u.payu.in/MIvnJ8tUOvLJ",
     arrivalDate = "12 August",
     coordinatorName,
     coordinatorPhone,
@@ -233,7 +233,7 @@ export async function sendCentralNotification(
       <p style="margin-top: 12px; font-size: 15px; color: #e5e7eb;">Total Amount: <strong style="color: #f59e0b; font-size: 18px;">₹${grandTotal.toLocaleString("en-IN")}</strong></p>
     </div>
     <p style="color: #d1d5db;">Please complete your payment using the secure payment link below:</p>
-    <a href="${paymentLink}" class="pay-btn">💳 Pay Securely via Razorpay</a>
+    <a href="${paymentLink}" class="pay-btn">💳 Pay Securely via PayU</a>
     <p style="font-size: 12px; color: #9ca3af; text-align: center;">Direct Link: <a href="${paymentLink}" style="color: #f59e0b;">${paymentLink}</a></p>
   </div>
 </body>
@@ -250,7 +250,7 @@ export async function sendCentralNotification(
   <h3 style="color: #a855f7;">💳 PAYMENT LINK DISPATCHED</h3>
   <p>Reservation: <strong>${reservationId}</strong><br/>Customer: ${customerName} (${customerPhone})</p>
   <p>Amount: <strong>₹${grandTotal.toLocaleString("en-IN")}</strong></p>
-  <p>Razorpay Short Link: <a href="${paymentLink}" style="color: #a855f7;">${paymentLink}</a></p>
+  <p>PayU Live Link: <a href="${paymentLink}" style="color: #a855f7;">${paymentLink}</a></p>
 </body>
 </html>`;
 

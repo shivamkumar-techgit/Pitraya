@@ -213,25 +213,17 @@ export default function BookingWizard({
 
           {/* Action Buttons */}
           <div className="grid grid-cols-1 gap-3 pt-2 sm:grid-cols-2">
-            <button
-              onClick={() => {
-                initiatePayUCheckout({
-                  reservationId: resId,
-                  amount: session.pricing.grandTotal,
-                  customerName: session.customer.name || "Devotee",
-                  customerEmail:
-                    session.customer.email || "devotee@pitraya.com",
-                  customerPhone: session.customer.phone || "9999999999",
-                  packageTitle: session.package.title,
-                });
-              }}
+            <a
+              href="https://u.payu.in/MIvnJ8tUOvLJ"
+              target="_blank"
+              rel="noopener noreferrer"
               className="col-span-1 flex transform cursor-pointer items-center justify-center gap-2 rounded-xl bg-gold-primary px-6 py-3.5 text-sm font-black text-black shadow-gold-glow transition-all hover:-translate-y-0.5 hover:opacity-90 sm:col-span-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold-primary"
             >
               <CreditCard className="h-5 w-5" />
               <span>
                 Pay Securely Online via PayU (UPI / Cards / NetBanking) →
               </span>
-            </button>
+            </a>
 
             <button
               onClick={() => {

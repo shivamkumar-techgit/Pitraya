@@ -47,7 +47,7 @@ export default function ContactSection({
 
     // Asynchronous background fire-and-forget email dispatch
     try {
-      fetch("https://formsubmit.co/ajax/shkshvm@gmail.com", {
+      fetch("https://formsubmit.co/ajax/pitrayaenquiry@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -99,8 +99,8 @@ export default function ContactSection({
                 </span>
                 <div>
                   <span className="text-xs font-semibold text-text-muted block">Concierge Email</span>
-                  <a href="mailto:shkshvm@gmail.com" className="text-sm font-medium text-text-primary hover:text-gold-primary transition-colors">
-                    shkshvm@gmail.com
+                  <a href="mailto:pitrayaenquiry@gmail.com" className="text-sm font-medium text-text-primary hover:text-gold-primary transition-colors">
+                    pitrayaenquiry@gmail.com
                   </a>
                 </div>
               </div>
@@ -153,16 +153,16 @@ export default function ContactSection({
                     Request & Email Sent!
                   </Heading>
                   <Paragraph size="sm" variant="muted" className="max-w-sm mx-auto">
-                    Your details have been transmitted to <span className="text-gold-primary font-semibold">shkshvm@gmail.com</span>. Our lineage coordinator will trace your records and reach out within 24 hours.
+                    Your details have been transmitted to <span className="text-gold-primary font-semibold">pitrayaenquiry@gmail.com</span>. Our lineage coordinator will trace your records and reach out within 24 hours.
                   </Paragraph>
                   <a
-                    href={`mailto:shkshvm@gmail.com?subject=Gaya Pilgrimage Inquiry - ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}%0APhone: ${encodeURIComponent(formData.phone)}%0ARitual: ${encodeURIComponent(formData.ritualType)}%0AMessage: ${encodeURIComponent(formData.message)}`}
+                    href={`mailto:pitrayaenquiry@gmail.com?subject=Gaya Pilgrimage Inquiry - ${encodeURIComponent(formData.name)}&body=Name: ${encodeURIComponent(formData.name)}%0AEmail: ${encodeURIComponent(formData.email)}%0APhone: ${encodeURIComponent(formData.phone)}%0ARitual: ${encodeURIComponent(formData.ritualType)}%0AMessage: ${encodeURIComponent(formData.message)}`}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 mt-4 px-6 py-2.5 rounded-full border border-gold-primary/40 bg-gold-primary/10 text-gold-primary text-xs font-bold hover:bg-gold-primary hover:text-black transition-all"
                   >
                     <Mail className="h-4 w-4" />
-                    <span>Send Direct Email to shkshvm@gmail.com</span>
+                    <span>Send Direct Email to pitrayaenquiry@gmail.com</span>
                   </a>
                 </motion.div>
               ) : (

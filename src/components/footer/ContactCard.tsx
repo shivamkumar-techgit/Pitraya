@@ -7,7 +7,7 @@ export interface ContactCardProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 export default function ContactCard({
-  email = "shkshvm@gmail.com",
+  email = "pitrayaenquiry@gmail.com",
   phone = "+91 84344 57228",
   className,
   ...props

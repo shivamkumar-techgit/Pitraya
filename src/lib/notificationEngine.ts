@@ -44,7 +44,7 @@ export async function sendCentralNotification(
   payload: NotificationPayload
 ): Promise<NotificationResult> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
-  const pitrayaAdminEmail = process.env.ADMIN_EMAIL || "pitrayarituals@gmail.com";
+  const pitrayaAdminEmail = process.env.ADMIN_EMAIL || "pitrayaenquiry@gmail.com";
 
   const {
     bookingId,

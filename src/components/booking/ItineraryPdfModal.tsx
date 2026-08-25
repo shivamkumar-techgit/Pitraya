@@ -668,7 +668,7 @@ export default function ItineraryPdfModal({
                   Pitraya Concierge Sanctuary
                 </p>
                 <p className="text-[11px] font-serif" style={{ color: "#a1a1aa" }}>
-                  24/7 Devotee Escort Desk: +91 84344 57228 • support@pitraya.com
+                  24/7 Devotee Escort Desk: +91 84344 57228 • pitrayaenquiry@gmail.com
                 </p>
               </div>
 

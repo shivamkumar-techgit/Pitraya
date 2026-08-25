@@ -190,13 +190,17 @@ export async function sendCentralNotification(
 </html>`;
 
       waMsg =
-        `Namaste ${customerName} Ji 🙏\n\n` +
-        `Thank you for choosing Pitraya for your family's Gaya Pinda Daan pilgrimage.\n\n` +
-        `📍 *Reservation ID*: ${reservationId}\n` +
-        `✨ *Experience*: ${packageTitle}\n` +
-        `📅 *Arrival*: ${arrivalDate}\n` +
-        `💰 *Total*: ₹${grandTotal.toLocaleString("en-IN")}\n\n` +
-        `Our Senior Pilgrimage Coordinator will contact you within 15 minutes.`;
+        `Namaste ${customerName},\n\n` +
+        `Your PITRAYA reservation has been received.\n\n` +
+        `Reservation:\n` +
+        `${reservationId}\n\n` +
+        `Experience:\n` +
+        `${packageTitle}\n\n` +
+        `Amount:\n` +
+        `₹${grandTotal.toLocaleString("en-IN")}\n\n` +
+        `Our pilgrimage coordinator will contact you shortly.\n\n` +
+        `PITRAYA\n` +
+        `Ancestral Rituals · Gaya`;
 
       adminTitle = "📥 NEW LEAD CREATED";
       adminMsg = `New Lead ${reservationId} created by ${customerName} (${customerPhone}).`;

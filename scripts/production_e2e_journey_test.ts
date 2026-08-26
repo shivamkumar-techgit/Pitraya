@@ -43,7 +43,6 @@ async function runCompleteProductionJourneyTest() {
     if (!pkg) {
       pkg = await prisma.package.create({
         data: {
-          slug: `moksha-sanctum-${timestamp}`,
           title: packageTitle,
           duration: "3 Days / 2 Nights",
           startingPrice: grandTotal,

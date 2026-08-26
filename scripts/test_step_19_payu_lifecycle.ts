@@ -34,7 +34,6 @@ async function runStep19PayULifecycleTest() {
     if (!pkg) {
       pkg = await prisma.package.create({
         data: {
-          slug: `heritage-package-${testSuffix}`,
           title: "Heritage Experience",
           duration: "3 Days / 2 Nights",
           startingPrice: 24999,

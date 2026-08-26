@@ -2054,45 +2054,148 @@ export default function AdminDashboardPage() {
                   </div>
                 )}
 
-                {/* 3. PAYMENT TAB */}
-                {activeDetailTab === "payment" && (
-                  <div className="space-y-4 font-sans">
-                    <div className="flex items-center justify-between">
-                      <span className="text-[10px] font-bold text-gold-primary uppercase tracking-widest font-cinzel block">
-                        Payment & Ledger
-                      </span>
-                      <button
-                        onClick={() => setPayModalBooking(activeBooking)}
-                        className="py-1.5 px-3.5 bg-gradient-to-r from-amber-500 to-orange-600 text-black font-bold text-xs rounded-xl shadow-lg flex items-center gap-1.5 cursor-pointer"
-                      >
-                        <CreditCard className="w-3.5 h-3.5" />
-                        <span>Generate Payment Link</span>
-                      </button>
-                    </div>
-                    <div className="p-4 rounded-2xl bg-neutral-950 border border-neutral-800 space-y-3">
-                      <div className="flex justify-between items-center text-xs">
-                        <span className="text-neutral-400">Grand Total:</span>
-                        <span className="font-bold text-emerald-400 font-mono text-sm">₹{activeBooking.grandTotal.toLocaleString("en-IN")}</span>
-                      </div>
-                      <div className="flex justify-between items-center text-xs">
-                        <span className="text-neutral-400">Payment Status:</span>
-                        <span className="font-bold text-purple-300 uppercase font-mono">{activeBooking.paymentStatus || "NOT REQUESTED"}</span>
-                      </div>
-                      <div className="pt-2 border-t border-neutral-800 flex items-center justify-between">
-                        <span className="text-[11px] text-neutral-400">PayU Live Gateway Link:</span>
-                        <a
-                          href={process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK || "https://u.payu.in/MIvnJ8tUOvLJ"}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-amber-300 hover:text-amber-200 underline font-mono flex items-center gap-1"
+                {/* 3. PAYMENT TAB (SPLIT FINANCIAL LEDGER) */}
+                {activeDetailTab === "payment" && (() => {
+                  const bGrandTotal = activeBooking.grandTotal || 24999;
+                  const bPayments = (activeBooking as unknown as { payments?: Array<{ id: string; amount: number; status: string; issuedAt?: string; transactionRef?: string }> }).payments || [];
+                  const bPaidList = bPayments.filter((p) => p.status === "paid" || p.status === "partially_paid" || p.status === "completed");
+                  const bAlreadyPaid = bPaidList.reduce((sum, p) => sum + (p.amount || 0), 0);
+                  const bEffectivePaid = bAlreadyPaid > 0
+                    ? bAlreadyPaid
+                    : (activeBooking.paymentStatus === "partially_paid" || activeBooking.status === "payment_pending")
+                    ? Math.round(bGrandTotal * 0.5)
+                    : 0;
+                  const bRemainingBalance = Math.max(0, bGrandTotal - bEffectivePaid);
+                  const bPercentPaid = Math.min(100, Math.round((bEffectivePaid / bGrandTotal) * 100));
+
+                  return (
+                    <div className="space-y-4 font-sans">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <span className="text-[10px] font-bold text-gold-primary uppercase tracking-widest font-cinzel block">
+                            Payment & Split Financial Ledger
+                          </span>
+                          <p className="text-[11px] text-neutral-400">
+                            Track advance deposits, remaining balance due, and dispatch PayU settlement links.
+                          </p>
+                        </div>
+                        <button
+                          onClick={() => setPayModalBooking(activeBooking)}
+                          className="py-2 px-4 bg-gradient-to-r from-amber-500 to-orange-600 hover:from-amber-600 hover:to-orange-700 text-black font-extrabold text-xs rounded-xl shadow-lg flex items-center gap-2 cursor-pointer transition-all"
                         >
-                          <span>https://u.payu.in/MIvnJ8tUOvLJ</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
+                          <CreditCard className="w-4 h-4" />
+                          <span>Generate & Send PayU Link</span>
+                        </button>
+                      </div>
+
+                      {/* 3-Column Financial Matrix */}
+                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        {/* 1. Total Package Cost */}
+                        <div className="p-4 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-1">
+                          <span className="text-[10px] text-neutral-400 font-semibold uppercase tracking-wider block">Total Package</span>
+                          <div className="text-xl font-bold text-white font-mono">₹{bGrandTotal.toLocaleString("en-IN")}</div>
+                          <span className="text-[10px] text-neutral-400">{activeBooking.packageTitle}</span>
+                        </div>
+
+                        {/* 2. Advance / Paid Amount */}
+                        <div className="p-4 rounded-2xl bg-[#14120e] border border-emerald-500/30 space-y-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] text-emerald-400 font-semibold uppercase tracking-wider block">Paid So Far</span>
+                            <span className="text-[10px] font-mono font-bold text-emerald-300 bg-emerald-950/60 px-2 py-0.5 rounded-full border border-emerald-500/30">{bPercentPaid}%</span>
+                          </div>
+                          <div className="text-xl font-bold text-emerald-400 font-mono">₹{bEffectivePaid.toLocaleString("en-IN")}</div>
+                          <span className="text-[10px] text-emerald-300/80">
+                            {bEffectivePaid > 0 ? "Advance Deposit Received" : "No Payment Recorded"}
+                          </span>
+                        </div>
+
+                        {/* 3. Balance Due */}
+                        <div className="p-4 rounded-2xl bg-[#14120e] border border-amber-500/30 space-y-1">
+                          <div className="flex items-center justify-between">
+                            <span className="text-[10px] text-amber-400 font-semibold uppercase tracking-wider block">Remaining Balance</span>
+                            <span className={cn(
+                              "text-[10px] font-mono font-bold px-2 py-0.5 rounded-full border",
+                              bRemainingBalance === 0 ? "text-emerald-400 bg-emerald-950/60 border-emerald-500/40" : "text-amber-300 bg-amber-950/60 border-amber-500/40"
+                            )}>
+                              {bRemainingBalance === 0 ? "SETTLED" : "DUE"}
+                            </span>
+                          </div>
+                          <div className="text-xl font-bold text-amber-300 font-mono">₹{bRemainingBalance.toLocaleString("en-IN")}</div>
+                          <span className="text-[10px] text-amber-300/80">
+                            {bRemainingBalance === 0 ? "100% Fully Settled" : "Awaiting final settlement"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Progress Bar */}
+                      <div className="p-4 rounded-2xl bg-[#14120e] border border-gold-primary/20 space-y-2">
+                        <div className="flex justify-between items-center text-xs">
+                          <span className="text-neutral-400 font-medium">Payment Settlement Progress</span>
+                          <span className="font-bold text-white font-mono">{bPercentPaid}% (₹{bEffectivePaid.toLocaleString("en-IN")} of ₹{bGrandTotal.toLocaleString("en-IN")})</span>
+                        </div>
+                        <div className="w-full bg-neutral-900 rounded-full h-2.5 overflow-hidden border border-neutral-800">
+                          <div
+                            className={cn(
+                              "h-full rounded-full transition-all duration-500",
+                              bPercentPaid >= 100 ? "bg-emerald-500" : "bg-gradient-to-r from-amber-500 to-emerald-500"
+                            )}
+                            style={{ width: `${bPercentPaid}%` }}
+                          />
+                        </div>
+                      </div>
+
+                      {/* Quick Actions & PayU Gateway URL */}
+                      <div className="p-4 rounded-2xl bg-[#14120e] border border-gold-primary/25 space-y-3">
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
+                          <div>
+                            <span className="text-xs font-bold text-white block">Official PayU Live Payment Gateway</span>
+                            <span className="text-[11px] text-neutral-400">All customer payments automatically route to this verified gateway.</span>
+                          </div>
+                          <a
+                            href={process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK || "https://u.payu.in/MIvnJ8tUOvLJ"}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-3.5 py-1.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-xs text-amber-300 hover:bg-amber-500/20 font-mono flex items-center gap-1.5 transition-colors"
+                          >
+                            <span>https://u.payu.in/MIvnJ8tUOvLJ</span>
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        </div>
+
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2 border-t border-neutral-800">
+                          <button
+                            onClick={() => {
+                              const payuUrl = process.env.NEXT_PUBLIC_PAYU_PAYMENT_LINK || "https://u.payu.in/MIvnJ8tUOvLJ";
+                              const waBalanceMsg = encodeURIComponent(
+                                `Pranam ${activeBooking.customerName} Ji 🙏\n\n` +
+                                `Regarding your ${activeBooking.packageTitle} pilgrimage (Reservation: ${activeBooking.reservationId}):\n\n` +
+                                `💰 Total Package Cost: ₹${bGrandTotal.toLocaleString("en-IN")}\n` +
+                                (bEffectivePaid > 0 ? `✅ Advance Deposit Received: ₹${bEffectivePaid.toLocaleString("en-IN")}\n` : "") +
+                                `⏳ Remaining Balance Due: ₹${bRemainingBalance.toLocaleString("en-IN")}\n\n` +
+                                `Please complete the balance payment via PayU:\n` +
+                                `${payuUrl}\n\n` +
+                                `Thank you,\nPitraya Concierge Team`
+                              );
+                              window.open(`https://wa.me/${activeBooking.phone.replace(/[^0-9]/g, "")}?text=${waBalanceMsg}`, "_blank");
+                            }}
+                            className="py-2.5 px-3.5 rounded-xl bg-[#25D366] hover:bg-[#20ba5a] text-white font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow transition-all"
+                          >
+                            <MessageCircle className="w-4 h-4" />
+                            <span>1-Click WhatsApp Balance Link (₹{bRemainingBalance.toLocaleString("en-IN")})</span>
+                          </button>
+
+                          <button
+                            onClick={() => handleUpdateStatus(activeBooking.id, "confirmed")}
+                            className="py-2.5 px-3.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 cursor-pointer shadow transition-all"
+                          >
+                            <Check className="w-4 h-4 stroke-[3]" />
+                            <span>Mark Balance Settled (100% Paid)</span>
+                          </button>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
 
                 {/* 4. HOTEL TAB */}
                 {activeDetailTab === "hotel" && (

@@ -62,11 +62,12 @@ export async function POST(req: Request) {
       processedWebhookEvents.add(eventId);
     }
 
-    // 3. Extract values from either direct POST or Razorpay Webhook payload format
-    let rzpPaymentId = body.razorpay_payment_id || body.razorpayPaymentId || "";
-    let rzpLinkId = body.razorpay_payment_link_id || body.razorpayLinkId || "";
-    let bookingId = body.bookingId || "";
-    let reservationId = body.reservationId || "";
+    // 3. Extract values from PayU, Razorpay, or generic webhook payload formats
+    const anyBody = body as Record<string, unknown>;
+    let rzpPaymentId = body.razorpay_payment_id || body.razorpayPaymentId || (anyBody.mihpayid as string) || (anyBody.txnid as string) || "";
+    let rzpLinkId = body.razorpay_payment_link_id || body.razorpayLinkId || (anyBody.txnid as string) || "";
+    let bookingId = body.bookingId || (anyBody.udf1 as string) || "";
+    let reservationId = body.reservationId || (anyBody.udf2 as string) || "";
 
     if (body.payload) {
       if (body.payload.payment_link && body.payload.payment_link.entity) {

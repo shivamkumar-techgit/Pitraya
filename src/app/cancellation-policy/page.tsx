@@ -56,10 +56,10 @@ export default function CancellationPolicyPage() {
           <p>
             Cancellations must be communicated in writing via email to{" "}
             <a
-              href="mailto:support@pitraya.com"
+              href="mailto:pitrayaenquiry@gmail.com"
               className="text-gold-primary hover:underline"
             >
-              support@pitraya.com
+              pitrayaenquiry@gmail.com
             </a>
             . The date and time of the email receipt will determine the
             cancellation window.
@@ -153,10 +153,10 @@ export default function CancellationPolicyPage() {
             To initiate a cancellation or request a date change, please email us
             immediately with your Booking ID at{" "}
             <a
-              href="mailto:support@pitraya.com"
+              href="mailto:pitrayaenquiry@gmail.com"
               className="text-gold-primary hover:underline"
             >
-              support@pitraya.com
+              pitrayaenquiry@gmail.com
             </a>
             .
           </p>

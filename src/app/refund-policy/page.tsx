@@ -122,12 +122,12 @@ export default function RefundPolicyPage() {
             For any queries regarding your refund status, please reach out to
             our support team at{" "}
             <a
-              href="mailto:support@pitraya.com"
+              href="mailto:pitrayaenquiry@gmail.com"
               className="text-gold-primary hover:underline"
             >
-              support@pitraya.com
+              pitrayaenquiry@gmail.com
             </a>{" "}
-            or call us at +91 99999 99999.
+            or call us at +91 84344 57228.
           </p>
         </div>
       </div>

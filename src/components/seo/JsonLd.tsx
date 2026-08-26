@@ -26,7 +26,7 @@ export function generateOrganizationSchema() {
     logo: `${baseUrl}/logo.png`,
     description:
       "Authentic Gaya Pind Daan and Vedic Pilgrimage Services Provider.",
-    email: "shkshvm@gmail.com",
+    email: "pitrayaenquiry@gmail.com",
     telephone: "+91-84344-57228",
     address: {
       "@type": "PostalAddress",

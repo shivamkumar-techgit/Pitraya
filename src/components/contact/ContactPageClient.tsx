@@ -55,9 +55,9 @@ const CONTACT_CHANNELS = [
   {
     icon: Mail,
     label: "Email",
-    value: "shkshvm@gmail.com",
+    value: "pitrayaenquiry@gmail.com",
     subValue: "Reply within 4 hours",
-    href: "mailto:shkshvm@gmail.com",
+    href: "mailto:pitrayaenquiry@gmail.com",
     color: "from-gold-primary/20 to-gold-primary/5",
     border: "border-gold-primary/30",
     iconColor: "text-gold-primary",
@@ -97,7 +97,7 @@ const QUICK_LINKS = [
 /* Real WhatsApp number & email (from footer ContactCard) */
 const WA_NUMBER = "918434457228";
 const WA_MSG = "Namaste%20Pitraya%20Team";
-const REAL_EMAIL = "shkshvm@gmail.com";
+const REAL_EMAIL = "pitrayaenquiry@gmail.com";
 const REAL_PHONE = "+91 84344 57228";
 const REAL_PHONE_TEL = "+918434457228";
 

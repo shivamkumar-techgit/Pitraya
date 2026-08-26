@@ -31,7 +31,7 @@ export default function ContactForm({ className, ...props }: ContactFormProps) {
     setSubmitted(true);
 
     try {
-      fetch("https://formsubmit.co/ajax/shkshvm@gmail.com", {
+      fetch("https://formsubmit.co/ajax/pitrayaenquiry@gmail.com", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -66,7 +66,7 @@ export default function ContactForm({ className, ...props }: ContactFormProps) {
         >
           <CheckCircle2 className="h-14 w-14 text-success mx-auto animate-bounce" />
           <Heading size="md" font="cinzel" className="text-gold-primary">
-            Request Transmitted to shkshvm@gmail.com
+            Request Transmitted to pitrayaenquiry@gmail.com
           </Heading>
           <Paragraph size="sm" variant="muted" className="max-w-xs mx-auto font-serif">
             A lineage purohit coordinator will reach out to you within 24 hours.

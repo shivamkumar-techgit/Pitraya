@@ -86,6 +86,7 @@ export default function MegaMenu({ isOpen, className, ...props }: MegaMenuProps)
               </div>
               <ul className="space-y-3 text-sm">
                 {[
+                  { label: "Online Pind Daan",      sub: "Perform rites in Gaya from anywhere", href: "/online-pind-daan" },
                   { label: "Ancestral Pinda Daan",  sub: "Complete single-day rites package",   href: "/#services" },
                   { label: "Pitru Paksha Shradh",   sub: "16-day ancestral remembrance rites",  href: "/#services" },
                   { label: "Karma Cleansing",        sub: "Sound baths & reset ceremonies",      href: "/#services" },

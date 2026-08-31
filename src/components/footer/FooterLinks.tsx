@@ -15,6 +15,7 @@ const defaultColumns: FooterLinksColumn[] = [
   {
     title: "Sacred Experiences",
     links: [
+      { label: "Online Pind Daan (Remote)", href: "/online-pind-daan" },
       { label: "Pinda Daan Oblation", href: "/#services" },
       { label: "Packages & Tiers", href: "/packages" },
       { label: "Pilgrimage from Your City", href: "/pind-daan-from" },

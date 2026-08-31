@@ -524,21 +524,37 @@ export default function PackagesPage() {
                     </div>
 
                     <div className="border-border-gold/15 space-y-2 border-t pt-2">
-                      <button
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          handleOpenBooking(pkg.id);
-                        }}
-                        className={cn(
-                          "font-cinzel flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold shadow-md transition-all",
-                          isSelected
-                            ? "bg-gold-gradient text-black hover:opacity-95"
-                            : "bg-surface border-gold-primary/40 text-gold-primary hover:bg-gold-primary/10 border"
-                        )}
-                      >
-                        <span>Book Now</span>
-                        <ArrowRight className="h-3.5 w-3.5" />
-                      </button>
+                       {pkg.id === "online-pind-daan" ? (
+                         <Link
+                           href="/online-pind-daan"
+                           onClick={(e) => e.stopPropagation()}
+                           className={cn(
+                             "font-cinzel flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold shadow-md transition-all",
+                             isSelected
+                               ? "bg-gold-gradient text-black hover:opacity-95"
+                               : "bg-surface border-gold-primary/40 text-gold-primary hover:bg-gold-primary/10 border"
+                           )}
+                         >
+                           <span>Learn More</span>
+                           <ArrowRight className="h-3.5 w-3.5" />
+                         </Link>
+                       ) : (
+                         <button
+                           onClick={(e) => {
+                             e.stopPropagation();
+                             handleOpenBooking(pkg.id);
+                           }}
+                           className={cn(
+                             "font-cinzel flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold shadow-md transition-all",
+                             isSelected
+                               ? "bg-gold-gradient text-black hover:opacity-95"
+                               : "bg-surface border-gold-primary/40 text-gold-primary hover:bg-gold-primary/10 border"
+                           )}
+                         >
+                           <span>Book Now</span>
+                           <ArrowRight className="h-3.5 w-3.5" />
+                         </button>
+                       )}
 
                       {isSelected && (
                         <span className="block text-center text-[10px] font-bold tracking-widest text-emerald-600 uppercase">
@@ -695,14 +711,6 @@ export default function PackagesPage() {
                 </span>
               </h2>
             </div>
-
-            <PrimaryButton
-              size="lg"
-              onClick={() => handleOpenBooking(selectedPkg.id)}
-              className="font-cinzel shadow-gold-glow px-8 py-3.5 text-xs font-bold"
-            >
-              Book {selectedPkg.title} Now →
-            </PrimaryButton>
           </div>
 
           {/* Single Dynamic Detailed Grid */}
@@ -824,13 +832,23 @@ export default function PackagesPage() {
                 </div>
 
                 <div className="border-border-gold/20 space-y-3 border-t pt-4">
-                  <PrimaryButton
-                    size="lg"
-                    onClick={() => handleOpenBooking(selectedPkg.id)}
-                    className="font-cinzel shadow-gold-glow w-full py-4 text-xs font-bold"
-                  >
-                    Reserve {selectedPkg.title} ({selectedPkg.price}) →
-                  </PrimaryButton>
+                  {selectedPkg.id === "online-pind-daan" ? (
+                     <Link
+                       href="/online-pind-daan"
+                       className="font-cinzel inline-flex w-full items-center justify-center gap-2 shadow-gold-glow py-4 text-xs font-bold rounded-xl text-black transition-all hover:opacity-90"
+                       style={{ background: "linear-gradient(135deg,#d4af37,#f5e19c 50%,#b8860b)" }}
+                     >
+                       View Full Online Pind Daan Page →
+                     </Link>
+                   ) : (
+                     <PrimaryButton
+                       size="lg"
+                       onClick={() => handleOpenBooking(selectedPkg.id)}
+                       className="font-cinzel shadow-gold-glow w-full py-4 text-xs font-bold"
+                     >
+                       Reserve {selectedPkg.title} ({selectedPkg.price}) →
+                     </PrimaryButton>
+                   )}
 
                   <p className="text-text-muted text-center text-[10px]">
                     ✓ Zero cancellation fee up to 48 hours before arrival.

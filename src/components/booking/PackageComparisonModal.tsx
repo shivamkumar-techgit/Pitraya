@@ -18,8 +18,8 @@ const comparisonFeatures = [
   {
     feature: "Starting Price",
     sacred: "₹5,100",
-    heritage: "Starting from ₹24,999",
-    moksha: "Starting from ₹49,999",
+    heritage: "Starting from ₹19,999",
+    moksha: "Starting from ₹35,101",
     royal: "Starting from ₹89,999",
     legacy: "Starting from ₹1,50,000",
   },
@@ -99,38 +99,38 @@ export default function PackageComparisonModal({
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-black/80 backdrop-blur-md">
+      <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto bg-black/80 p-4 backdrop-blur-md sm:p-6">
         <motion.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.95, y: 20 }}
-          className="relative w-full max-w-6xl rounded-2xl bg-surface border border-gold-primary/30 p-6 sm:p-8 shadow-xl overflow-hidden max-h-[90vh] flex flex-col"
+          className="bg-surface border-gold-primary/30 relative flex max-h-[90vh] w-full max-w-6xl flex-col overflow-hidden rounded-2xl border p-6 shadow-xl sm:p-8"
         >
           {/* Header */}
-          <div className="flex items-center justify-between border-b border-border-gold/20 pb-4 mb-6">
+          <div className="border-border-gold/20 mb-6 flex items-center justify-between border-b pb-4">
             <div>
-              <span className="text-xs font-bold text-gold-primary uppercase tracking-widest font-cinzel">
+              <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                 Sacred Tier Matrix
               </span>
-              <h2 className="text-2xl font-bold font-cinzel text-white flex items-center gap-2">
+              <h2 className="font-cinzel flex items-center gap-2 text-2xl font-bold text-white">
                 Compare Pilgrimage Experiences
-                <Sparkles className="h-5 w-5 text-gold-primary" />
+                <Sparkles className="text-gold-primary h-5 w-5" />
               </h2>
             </div>
             <button
               onClick={onClose}
-              className="rounded-full p-2 text-text-muted hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+              className="text-text-muted cursor-pointer rounded-full p-2 transition-colors hover:bg-white/10 hover:text-white"
             >
               <X className="h-6 w-6" />
             </button>
           </div>
 
           {/* Table Container */}
-          <div className="overflow-x-auto flex-1 rounded-2xl border border-border-gold/15 bg-black/40">
-            <table className="w-full text-left text-xs border-collapse min-w-[700px]">
+          <div className="border-border-gold/15 flex-1 overflow-x-auto rounded-2xl border bg-black/40">
+            <table className="w-full min-w-[700px] border-collapse text-left text-xs">
               <thead>
-                <tr className="border-b border-border-gold/20 bg-surface/80">
-                  <th className="p-4 font-bold text-text-muted uppercase tracking-wider font-cinzel w-1/6">
+                <tr className="border-border-gold/20 bg-surface/80 border-b">
+                  <th className="text-text-muted font-cinzel w-1/6 p-4 font-bold tracking-wider uppercase">
                     Feature
                   </th>
                   {PACKAGE_TIERS_DATA.map((pkg) => {
@@ -139,15 +139,15 @@ export default function PackageComparisonModal({
                       <th
                         key={pkg.id}
                         className={cn(
-                          "p-4 text-center border-l border-border-gold/15 transition-colors",
+                          "border-border-gold/15 border-l p-4 text-center transition-colors",
                           isSelected ? "bg-gold-primary/10" : ""
                         )}
                       >
                         <div className="space-y-1">
-                          <span className="text-[10px] font-bold text-gold-primary uppercase tracking-widest block font-cinzel">
+                          <span className="text-gold-primary font-cinzel block text-[10px] font-bold tracking-widest uppercase">
                             {pkg.tierName}
                           </span>
-                          <p className="font-bold text-white text-sm font-cinzel">
+                          <p className="font-cinzel text-sm font-bold text-white">
                             {pkg.title}
                           </p>
                           <p className="text-gold-primary font-bold">
@@ -160,10 +160,10 @@ export default function PackageComparisonModal({
                                 onClose();
                               }}
                               className={cn(
-                                "w-full py-1.5 px-3 rounded-xl text-[11px] font-bold transition-all cursor-pointer border",
+                                "w-full cursor-pointer rounded-xl border px-3 py-1.5 text-[11px] font-bold transition-all",
                                 isSelected
-                                  ? "bg-gold-gradient text-black border-gold-primary shadow-gold-glow"
-                                  : "bg-surface/50 text-white border-border hover:border-gold-primary/50"
+                                  ? "bg-gold-gradient border-gold-primary shadow-gold-glow text-black"
+                                  : "bg-surface/50 border-border hover:border-gold-primary/50 text-white"
                               )}
                             >
                               {isSelected ? "Selected" : "Select"}
@@ -175,30 +175,39 @@ export default function PackageComparisonModal({
                   })}
                 </tr>
               </thead>
-              <tbody className="divide-y divide-border-gold/10">
+              <tbody className="divide-border-gold/10 divide-y">
                 {comparisonFeatures.map((row, idx) => (
-                  <tr key={idx} className="hover:bg-white/[0.02] transition-colors">
-                    <td className="p-4 font-medium text-white font-serif border-r border-border-gold/15 bg-black/20">
+                  <tr
+                    key={idx}
+                    className="transition-colors hover:bg-white/[0.02]"
+                  >
+                    <td className="border-border-gold/15 border-r bg-black/20 p-4 font-serif font-medium text-white">
                       {row.feature}
                     </td>
-                    {[row.sacred, row.heritage, row.moksha, row.royal, row.legacy].map(
-                      (val, cellIdx) => (
-                        <td
-                          key={cellIdx}
-                          className="p-4 text-center text-text-secondary border-r border-border-gold/10 last:border-r-0"
-                        >
-                          {val === false ? (
-                            <span className="inline-flex items-center text-text-muted/50 font-sans text-xs">
-                              <Minus className="h-4 w-4" /> Not Included
-                            </span>
-                          ) : typeof val === "string" && val.startsWith("✅") ? (
-                            <span className="text-emerald-400 font-semibold">{val}</span>
-                          ) : (
-                            <span className="text-white font-medium">{val}</span>
-                          )}
-                        </td>
-                      )
-                    )}
+                    {[
+                      row.sacred,
+                      row.heritage,
+                      row.moksha,
+                      row.royal,
+                      row.legacy,
+                    ].map((val, cellIdx) => (
+                      <td
+                        key={cellIdx}
+                        className="text-text-secondary border-border-gold/10 border-r p-4 text-center last:border-r-0"
+                      >
+                        {val === false ? (
+                          <span className="text-text-muted/50 inline-flex items-center font-sans text-xs">
+                            <Minus className="h-4 w-4" /> Not Included
+                          </span>
+                        ) : typeof val === "string" && val.startsWith("✅") ? (
+                          <span className="font-semibold text-emerald-400">
+                            {val}
+                          </span>
+                        ) : (
+                          <span className="font-medium text-white">{val}</span>
+                        )}
+                      </td>
+                    ))}
                   </tr>
                 ))}
               </tbody>
@@ -206,11 +215,14 @@ export default function PackageComparisonModal({
           </div>
 
           {/* Footer note */}
-          <div className="pt-4 text-center text-xs text-text-muted flex items-center justify-between">
-            <span>All tiers include 100% transparent Gayawal Purohit Dakshina with zero hidden costs.</span>
+          <div className="text-text-muted flex items-center justify-between pt-4 text-center text-xs">
+            <span>
+              All tiers include 100% transparent Gayawal Purohit Dakshina with
+              zero hidden costs.
+            </span>
             <button
               onClick={onClose}
-              className="text-gold-primary font-bold hover:underline cursor-pointer flex items-center gap-1"
+              className="text-gold-primary flex cursor-pointer items-center gap-1 font-bold hover:underline"
             >
               Close Comparison <ArrowRight className="h-3.5 w-3.5" />
             </button>

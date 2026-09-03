@@ -33,8 +33,8 @@ const PACKAGES = [
     id: "essential",
     name: "Essential",
     badge: "Simple & Sacred",
-    price: "₹11,000",
-    numericPrice: 11000,
+    price: "₹5,100",
+    numericPrice: 5100,
     desc: "A single, revered ancestral ritual with verified Gayawal Purohit at Vishnupad.",
     features: [
       "Pandit coordination at Vishnupad",
@@ -48,8 +48,8 @@ const PACKAGES = [
     id: "complete",
     name: "Complete",
     badge: "Most Selected",
-    price: "₹21,000",
-    numericPrice: 21000,
+    price: "₹5,100",
+    numericPrice: 5100,
     isPopular: true,
     desc: "Multi-site coordination covering Vishnupad & Phalgu River with dedicated video updates.",
     features: [
@@ -64,8 +64,8 @@ const PACKAGES = [
     id: "family",
     name: "Family Lineage",
     badge: "Multiple Ancestors",
-    price: "₹31,000",
-    numericPrice: 31000,
+    price: "₹5,100",
+    numericPrice: 5100,
     desc: "Extended rites for multiple ancestral generations across all three Gaya sanctums.",
     features: [
       "Everything in Complete",

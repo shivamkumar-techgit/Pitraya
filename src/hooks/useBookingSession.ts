@@ -118,7 +118,7 @@ export const PACKAGE_TIERS_DATA = [
     title: "Heritage Pilgrimage",
     subtitle:
       "Comfortable guided 2-day pilgrimage with 3-star hotel stay and private transfers",
-    startingPrice: 24999,
+    startingPrice: 19999,
     baseMembers: 4,
     extraFeePerPerson: 3500,
     duration: "2 Days / 1 Night",
@@ -130,6 +130,7 @@ export const PACKAGE_TIERS_DATA = [
       "AC Sedan Private Car",
       "Senior Gayawal Pandit",
       "Sattvik Breakfast & Dinner",
+      "🏛️ Temple Tax: Pitraya Paid for You",
     ],
   },
   {
@@ -138,7 +139,7 @@ export const PACKAGE_TIERS_DATA = [
     title: "Moksha Journey",
     subtitle:
       "Complete 3-vedi liberation journey with 4-star resort stay & Innova Crysta MPV",
-    startingPrice: 49999,
+    startingPrice: 35101,
     baseMembers: 6,
     extraFeePerPerson: 4500,
     duration: "3 Days / 2 Nights",
@@ -147,8 +148,8 @@ export const PACKAGE_TIERS_DATA = [
     includedSummary: [
       "4-Star Heritage Resort",
       "Innova Crysta MPV Transfer",
-      "VIP Sanctum Access",
       "All Sattvik Meals Included",
+      "🏛️ Temple Tax: Pitraya Paid for You",
     ],
   },
   {

@@ -160,8 +160,8 @@ const PACKAGES_5: PackageOffering[] = [
     badge: "Classic 2-Day Journey",
     badgeColor: "bg-gold-primary/20 text-gold-primary border-gold-primary/40",
     title: "Heritage Pilgrimage",
-    price: "₹24,999",
-    numericPrice: 24999,
+    price: "₹19,999",
+    numericPrice: 19999,
     duration: "2 Days / 1 Night",
     perfectFor:
       "Families seeking standard 3-star AC hotel & private sedan airport transfers.",
@@ -172,6 +172,7 @@ const PACKAGES_5: PackageOffering[] = [
       "Senior Gayawal Pandit",
       "Sattvik Breakfast & Dinner",
       "Full 3-Dhaam Ritual Coverage",
+      "🏛️ Temple Tax: Pitraya Paid for You",
     ],
     hotel: "3-Star Heritage Hotel",
     transport: "Private AC Sedan",
@@ -206,8 +207,8 @@ const PACKAGES_5: PackageOffering[] = [
     badgeColor:
       "bg-gradient-to-r from-gold-primary to-amber-400 text-black border-gold-primary font-black",
     title: "Moksha Experience",
-    price: "₹49,999",
-    numericPrice: 49999,
+    price: "₹35,101",
+    numericPrice: 35101,
     duration: "3 Days / 2 Nights",
     perfectFor:
       "Complete 3-Vedi ancestral liberation with 4-star resort stay & Innova MPV.",
@@ -216,10 +217,10 @@ const PACKAGES_5: PackageOffering[] = [
     summaryInclusions: [
       "4-Star Heritage Resort",
       "Innova Crysta MPV",
-      "VIP Sanctum Access",
       "All Sattvik Meals (B/L/D)",
       "Senior Acharya Escort",
       "HD Video Reel & Photos",
+      "🏛️ Temple Tax: Pitraya Paid for You",
     ],
     hotel: "4-Star Heritage Resort",
     transport: "Innova Crysta MPV",
@@ -240,7 +241,7 @@ const PACKAGES_5: PackageOffering[] = [
         day: "DAY 2",
         title: "Vishnupad & Akshay Vat 3-Vedi Rites",
         steps: [
-          "Vishnupad Sanctum VIP Darshan",
+          "Vishnupad Sanctum Puja & Darshan",
           "Akshay Vat Banyan Rites",
           "Special Ancestral Havan",
         ],
@@ -375,9 +376,17 @@ const MATRIX_8_ROWS = [
     feature: "Starting Investment",
     online: "₹3,100",
     ritual: "₹5,100",
-    heritage: "₹24,999",
-    moksha: "₹49,999",
+    heritage: "₹19,999",
+    moksha: "₹35,101",
     royal: "₹89,999",
+  },
+  {
+    feature: "Temple Tax",
+    online: "Pitraya Pays",
+    ritual: "Self-Pay",
+    heritage: "✅ Pitraya Pays",
+    moksha: "✅ Pitraya Pays",
+    royal: "✅ Pitraya Pays",
   },
 ];
 
@@ -405,7 +414,7 @@ export default function PackagesPage() {
       />
 
       {/* ─── SECTION 1: HERO (UNTOUCHED PRESERVED DESIGN) ────────────────────── */}
-      <Section className="text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-background pt-28 pb-20">
+      <Section className="text-text-primary border-border-gold/20 bg-background relative overflow-hidden border-b pt-28 pb-20">
         <SacredChakraBg
           size="min(750px, 90vw)"
           opacity={0.05}
@@ -428,7 +437,7 @@ export default function PackagesPage() {
           <Heading
             size="2xl"
             font="cinzel"
-            className="mx-auto max-w-4xl leading-tight text-text-primary sm:text-4xl md:text-5xl"
+            className="text-text-primary mx-auto max-w-4xl leading-tight sm:text-4xl md:text-5xl"
           >
             Transparent Sacred Packages for Every{" "}
             <GradientText variant="gold" font="cinzel">
@@ -449,7 +458,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 2: CHOOSE YOUR EXPERIENCE (5 CARDS GRID / MOBILE SWIPE) ──── */}
-      <Section className="border-border-gold/20 border-b bg-muted py-16">
+      <Section className="border-border-gold/20 bg-muted border-b py-16">
         <Container size="xl" className="space-y-10">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
@@ -524,37 +533,37 @@ export default function PackagesPage() {
                     </div>
 
                     <div className="border-border-gold/15 space-y-2 border-t pt-2">
-                       {pkg.id === "online-pind-daan" ? (
-                         <Link
-                           href="/online-pind-daan"
-                           onClick={(e) => e.stopPropagation()}
-                           className={cn(
-                             "font-cinzel flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold shadow-md transition-all",
-                             isSelected
-                               ? "bg-gold-gradient text-black hover:opacity-95"
-                               : "bg-surface border-gold-primary/40 text-gold-primary hover:bg-gold-primary/10 border"
-                           )}
-                         >
-                           <span>Learn More</span>
-                           <ArrowRight className="h-3.5 w-3.5" />
-                         </Link>
-                       ) : (
-                         <button
-                           onClick={(e) => {
-                             e.stopPropagation();
-                             handleOpenBooking(pkg.id);
-                           }}
-                           className={cn(
-                             "font-cinzel flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold shadow-md transition-all",
-                             isSelected
-                               ? "bg-gold-gradient text-black hover:opacity-95"
-                               : "bg-surface border-gold-primary/40 text-gold-primary hover:bg-gold-primary/10 border"
-                           )}
-                         >
-                           <span>Book Now</span>
-                           <ArrowRight className="h-3.5 w-3.5" />
-                         </button>
-                       )}
+                      {pkg.id === "online-pind-daan" ? (
+                        <Link
+                          href="/online-pind-daan"
+                          onClick={(e) => e.stopPropagation()}
+                          className={cn(
+                            "font-cinzel flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold shadow-md transition-all",
+                            isSelected
+                              ? "bg-gold-gradient text-black hover:opacity-95"
+                              : "bg-surface border-gold-primary/40 text-gold-primary hover:bg-gold-primary/10 border"
+                          )}
+                        >
+                          <span>Learn More</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </Link>
+                      ) : (
+                        <button
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleOpenBooking(pkg.id);
+                          }}
+                          className={cn(
+                            "font-cinzel flex w-full cursor-pointer items-center justify-center gap-1.5 rounded-xl px-3 py-2.5 text-xs font-bold shadow-md transition-all",
+                            isSelected
+                              ? "bg-gold-gradient text-black hover:opacity-95"
+                              : "bg-surface border-gold-primary/40 text-gold-primary hover:bg-gold-primary/10 border"
+                          )}
+                        >
+                          <span>Book Now</span>
+                          <ArrowRight className="h-3.5 w-3.5" />
+                        </button>
+                      )}
 
                       {isSelected && (
                         <span className="block text-center text-[10px] font-bold tracking-widest text-emerald-600 uppercase">
@@ -585,10 +594,10 @@ export default function PackagesPage() {
             </p>
           </div>
 
-          <div className="border-gold-primary/30 overflow-x-auto rounded-2xl border bg-surface shadow-md">
+          <div className="border-gold-primary/30 bg-surface overflow-x-auto rounded-2xl border shadow-md">
             <table className="w-full border-collapse text-left text-xs">
               <thead>
-                <tr className="border-gold-primary/30 bg-gold-primary/10 font-cinzel border-b tracking-wider text-text-primary uppercase">
+                <tr className="border-gold-primary/30 bg-gold-primary/10 font-cinzel text-text-primary border-b tracking-wider uppercase">
                   <th className="p-4 font-bold">Key Feature</th>
                   <th
                     className={cn(
@@ -639,15 +648,18 @@ export default function PackagesPage() {
               </thead>
               <tbody className="divide-border-gold/15 text-text-muted divide-y">
                 {MATRIX_8_ROWS.map((row, idx) => (
-                  <tr key={idx} className="transition-colors hover:bg-gold-primary/5">
-                    <td className="font-cinzel p-4 font-semibold text-text-primary">
+                  <tr
+                    key={idx}
+                    className="hover:bg-gold-primary/5 transition-colors"
+                  >
+                    <td className="font-cinzel text-text-primary p-4 font-semibold">
                       {row.feature}
                     </td>
                     <td
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "online-pind-daan" &&
-                          "bg-gold-primary/10 font-bold text-text-primary"
+                          "bg-gold-primary/10 text-text-primary font-bold"
                       )}
                     >
                       {row.online}
@@ -656,7 +668,7 @@ export default function PackagesPage() {
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "ritual-only" &&
-                          "bg-gold-primary/10 font-bold text-text-primary"
+                          "bg-gold-primary/10 text-text-primary font-bold"
                       )}
                     >
                       {row.ritual}
@@ -665,7 +677,7 @@ export default function PackagesPage() {
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "heritage-pilgrimage" &&
-                          "bg-gold-primary/10 font-bold text-text-primary"
+                          "bg-gold-primary/10 text-text-primary font-bold"
                       )}
                     >
                       {row.heritage}
@@ -683,7 +695,7 @@ export default function PackagesPage() {
                       className={cn(
                         "p-4 text-center",
                         selectedPkgId === "royal-concierge" &&
-                          "bg-gold-primary/10 font-bold text-text-primary"
+                          "bg-gold-primary/10 text-text-primary font-bold"
                       )}
                     >
                       {row.royal}
@@ -697,14 +709,14 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 4: SELECTED PACKAGE DETAILS (DYNAMIC MASTER PANEL) ───────── */}
-      <Section className="border-border-gold/20 border-b bg-muted py-16">
+      <Section className="border-border-gold/20 bg-muted border-b py-16">
         <Container size="xl" className="space-y-10">
           <div className="border-border-gold/20 flex flex-col justify-between gap-4 border-b pb-6 md:flex-row md:items-center">
             <div>
               <span className="text-gold-primary font-cinzel block text-xs font-bold tracking-widest uppercase">
                 Selected Experience Details
               </span>
-              <h2 className="font-cinzel flex items-center gap-3 text-2xl font-bold text-text-primary sm:text-3xl">
+              <h2 className="font-cinzel text-text-primary flex items-center gap-3 text-2xl font-bold sm:text-3xl">
                 <span>{selectedPkg.title}</span>
                 <span className="text-gold-primary bg-gold-primary/10 border-gold-primary/30 rounded-full border px-3 py-1 text-base font-extrabold">
                   {selectedPkg.price}
@@ -729,13 +741,13 @@ export default function PackagesPage() {
                   {selectedPkg.timeline.map((item, index) => (
                     <div
                       key={index}
-                      className="border-border-gold/20 space-y-2 rounded-2xl border bg-surface p-4"
+                      className="border-border-gold/20 bg-surface space-y-2 rounded-2xl border p-4"
                     >
                       <div className="flex items-center justify-between">
                         <span className="text-gold-primary font-cinzel bg-gold-primary/10 border-gold-primary/30 rounded-full border px-2.5 py-0.5 text-[10px] font-bold uppercase">
                           {item.day}
                         </span>
-                        <span className="font-cinzel text-xs font-bold text-text-primary">
+                        <span className="font-cinzel text-text-primary text-xs font-bold">
                           {item.title}
                         </span>
                       </div>
@@ -766,7 +778,7 @@ export default function PackagesPage() {
                   {selectedPkg.summaryInclusions.map((inc, idx) => (
                     <div
                       key={idx}
-                      className="border-border-gold/15 flex items-center gap-2.5 rounded-xl border bg-muted p-2.5 text-xs text-text-primary"
+                      className="border-border-gold/15 bg-muted text-text-primary flex items-center gap-2.5 rounded-xl border p-2.5 text-xs"
                     >
                       <CheckCircle2 className="text-gold-primary h-4 w-4 shrink-0" />
                       <span>{inc}</span>
@@ -783,7 +795,7 @@ export default function PackagesPage() {
                   <span className="text-gold-primary font-cinzel block text-[10px] font-bold tracking-widest uppercase">
                     Logistics & Comfort Specs
                   </span>
-                  <h4 className="font-cinzel text-lg font-bold text-text-primary">
+                  <h4 className="font-cinzel text-text-primary text-lg font-bold">
                     Service Specifications
                   </h4>
                 </div>
@@ -793,7 +805,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Hotel className="text-gold-primary h-4 w-4" /> Stay
                     </span>
-                    <span className="font-bold text-text-primary">
+                    <span className="text-text-primary font-bold">
                       {selectedPkg.hotel}
                     </span>
                   </div>
@@ -801,7 +813,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Car className="text-gold-primary h-4 w-4" /> Transport
                     </span>
-                    <span className="font-bold text-text-primary">
+                    <span className="text-text-primary font-bold">
                       {selectedPkg.transport}
                     </span>
                   </div>
@@ -809,7 +821,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <User className="text-gold-primary h-4 w-4" /> Purohit
                     </span>
-                    <span className="font-bold text-text-primary">
+                    <span className="text-text-primary font-bold">
                       {selectedPkg.pandit}
                     </span>
                   </div>
@@ -817,7 +829,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Flame className="text-gold-primary h-4 w-4" /> Meals
                     </span>
-                    <span className="font-bold text-text-primary">
+                    <span className="text-text-primary font-bold">
                       {selectedPkg.meals}
                     </span>
                   </div>
@@ -825,7 +837,7 @@ export default function PackagesPage() {
                     <span className="text-text-muted flex items-center gap-2">
                       <Camera className="text-gold-primary h-4 w-4" /> Media
                     </span>
-                    <span className="font-bold text-text-primary">
+                    <span className="text-text-primary font-bold">
                       {selectedPkg.videoPhoto}
                     </span>
                   </div>
@@ -833,22 +845,25 @@ export default function PackagesPage() {
 
                 <div className="border-border-gold/20 space-y-3 border-t pt-4">
                   {selectedPkg.id === "online-pind-daan" ? (
-                     <Link
-                       href="/online-pind-daan"
-                       className="font-cinzel inline-flex w-full items-center justify-center gap-2 shadow-gold-glow py-4 text-xs font-bold rounded-xl text-black transition-all hover:opacity-90"
-                       style={{ background: "linear-gradient(135deg,#d4af37,#f5e19c 50%,#b8860b)" }}
-                     >
-                       View Full Online Pind Daan Page →
-                     </Link>
-                   ) : (
-                     <PrimaryButton
-                       size="lg"
-                       onClick={() => handleOpenBooking(selectedPkg.id)}
-                       className="font-cinzel shadow-gold-glow w-full py-4 text-xs font-bold"
-                     >
-                       Reserve {selectedPkg.title} ({selectedPkg.price}) →
-                     </PrimaryButton>
-                   )}
+                    <Link
+                      href="/online-pind-daan"
+                      className="font-cinzel shadow-gold-glow inline-flex w-full items-center justify-center gap-2 rounded-xl py-4 text-xs font-bold text-black transition-all hover:opacity-90"
+                      style={{
+                        background:
+                          "linear-gradient(135deg,#d4af37,#f5e19c 50%,#b8860b)",
+                      }}
+                    >
+                      View Full Online Pind Daan Page →
+                    </Link>
+                  ) : (
+                    <PrimaryButton
+                      size="lg"
+                      onClick={() => handleOpenBooking(selectedPkg.id)}
+                      className="font-cinzel shadow-gold-glow w-full py-4 text-xs font-bold"
+                    >
+                      Reserve {selectedPkg.title} ({selectedPkg.price}) →
+                    </PrimaryButton>
+                  )}
 
                   <p className="text-text-muted text-center text-[10px]">
                     ✓ Zero cancellation fee up to 48 hours before arrival.
@@ -916,7 +931,7 @@ export default function PackagesPage() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
                 <div className="absolute bottom-2 left-3">
-                  <span className="font-cinzel border-gold-primary/30 rounded-full border bg-surface px-2 py-0.5 text-[11px] font-bold text-text-primary">
+                  <span className="font-cinzel border-gold-primary/30 bg-surface text-text-primary rounded-full border px-2 py-0.5 text-[11px] font-bold">
                     {media.title}
                   </span>
                 </div>
@@ -927,7 +942,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 6: WHAT'S INCLUDED IN EVERY OFFERING ─────────────────────── */}
-      <Section className="border-border-gold/20 border-b bg-muted py-16">
+      <Section className="border-border-gold/20 bg-muted border-b py-16">
         <Container size="xl" className="space-y-10">
           <div className="space-y-2 text-center">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
@@ -985,10 +1000,10 @@ export default function PackagesPage() {
                 key={idx}
                 className="bg-surface border-gold-primary/20 space-y-2 rounded-2xl border p-4"
               >
-                <div className="border-gold-primary/30 w-fit rounded-xl border bg-surface p-2">
+                <div className="border-gold-primary/30 bg-surface w-fit rounded-xl border p-2">
                   {item.icon}
                 </div>
-                <h4 className="font-cinzel text-xs font-bold text-text-primary">
+                <h4 className="font-cinzel text-text-primary text-xs font-bold">
                   {item.title}
                 </h4>
                 <p className="text-text-muted text-[11px] leading-relaxed">
@@ -1025,9 +1040,9 @@ export default function PackagesPage() {
             ].map((addon, i) => (
               <div
                 key={i}
-                className="border-gold-primary/25 flex items-center justify-between rounded-2xl border bg-surface p-3.5"
+                className="border-gold-primary/25 bg-surface flex items-center justify-between rounded-2xl border p-3.5"
               >
-                <span className="font-cinzel text-xs font-bold text-text-primary">
+                <span className="font-cinzel text-text-primary text-xs font-bold">
                   {addon.title}
                 </span>
                 <span className="text-gold-primary text-xs font-bold">
@@ -1040,7 +1055,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 8: TRUST & METRICS ──────────────────────────────────────── */}
-      <Section className="border-border-gold/20 border-b bg-muted py-16">
+      <Section className="border-border-gold/20 bg-muted border-b py-16">
         <Container size="xl" className="space-y-8 text-center">
           <div className="space-y-2">
             <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
@@ -1117,7 +1132,7 @@ export default function PackagesPage() {
                   &quot;{rev.text}&quot;
                 </p>
                 <div className="border-border-gold/15 border-t pt-2">
-                  <p className="font-cinzel text-xs font-bold text-text-primary">
+                  <p className="font-cinzel text-text-primary text-xs font-bold">
                     {rev.name}
                   </p>
                   <p className="text-text-muted text-[10px]">
@@ -1131,7 +1146,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* ─── SECTION 10: FINAL CALL TO ACTION & STICKY BOTTOM BAR ───────────── */}
-      <Section className="relative overflow-hidden bg-background py-20 text-center">
+      <Section className="bg-background relative overflow-hidden py-20 text-center">
         <div className="bg-gold-primary/10 pointer-events-none absolute top-1/2 left-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[180px]" />
 
         <Container size="md" className="relative z-10 space-y-6">
@@ -1163,7 +1178,7 @@ export default function PackagesPage() {
                   "_blank"
                 );
               }}
-              className="flex cursor-pointer items-center gap-2 rounded-xl border border-[#25D366]/50 bg-surface px-6 py-4 text-xs font-bold text-text-primary transition-all hover:bg-[#25D366]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]"
+              className="bg-surface text-text-primary flex cursor-pointer items-center gap-2 rounded-xl border border-[#25D366]/50 px-6 py-4 text-xs font-bold transition-all hover:bg-[#25D366]/10 focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:outline-none"
             >
               <MessageCircle className="h-4 w-4 text-[#25D366]" />
               <span>Talk to Ritual Advisor (WhatsApp)</span>
@@ -1173,7 +1188,7 @@ export default function PackagesPage() {
       </Section>
 
       {/* MOBILE BOTTOM STICKY NAVIGATION BAR (WhatsApp + Book Package) */}
-      <div className="border-gold-primary/30 fixed right-0 bottom-0 left-0 z-50 flex items-center gap-3 border-t bg-surface p-3 shadow-lg sm:hidden">
+      <div className="border-gold-primary/30 bg-surface fixed right-0 bottom-0 left-0 z-50 flex items-center gap-3 border-t p-3 shadow-lg sm:hidden">
         <button
           onClick={() => {
             const text = encodeURIComponent(

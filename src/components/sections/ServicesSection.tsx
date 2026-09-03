@@ -87,7 +87,7 @@ const defaultPitrayaServices: ServicePackage[] = [
       "3-Star AC Hotel stay with Sattvik meals",
       "AC private sedan transfers (Airport/Station/Temples)",
     ],
-    price: "Starts from ₹24,999",
+    price: "Starts from ₹19,999",
     badge: "Classic 2-Day",
     suitableFor: "👨‍👩‍👧‍👦 Standard Family Journeys",
   },
@@ -97,14 +97,14 @@ const defaultPitrayaServices: ServicePackage[] = [
     title: "Moksha Experience",
     subtitle: "4-Star Resort + Innova MPV + VIP Sanctum",
     description:
-      "Complete 3-day ancestral liberation journey with 4-star resort stay, Innova Crysta MPV, and VIP Sanctum access.",
+      "Complete 3-day ancestral liberation journey with 4-star resort stay, Innova Crysta MPV, and Sanctum access.",
     image: "/images/gaya_family_moment_prayer.png",
     features: [
       "Full 3-Vedi ancestral liberation rites & Havan",
       "4-Star Heritage Resort stay & All Sattvik meals",
       "Innova Crysta MPV & Senior Acharya Escort",
     ],
-    price: "Starts from ₹49,999",
+    price: "Starts from ₹35,101",
     badge: "⭐ Most Recommended",
     isFeatured: true,
     suitableFor: "⭐ Complete Ancestral Liberation",
@@ -138,7 +138,7 @@ export default function ServicesSection({
     <Section
       spacing="xl"
       className={cn(
-        "text-text-primary border-border-gold/20 relative overflow-hidden border-b bg-muted py-16 sm:py-24",
+        "text-text-primary border-border-gold/20 bg-muted relative overflow-hidden border-b py-16 sm:py-24",
         className
       )}
       {...props}
@@ -168,7 +168,7 @@ export default function ServicesSection({
           <Heading
             size="2xl"
             font="cinzel"
-            className="text-2xl leading-tight text-text-primary sm:text-4xl md:text-5xl"
+            className="text-text-primary text-2xl leading-tight sm:text-4xl md:text-5xl"
           >
             Transparent Sacred Offerings for{" "}
             <GradientText variant="gold" font="cinzel">

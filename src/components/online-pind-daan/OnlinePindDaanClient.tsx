@@ -60,7 +60,7 @@ const PACKAGES = [
     id: "essential" as const,
     emoji: "🌿",
     name: "Essential",
-    price: "₹11,000",
+    price: "₹5,100",
     subtitle: "Simple guided ritual",
     features: [
       "Pandit coordination at Vishnupad",
@@ -76,7 +76,7 @@ const PACKAGES = [
     id: "complete" as const,
     emoji: "🪔",
     name: "Complete",
-    price: "₹21,000",
+    price: "₹5,100",
     subtitle: "Most selected arrangement",
     features: [
       "All of Essential, plus:",
@@ -92,7 +92,7 @@ const PACKAGES = [
     id: "family" as const,
     emoji: "👑",
     name: "Family Lineage",
-    price: "₹31,000",
+    price: "₹5,100",
     subtitle: "Multi-ancestor extended rites",
     features: [
       "All of Complete, plus:",
@@ -216,22 +216,50 @@ const FAQS = [
 ];
 
 const TRUST_PILLARS = [
-  { icon: "🪔", title: "Vedic Tradition", desc: "Strict adherence to established ancestral practices." },
-  { icon: "🧭", title: "Human Guidance", desc: "Real coordinator — not just an automated booking." },
-  { icon: "📍", title: "Gaya-Coordinated", desc: "Ritual physically arranged in Gaya by our local team." },
-  { icon: "📸", title: "Transparency", desc: "Photographic and video documentation delivered promptly." },
-  { icon: "🔒", title: "Secure Booking", desc: "Your family details handled with complete privacy." },
-  { icon: "⚡", title: "15-Min Response", desc: "Coordinator contacts you within 15 minutes of booking." },
+  {
+    icon: "🪔",
+    title: "Vedic Tradition",
+    desc: "Strict adherence to established ancestral practices.",
+  },
+  {
+    icon: "🧭",
+    title: "Human Guidance",
+    desc: "Real coordinator — not just an automated booking.",
+  },
+  {
+    icon: "📍",
+    title: "Gaya-Coordinated",
+    desc: "Ritual physically arranged in Gaya by our local team.",
+  },
+  {
+    icon: "📸",
+    title: "Transparency",
+    desc: "Photographic and video documentation delivered promptly.",
+  },
+  {
+    icon: "🔒",
+    title: "Secure Booking",
+    desc: "Your family details handled with complete privacy.",
+  },
+  {
+    icon: "⚡",
+    title: "15-Min Response",
+    desc: "Coordinator contacts you within 15 minutes of booking.",
+  },
 ];
 
 // ─── COMPONENT ───────────────────────────────────────────────────────────────
 
 export default function OnlinePindDaanClient() {
   const [isWizardOpen, setIsWizardOpen] = useState(false);
-  const [selectedPkg, setSelectedPkg] = useState<"essential" | "complete" | "family">("complete");
+  const [selectedPkg, setSelectedPkg] = useState<
+    "essential" | "complete" | "family"
+  >("complete");
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
-  const openWizard = (pkg: "essential" | "complete" | "family" = "complete") => {
+  const openWizard = (
+    pkg: "essential" | "complete" | "family" = "complete"
+  ) => {
     setSelectedPkg(pkg);
     setIsWizardOpen(true);
   };
@@ -258,21 +286,21 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 1  HERO — atmospheric full-bleed dark
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[#09080a] text-white px-4 pt-24 pb-20">
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#09080a] px-4 pt-24 pb-20 text-white">
         {/* ambient glow layers */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute -top-[10%] left-1/2 -translate-x-1/2 w-[900px] h-[600px] rounded-full bg-[#d4af37]/[0.08] blur-[160px]" />
-          <div className="absolute bottom-0 left-[20%] w-[400px] h-[300px] rounded-full bg-[#8b1c3a]/10 blur-[120px]" />
-          <div className="absolute top-[30%] right-[10%] w-[300px] h-[300px] rounded-full bg-[#d4af37]/[0.05] blur-[100px]" />
+          <div className="absolute -top-[10%] left-1/2 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-[#d4af37]/[0.08] blur-[160px]" />
+          <div className="absolute bottom-0 left-[20%] h-[300px] w-[400px] rounded-full bg-[#8b1c3a]/10 blur-[120px]" />
+          <div className="absolute top-[30%] right-[10%] h-[300px] w-[300px] rounded-full bg-[#d4af37]/[0.05] blur-[100px]" />
         </div>
 
-        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-8">
+        <div className="relative z-10 mx-auto max-w-5xl space-y-8 text-center">
           {/* Badge */}
           <motion.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 rounded-full border border-[#d4af37]/25 bg-[#d4af37]/[0.08] px-5 py-2 text-[11px] font-bold font-cinzel text-[#d4af37] uppercase tracking-[0.18em]"
+            className="font-cinzel inline-flex items-center gap-2 rounded-full border border-[#d4af37]/25 bg-[#d4af37]/[0.08] px-5 py-2 text-[11px] font-bold tracking-[0.18em] text-[#d4af37] uppercase"
           >
             <Sparkles className="h-3.5 w-3.5" />
             Book Pind Daan in Gaya — From Anywhere in the World
@@ -283,7 +311,7 @@ export default function OnlinePindDaanClient() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.12, duration: 0.65 }}
-            className="font-cinzel text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.08] tracking-tight"
+            className="font-cinzel text-4xl leading-[1.08] font-black tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
           >
             <span className="text-white">Online</span>{" "}
             <span
@@ -297,7 +325,7 @@ export default function OnlinePindDaanClient() {
             </span>
             <br />
             <span
-              className="text-white text-3xl sm:text-4xl md:text-5xl font-light tracking-normal"
+              className="text-3xl font-light tracking-normal text-white sm:text-4xl md:text-5xl"
               style={{ fontFamily: "Georgia, serif" }}
             >
               in Sacred Gaya
@@ -309,12 +337,12 @@ export default function OnlinePindDaanClient() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.22, duration: 0.6 }}
-            className="text-sm sm:text-base md:text-lg text-[#b0a898] max-w-2xl mx-auto leading-relaxed"
+            className="mx-auto max-w-2xl text-sm leading-relaxed text-[#b0a898] sm:text-base md:text-lg"
             style={{ fontFamily: "Georgia, serif" }}
           >
             Perform the sacred ancestral rites at Gaya with guidance from
             experienced Gayawal Pandits —{" "}
-            <em className="text-[#d4af37] not-italic font-semibold">
+            <em className="font-semibold text-[#d4af37] not-italic">
               even when you cannot travel to Gaya yourself.
             </em>
           </motion.p>
@@ -333,7 +361,7 @@ export default function OnlinePindDaanClient() {
             ].map((t) => (
               <span
                 key={t}
-                className="rounded-full bg-white/5 border border-white/10 px-4 py-1.5 text-[11px] font-semibold text-[#c9bfa8] backdrop-blur-sm"
+                className="rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-[11px] font-semibold text-[#c9bfa8] backdrop-blur-sm"
               >
                 {t}
               </span>
@@ -349,7 +377,7 @@ export default function OnlinePindDaanClient() {
           >
             <button
               onClick={() => openWizard("complete")}
-              className="group inline-flex items-center gap-2.5 rounded-xl px-8 py-4 text-sm font-bold font-cinzel text-black transition-all hover:shadow-[0_0_32px_rgba(212,175,55,0.5)] active:scale-[0.98] cursor-pointer"
+              className="group font-cinzel inline-flex cursor-pointer items-center gap-2.5 rounded-xl px-8 py-4 text-sm font-bold text-black transition-all hover:shadow-[0_0_32px_rgba(212,175,55,0.5)] active:scale-[0.98]"
               style={{ background: goldGrad }}
             >
               Book Online Pind Daan
@@ -358,7 +386,7 @@ export default function OnlinePindDaanClient() {
 
             <button
               onClick={openWhatsApp}
-              className="inline-flex items-center gap-2.5 rounded-xl border border-[#25D366]/30 bg-[#25D366]/10 px-6 py-4 text-sm font-semibold text-[#4ade80] backdrop-blur-sm transition-all hover:bg-[#25D366]/20 cursor-pointer"
+              className="inline-flex cursor-pointer items-center gap-2.5 rounded-xl border border-[#25D366]/30 bg-[#25D366]/10 px-6 py-4 text-sm font-semibold text-[#4ade80] backdrop-blur-sm transition-all hover:bg-[#25D366]/20"
             >
               <MessageCircle className="h-4 w-4" />
               Talk to a Coordinator
@@ -371,9 +399,9 @@ export default function OnlinePindDaanClient() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, duration: 0.6 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 text-[#d4af37]/40"
+          className="absolute bottom-8 left-1/2 flex -translate-x-1/2 flex-col items-center gap-1.5 text-[#d4af37]/40"
         >
-          <span className="text-[9px] font-bold uppercase tracking-[0.2em] font-cinzel">
+          <span className="font-cinzel text-[9px] font-bold tracking-[0.2em] uppercase">
             Scroll to learn more
           </span>
           <ChevronDown className="h-4 w-4 animate-bounce" />
@@ -383,32 +411,33 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 2  WHAT IS ONLINE PIND DAAN
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-background border-b border-border py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+      <section className="bg-background border-border border-b px-4 py-20">
+        <div className="mx-auto max-w-4xl">
           <AnimSection className="space-y-10">
-            <motion.div variants={fadeUp} className="text-center space-y-3">
+            <motion.div variants={fadeUp} className="space-y-3 text-center">
               <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                 Immediate Clarity
               </span>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-text-primary leading-snug">
+              <h2 className="font-cinzel text-text-primary text-3xl leading-snug font-bold sm:text-4xl">
                 What is Online Pind Daan?
               </h2>
             </motion.div>
 
             <motion.div
               variants={fadeUp}
-              className="rounded-3xl border border-border bg-surface p-8 sm:p-10 space-y-6"
+              className="border-border bg-surface space-y-6 rounded-3xl border p-8 sm:p-10"
             >
               <p
-                className="text-text-secondary text-base sm:text-lg leading-relaxed"
+                className="text-text-secondary text-base leading-relaxed sm:text-lg"
                 style={{ fontFamily: "Georgia, serif" }}
               >
                 Pind Daan is a sacred Hindu ancestral ritual performed to offer
                 prayers and pindas in remembrance of departed ancestors. Gaya is
-                traditionally regarded as the supreme pilgrimage site for these rites.
+                traditionally regarded as the supreme pilgrimage site for these
+                rites.
               </p>
               <p
-                className="text-text-secondary text-base sm:text-lg leading-relaxed"
+                className="text-text-secondary text-base leading-relaxed sm:text-lg"
                 style={{ fontFamily: "Georgia, serif" }}
               >
                 With Pitraya&apos;s online service,{" "}
@@ -421,27 +450,40 @@ export default function OnlinePindDaanClient() {
               </p>
 
               {/* Flow diagram */}
-              <div className="pt-4 border-t border-border">
-                <p className="text-[10px] font-cinzel font-bold text-text-muted uppercase tracking-widest text-center mb-5">
+              <div className="border-border border-t pt-4">
+                <p className="font-cinzel text-text-muted mb-5 text-center text-[10px] font-bold tracking-widest uppercase">
                   How Your Sacred Intent Travels to Gaya
                 </p>
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
                   {[
-                    { icon: "👨‍👩‍👧", label: "Your Family", sub: "Details & Sankalpa" },
-                    { icon: "🔱", label: "Pitraya", sub: "Coordinator Desk", hi: true },
-                    { icon: "🙏", label: "Gayawal Pandit", sub: "Performs in Gaya" },
+                    {
+                      icon: "👨‍👩‍👧",
+                      label: "Your Family",
+                      sub: "Details & Sankalpa",
+                    },
+                    {
+                      icon: "🔱",
+                      label: "Pitraya",
+                      sub: "Coordinator Desk",
+                      hi: true,
+                    },
+                    {
+                      icon: "🙏",
+                      label: "Gayawal Pandit",
+                      sub: "Performs in Gaya",
+                    },
                     { icon: "📸", label: "Documentation", sub: "Back to you" },
                   ].map((item, i) => (
                     <div
                       key={i}
                       className={cn(
-                        "flex flex-col items-center text-center p-4 rounded-2xl border transition-all",
+                        "flex flex-col items-center rounded-2xl border p-4 text-center transition-all",
                         item.hi
                           ? "border-gold-primary/40 bg-gold-primary/[0.08]"
                           : "border-border bg-surface"
                       )}
                     >
-                      <span className="text-2xl mb-1.5">{item.icon}</span>
+                      <span className="mb-1.5 text-2xl">{item.icon}</span>
                       <span
                         className={cn(
                           "font-cinzel text-xs font-bold",
@@ -450,13 +492,13 @@ export default function OnlinePindDaanClient() {
                       >
                         {item.label}
                       </span>
-                      <span className="text-[10px] text-text-muted mt-0.5">
+                      <span className="text-text-muted mt-0.5 text-[10px]">
                         {item.sub}
                       </span>
                     </div>
                   ))}
                 </div>
-                <p className="mt-4 text-center text-xs font-semibold bg-emerald-500/[0.08] border border-emerald-500/15 rounded-xl py-2 px-4 text-emerald-600 dark:text-emerald-400">
+                <p className="mt-4 rounded-xl border border-emerald-500/15 bg-emerald-500/[0.08] px-4 py-2 text-center text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                   Physical ritual performed at Vishnupad Sanctum — complete
                   documentation delivered to your family
                 </p>
@@ -471,44 +513,45 @@ export default function OnlinePindDaanClient() {
       ════════════════════════════════════════════════════════════════════ */}
       <section
         id="how-it-works"
-        className="bg-muted border-b border-border py-20 px-4"
+        className="bg-muted border-border border-b px-4 py-20"
       >
-        <div className="max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl">
           <AnimSection className="space-y-12">
-            <motion.div variants={fadeUp} className="text-center space-y-3">
+            <motion.div variants={fadeUp} className="space-y-3 text-center">
               <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                 Step-by-Step Transparency
               </span>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-text-primary">
+              <h2 className="font-cinzel text-text-primary text-3xl font-bold sm:text-4xl">
                 How Online Pind Daan Works
               </h2>
               <p
-                className="text-text-secondary text-sm max-w-xl mx-auto"
+                className="text-text-secondary mx-auto max-w-xl text-sm"
                 style={{ fontFamily: "Georgia, serif" }}
               >
-                A smooth, spiritually sound process designed for complete peace of mind.
+                A smooth, spiritually sound process designed for complete peace
+                of mind.
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {PROCESS_STEPS.map((s, i) => (
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="group relative p-6 rounded-2xl bg-surface border border-border hover:border-gold-primary/40 transition-all duration-300 overflow-hidden"
+                  className="group bg-surface border-border hover:border-gold-primary/40 relative overflow-hidden rounded-2xl border p-6 transition-all duration-300"
                 >
-                  <span className="absolute -right-2 -top-2 font-cinzel text-7xl font-black text-gold-primary/[0.05] select-none pointer-events-none leading-none">
+                  <span className="font-cinzel text-gold-primary/[0.05] pointer-events-none absolute -top-2 -right-2 text-7xl leading-none font-black select-none">
                     {s.n}
                   </span>
                   <div className="relative z-10 space-y-3">
-                    <span className="font-cinzel text-xs font-bold text-gold-primary bg-gold-primary/10 border border-gold-primary/20 px-2.5 py-1 rounded-full">
+                    <span className="font-cinzel text-gold-primary bg-gold-primary/10 border-gold-primary/20 rounded-full border px-2.5 py-1 text-xs font-bold">
                       STEP {s.n}
                     </span>
-                    <h3 className="font-cinzel text-base font-bold text-text-primary group-hover:text-gold-primary transition-colors">
+                    <h3 className="font-cinzel text-text-primary group-hover:text-gold-primary text-base font-bold transition-colors">
                       {s.title}
                     </h3>
                     <p
-                      className="text-xs text-text-secondary leading-relaxed"
+                      className="text-text-secondary text-xs leading-relaxed"
                       style={{ fontFamily: "Georgia, serif" }}
                     >
                       {s.desc}
@@ -521,7 +564,7 @@ export default function OnlinePindDaanClient() {
             <motion.div variants={fadeUp} className="text-center">
               <button
                 onClick={() => openWizard("complete")}
-                className="inline-flex items-center gap-2 rounded-xl px-8 py-4 text-sm font-bold font-cinzel text-black transition-all hover:opacity-90 active:scale-[0.98] cursor-pointer"
+                className="font-cinzel inline-flex cursor-pointer items-center gap-2 rounded-xl px-8 py-4 text-sm font-bold text-black transition-all hover:opacity-90 active:scale-[0.98]"
                 style={{ background: goldGrad }}
               >
                 Start Booking Now
@@ -535,52 +578,53 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 4  RITUAL STAGES — 6-stage Vedic timeline
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-background border-b border-border py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="bg-background border-border border-b px-4 py-20">
+        <div className="mx-auto max-w-6xl">
           <AnimSection className="space-y-12">
-            <motion.div variants={fadeUp} className="text-center space-y-3">
+            <motion.div variants={fadeUp} className="space-y-3 text-center">
               <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                 Vedic Sequence
               </span>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-text-primary">
+              <h2 className="font-cinzel text-text-primary text-3xl font-bold sm:text-4xl">
                 What Actually Happens During Pind Daan?
               </h2>
               <p
-                className="text-text-secondary text-sm max-w-xl mx-auto"
+                className="text-text-secondary mx-auto max-w-xl text-sm"
                 style={{ fontFamily: "Georgia, serif" }}
               >
-                The sacred 6-stage timeline performed by Gayawal Pandits in Gaya.
+                The sacred 6-stage timeline performed by Gayawal Pandits in
+                Gaya.
               </p>
             </motion.div>
 
             <div className="relative">
               {/* vertical spine on desktop */}
-              <div className="hidden lg:block absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-gold-primary/30 via-gold-primary/10 to-transparent" />
+              <div className="from-gold-primary/30 via-gold-primary/10 absolute top-0 bottom-0 left-1/2 hidden w-px -translate-x-1/2 bg-gradient-to-b to-transparent lg:block" />
 
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-5">
+              <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
                 {RITUAL_STAGES.map((stage, i) => (
                   <motion.div
                     key={i}
                     variants={fadeUp}
                     className={cn(
-                      "group flex items-start gap-4 p-6 rounded-2xl border bg-surface hover:border-gold-primary/40 transition-all duration-300 border-border",
+                      "group bg-surface hover:border-gold-primary/40 border-border flex items-start gap-4 rounded-2xl border p-6 transition-all duration-300",
                       i % 2 === 0 ? "lg:mr-6" : "lg:ml-6"
                     )}
                   >
-                    <div className="shrink-0 h-12 w-12 rounded-2xl bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-xl">
+                    <div className="bg-gold-primary/10 border-gold-primary/20 flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border text-xl">
                       {stage.icon}
                     </div>
                     <div className="space-y-1.5">
                       <div className="flex items-center gap-2">
-                        <span className="font-cinzel text-[10px] font-bold text-gold-primary/60 uppercase tracking-wider">
+                        <span className="font-cinzel text-gold-primary/60 text-[10px] font-bold tracking-wider uppercase">
                           0{i + 1}
                         </span>
-                        <h4 className="font-cinzel text-sm font-bold text-text-primary group-hover:text-gold-primary transition-colors">
+                        <h4 className="font-cinzel text-text-primary group-hover:text-gold-primary text-sm font-bold transition-colors">
                           {stage.title}
                         </h4>
                       </div>
                       <p
-                        className="text-xs text-text-secondary leading-relaxed"
+                        className="text-text-secondary text-xs leading-relaxed"
                         style={{ fontFamily: "Georgia, serif" }}
                       >
                         {stage.desc}
@@ -597,19 +641,19 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 5  WHAT TO PROVIDE
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-muted border-b border-border py-20 px-4">
-        <div className="max-w-5xl mx-auto">
+      <section className="bg-muted border-border border-b px-4 py-20">
+        <div className="mx-auto max-w-5xl">
           <AnimSection className="space-y-10">
-            <motion.div variants={fadeUp} className="text-center space-y-3">
+            <motion.div variants={fadeUp} className="space-y-3 text-center">
               <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                 Preparation Checklist
               </span>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-text-primary">
+              <h2 className="font-cinzel text-text-primary text-3xl font-bold sm:text-4xl">
                 What Information Do I Need?
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
               {[
                 {
                   icon: "👨‍👩‍👧",
@@ -642,13 +686,13 @@ export default function OnlinePindDaanClient() {
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="p-6 rounded-2xl bg-surface border border-border hover:border-gold-primary/30 transition-all space-y-4"
+                  className="bg-surface border-border hover:border-gold-primary/30 space-y-4 rounded-2xl border p-6 transition-all"
                 >
                   <div className="flex items-center gap-2.5">
-                    <div className="h-10 w-10 rounded-xl bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-xl">
+                    <div className="bg-gold-primary/10 border-gold-primary/20 flex h-10 w-10 items-center justify-center rounded-xl border text-xl">
                       {col.icon}
                     </div>
-                    <h3 className="font-cinzel text-sm font-bold text-text-primary">
+                    <h3 className="font-cinzel text-text-primary text-sm font-bold">
                       {col.title}
                     </h3>
                   </div>
@@ -656,10 +700,10 @@ export default function OnlinePindDaanClient() {
                     {col.items.map((item, j) => (
                       <li
                         key={j}
-                        className="flex items-start gap-2 text-xs text-text-secondary"
+                        className="text-text-secondary flex items-start gap-2 text-xs"
                         style={{ fontFamily: "Georgia, serif" }}
                       >
-                        <Check className="h-3.5 w-3.5 text-emerald-500 shrink-0 mt-0.5" />
+                        <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-500" />
                         {item}
                       </li>
                     ))}
@@ -670,10 +714,10 @@ export default function OnlinePindDaanClient() {
 
             <motion.div
               variants={fadeUp}
-              className="rounded-2xl bg-gold-primary/[0.08] border border-gold-primary/20 p-5 text-center text-sm text-text-secondary max-w-2xl mx-auto"
+              className="bg-gold-primary/[0.08] border-gold-primary/20 text-text-secondary mx-auto max-w-2xl rounded-2xl border p-5 text-center text-sm"
               style={{ fontFamily: "Georgia, serif" }}
             >
-              <span className="font-semibold text-gold-primary">
+              <span className="text-gold-primary font-semibold">
                 Not sure what to provide?
               </span>{" "}
               Our Pitraya coordinator will personally guide you step-by-step
@@ -686,20 +730,20 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 6  FAMILY PARTICIPATION + SACRED SITES (2-col split)
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-background border-b border-border py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <AnimSection className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <section className="bg-background border-border border-b px-4 py-20">
+        <div className="mx-auto max-w-6xl">
+          <AnimSection className="grid grid-cols-1 gap-12 lg:grid-cols-2">
             {/* Left — Remote Participation */}
             <motion.div variants={fadeUp} className="space-y-6">
               <div className="space-y-2">
                 <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                   Remote Participation
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-text-primary">
+                <h2 className="font-cinzel text-text-primary text-2xl font-bold sm:text-3xl">
                   Can My Family Participate From Home?
                 </h2>
                 <p
-                  className="text-base font-semibold text-gold-primary"
+                  className="text-gold-primary text-base font-semibold"
                   style={{ fontFamily: "Georgia, serif" }}
                 >
                   Yes — within your selected ritual arrangement.
@@ -731,17 +775,17 @@ export default function OnlinePindDaanClient() {
                 ].map((item, i) => (
                   <div
                     key={i}
-                    className="flex items-start gap-3.5 p-4 rounded-xl border border-border bg-surface"
+                    className="border-border bg-surface flex items-start gap-3.5 rounded-xl border p-4"
                   >
-                    <div className="h-9 w-9 rounded-lg bg-gold-primary/10 flex items-center justify-center shrink-0 text-lg">
+                    <div className="bg-gold-primary/10 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-lg">
                       {item.e}
                     </div>
                     <div>
-                      <h4 className="font-cinzel text-xs font-bold text-text-primary">
+                      <h4 className="font-cinzel text-text-primary text-xs font-bold">
                         {item.t}
                       </h4>
                       <p
-                        className="text-xs text-text-secondary mt-0.5"
+                        className="text-text-secondary mt-0.5 text-xs"
                         style={{ fontFamily: "Georgia, serif" }}
                       >
                         {item.d}
@@ -752,7 +796,7 @@ export default function OnlinePindDaanClient() {
               </div>
 
               <p
-                className="text-[11px] text-text-muted italic bg-surface border border-border rounded-xl p-3"
+                className="text-text-muted bg-surface border-border rounded-xl border p-3 text-[11px] italic"
                 style={{ fontFamily: "Georgia, serif" }}
               >
                 Note: We provide reliable recorded video updates rather than
@@ -767,7 +811,7 @@ export default function OnlinePindDaanClient() {
                 <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                   Sacred Geography
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl font-bold text-text-primary">
+                <h2 className="font-cinzel text-text-primary text-2xl font-bold sm:text-3xl">
                   Where Is the Ritual Performed?
                 </h2>
               </div>
@@ -795,23 +839,23 @@ export default function OnlinePindDaanClient() {
                 ].map((site, i) => (
                   <div
                     key={i}
-                    className="p-5 rounded-2xl border border-border bg-surface hover:border-gold-primary/30 transition-all space-y-2.5"
+                    className="border-border bg-surface hover:border-gold-primary/30 space-y-2.5 rounded-2xl border p-5 transition-all"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2.5">
-                        <div className="h-9 w-9 rounded-xl bg-gold-primary/10 border border-gold-primary/15 flex items-center justify-center text-lg">
+                        <div className="bg-gold-primary/10 border-gold-primary/15 flex h-9 w-9 items-center justify-center rounded-xl border text-lg">
                           {site.e}
                         </div>
-                        <h4 className="font-cinzel text-sm font-bold text-text-primary">
+                        <h4 className="font-cinzel text-text-primary text-sm font-bold">
                           {site.t}
                         </h4>
                       </div>
-                      <span className="text-[10px] font-bold text-gold-primary bg-gold-primary/10 border border-gold-primary/20 px-2 py-0.5 rounded-full font-cinzel uppercase tracking-wider whitespace-nowrap">
+                      <span className="text-gold-primary bg-gold-primary/10 border-gold-primary/20 font-cinzel rounded-full border px-2 py-0.5 text-[10px] font-bold tracking-wider whitespace-nowrap uppercase">
                         {site.badge}
                       </span>
                     </div>
                     <p
-                      className="text-xs text-text-secondary leading-relaxed pl-[2.65rem]"
+                      className="text-text-secondary pl-[2.65rem] text-xs leading-relaxed"
                       style={{ fontFamily: "Georgia, serif" }}
                     >
                       {site.d}
@@ -827,22 +871,22 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 7  PACKAGES — dark section with gold glow
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-[#09080a] border-b border-white/5 py-24 px-4 relative overflow-hidden">
+      <section className="relative overflow-hidden border-b border-white/5 bg-[#09080a] px-4 py-24">
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] rounded-full bg-[#d4af37]/[0.06] blur-[140px]" />
+          <div className="absolute top-0 left-1/2 h-[400px] w-[800px] -translate-x-1/2 rounded-full bg-[#d4af37]/[0.06] blur-[140px]" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto">
+        <div className="relative z-10 mx-auto max-w-6xl">
           <AnimSection className="space-y-12">
-            <motion.div variants={fadeUp} className="text-center space-y-3">
-              <span className="text-[#d4af37] font-cinzel text-xs font-bold tracking-widest uppercase">
+            <motion.div variants={fadeUp} className="space-y-3 text-center">
+              <span className="font-cinzel text-xs font-bold tracking-widest text-[#d4af37] uppercase">
                 Clear & Transparent Pricing
               </span>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-white">
+              <h2 className="font-cinzel text-3xl font-bold text-white sm:text-4xl">
                 Choose Your Pind Daan Package
               </h2>
               <p
-                className="text-[#8a8070] text-sm max-w-xl mx-auto"
+                className="mx-auto max-w-xl text-sm text-[#8a8070]"
                 style={{ fontFamily: "Georgia, serif" }}
               >
                 All-inclusive arrangement covering Pandit coordination, puja
@@ -850,7 +894,7 @@ export default function OnlinePindDaanClient() {
               </p>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
               {PACKAGES.map((pkg) => (
                 <motion.div
                   key={pkg.id}
@@ -864,14 +908,14 @@ export default function OnlinePindDaanClient() {
                 >
                   {pkg.highlight && (
                     <div
-                      className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-black font-cinzel font-extrabold text-[10px] uppercase tracking-widest"
+                      className="font-cinzel absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full px-4 py-1 text-[10px] font-extrabold tracking-widest text-black uppercase"
                       style={{ background: goldGrad }}
                     >
                       Most Selected
                     </div>
                   )}
 
-                  <div className="space-y-5 flex-1">
+                  <div className="flex-1 space-y-5">
                     <div className="space-y-1">
                       <span className="text-2xl">{pkg.emoji}</span>
                       <h3 className="font-cinzel text-xl font-bold text-white">
@@ -889,7 +933,7 @@ export default function OnlinePindDaanClient() {
                       <span className="font-cinzel text-3xl font-black text-[#d4af37]">
                         {pkg.price}
                       </span>
-                      <span className="block text-[11px] text-[#6a6060] mt-0.5">
+                      <span className="mt-0.5 block text-[11px] text-[#6a6060]">
                         All-inclusive ritual arrangement
                       </span>
                     </div>
@@ -901,7 +945,7 @@ export default function OnlinePindDaanClient() {
                           className="flex items-start gap-2 text-xs text-[#b0a898]"
                           style={{ fontFamily: "Georgia, serif" }}
                         >
-                          <Check className="h-3.5 w-3.5 shrink-0 mt-0.5 text-emerald-400" />
+                          <Check className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
                           {f}
                         </li>
                       ))}
@@ -911,7 +955,7 @@ export default function OnlinePindDaanClient() {
                   <button
                     onClick={() => openWizard(pkg.id)}
                     className={cn(
-                      "mt-6 w-full rounded-xl py-3.5 text-xs font-bold font-cinzel transition-all cursor-pointer",
+                      "font-cinzel mt-6 w-full cursor-pointer rounded-xl py-3.5 text-xs font-bold transition-all",
                       pkg.highlight
                         ? "text-black hover:opacity-90"
                         : "border border-[#d4af37]/30 text-[#d4af37] hover:bg-[#d4af37]/10"
@@ -926,7 +970,7 @@ export default function OnlinePindDaanClient() {
 
             <motion.div
               variants={fadeUp}
-              className="flex flex-wrap justify-center gap-6 text-[11px] text-[#6a6060] font-semibold"
+              className="flex flex-wrap justify-center gap-6 text-[11px] font-semibold text-[#6a6060]"
             >
               {[
                 "🔒 Secure Payment",
@@ -944,33 +988,33 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 8  TRUST PILLARS
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-background border-b border-border py-20 px-4">
-        <div className="max-w-6xl mx-auto">
+      <section className="bg-background border-border border-b px-4 py-20">
+        <div className="mx-auto max-w-6xl">
           <AnimSection className="space-y-10">
-            <motion.div variants={fadeUp} className="text-center space-y-3">
+            <motion.div variants={fadeUp} className="space-y-3 text-center">
               <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                 Our Core Principles
               </span>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-text-primary">
+              <h2 className="font-cinzel text-text-primary text-3xl font-bold sm:text-4xl">
                 Why Families Choose Pitraya
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
               {TRUST_PILLARS.map((p, i) => (
                 <motion.div
                   key={i}
                   variants={fadeUp}
-                  className="group flex flex-col items-center text-center p-5 rounded-2xl border border-border bg-surface hover:border-gold-primary/40 hover:bg-gold-primary/5 transition-all duration-300 space-y-3"
+                  className="group border-border bg-surface hover:border-gold-primary/40 hover:bg-gold-primary/5 flex flex-col items-center space-y-3 rounded-2xl border p-5 text-center transition-all duration-300"
                 >
-                  <div className="h-11 w-11 rounded-2xl bg-gold-primary/10 border border-gold-primary/20 flex items-center justify-center text-xl group-hover:scale-110 transition-transform">
+                  <div className="bg-gold-primary/10 border-gold-primary/20 flex h-11 w-11 items-center justify-center rounded-2xl border text-xl transition-transform group-hover:scale-110">
                     {p.icon}
                   </div>
                   <div className="space-y-1">
-                    <h4 className="font-cinzel text-[11px] font-bold text-text-primary">
+                    <h4 className="font-cinzel text-text-primary text-[11px] font-bold">
                       {p.title}
                     </h4>
-                    <p className="text-[10px] text-text-muted leading-relaxed">
+                    <p className="text-text-muted text-[10px] leading-relaxed">
                       {p.desc}
                     </p>
                   </div>
@@ -984,14 +1028,14 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 9  FAQ — accordion
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="bg-muted border-b border-border py-20 px-4">
-        <div className="max-w-3xl mx-auto">
+      <section className="bg-muted border-border border-b px-4 py-20">
+        <div className="mx-auto max-w-3xl">
           <AnimSection className="space-y-10">
-            <motion.div variants={fadeUp} className="text-center space-y-3">
+            <motion.div variants={fadeUp} className="space-y-3 text-center">
               <span className="text-gold-primary font-cinzel text-xs font-bold tracking-widest uppercase">
                 Addressing Your Questions
               </span>
-              <h2 className="font-cinzel text-3xl sm:text-4xl font-bold text-text-primary">
+              <h2 className="font-cinzel text-text-primary text-3xl font-bold sm:text-4xl">
                 Frequently Asked Questions
               </h2>
               <p
@@ -1010,7 +1054,7 @@ export default function OnlinePindDaanClient() {
                   <div
                     key={i}
                     className={cn(
-                      "rounded-2xl border overflow-hidden transition-all duration-200",
+                      "overflow-hidden rounded-2xl border transition-all duration-200",
                       isOpen
                         ? "border-gold-primary/30 bg-surface"
                         : "border-border bg-surface/60"
@@ -1018,7 +1062,7 @@ export default function OnlinePindDaanClient() {
                   >
                     <button
                       onClick={() => setOpenFaq(isOpen ? null : i)}
-                      className="w-full p-5 flex items-center justify-between gap-4 text-left group cursor-pointer"
+                      className="group flex w-full cursor-pointer items-center justify-between gap-4 p-5 text-left"
                     >
                       <span
                         className={cn(
@@ -1032,7 +1076,7 @@ export default function OnlinePindDaanClient() {
                       </span>
                       <ChevronDown
                         className={cn(
-                          "h-4 w-4 text-gold-primary/60 shrink-0 transition-transform duration-200",
+                          "text-gold-primary/60 h-4 w-4 shrink-0 transition-transform duration-200",
                           isOpen && "rotate-180"
                         )}
                       />
@@ -1046,7 +1090,7 @@ export default function OnlinePindDaanClient() {
                           transition={{ duration: 0.22 }}
                         >
                           <div
-                            className="px-5 pb-5 text-sm text-text-secondary border-t border-border/60 pt-3.5 leading-relaxed"
+                            className="text-text-secondary border-border/60 border-t px-5 pt-3.5 pb-5 text-sm leading-relaxed"
                             style={{ fontFamily: "Georgia, serif" }}
                           >
                             {faq.a}
@@ -1065,15 +1109,15 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           § 10  FINAL CTA
       ════════════════════════════════════════════════════════════════════ */}
-      <section className="relative overflow-hidden py-28 px-4 text-center bg-[#09080a]">
-        <div className="pointer-events-none absolute inset-0 bg-[#d4af37]/[0.05] blur-[160px] rounded-full scale-150" />
+      <section className="relative overflow-hidden bg-[#09080a] px-4 py-28 text-center">
+        <div className="pointer-events-none absolute inset-0 scale-150 rounded-full bg-[#d4af37]/[0.05] blur-[160px]" />
 
-        <div className="relative z-10 max-w-3xl mx-auto space-y-7">
-          <span className="inline-block font-cinzel text-[11px] font-bold tracking-[0.2em] text-[#d4af37]/70 uppercase">
+        <div className="relative z-10 mx-auto max-w-3xl space-y-7">
+          <span className="font-cinzel inline-block text-[11px] font-bold tracking-[0.2em] text-[#d4af37]/70 uppercase">
             Complete Your Ancestral Duty
           </span>
 
-          <h2 className="font-cinzel text-3xl sm:text-4xl md:text-5xl font-black text-white leading-tight">
+          <h2 className="font-cinzel text-3xl leading-tight font-black text-white sm:text-4xl md:text-5xl">
             Fulfil Your Ancestral Duty
             <br className="hidden sm:block" />
             <span
@@ -1083,12 +1127,13 @@ export default function OnlinePindDaanClient() {
                 WebkitTextFillColor: "transparent",
               }}
             >
-              {" "}With Faith.
+              {" "}
+              With Faith.
             </span>
           </h2>
 
           <p
-            className="text-[#8a8070] text-base max-w-xl mx-auto leading-relaxed"
+            className="mx-auto max-w-xl text-base leading-relaxed text-[#8a8070]"
             style={{ fontFamily: "Georgia, serif" }}
           >
             When distance keeps you away from Gaya, Pitraya helps your family
@@ -1098,7 +1143,7 @@ export default function OnlinePindDaanClient() {
           <div className="flex flex-wrap justify-center gap-4">
             <button
               onClick={() => openWizard("complete")}
-              className="group inline-flex items-center gap-2.5 rounded-xl px-9 py-4 text-sm font-bold font-cinzel text-black transition-all hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] active:scale-[0.98] cursor-pointer"
+              className="group font-cinzel inline-flex cursor-pointer items-center gap-2.5 rounded-xl px-9 py-4 text-sm font-bold text-black transition-all hover:shadow-[0_0_40px_rgba(212,175,55,0.5)] active:scale-[0.98]"
               style={{ background: goldGrad }}
             >
               Book Online Pind Daan
@@ -1107,14 +1152,14 @@ export default function OnlinePindDaanClient() {
 
             <button
               onClick={openWhatsApp}
-              className="inline-flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-7 py-4 text-sm font-semibold text-[#c9bfa8] backdrop-blur-sm hover:bg-white/10 transition-all cursor-pointer"
+              className="inline-flex cursor-pointer items-center gap-2.5 rounded-xl border border-white/10 bg-white/5 px-7 py-4 text-sm font-semibold text-[#c9bfa8] backdrop-blur-sm transition-all hover:bg-white/10"
             >
               <MessageCircle className="h-4 w-4 text-[#4ade80]" />
               Talk to a Pitraya Coordinator
             </button>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-6 text-[11px] text-[#5a5050] font-semibold pt-2">
+          <div className="flex flex-wrap justify-center gap-6 pt-2 text-[11px] font-semibold text-[#5a5050]">
             {[
               "📞 +91 84344 57228",
               "✉️ pitrayaenquiry@gmail.com",
@@ -1129,26 +1174,26 @@ export default function OnlinePindDaanClient() {
       {/* ════════════════════════════════════════════════════════════════════
           MOBILE STICKY BAR
       ════════════════════════════════════════════════════════════════════ */}
-      <div className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-[#0d0b08]/95 border-t border-[#d4af37]/20 p-3 backdrop-blur-xl flex items-center justify-between gap-3 shadow-2xl">
+      <div className="fixed right-0 bottom-0 left-0 z-50 flex items-center justify-between gap-3 border-t border-[#d4af37]/20 bg-[#0d0b08]/95 p-3 shadow-2xl backdrop-blur-xl md:hidden">
         <div>
-          <span className="text-[9px] font-cinzel font-bold text-[#6a6060] uppercase tracking-wider block">
+          <span className="font-cinzel block text-[9px] font-bold tracking-wider text-[#6a6060] uppercase">
             From
           </span>
           <span className="font-cinzel text-sm font-black text-[#d4af37]">
-            ₹11,000
+            ₹5,100
           </span>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={openWhatsApp}
             aria-label="WhatsApp coordinator"
-            className="p-2.5 rounded-xl bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] hover:bg-[#25D366]/25 transition-all cursor-pointer"
+            className="cursor-pointer rounded-xl border border-[#25D366]/30 bg-[#25D366]/15 p-2.5 text-[#25D366] transition-all hover:bg-[#25D366]/25"
           >
             <MessageCircle className="h-4 w-4" />
           </button>
           <button
             onClick={() => openWizard("complete")}
-            className="rounded-xl px-5 py-2.5 text-xs font-bold font-cinzel text-black transition-all active:scale-[0.97] cursor-pointer"
+            className="font-cinzel cursor-pointer rounded-xl px-5 py-2.5 text-xs font-bold text-black transition-all active:scale-[0.97]"
             style={{ background: goldGrad }}
           >
             Book Pind Daan →

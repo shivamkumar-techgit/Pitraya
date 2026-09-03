@@ -17,9 +17,7 @@ import {
   ArrowLeft,
   Sparkles,
   HelpCircle,
-  Clock,
   Lock,
-  ExternalLink,
 } from "lucide-react";
 import PrimaryButton from "@/components/buttons/PrimaryButton";
 import { cn } from "@/lib/utils";
@@ -37,7 +35,7 @@ const PACKAGES = [
     badge: "Simple & Sacred",
     price: "₹11,000",
     numericPrice: 11000,
-    desc: "For families seeking a single, revered ancestral ritual with verified Gayawal Purohit.",
+    desc: "A single, revered ancestral ritual with verified Gayawal Purohit at Vishnupad.",
     features: [
       "Pandit coordination at Vishnupad",
       "Required sacred samagri & pinda dravya",
@@ -53,7 +51,7 @@ const PACKAGES = [
     price: "₹21,000",
     numericPrice: 21000,
     isPopular: true,
-    desc: "Our most comprehensive arrangement covering multiple sacred Gaya sites and dedicated video updates.",
+    desc: "Multi-site coordination covering Vishnupad & Phalgu River with dedicated video updates.",
     features: [
       "Everything in Essential",
       "Multi-site coordination (Vishnupad & Phalgu River)",
@@ -68,7 +66,7 @@ const PACKAGES = [
     badge: "Multiple Ancestors",
     price: "₹31,000",
     numericPrice: 31000,
-    desc: "For larger families performing rites for multiple ancestral generations and gotras.",
+    desc: "Extended rites for multiple ancestral generations across all three Gaya sanctums.",
     features: [
       "Everything in Complete",
       "Tri-Sanctum rites (Vishnupad, Phalgu, Akshayavat)",
@@ -76,6 +74,30 @@ const PACKAGES = [
       "Comprehensive archival video & photographic logs",
       "Priority Gayawal Purohit scheduling",
     ],
+  },
+];
+
+// ─── 4-Step config ───────────────────────────────────────────────────────────
+const STEPS = [
+  {
+    n: 1,
+    title: "Package & Date",
+    sub: "Choose your ritual package and preferred date",
+  },
+  {
+    n: 2,
+    title: "Your Details",
+    sub: "Contact information for updates & confirmation",
+  },
+  {
+    n: 3,
+    title: "Ancestor Details",
+    sub: "Sacred information for the Vedic Sankalpa",
+  },
+  {
+    n: 4,
+    title: "Review & Confirm",
+    sub: "Verify and submit your sacred reservation",
   },
 ];
 
@@ -88,281 +110,380 @@ export default function OnlinePindDaanWizardModal({
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [bookingConfirmed, setBookingConfirmed] = useState(false);
   const [generatedBookingId, setGeneratedBookingId] = useState("");
+  const [submitError, setSubmitError] = useState("");
 
-  // Form State
+  // ─── Form State ──────────────────────────────────────────────────────────
+  // Step 1
+  const [selectedPackage, setSelectedPackage] =
+    useState<string>(initialPackage);
   const [selectedDate, setSelectedDate] = useState("");
-  const [selectedPackage, setSelectedPackage] = useState<string>(initialPackage);
+
+  // Step 2
   const [userName, setUserName] = useState("");
   const [userPhone, setUserPhone] = useState("");
   const [userEmail, setUserEmail] = useState("");
-  
+
+  // Step 3
   const [ancestorName, setAncestorName] = useState("");
-  const [relationship, setRelationship] = useState("Father / Mother");
+  const [relationship, setRelationship] = useState("Father");
   const [gotra, setGotra] = useState("");
   const [dontKnowGotra, setDontKnowGotra] = useState(false);
-  const [ancestorNotes, setAncestorNotes] = useState("");
-
-  const [sankalpPerformer, setSankalpPerformer] = useState("Son");
-  const [participantCount, setParticipantCount] = useState("1-3 Family Members");
-
+  const [sankalpPerformer, setSankalpPerformer] = useState(
+    "Son (Eldest / Younger)"
+  );
+  const [participantCount, setParticipantCount] =
+    useState("1-3 Family Members");
   const [specialReqs, setSpecialReqs] = useState<string[]>([]);
   const [customNotes, setCustomNotes] = useState("");
 
   if (!isOpen) return null;
 
-  const currentPkg = PACKAGES.find((p) => p.id === selectedPackage) || PACKAGES[1];
+  const currentPkg =
+    PACKAGES.find((p) => p.id === selectedPackage) || PACKAGES[1];
 
   const handleSpecialReqToggle = (item: string) => {
-    if (specialReqs.includes(item)) {
-      setSpecialReqs(specialReqs.filter((r) => r !== item));
-    } else {
-      setSpecialReqs([...specialReqs, item]);
-    }
+    setSpecialReqs((prev) =>
+      prev.includes(item) ? prev.filter((r) => r !== item) : [...prev, item]
+    );
   };
 
-  const handleProceedToPayment = async () => {
+  const handleSubmit = async () => {
     setIsSubmitting(true);
-    const bookingRef = `PR-${new Date().getFullYear()}-${Math.floor(100000 + Math.random() * 900000)}`;
-    setGeneratedBookingId(bookingRef);
+    setSubmitError("");
 
     try {
-      // 1. Ingress lead to background email/CRM endpoint
-      fetch("https://formsubmit.co/ajax/pitrayaenquiry@gmail.com", {
+      const res = await fetch("/api/online-pind-daan/submit", {
         method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          _subject: `New Online Pind Daan Booking: ${bookingRef} (${userName})`,
-          BookingReference: bookingRef,
-          Package: currentPkg.name,
-          Investment: currentPkg.price,
-          PreferredDate: selectedDate || "Earliest auspicious Muhurat",
-          DevoteeName: userName,
-          DevoteePhone: userPhone,
-          DevoteeEmail: userEmail,
-          AncestorName: ancestorName,
-          Relationship: relationship,
-          Gotra: dontKnowGotra ? "Unknown (Coordinator guidance requested)" : gotra || "Kashyap",
-          SankalpPerformer: sankalpPerformer,
-          Participants: participantCount,
-          SpecialRequirements: specialReqs.join(", ") || "None",
-          Notes: customNotes || ancestorNotes || "None",
+          name: userName,
+          phone: userPhone,
+          email: userEmail,
+          packageId: selectedPackage,
+          packageTitle: currentPkg.name,
+          grandTotal: currentPkg.numericPrice,
+          ritualDate: selectedDate || "Next auspicious Muhurat",
+          ancestorName,
+          relationship,
+          gotra: dontKnowGotra ? "Kashyap (Universal)" : gotra || "Kashyap",
+          sankalpPerformer,
+          participantCount,
+          specialReqs,
+          customNotes,
         }),
-      }).catch((e) => console.log("Background inquiry log:", e));
-    } catch (err) {
-      console.log("Submit error:", err);
-    }
+      });
 
-    setTimeout(() => {
+      const data = await res.json();
+
+      if (data.success || data.reservationId) {
+        setGeneratedBookingId(data.reservationId || `PTR-OPD-${Date.now()}`);
+        setBookingConfirmed(true);
+
+        // Background email notification (non-blocking)
+        fetch("https://formsubmit.co/ajax/pitrayaenquiry@gmail.com", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            _subject: `New Online Pind Daan: ${data.reservationId} — ${userName}`,
+            BookingReference: data.reservationId,
+            Package: currentPkg.name,
+            Investment: currentPkg.price,
+            PreferredDate: selectedDate || "Earliest auspicious Muhurat",
+            DevoteeName: userName,
+            DevoteePhone: userPhone,
+            DevoteeEmail: userEmail,
+            AncestorName: ancestorName,
+            Relationship: relationship,
+            Gotra: dontKnowGotra ? "Kashyap (Universal)" : gotra || "Kashyap",
+          }),
+        }).catch(() => {});
+      } else {
+        throw new Error(data.error || "Submission failed. Please try again.");
+      }
+    } catch (err) {
+      console.error("Submit error:", err);
+      setSubmitError(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again or WhatsApp us."
+      );
+    } finally {
       setIsSubmitting(false);
-      setBookingConfirmed(true);
-    }, 600);
+    }
   };
 
   const resetAndClose = () => {
     setStep(1);
     setBookingConfirmed(false);
+    setSubmitError("");
     onClose();
   };
 
+  const canProceed = () => {
+    if (step === 2)
+      return userName.trim().length >= 2 && userPhone.trim().length >= 10;
+    if (step === 3) return ancestorName.trim().length >= 2;
+    return true;
+  };
+
+  // ─── Gold gradient (for consistent luxury feel inside the dark modal) ────
+  const goldGrad = "linear-gradient(135deg,#d4af37,#f5e19c 50%,#b8860b)";
+
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-black/85 backdrop-blur-md">
+      {/* Overlay */}
+      <div
+        className="fixed inset-0 z-[60] flex items-center justify-center p-3 sm:p-6"
+        style={{
+          backgroundColor: "rgba(0,0,0,0.82)",
+          backdropFilter: "blur(10px)",
+        }}
+      >
         <motion.div
-          initial={{ opacity: 0, scale: 0.96 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.96 }}
-          className="relative w-full max-w-3xl rounded-2xl bg-[#110f0c] border border-gold-primary/30 shadow-2xl overflow-hidden max-h-[92vh] flex flex-col text-white"
+          initial={{ opacity: 0, scale: 0.96, y: 12 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.96, y: 8 }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="relative flex w-full max-w-2xl flex-col overflow-hidden rounded-2xl shadow-2xl"
+          style={{
+            background: "#110f0c",
+            border: "1px solid rgba(212,175,55,0.25)",
+            maxHeight: "90vh",
+          }}
           data-lenis-prevent="true"
           role="dialog"
           aria-modal="true"
+          aria-label="Online Pind Daan Booking"
         >
-          {/* ─── MODAL HEADER ────────────────────────────────────────── */}
-          <div className="sticky top-0 z-20 bg-[#16130e] border-b border-gold-primary/20 px-6 py-4 flex items-center justify-between backdrop-blur-md">
+          {/* ─── Header ────────────────────────────────────────────────── */}
+          <div
+            className="sticky top-0 z-20 flex items-center justify-between px-5 py-4"
+            style={{
+              background: "#1a1510",
+              borderBottom: "1px solid rgba(212,175,55,0.18)",
+            }}
+          >
             <div className="flex items-center gap-3">
-              <div className="h-2.5 w-2.5 rounded-full bg-gold-primary animate-pulse" />
+              <div className="h-2 w-2 animate-pulse rounded-full bg-[#d4af37]" />
               <div>
-                <h2 className="text-sm font-bold font-cinzel text-gold-primary uppercase tracking-wider">
-                  {bookingConfirmed ? "Reservation Confirmed" : `Online Pind Daan Booking • Step ${step} of 7`}
-                </h2>
+                <p className="font-cinzel text-[10px] font-bold tracking-[0.18em] text-[#d4af37] uppercase">
+                  {bookingConfirmed
+                    ? "Reservation Confirmed"
+                    : `Online Pind Daan · Step ${step} of 4`}
+                </p>
                 {!bookingConfirmed && (
-                  <p className="text-[11px] text-text-muted font-serif">
-                    {step === 1 && "Select your preferred sacred date"}
-                    {step === 2 && "Choose your ancestral ritual package"}
-                    {step === 3 && "Your contact information"}
-                    {step === 4 && "About your departed ancestor"}
-                    {step === 5 && "Sankalpa performers & family details"}
-                    {step === 6 && "Special guidance or assistance requirements"}
-                    {step === 7 && "Review your booking & secure payment"}
+                  <p className="mt-0.5 text-[11px] text-[#8a7f72]">
+                    {STEPS[step - 1]?.sub}
                   </p>
                 )}
               </div>
             </div>
-
             <button
               onClick={resetAndClose}
               aria-label="Close booking modal"
-              className="p-2 rounded-full text-text-muted hover:text-white hover:bg-white/10 transition-colors"
+              className="cursor-pointer rounded-full p-2 text-[#8a7f72] transition-colors hover:bg-white/10 hover:text-white"
             >
-              <X className="h-5 w-5" />
+              <X className="h-4 w-4" />
             </button>
           </div>
 
-          {/* ─── PROGRESS BAR (Steps 1-7) ────────────────────────────── */}
+          {/* ─── Progress bar ──────────────────────────────────────────── */}
           {!bookingConfirmed && (
-            <div className="w-full bg-white/5 h-1">
+            <div className="h-[3px] w-full bg-white/5">
               <div
-                className="bg-gold-gradient h-1 transition-all duration-300"
-                style={{ width: `${(step / 7) * 100}%` }}
+                className="h-[3px] transition-all duration-400"
+                style={{ width: `${(step / 4) * 100}%`, background: goldGrad }}
               />
             </div>
           )}
 
-          {/* ─── MODAL BODY CONTENT ──────────────────────────────────── */}
-          <div className="flex-1 overflow-y-auto p-6 sm:p-8 space-y-6">
+          {/* ─── Step pills ────────────────────────────────────────────── */}
+          {!bookingConfirmed && (
+            <div className="flex items-center gap-2 px-5 pt-4 pb-1">
+              {STEPS.map((s) => (
+                <div key={s.n} className="flex items-center gap-1.5">
+                  <div
+                    className={cn(
+                      "font-cinzel flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-bold transition-all",
+                      s.n < step
+                        ? "bg-[#d4af37] text-black"
+                        : s.n === step
+                          ? "border border-[#d4af37]/50 bg-[#d4af37]/20 text-[#d4af37]"
+                          : "border border-white/10 bg-white/5 text-[#555]"
+                    )}
+                  >
+                    {s.n < step ? <CheckCircle2 className="h-3 w-3" /> : s.n}
+                  </div>
+                  <span
+                    className={cn(
+                      "font-cinzel hidden text-[10px] font-medium sm:block",
+                      s.n === step
+                        ? "text-[#d4af37]"
+                        : s.n < step
+                          ? "text-[#d4af37]/60"
+                          : "text-[#444]"
+                    )}
+                  >
+                    {s.title}
+                  </span>
+                  {s.n < 4 && (
+                    <div className="hidden h-px w-4 bg-white/10 sm:block" />
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
+
+          {/* ─── Body ──────────────────────────────────────────────────── */}
+          <div className="flex-1 space-y-5 overflow-y-auto px-5 py-5">
             {!bookingConfirmed ? (
               <>
-                {/* STEP 1: SELECT DATE */}
+                {/* ══════════════════════════════════════════════════════
+                    STEP 1 — Package & Date
+                ══════════════════════════════════════════════════════ */}
                 {step === 1 && (
-                  <div className="space-y-6 animate-fadeIn">
+                  <div className="space-y-5">
+                    {/* Package selection */}
                     <div className="space-y-2">
-                      <h3 className="text-lg font-cinzel font-bold text-white flex items-center gap-2">
-                        <Calendar className="h-5 w-5 text-gold-primary" />
-                        When would you like the ritual performed?
-                      </h3>
-                      <p className="text-xs text-text-muted font-serif">
-                        Rituals can be conducted on any day of the year at Vishnupad. Special tithis like Amavasya, Purnima, or Pitru Paksha carry elevated astrological merit.
-                      </p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-text-secondary mb-2">
-                          Preferred Ritual Date
-                        </label>
-                        <input
-                          type="date"
-                          value={selectedDate}
-                          onChange={(e) => setSelectedDate(e.target.value)}
-                          min={new Date().toISOString().split("T")[0]}
-                          className="w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-primary focus:ring-1 focus:ring-gold-primary"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 pt-2">
-                        {[
-                          { label: "Earliest Auspicious Date", desc: "Assigned to nearest Shukla/Krishna Tithi" },
-                          { label: "Upcoming Amavasya", desc: "Most potent monthly ancestral tithi" },
-                          { label: "Specific Death Anniversary", desc: "Annual Shraddha / Punya Tithi" },
-                        ].map((opt, idx) => (
-                          <div
-                            key={idx}
-                            onClick={() => setSelectedDate(opt.label)}
-                            className={cn(
-                              "p-3 rounded-xl border cursor-pointer transition-all text-left",
-                              selectedDate === opt.label
-                                ? "border-gold-primary bg-gold-primary/10 text-white"
-                                : "border-border/50 bg-surface/30 hover:border-gold-primary/40 text-text-muted hover:text-text-primary"
-                            )}
-                          >
-                            <p className="text-xs font-bold text-gold-primary">{opt.label}</p>
-                            <p className="text-[11px] mt-1 text-text-muted">{opt.desc}</p>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="p-4 rounded-xl bg-gold-primary/5 border border-gold-primary/20 flex items-start gap-3 text-xs text-text-secondary">
-                        <Sparkles className="h-4 w-4 text-gold-primary shrink-0 mt-0.5" />
-                        <p>
-                          <strong className="text-gold-primary font-semibold">Tithi Guidance:</strong> If you are unsure of the lunar tithi, you can select today or approximate date. Our senior Gayawal Purohit will consult the Panchangam with your coordinator.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 2: SELECT PACKAGE */}
-                {step === 2 && (
-                  <div className="space-y-6 animate-fadeIn">
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-cinzel font-bold text-white flex items-center gap-2">
-                        <Package className="h-5 w-5 text-gold-primary" />
+                      <h3 className="font-cinzel flex items-center gap-2 text-sm font-bold text-white">
+                        <Package className="h-4 w-4 text-[#d4af37]" />
                         Select Your Ritual Package
                       </h3>
-                      <p className="text-xs text-text-muted font-serif">
-                        Transparent ritual arrangements conducted physically in Gaya with verified Gayawal Purohits.
-                      </p>
+                      <div className="space-y-3">
+                        {PACKAGES.map((pkg) => (
+                          <button
+                            key={pkg.id}
+                            type="button"
+                            onClick={() => setSelectedPackage(pkg.id)}
+                            className={cn(
+                              "flex w-full cursor-pointer items-start justify-between gap-3 rounded-xl border p-4 text-left transition-all",
+                              selectedPackage === pkg.id
+                                ? "border-[#d4af37]/60 bg-[#d4af37]/[0.08]"
+                                : "border-white/10 bg-white/[0.03] hover:border-[#d4af37]/30"
+                            )}
+                          >
+                            <div className="min-w-0 flex-1 space-y-1">
+                              <div className="flex flex-wrap items-center gap-2">
+                                <span className="font-cinzel text-sm font-bold text-white">
+                                  {pkg.name}
+                                </span>
+                                <span className="rounded-full border border-[#d4af37]/25 bg-[#d4af37]/15 px-2 py-0.5 text-[10px] font-bold tracking-wider text-[#d4af37] uppercase">
+                                  {pkg.badge}
+                                </span>
+                              </div>
+                              <p className="text-[11px] leading-relaxed text-[#8a7f72]">
+                                {pkg.desc}
+                              </p>
+                              <ul className="space-y-0.5 pt-1">
+                                {pkg.features.slice(0, 3).map((f, i) => (
+                                  <li
+                                    key={i}
+                                    className="flex items-center gap-1.5 text-[11px] text-[#6e7f6a]"
+                                  >
+                                    <CheckCircle2 className="h-3 w-3 shrink-0 text-emerald-500" />
+                                    {f}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                            <div className="shrink-0 text-right">
+                              <span className="font-cinzel text-base font-bold text-[#d4af37]">
+                                {pkg.price}
+                              </span>
+                              <p className="mt-0.5 text-[10px] text-[#6a5f52]">
+                                all-inclusive
+                              </p>
+                              {selectedPackage === pkg.id && (
+                                <span className="mt-1.5 flex items-center justify-end gap-0.5 text-[10px] font-bold text-emerald-400">
+                                  <CheckCircle2 className="h-3 w-3" /> Selected
+                                </span>
+                              )}
+                            </div>
+                          </button>
+                        ))}
+                      </div>
                     </div>
 
-                    <div className="grid grid-cols-1 gap-4">
-                      {PACKAGES.map((pkg) => (
-                        <div
-                          key={pkg.id}
-                          onClick={() => setSelectedPackage(pkg.id)}
-                          className={cn(
-                            "p-5 rounded-2xl border cursor-pointer transition-all relative flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4",
-                            selectedPackage === pkg.id
-                              ? "border-gold-primary bg-gold-primary/10 shadow-gold-glow/20"
-                              : "border-border/50 bg-surface/40 hover:border-gold-primary/40"
-                          )}
-                        >
-                          <div className="space-y-1.5 max-w-md">
-                            <div className="flex items-center gap-2">
-                              <span className="text-sm font-bold font-cinzel text-white">
-                                {pkg.name}
-                              </span>
-                              <span className="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-full bg-gold-primary/20 text-gold-primary border border-gold-primary/30">
-                                {pkg.badge}
-                              </span>
-                            </div>
-                            <p className="text-xs text-text-muted">{pkg.desc}</p>
-                            <ul className="text-[11px] text-text-secondary space-y-1 pt-1">
-                              {pkg.features.slice(0, 3).map((f, i) => (
-                                <li key={i} className="flex items-center gap-1.5">
-                                  <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 shrink-0" />
-                                  <span>{f}</span>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-
-                          <div className="text-right shrink-0 flex flex-col items-end">
-                            <span className="text-xl font-bold font-cinzel text-gold-primary">
-                              {pkg.price}
-                            </span>
-                            <span className="text-[10px] text-text-muted">All-inclusive ritual dakshina</span>
-                            <div
-                              className={cn(
-                                "mt-2 px-4 py-1.5 rounded-full text-xs font-bold font-cinzel transition-all",
-                                selectedPackage === pkg.id
-                                  ? "bg-gold-gradient text-black"
-                                  : "border border-border text-text-muted"
-                              )}
-                            >
-                              {selectedPackage === pkg.id ? "Selected ✓" : "Select"}
-                            </div>
-                          </div>
-                        </div>
-                      ))}
+                    {/* Date selection */}
+                    <div className="space-y-2">
+                      <h3 className="font-cinzel flex items-center gap-2 text-sm font-bold text-white">
+                        <Calendar className="h-4 w-4 text-[#d4af37]" />
+                        Preferred Ritual Date
+                      </h3>
+                      <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
+                        {[
+                          {
+                            label: "Earliest Auspicious",
+                            desc: "Nearest Shukla / Krishna Tithi",
+                          },
+                          {
+                            label: "Upcoming Amavasya",
+                            desc: "Most potent monthly tithi",
+                          },
+                          {
+                            label: "Specific Death Anniversary",
+                            desc: "Annual Shraddha / Punya Tithi",
+                          },
+                        ].map((opt) => (
+                          <button
+                            type="button"
+                            key={opt.label}
+                            onClick={() => setSelectedDate(opt.label)}
+                            className={cn(
+                              "cursor-pointer rounded-xl border p-3 text-left transition-all",
+                              selectedDate === opt.label
+                                ? "border-[#d4af37]/60 bg-[#d4af37]/[0.08]"
+                                : "border-white/10 bg-white/[0.03] hover:border-[#d4af37]/25"
+                            )}
+                          >
+                            <p className="text-[11px] font-bold text-[#d4af37]">
+                              {opt.label}
+                            </p>
+                            <p className="mt-0.5 text-[10px] text-[#6a5f52]">
+                              {opt.desc}
+                            </p>
+                          </button>
+                        ))}
+                      </div>
+                      <input
+                        type="date"
+                        value={
+                          typeof selectedDate === "string" &&
+                          selectedDate.match(/^\d{4}/)
+                            ? selectedDate
+                            : ""
+                        }
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        min={new Date().toISOString().split("T")[0]}
+                        placeholder="Or pick a specific date"
+                        className="w-full rounded-xl border border-white/15 bg-white/[0.05] px-4 py-2.5 text-sm text-white placeholder-[#5a5248] focus:border-[#d4af37]/60 focus:outline-none"
+                      />
                     </div>
                   </div>
                 )}
 
-                {/* STEP 3: ABOUT YOU */}
-                {step === 3 && (
-                  <div className="space-y-6 animate-fadeIn">
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-cinzel font-bold text-white flex items-center gap-2">
-                        <User className="h-5 w-5 text-gold-primary" />
-                        About You (Devotee Details)
+                {/* ══════════════════════════════════════════════════════
+                    STEP 2 — Your Contact Details
+                ══════════════════════════════════════════════════════ */}
+                {step === 2 && (
+                  <div className="space-y-5">
+                    <div className="space-y-1.5">
+                      <h3 className="font-cinzel flex items-center gap-2 text-sm font-bold text-white">
+                        <User className="h-4 w-4 text-[#d4af37]" />
+                        Your Contact Details
                       </h3>
-                      <p className="text-xs text-text-muted font-serif">
-                        We will send booking confirmations, ritual photographs, and coordinator updates to these contact details.
+                      <p className="text-[11px] text-[#8a7f72]">
+                        Booking confirmation, ritual photographs, and
+                        coordinator updates will be sent here.
                       </p>
                     </div>
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-xs font-semibold text-text-secondary mb-1.5">
+                        <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
                           Your Full Name *
                         </label>
                         <input
@@ -370,174 +491,172 @@ export default function OnlinePindDaanWizardModal({
                           placeholder="e.g. Rahul Sharma"
                           value={userName}
                           onChange={(e) => setUserName(e.target.value)}
-                          className="w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-gold-primary"
+                          className="w-full rounded-xl border border-[#d4af37]/25 bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-[#5a5248] focus:border-[#d4af37]/60 focus:outline-none"
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                          <label className="block text-xs font-semibold text-text-secondary mb-1.5">
-                            WhatsApp Phone Number *
+                          <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
+                            WhatsApp Number *
                           </label>
                           <input
                             type="tel"
-                            placeholder="e.g. +91 98765 43210"
+                            placeholder="+91 98765 43210"
                             value={userPhone}
                             onChange={(e) => setUserPhone(e.target.value)}
-                            className="w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-gold-primary"
+                            className="w-full rounded-xl border border-[#d4af37]/25 bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-[#5a5248] focus:border-[#d4af37]/60 focus:outline-none"
                           />
                         </div>
-
                         <div>
-                          <label className="block text-xs font-semibold text-text-secondary mb-1.5">
+                          <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
                             Email Address *
                           </label>
                           <input
                             type="email"
-                            placeholder="e.g. rahul@example.com"
+                            placeholder="rahul@example.com"
                             value={userEmail}
                             onChange={(e) => setUserEmail(e.target.value)}
-                            className="w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-gold-primary"
+                            className="w-full rounded-xl border border-[#d4af37]/25 bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-[#5a5248] focus:border-[#d4af37]/60 focus:outline-none"
                           />
                         </div>
                       </div>
 
-                      <div className="p-3.5 rounded-xl bg-surface/40 border border-border/60 text-xs text-text-muted flex items-center gap-2.5">
-                        <Lock className="h-4 w-4 text-emerald-400 shrink-0" />
-                        <span>Your personal and family details are encrypted and never shared.</span>
+                      <div className="flex items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.04] p-3 text-[11px] text-[#8a7f72]">
+                        <Lock className="h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                        Your personal and family details are encrypted and never
+                        shared.
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* STEP 4: ABOUT YOUR ANCESTOR */}
-                {step === 4 && (
-                  <div className="space-y-6 animate-fadeIn">
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-cinzel font-bold text-white flex items-center gap-2">
-                        <Heart className="h-5 w-5 text-gold-primary" />
-                        About Your Departed Ancestors
+                {/* ══════════════════════════════════════════════════════
+                    STEP 3 — Ancestor Details + Participants + Special Reqs
+                ══════════════════════════════════════════════════════ */}
+                {step === 3 && (
+                  <div className="space-y-5">
+                    {/* Ancestor info */}
+                    <div className="space-y-1.5">
+                      <h3 className="font-cinzel flex items-center gap-2 text-sm font-bold text-white">
+                        <Heart className="h-4 w-4 text-[#d4af37]" />
+                        Departed Ancestor Details
                       </h3>
-                      <p className="text-xs text-text-muted font-serif">
-                        These names and gotras will be solemnly recited by the Gayawal Pandit during the sacred Vedic Sankalpa.
+                      <p className="text-[11px] text-[#8a7f72]">
+                        These names will be solemnly recited during the Vedic
+                        Sankalpa.
                       </p>
                     </div>
 
                     <div className="space-y-4">
                       <div>
-                        <label className="block text-xs font-semibold text-text-secondary mb-1.5">
-                          Name of Ancestor / Deceased Person(s) *
+                        <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
+                          Name of Ancestor / Departed Soul *
                         </label>
                         <input
                           type="text"
                           placeholder="e.g. Late Shri Ramesh Chandra Sharma"
                           value={ancestorName}
                           onChange={(e) => setAncestorName(e.target.value)}
-                          className="w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-gold-primary"
+                          className="w-full rounded-xl border border-[#d4af37]/25 bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-[#5a5248] focus:border-[#d4af37]/60 focus:outline-none"
                         />
                       </div>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                         <div>
-                          <label className="block text-xs font-semibold text-text-secondary mb-1.5">
+                          <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
                             Relationship to You
                           </label>
                           <select
                             value={relationship}
                             onChange={(e) => setRelationship(e.target.value)}
-                            className="w-full bg-surface/80 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-primary"
+                            className="w-full rounded-xl border border-[#d4af37]/25 bg-[#1a1510] px-4 py-3 text-sm text-white focus:border-[#d4af37]/60 focus:outline-none"
                           >
                             <option value="Father">Father (Pitra)</option>
                             <option value="Mother">Mother (Matra)</option>
-                            <option value="Grandfather / Grandmother">Grandparents (Dada / Dadi)</option>
-                            <option value="Maternal Grandparents">Maternal Grandparents (Nana / Nani)</option>
-                            <option value="Spouse">Spouse (Pati / Patni)</option>
-                            <option value="All Paternal & Maternal Ancestors">All Ancestors (Sarva Pitra)</option>
-                            <option value="Other">Other Relative</option>
+                            <option value="Grandfather / Grandmother">
+                              Grandparents (Dada / Dadi)
+                            </option>
+                            <option value="Maternal Grandparents">
+                              Maternal Grandparents
+                            </option>
+                            <option value="Spouse">
+                              Spouse (Pati / Patni)
+                            </option>
+                            <option value="All Ancestors (Sarva Pitra)">
+                              All Ancestors (Sarva Pitra)
+                            </option>
+                            <option value="Other Relative">
+                              Other Relative
+                            </option>
                           </select>
                         </div>
 
                         <div>
-                          <label className="block text-xs font-semibold text-text-secondary mb-1.5">
+                          <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
                             Family Gotra
                           </label>
                           <input
                             type="text"
-                            placeholder="e.g. Kashyap, Bharadwaj, Sandilya"
+                            placeholder="e.g. Kashyap, Bharadwaj…"
                             disabled={dontKnowGotra}
-                            value={dontKnowGotra ? "Kashyap (Universal Vedic Gotra)" : gotra}
+                            value={
+                              dontKnowGotra
+                                ? "Kashyap (Universal Vedic Gotra)"
+                                : gotra
+                            }
                             onChange={(e) => setGotra(e.target.value)}
                             className={cn(
-                              "w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-gold-primary",
-                              dontKnowGotra && "opacity-50 cursor-not-allowed"
+                              "w-full rounded-xl border border-[#d4af37]/25 bg-white/[0.05] px-4 py-3 text-sm text-white placeholder-[#5a5248] focus:border-[#d4af37]/60 focus:outline-none",
+                              dontKnowGotra && "cursor-not-allowed opacity-50"
                             )}
                           />
                         </div>
                       </div>
 
-                      {/* DON'T KNOW GOTRA REASSURANCE */}
-                      <label className="flex items-start gap-2.5 p-3 rounded-xl bg-gold-primary/5 border border-gold-primary/20 cursor-pointer">
+                      {/* Don't know gotra */}
+                      <label className="flex cursor-pointer items-start gap-2.5 rounded-xl border border-[#d4af37]/20 bg-[#d4af37]/[0.05] p-3">
                         <input
                           type="checkbox"
                           checked={dontKnowGotra}
                           onChange={(e) => setDontKnowGotra(e.target.checked)}
-                          className="mt-0.5 accent-[#d4af37] h-4 w-4"
+                          className="mt-0.5 h-4 w-4 accent-[#d4af37]"
                         />
-                        <div className="text-xs">
-                          <span className="font-semibold text-gold-primary block">
+                        <div className="text-[11px]">
+                          <span className="block font-semibold text-[#d4af37]">
                             I don&apos;t know our family Gotra
                           </span>
-                          <span className="text-text-muted">
-                            Don&apos;t worry. According to Hindu Shastras, the universal Kashyap Gotra is invoked during the Sankalpa so rites remain spiritually 100% complete.
+                          <span className="text-[#6a5f52]">
+                            Universal Kashyap Gotra will be invoked —
+                            spiritually 100% complete per Hindu Shastras.
                           </span>
                         </div>
                       </label>
 
+                      {/* Sankalpa performer */}
                       <div>
-                        <label className="block text-xs font-semibold text-text-secondary mb-1.5">
-                          Additional Lineage Details or Special Prayers (Optional)
+                        <label className="mb-2 block text-xs font-semibold text-[#a09080]">
+                          <Users className="mr-1 inline h-3.5 w-3.5 text-[#d4af37]" />
+                          Who Performs the Remote Sankalpa?
                         </label>
-                        <textarea
-                          rows={2}
-                          placeholder="e.g. Ancestor passed away in 2021, native place Varanasi, praying for peaceful moksha."
-                          value={ancestorNotes}
-                          onChange={(e) => setAncestorNotes(e.target.value)}
-                          className="w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-gold-primary"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 5: PARTICIPANTS & SANKALPA */}
-                {step === 5 && (
-                  <div className="space-y-6 animate-fadeIn">
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-cinzel font-bold text-white flex items-center gap-2">
-                        <Users className="h-5 w-5 text-gold-primary" />
-                        Who Will Perform The Remote Sankalp?
-                      </h3>
-                      <p className="text-xs text-text-muted font-serif">
-                        Specify who in the family is taking the holy resolve on behalf of the lineage.
-                      </p>
-                    </div>
-
-                    <div className="space-y-4">
-                      <div>
-                        <label className="block text-xs font-semibold text-text-secondary mb-2">
-                          Primary Sankalp Performer
-                        </label>
-                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2.5">
-                          {["Son (Eldest / Younger)", "Daughter", "Grandson / Granddaughter", "Spouse", "Brother / Sister", "Family Representative"].map((role) => (
+                        <div className="grid grid-cols-2 gap-2 sm:grid-cols-3">
+                          {[
+                            "Son (Eldest / Younger)",
+                            "Daughter",
+                            "Grandson / Granddaughter",
+                            "Spouse",
+                            "Brother / Sister",
+                            "Family Representative",
+                          ].map((role) => (
                             <button
                               type="button"
                               key={role}
                               onClick={() => setSankalpPerformer(role)}
                               className={cn(
-                                "p-2.5 rounded-xl border text-xs font-medium text-left transition-all",
+                                "cursor-pointer rounded-xl border p-2.5 text-left text-[11px] font-medium transition-all",
                                 sankalpPerformer === role
-                                  ? "border-gold-primary bg-gold-primary/15 text-white"
-                                  : "border-border/60 bg-surface/30 text-text-muted hover:border-gold-primary/30 hover:text-white"
+                                  ? "border-[#d4af37]/60 bg-[#d4af37]/[0.08] text-white"
+                                  : "border-white/10 bg-white/[0.03] text-[#6a5f52] hover:border-[#d4af37]/30 hover:text-white"
                               )}
                             >
                               {role}
@@ -546,223 +665,328 @@ export default function OnlinePindDaanWizardModal({
                         </div>
                       </div>
 
+                      {/* Participants count */}
                       <div>
-                        <label className="block text-xs font-semibold text-text-secondary mb-2">
+                        <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
                           Family Members Joining Prayers from Home
                         </label>
                         <select
                           value={participantCount}
                           onChange={(e) => setParticipantCount(e.target.value)}
-                          className="w-full bg-surface/80 border border-gold-primary/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-primary"
+                          className="w-full rounded-xl border border-[#d4af37]/25 bg-[#1a1510] px-4 py-3 text-sm text-white focus:border-[#d4af37]/60 focus:outline-none"
                         >
-                          <option value="1 Member (Individual)">1 Devotee (Individual)</option>
-                          <option value="2-4 Family Members">2 – 4 Family Members</option>
-                          <option value="5-8 Extended Family Members">5 – 8 Extended Family Members</option>
-                          <option value="Entire Lineage (Joint Family)">Entire Lineage (Joint Family)</option>
+                          <option value="1 Member (Individual)">
+                            1 Devotee (Individual)
+                          </option>
+                          <option value="2-4 Family Members">
+                            2 – 4 Family Members
+                          </option>
+                          <option value="5-8 Extended Family Members">
+                            5 – 8 Extended Family Members
+                          </option>
+                          <option value="Entire Lineage (Joint Family)">
+                            Entire Lineage (Joint Family)
+                          </option>
                         </select>
                       </div>
 
-                      <div className="p-4 rounded-xl bg-surface/40 border border-border/50 text-xs text-text-muted space-y-1">
-                        <p className="font-semibold text-white flex items-center gap-1.5">
-                          <HelpCircle className="h-4 w-4 text-gold-primary" />
-                          Can daughters perform Pind Daan?
-                        </p>
-                        <p>
-                          Yes. Under Garuda Purana and authentic Vedic traditions, in the absence of a son or by family circumstance, daughters, granddaughters, and wives are fully entitled to perform ancestral rites.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* STEP 6: SPECIAL REQUIREMENTS */}
-                {step === 6 && (
-                  <div className="space-y-6 animate-fadeIn">
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-cinzel font-bold text-white flex items-center gap-2">
-                        <Sparkles className="h-5 w-5 text-gold-primary" />
-                        Special Requirements & Assistance
-                      </h3>
-                      <p className="text-xs text-text-muted font-serif">
-                        Let our pilgrimage concierge know if your family has specific regional traditions or preferences.
-                      </p>
-                    </div>
-
-                    <div className="space-y-3">
-                      {[
-                        { id: "elderly", label: "Elderly family member taking Sankalp from home" },
-                        { id: "language", label: "Need Pandit / Coordinator in Hindi / Bengali / Telugu / Tamil / Gujarati" },
-                        { id: "multiple_ancestors", label: "Multiple ancestors across different death years" },
-                        { id: "coordinator_call", label: "Request a pre-ritual 1-on-1 explanatory phone call with coordinator" },
-                        { id: "prasad_shipping", label: "Prasad & sacred Raksha Sutra delivery to home address" },
-                      ].map((item) => (
-                        <label
-                          key={item.id}
-                          className="flex items-center gap-3 p-3.5 rounded-xl border border-border/60 bg-surface/30 hover:border-gold-primary/30 cursor-pointer text-xs text-text-secondary"
-                        >
-                          <input
-                            type="checkbox"
-                            checked={specialReqs.includes(item.label)}
-                            onChange={() => handleSpecialReqToggle(item.label)}
-                            className="accent-[#d4af37] h-4 w-4 rounded"
-                          />
-                          <span>{item.label}</span>
+                      {/* Special requirements */}
+                      <div>
+                        <label className="mb-2 block text-xs font-semibold text-[#a09080]">
+                          <Sparkles className="mr-1 inline h-3.5 w-3.5 text-[#d4af37]" />
+                          Special Requirements (Optional)
                         </label>
-                      ))}
+                        <div className="space-y-2">
+                          {[
+                            {
+                              id: "elderly",
+                              label:
+                                "Elderly family member taking Sankalpa from home",
+                            },
+                            {
+                              id: "language",
+                              label:
+                                "Need Hindi / Bengali / Telugu / Tamil / Gujarati coordinator",
+                            },
+                            {
+                              id: "multiple",
+                              label:
+                                "Multiple ancestors across different death years",
+                            },
+                            {
+                              id: "call",
+                              label:
+                                "Request a pre-ritual call with coordinator",
+                            },
+                            {
+                              id: "prasad",
+                              label:
+                                "Prasad & sacred Raksha Sutra delivery to home",
+                            },
+                          ].map((item) => (
+                            <label
+                              key={item.id}
+                              className="flex cursor-pointer items-center gap-2.5 rounded-xl border border-white/10 bg-white/[0.03] p-2.5 text-[11px] text-[#8a7f72] transition-colors hover:border-[#d4af37]/25"
+                            >
+                              <input
+                                type="checkbox"
+                                checked={specialReqs.includes(item.label)}
+                                onChange={() =>
+                                  handleSpecialReqToggle(item.label)
+                                }
+                                className="h-3.5 w-3.5 rounded accent-[#d4af37]"
+                              />
+                              {item.label}
+                            </label>
+                          ))}
+                        </div>
+                      </div>
 
-                      <div className="pt-2">
-                        <label className="block text-xs font-semibold text-text-secondary mb-1.5">
-                          Any other custom instructions for the Gayawal Pandit?
+                      <div>
+                        <label className="mb-1.5 block text-xs font-semibold text-[#a09080]">
+                          Custom Instructions for the Pandit (Optional)
                         </label>
                         <textarea
                           rows={2}
-                          placeholder="e.g. Please perform tarpan specifically facing south at Falgu river."
+                          placeholder="e.g. Please perform tarpan facing south at Phalgu river."
                           value={customNotes}
                           onChange={(e) => setCustomNotes(e.target.value)}
-                          className="w-full bg-surface/50 border border-gold-primary/30 rounded-xl px-4 py-2.5 text-xs text-white placeholder-zinc-500 focus:outline-none focus:border-gold-primary"
+                          className="w-full resize-none rounded-xl border border-[#d4af37]/25 bg-white/[0.05] px-4 py-2.5 text-[11px] text-white placeholder-[#5a5248] focus:border-[#d4af37]/60 focus:outline-none"
                         />
+                      </div>
+
+                      <div className="flex items-start gap-2 rounded-xl border border-white/10 bg-white/[0.04] p-3 text-[11px] text-[#8a7f72]">
+                        <HelpCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4af37]" />
+                        <span>
+                          Daughters, granddaughters and spouses are fully
+                          entitled to perform ancestral rites per the Garuda
+                          Purana and authentic Vedic traditions.
+                        </span>
                       </div>
                     </div>
                   </div>
                 )}
 
-                {/* STEP 7: REVIEW & PAYMENT */}
-                {step === 7 && (
-                  <div className="space-y-6 animate-fadeIn">
-                    <div className="space-y-2">
-                      <h3 className="text-lg font-cinzel font-bold text-white flex items-center gap-2">
-                        <ShieldCheck className="h-5 w-5 text-gold-primary" />
-                        Review Your Pind Daan Reservation
+                {/* ══════════════════════════════════════════════════════
+                    STEP 4 — Review & Confirm
+                ══════════════════════════════════════════════════════ */}
+                {step === 4 && (
+                  <div className="space-y-5">
+                    <div className="space-y-1.5">
+                      <h3 className="font-cinzel flex items-center gap-2 text-sm font-bold text-white">
+                        <ShieldCheck className="h-4 w-4 text-[#d4af37]" />
+                        Review Your Sacred Reservation
                       </h3>
-                      <p className="text-xs text-text-muted font-serif">
-                        Please verify the sacred details before confirming your booking.
+                      <p className="text-[11px] text-[#8a7f72]">
+                        Please verify the details before confirming your
+                        booking.
                       </p>
                     </div>
 
-                    <div className="p-5 rounded-2xl bg-surface/50 border border-gold-primary/30 space-y-4 text-xs">
-                      <div className="flex justify-between items-center border-b border-border/50 pb-3">
+                    <div className="space-y-4 rounded-xl border border-[#d4af37]/25 bg-white/[0.03] p-4 text-xs">
+                      {/* Package & Price */}
+                      <div className="flex items-start justify-between border-b border-white/10 pb-3">
                         <div>
-                          <span className="text-[10px] uppercase font-bold text-text-muted">Selected Package</span>
-                          <p className="text-base font-bold font-cinzel text-gold-primary">{currentPkg.name} Online Pind Daan</p>
+                          <span className="text-[10px] font-bold text-[#6a5f52] uppercase">
+                            Package
+                          </span>
+                          <p className="font-cinzel mt-0.5 text-sm font-bold text-[#d4af37]">
+                            {currentPkg.name} Online Pind Daan
+                          </p>
                         </div>
                         <div className="text-right">
-                          <span className="text-[10px] uppercase font-bold text-text-muted">Total Investment</span>
-                          <p className="text-lg font-bold font-cinzel text-white">{currentPkg.price}</p>
+                          <span className="text-[10px] font-bold text-[#6a5f52] uppercase">
+                            Total
+                          </span>
+                          <p className="font-cinzel mt-0.5 text-base font-bold text-white">
+                            {currentPkg.price}
+                          </p>
                         </div>
                       </div>
 
-                      <div className="grid grid-cols-2 gap-3 text-text-secondary">
-                        <div>
-                          <span className="text-text-muted block text-[11px]">Preferred Date:</span>
-                          <strong className="text-white">{selectedDate || "Next Auspicious Tithi"}</strong>
-                        </div>
-                        <div>
-                          <span className="text-text-muted block text-[11px]">Devotee Name:</span>
-                          <strong className="text-white">{userName || "Devotee Family"}</strong>
-                        </div>
-                        <div>
-                          <span className="text-text-muted block text-[11px]">Ancestor(s):</span>
-                          <strong className="text-white">{ancestorName || "Ancestral Lineage"} ({relationship})</strong>
-                        </div>
-                        <div>
-                          <span className="text-text-muted block text-[11px]">Gotra:</span>
-                          <strong className="text-white">{dontKnowGotra ? "Kashyap (Universal)" : gotra || "Kashyap"}</strong>
-                        </div>
-                        <div>
-                          <span className="text-text-muted block text-[11px]">Sankalpa Performed by:</span>
-                          <strong className="text-white">{sankalpPerformer}</strong>
-                        </div>
-                        <div>
-                          <span className="text-text-muted block text-[11px]">Contact (WhatsApp):</span>
-                          <strong className="text-emerald-400">{userPhone || "Not provided"}</strong>
-                        </div>
+                      {/* Details grid */}
+                      <div className="grid grid-cols-2 gap-x-4 gap-y-3 text-[11px]">
+                        {[
+                          {
+                            label: "Ritual Date",
+                            value: selectedDate || "Next Auspicious Tithi",
+                          },
+                          { label: "Devotee", value: userName || "—" },
+                          { label: "WhatsApp", value: userPhone || "—" },
+                          { label: "Email", value: userEmail || "—" },
+                          { label: "Ancestor", value: ancestorName || "—" },
+                          { label: "Relationship", value: relationship },
+                          {
+                            label: "Gotra",
+                            value: dontKnowGotra
+                              ? "Kashyap (Universal)"
+                              : gotra || "Kashyap",
+                          },
+                          { label: "Sankalpa by", value: sankalpPerformer },
+                        ].map(({ label, value }) => (
+                          <div key={label}>
+                            <span className="block text-[10px] text-[#6a5f52]">
+                              {label}:
+                            </span>
+                            <strong className="text-white">{value}</strong>
+                          </div>
+                        ))}
                       </div>
 
-                      <div className="p-3 rounded-xl bg-gold-primary/10 border border-gold-primary/20 text-[11px] text-text-secondary flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-emerald-400 shrink-0 mt-0.5" />
-                        <p>
-                          Includes authentic Gayawal Purohit coordination, complete puja samagri, sankalpa recitations, photographic updates, and post-ritual certificate.
-                        </p>
+                      {specialReqs.length > 0 && (
+                        <div className="border-t border-white/10 pt-3">
+                          <span className="mb-1 block text-[10px] font-bold text-[#6a5f52] uppercase">
+                            Special Requirements
+                          </span>
+                          <p className="text-[11px] text-white">
+                            {specialReqs.join(" · ")}
+                          </p>
+                        </div>
+                      )}
+
+                      <div className="flex items-start gap-2 rounded-lg border border-t border-[#d4af37]/20 border-white/10 bg-[#d4af37]/[0.07] p-2.5 pt-3 text-[11px] text-[#8a7f72]">
+                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-emerald-400" />
+                        Authentic Gayawal Purohit coordination · Complete puja
+                        samagri · Sankalpa recitations · Photo/Video
+                        documentation
                       </div>
                     </div>
+
+                    {/* Trust badges */}
+                    <div className="grid grid-cols-2 gap-2">
+                      {[
+                        { icon: "🔒", text: "Secure & Encrypted" },
+                        { icon: "⚡", text: "15-Min Coordinator Call" },
+                        { icon: "📸", text: "Photo Documentation" },
+                        { icon: "🏛️", text: "Hereditary Gayawal Pandits" },
+                      ].map((b) => (
+                        <div
+                          key={b.text}
+                          className="flex items-center gap-2 rounded-lg border border-white/8 bg-white/[0.03] p-2 text-[10px] text-[#8a7f72]"
+                        >
+                          <span>{b.icon}</span>
+                          {b.text}
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Error message */}
+                    {submitError && (
+                      <div className="rounded-xl border border-red-500/25 bg-red-500/10 p-3 text-[11px] text-red-400">
+                        ⚠ {submitError}
+                      </div>
+                    )}
                   </div>
                 )}
               </>
             ) : (
-              /* CONFIRMATION SCREEN */
-              <div className="text-center py-6 space-y-6 animate-fadeIn">
-                <div className="h-16 w-16 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 flex items-center justify-center mx-auto animate-bounce">
-                  <CheckCircle2 className="h-9 w-9" />
+              /* ════════════════════════════════════════════════════════
+                 CONFIRMATION SCREEN
+              ════════════════════════════════════════════════════════ */
+              <div className="space-y-5 py-4 text-center">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full border border-emerald-500/30 bg-emerald-500/20 text-emerald-400">
+                  <CheckCircle2 className="h-8 w-8" />
                 </div>
 
-                <div className="space-y-2">
-                  <span className="text-xs font-bold font-cinzel uppercase tracking-widest text-gold-primary">
-                    Sacred Booking Logged
+                <div className="space-y-1.5">
+                  <span className="font-cinzel text-[10px] font-bold tracking-widest text-[#d4af37] uppercase">
+                    Booking Registered
                   </span>
-                  <h3 className="text-2xl font-bold font-cinzel text-white">
-                    Pranam, Your Online Pind Daan is Reserved
+                  <h3 className="font-cinzel text-xl font-bold text-white">
+                    Pranam — Your Pind Daan is Reserved
                   </h3>
-                  <p className="text-xs text-text-muted font-serif max-w-md mx-auto">
-                    Your ancestral booking has been registered in our Gaya sanctum ledger.
+                  <p className="mx-auto max-w-sm text-[11px] text-[#8a7f72]">
+                    Your booking has been saved in our system. A coordinator
+                    will contact you within 15 minutes.
                   </p>
                 </div>
 
-                <div className="p-4 rounded-2xl bg-surface/50 border border-gold-primary/30 max-w-md mx-auto text-left space-y-3">
-                  <div className="flex justify-between items-center border-b border-border/50 pb-2">
-                    <span className="text-xs text-text-muted">Booking Reference:</span>
-                    <span className="font-mono font-bold text-gold-primary text-sm">{generatedBookingId}</span>
+                {/* Booking card */}
+                <div className="mx-auto max-w-sm space-y-3 rounded-xl border border-[#d4af37]/25 bg-white/[0.03] p-4 text-left">
+                  <div className="flex items-center justify-between border-b border-white/10 pb-2.5">
+                    <span className="text-[10px] text-[#6a5f52]">
+                      Booking Reference:
+                    </span>
+                    <span className="font-mono text-sm font-bold text-[#d4af37]">
+                      {generatedBookingId}
+                    </span>
                   </div>
-                  <div className="grid grid-cols-2 gap-2 text-xs text-text-secondary">
+                  <div className="grid grid-cols-2 gap-2 text-[11px]">
                     <div>
-                      <span className="text-text-muted block text-[10px]">Package:</span>
+                      <span className="block text-[10px] text-[#6a5f52]">
+                        Package:
+                      </span>
                       <strong className="text-white">{currentPkg.name}</strong>
                     </div>
                     <div>
-                      <span className="text-text-muted block text-[10px]">Location:</span>
+                      <span className="block text-[10px] text-[#6a5f52]">
+                        Total Dakshina:
+                      </span>
+                      <strong className="text-[#d4af37]">
+                        {currentPkg.price}
+                      </strong>
+                    </div>
+                    <div>
+                      <span className="block text-[10px] text-[#6a5f52]">
+                        Ancestor:
+                      </span>
+                      <strong className="text-white">
+                        {ancestorName || "Family Lineage"}
+                      </strong>
+                    </div>
+                    <div>
+                      <span className="block text-[10px] text-[#6a5f52]">
+                        Ritual Site:
+                      </span>
                       <strong className="text-white">Vishnupad, Gaya</strong>
-                    </div>
-                    <div>
-                      <span className="text-text-muted block text-[10px]">Ancestor:</span>
-                      <strong className="text-white">{ancestorName || "Family Lineage"}</strong>
-                    </div>
-                    <div>
-                      <span className="text-text-muted block text-[10px]">Total Dakshina:</span>
-                      <strong className="text-gold-primary font-bold">{currentPkg.price}</strong>
                     </div>
                   </div>
                 </div>
 
-                {/* WHAT HAPPENS NEXT */}
-                <div className="p-5 rounded-2xl bg-black/40 border border-border/50 max-w-md mx-auto text-left space-y-3">
-                  <h4 className="text-xs font-bold font-cinzel text-gold-primary uppercase tracking-wider">
+                {/* Next steps */}
+                <div className="mx-auto max-w-sm rounded-xl border border-white/10 bg-white/[0.03] p-4 text-left">
+                  <h4 className="font-cinzel mb-2 text-[10px] font-bold tracking-wider text-[#d4af37] uppercase">
                     What Happens Next?
                   </h4>
-                  <ol className="text-xs text-text-secondary space-y-2 font-serif list-decimal pl-4">
-                    <li>A senior Pitraya coordinator will contact you on WhatsApp / Phone within 15 minutes.</li>
-                    <li>Your family Gotra and ancestral Sankalpa details will be verified with the Panchangam.</li>
-                    <li>The performing Gayawal Purohit and exact muhurat will be confirmed.</li>
-                    <li>The ritual is performed in Gaya with complete Vedic procedures.</li>
-                    <li>Ritual photos, video updates, and blessings documentation will be shared with your family.</li>
+                  <ol className="list-decimal space-y-1.5 pl-4 text-[11px] text-[#8a7f72]">
+                    <li>
+                      Pitraya coordinator contacts you on WhatsApp within 15
+                      minutes.
+                    </li>
+                    <li>
+                      Gotra & Sankalpa details verified with the Panchangam.
+                    </li>
+                    <li>Gayawal Pandit and exact Muhurat confirmed.</li>
+                    <li>
+                      Ritual performed in Gaya with complete Vedic procedures.
+                    </li>
+                    <li>
+                      Photos, video updates and blessings delivered to your
+                      family.
+                    </li>
                   </ol>
                 </div>
 
-                <div className="flex flex-col sm:flex-row gap-3 justify-center max-w-md mx-auto pt-2">
+                {/* Action buttons */}
+                <div className="mx-auto flex max-w-sm flex-col justify-center gap-3 sm:flex-row">
                   <button
                     onClick={() => {
                       const msg = encodeURIComponent(
-                        `Namaste! I just reserved Online Pind Daan with Booking ID: ${generatedBookingId}. Please assist with my family Sankalpa.`
+                        `Namaste! I just reserved Online Pind Daan — Booking ID: ${generatedBookingId}. Please assist with my Sankalpa details.`
                       );
-                      window.open(`https://wa.me/918434457228?text=${msg}`, "_blank");
+                      window.open(
+                        `https://wa.me/918434457228?text=${msg}`,
+                        "_blank"
+                      );
                     }}
-                    className="flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-[#25D366] text-black font-bold text-xs hover:bg-[#20bd5a] transition-all cursor-pointer"
+                    className="flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-xl bg-[#25D366] px-4 py-3 text-xs font-bold text-black transition-all hover:bg-[#20bd5a]"
                   >
                     <MessageCircle className="h-4 w-4" />
-                    <span>Chat with Coordinator</span>
+                    Chat with Coordinator
                   </button>
-
                   <button
                     onClick={resetAndClose}
-                    className="py-3 px-5 rounded-xl border border-border bg-surface text-xs font-bold text-white hover:bg-surface/80 transition-all cursor-pointer"
+                    className="cursor-pointer rounded-xl border border-white/15 px-5 py-3 text-xs font-bold text-white transition-all hover:bg-white/5"
                   >
                     Back to Pitraya
                   </button>
@@ -771,38 +995,60 @@ export default function OnlinePindDaanWizardModal({
             )}
           </div>
 
-          {/* ─── MODAL FOOTER BUTTONS ────────────────────────────────── */}
+          {/* ─── Footer Navigation ─────────────────────────────────────── */}
           {!bookingConfirmed && (
-            <div className="sticky bottom-0 z-20 bg-[#16130e] border-t border-gold-primary/20 px-6 py-4 flex items-center justify-between backdrop-blur-md">
+            <div
+              className="sticky bottom-0 z-20 flex items-center justify-between px-5 py-4"
+              style={{
+                background: "#1a1510",
+                borderTop: "1px solid rgba(212,175,55,0.15)",
+              }}
+            >
               {step > 1 ? (
                 <button
                   type="button"
                   onClick={() => setStep(step - 1)}
-                  className="flex items-center gap-1.5 text-xs font-semibold text-text-muted hover:text-white px-3 py-2 rounded-lg transition-colors cursor-pointer"
+                  className="flex cursor-pointer items-center gap-1.5 rounded-lg px-3 py-2 text-xs font-semibold text-[#8a7f72] transition-colors hover:text-white"
                 >
                   <ArrowLeft className="h-4 w-4" />
-                  <span>Previous</span>
+                  Previous
                 </button>
               ) : (
                 <div />
               )}
 
               <div className="flex items-center gap-3">
-                {step < 7 ? (
+                {/* Price reminder on step 1 */}
+                {step === 1 && (
+                  <span className="font-cinzel hidden text-xs font-bold text-[#d4af37] sm:block">
+                    {currentPkg.price}
+                  </span>
+                )}
+
+                {step < 4 ? (
                   <PrimaryButton
                     size="sm"
+                    disabled={!canProceed()}
                     onClick={() => {
-                      if (step === 3 && (!userName || !userPhone)) {
-                        alert("Please provide your name and WhatsApp number to continue.");
+                      if (step === 2 && !userName.trim()) {
+                        alert("Please enter your full name to continue.");
                         return;
                       }
-                      if (step === 4 && !ancestorName) {
-                        alert("Please provide the ancestor/deceased person's name.");
+                      if (step === 2 && userPhone.trim().length < 10) {
+                        alert(
+                          "Please enter a valid WhatsApp number to continue."
+                        );
+                        return;
+                      }
+                      if (step === 3 && !ancestorName.trim()) {
+                        alert(
+                          "Please enter the departed ancestor's name to continue."
+                        );
                         return;
                       }
                       setStep(step + 1);
                     }}
-                    className="font-cinzel text-xs font-bold tracking-wider px-6 py-2.5"
+                    className="font-cinzel px-6 py-2.5 text-xs font-bold tracking-wider"
                   >
                     <span>Continue</span>
                     <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
@@ -811,10 +1057,12 @@ export default function OnlinePindDaanWizardModal({
                   <PrimaryButton
                     size="sm"
                     disabled={isSubmitting}
-                    onClick={handleProceedToPayment}
-                    className="font-cinzel text-xs font-bold tracking-wider px-7 py-2.5 shadow-gold-glow"
+                    onClick={handleSubmit}
+                    className="font-cinzel shadow-gold-glow px-7 py-2.5 text-xs font-bold tracking-wider"
                   >
-                    {isSubmitting ? "Securing Reservation..." : `Confirm & Proceed (${currentPkg.price}) →`}
+                    {isSubmitting
+                      ? "Securing Reservation…"
+                      : `Confirm & Book (${currentPkg.price}) →`}
                   </PrimaryButton>
                 )}
               </div>
